@@ -1,12 +1,15 @@
 {
+    "browserslist": [],
     "bugs": {
         "email": "broyard.dev@gmail.com",
         "url": "https://github.com/Afpa-repo/CDA-19224-1/issues"
     },
     "devDependencies": {
         "@symfony/webpack-encore": "^0.28.2",
+        "autoprefixer": "^9.7.5",
         "core-js": "^3.0.0",
         "materialize-css": "^1.0.0-rc.2",
+        "postcss-loader": "^3.0.0",
         "regenerator-runtime": "^0.13.2",
         "webpack-notifier": "^1.6.0"
     },

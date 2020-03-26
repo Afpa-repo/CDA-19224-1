@@ -1,5 +1,11 @@
 module.exports = {
-  plugins: {
-      autoprefixer: {}
-  }
+    plugins: {
+        autoprefixer: {},
+        cssnano: {
+            preset: 'default'
+        },
+        'postcss-reporter': {
+            clearReportedMessages: true
+        }
+    }
 };

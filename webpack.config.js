@@ -37,6 +37,11 @@ Encore
             path: 'postcss.config.js'
         }
     })
+    // Reduce the number of HTTP requests inlining small files as base64 encoded URLs in the generated CSS files.
+    .configureUrlLoader({
+        fonts: {limit: 4096},
+        images: {limit: 4096}
+    })
 ;
 
 module.exports = Encore.getWebpackConfig();

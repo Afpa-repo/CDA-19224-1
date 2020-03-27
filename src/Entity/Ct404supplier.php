@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="ct404supplier")
  * @ORM\Entity
  */
-class Ct404supplier
+class Ct404Supplier
 {
     /**
      * @var int

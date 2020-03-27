@@ -7,11 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Ct404OrderDetail
  *
-<<<<<<< HEAD
  * @ORM\Table(name="ct404_order_detail", indexes={@ORM\Index(name="IDX_ED896F46274A2535", columns={"idorder_id"}), @ORM\Index(name="IDX_ED896F46E00EE68D", columns={"id_product_id"})})
-=======
- * @ORM\Table(name="ct404_order_detail", indexes={@ORM\Index(name="IDX_ED896F46E00EE68D", columns={"id_product_id"}), @ORM\Index(name="IDX_ED896F46274A2535", columns={"idorder_id"})})
->>>>>>> aff6c0fe01d2913333828d0f61479df5fae9e628
  * @ORM\Entity
  */
 class Ct404OrderDetail
@@ -33,9 +29,9 @@ class Ct404OrderDetail
     private $quantity;
 
     /**
-     * @var \Ct404ordered
+     * @var \Ct404Ordered
      *
-     * @ORM\ManyToOne(targetEntity="Ct404ordered")
+     * @ORM\ManyToOne(targetEntity="Ct404Ordered")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idorder_id", referencedColumnName="id")
      * })
@@ -69,12 +65,12 @@ class Ct404OrderDetail
         return $this;
     }
 
-    public function getIdorder(): ?Ct404ordered
+    public function getIdorder(): ?Ct404Ordered
     {
         return $this->idorder;
     }
 
-    public function setIdorder(?Ct404ordered $idorder): self
+    public function setIdorder(?Ct404Ordered $idorder): self
     {
         $this->idorder = $idorder;
 

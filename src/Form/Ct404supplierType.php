@@ -2,12 +2,12 @@
 
 namespace App\Form;
 
-use App\Entity\Ct404supplier;
+use App\Entity\Ct404Supplier;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class Ct404supplierType extends AbstractType
+class Ct404SupplierType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -24,7 +24,7 @@ class Ct404supplierType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Ct404supplier::class,
+            'data_class' => Ct404Supplier::class,
         ]);
     }
 }

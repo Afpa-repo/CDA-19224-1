@@ -41,8 +41,8 @@
                 <td>{{ ct404particular.actif ? 'Yes' : 'No' }}</td>
                 <td>{{ ct404particular.dateRegisteur ? ct404particular.dateRegisteur|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('ct404particular_show', {'id': ct404particular.id}) }}">show</a>
-                    <a href="{{ path('ct404particular_edit', {'id': ct404particular.id}) }}">edit</a>
+                    <a href="{{ path('ct404_particular_show', {'id': ct404particular.id}) }}">show</a>
+                    <a href="{{ path('ct404_particular_edit', {'id': ct404particular.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -53,5 +53,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('ct404particular_new') }}">Create new</a>
+    <a href="{{ path('ct404_particular_new') }}">Create new</a>
 {% endblock %}

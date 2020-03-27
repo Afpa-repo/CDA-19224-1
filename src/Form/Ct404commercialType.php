@@ -2,12 +2,12 @@
 
 namespace App\Form;
 
-use App\Entity\Ct404commercial;
+use App\Entity\Ct404Commercial;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class Ct404commercialType extends AbstractType
+class Ct404CommercialType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -22,7 +22,7 @@ class Ct404commercialType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Ct404commercial::class,
+            'data_class' => Ct404Commercial::class,
         ]);
     }
 }

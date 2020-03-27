@@ -11,7 +11,7 @@ date_default_timezone_set("Europe/Paris");
  * @ORM\Table(name="ct404ordered", indexes={@ORM\Index(name="IDX_7A3226166D7E3993", columns={"id_ct404_commercial_id"})})
  * @ORM\Entity
  */
-class Ct404ordered
+class Ct404Ordered
 {
     /**
      * @var int
@@ -44,9 +44,9 @@ class Ct404ordered
     private $totalPrice;
 
     /**
-     * @var \Ct404commercial
+     * @var \Ct404Commercial
      *
-     * @ORM\ManyToOne(targetEntity="Ct404commercial")
+     * @ORM\ManyToOne(targetEntity="Ct404Commercial")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_ct404_commercial_id", referencedColumnName="id")
      * })
@@ -94,12 +94,12 @@ class Ct404ordered
         return $this;
     }
 
-    public function getIdCt404Commercial(): ?Ct404commercial
+    public function getIdCt404Commercial(): ?Ct404Commercial
     {
         return $this->idCt404Commercial;
     }
 
-    public function setIdCt404Commercial(?Ct404commercial $idCt404Commercial): self
+    public function setIdCt404Commercial(?Ct404Commercial $idCt404Commercial): self
     {
         $this->idCt404Commercial = $idCt404Commercial;
 

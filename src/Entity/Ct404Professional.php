@@ -72,9 +72,9 @@ class Ct404Professional
     private $actif;
 
     /**
-     * @var \Ct404commercial
+     * @var \Ct404Commercial
      *
-     * @ORM\ManyToOne(targetEntity="Ct404commercial")
+     * @ORM\ManyToOne(targetEntity="Ct404Commercial")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="password_id", referencedColumnName="id")
      * })
@@ -170,12 +170,12 @@ class Ct404Professional
         return $this;
     }
 
-    public function getPassword(): ?Ct404commercial
+    public function getPassword(): ?Ct404Commercial
     {
         return $this->password;
     }
 
-    public function setPassword(?Ct404commercial $password): self
+    public function setPassword(?Ct404Commercial $password): self
     {
         $this->password = $password;
 

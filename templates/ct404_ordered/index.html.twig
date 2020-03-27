@@ -23,8 +23,8 @@
                 <td>{{ ct404ordered.deliveryDate ? ct404ordered.deliveryDate|date('Y-m-d') : '' }}</td>
                 <td>{{ ct404ordered.totalPrice }}</td>
                 <td>
-                    <a href="{{ path('ct404ordered_show', {'id': ct404ordered.id}) }}">show</a>
-                    <a href="{{ path('ct404ordered_edit', {'id': ct404ordered.id}) }}">edit</a>
+                    <a href="{{ path('ct404_ordered_show', {'id': ct404ordered.id}) }}">show</a>
+                    <a href="{{ path('ct404_ordered_edit', {'id': ct404ordered.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -35,5 +35,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('ct404ordered_new') }}">Create new</a>
+    <a href="{{ path('ct404_ordered_new') }}">Create new</a>
 {% endblock %}

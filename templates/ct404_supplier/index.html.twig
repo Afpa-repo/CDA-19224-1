@@ -29,8 +29,8 @@
                 <td>{{ ct404supplier.supplierPhone }}</td>
                 <td>{{ ct404supplier.supplierMail }}</td>
                 <td>
-                    <a href="{{ path('ct404supplier_show', {'id': ct404supplier.id}) }}">show</a>
-                    <a href="{{ path('ct404supplier_edit', {'id': ct404supplier.id}) }}">edit</a>
+                    <a href="{{ path('ct404_supplier_show', {'id': ct404supplier.id}) }}">show</a>
+                    <a href="{{ path('ct404_supplier_edit', {'id': ct404supplier.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -41,5 +41,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('ct404supplier_new') }}">Create new</a>
+    <a href="{{ path('ct404_supplier_new') }}">Create new</a>
 {% endblock %}

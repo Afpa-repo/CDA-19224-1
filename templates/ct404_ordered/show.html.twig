@@ -26,9 +26,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('ct404ordered_index') }}">back to list</a>
+    <a href="{{ path('ct404_ordered_index') }}">back to list</a>
 
-    <a href="{{ path('ct404ordered_edit', {'id': ct404ordered.id}) }}">edit</a>
+    <a href="{{ path('ct404_ordered_edit', {'id': ct404ordered.id}) }}">edit</a>
 
-    {{ include('ct404ordered/_delete_form.html.twig') }}
+    {{ include('ct404_ordered/_delete_form.html.twig') }}
 {% endblock %}

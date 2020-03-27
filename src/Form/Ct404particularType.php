@@ -2,12 +2,12 @@
 
 namespace App\Form;
 
-use App\Entity\Ct404particular;
+use App\Entity\Ct404Particular;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class Ct404particularType extends AbstractType
+class Ct404ParticularType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -32,7 +32,7 @@ class Ct404particularType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Ct404particular::class,
+            'data_class' => Ct404Particular::class,
         ]);
     }
 }

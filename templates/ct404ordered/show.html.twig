@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ct404ordered{% endblock %}
+
+{% block body %}
+    <h1>Ct404ordered</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ct404ordered.id }}</td>
+            </tr>
+            <tr>
+                <th>OrderDate</th>
+                <td>{{ ct404ordered.orderDate ? ct404ordered.orderDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DeliveryDate</th>
+                <td>{{ ct404ordered.deliveryDate ? ct404ordered.deliveryDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>TotalPrice</th>
+                <td>{{ ct404ordered.totalPrice }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct404ordered_index') }}">back to list</a>
+
+    <a href="{{ path('ct404ordered_edit', {'id': ct404ordered.id}) }}">edit</a>
+
+    {{ include('ct404ordered/_delete_form.html.twig') }}
+{% endblock %}

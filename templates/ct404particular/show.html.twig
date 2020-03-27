@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ct404particular{% endblock %}
+
+{% block body %}
+    <h1>Ct404particular</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ct404particular.id }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ ct404particular.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ ct404particular.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ ct404particular.address }}</td>
+            </tr>
+            <tr>
+                <th>ZipCode</th>
+                <td>{{ ct404particular.zipCode }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ ct404particular.city }}</td>
+            </tr>
+            <tr>
+                <th>Mail</th>
+                <td>{{ ct404particular.mail }}</td>
+            </tr>
+            <tr>
+                <th>PhoneNumber</th>
+                <td>{{ ct404particular.phoneNumber }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ ct404particular.password }}</td>
+            </tr>
+            <tr>
+                <th>Pseudo</th>
+                <td>{{ ct404particular.pseudo }}</td>
+            </tr>
+            <tr>
+                <th>Clef</th>
+                <td>{{ ct404particular.clef }}</td>
+            </tr>
+            <tr>
+                <th>Actif</th>
+                <td>{{ ct404particular.actif ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>DateRegisteur</th>
+                <td>{{ ct404particular.dateRegisteur ? ct404particular.dateRegisteur|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct404particular_index') }}">back to list</a>
+
+    <a href="{{ path('ct404particular_edit', {'id': ct404particular.id}) }}">edit</a>
+
+    {{ include('ct404particular/_delete_form.html.twig') }}
+{% endblock %}

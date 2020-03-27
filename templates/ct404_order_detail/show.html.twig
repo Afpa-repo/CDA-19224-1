@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ct404OrderDetail{% endblock %}
+
+{% block body %}
+    <h1>Ct404OrderDetail</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ct404_order_detail.id }}</td>
+            </tr>
+            <tr>
+                <th>Quantity</th>
+                <td>{{ ct404_order_detail.quantity }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct404_order_detail_index') }}">back to list</a>
+
+    <a href="{{ path('ct404_order_detail_edit', {'id': ct404_order_detail.id}) }}">edit</a>
+
+    {{ include('ct404_order_detail/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ct404commercial index{% endblock %}
+
+{% block body %}
+    <h1>Ct404commercial index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>CommercialForIndividual</th>
+                <th>CommercialForProfessional</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct404commercial in ct404commercials %}
+            <tr>
+                <td>{{ ct404commercial.id }}</td>
+                <td>{{ ct404commercial.firstname }}</td>
+                <td>{{ ct404commercial.lastname }}</td>
+                <td>{{ ct404commercial.commercialForIndividual ? 'Yes' : 'No' }}</td>
+                <td>{{ ct404commercial.commercialForProfessional ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('ct404commercial_show', {'id': ct404commercial.id}) }}">show</a>
+                    <a href="{{ path('ct404commercial_edit', {'id': ct404commercial.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct404commercial_new') }}">Create new</a>
+{% endblock %}

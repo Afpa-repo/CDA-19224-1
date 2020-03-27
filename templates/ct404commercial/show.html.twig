@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ct404commercial{% endblock %}
+
+{% block body %}
+    <h1>Ct404commercial</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ct404commercial.id }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ ct404commercial.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ ct404commercial.lastname }}</td>
+            </tr>
+            <tr>
+                <th>CommercialForIndividual</th>
+                <td>{{ ct404commercial.commercialForIndividual ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>CommercialForProfessional</th>
+                <td>{{ ct404commercial.commercialForProfessional ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct404commercial_index') }}">back to list</a>
+
+    <a href="{{ path('ct404commercial_edit', {'id': ct404commercial.id}) }}">edit</a>
+
+    {{ include('ct404commercial/_delete_form.html.twig') }}
+{% endblock %}

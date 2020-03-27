@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Ct404Professional{% endblock %}
+
+{% block body %}
+    <h1>Create new Ct404Professional</h1>
+
+    {{ include('ct404_professional/_form.html.twig') }}
+
+    <a href="{{ path('ct404_professional_index') }}">back to list</a>
+{% endblock %}

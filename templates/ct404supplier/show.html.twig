@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ct404supplier{% endblock %}
+
+{% block body %}
+    <h1>Ct404supplier</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ct404supplier.id }}</td>
+            </tr>
+            <tr>
+                <th>SupplierName</th>
+                <td>{{ ct404supplier.supplierName }}</td>
+            </tr>
+            <tr>
+                <th>SupplierAddress</th>
+                <td>{{ ct404supplier.supplierAddress }}</td>
+            </tr>
+            <tr>
+                <th>SupplierCity</th>
+                <td>{{ ct404supplier.supplierCity }}</td>
+            </tr>
+            <tr>
+                <th>SupplierZipeCode</th>
+                <td>{{ ct404supplier.supplierZipeCode }}</td>
+            </tr>
+            <tr>
+                <th>SupplierPhone</th>
+                <td>{{ ct404supplier.supplierPhone }}</td>
+            </tr>
+            <tr>
+                <th>SupplierMail</th>
+                <td>{{ ct404supplier.supplierMail }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct404supplier_index') }}">back to list</a>
+
+    <a href="{{ path('ct404supplier_edit', {'id': ct404supplier.id}) }}">edit</a>
+
+    {{ include('ct404supplier/_delete_form.html.twig') }}
+{% endblock %}

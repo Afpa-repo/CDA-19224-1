@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Ct404OrderDetail{% endblock %}
+
+{% block body %}
+    <h1>Create new Ct404OrderDetail</h1>
+
+    {{ include('ct404_order_detail/_form.html.twig') }}
+
+    <a href="{{ path('ct404_order_detail_index') }}">back to list</a>
+{% endblock %}

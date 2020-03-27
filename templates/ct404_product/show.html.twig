@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ct404Product{% endblock %}
+
+{% block body %}
+    <h1>Ct404Product</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ct404_product.id }}</td>
+            </tr>
+            <tr>
+                <th>ProductName</th>
+                <td>{{ ct404_product.productName }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ ct404_product.description }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ ct404_product.price }}</td>
+            </tr>
+            <tr>
+                <th>QuantityStock</th>
+                <td>{{ ct404_product.quantityStock }}</td>
+            </tr>
+            <tr>
+                <th>QuantityOfAlerte</th>
+                <td>{{ ct404_product.quantityOfAlerte }}</td>
+            </tr>
+            <tr>
+                <th>CategoryName</th>
+                <td>{{ ct404_product.categoryName }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct404_product_index') }}">back to list</a>
+
+    <a href="{{ path('ct404_product_edit', {'id': ct404_product.id}) }}">edit</a>
+
+    {{ include('ct404_product/_delete_form.html.twig') }}
+{% endblock %}

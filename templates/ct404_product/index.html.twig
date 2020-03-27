@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ct404Product index{% endblock %}
+
+{% block body %}
+    <h1>Ct404Product index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>ProductName</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>QuantityStock</th>
+                <th>QuantityOfAlerte</th>
+                <th>CategoryName</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct404_product in ct404_products %}
+            <tr>
+                <td>{{ ct404_product.id }}</td>
+                <td>{{ ct404_product.productName }}</td>
+                <td>{{ ct404_product.description }}</td>
+                <td>{{ ct404_product.price }}</td>
+                <td>{{ ct404_product.quantityStock }}</td>
+                <td>{{ ct404_product.quantityOfAlerte }}</td>
+                <td>{{ ct404_product.categoryName }}</td>
+                <td>
+                    <a href="{{ path('ct404_product_show', {'id': ct404_product.id}) }}">show</a>
+                    <a href="{{ path('ct404_product_edit', {'id': ct404_product.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct404_product_new') }}">Create new</a>
+{% endblock %}

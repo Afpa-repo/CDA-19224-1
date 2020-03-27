@@ -8,7 +8,11 @@ date_default_timezone_set("Europe/Paris");
 /**
  * Ct404particular
  *
+<<<<<<< HEAD
+ * @ORM\Table(name="ct404particular", indexes={@ORM\Index(name="IDX_59A290B961DDAC3C", columns={"id_ct404_role_id"}), @ORM\Index(name="IDX_59A290B96D7E3993", columns={"id_ct404_commercial_id"})})
+=======
  * @ORM\Table(name="ct404particular", indexes={@ORM\Index(name="IDX_59A290B96D7E3993", columns={"id_ct404_commercial_id"}), @ORM\Index(name="IDX_59A290B961DDAC3C", columns={"id_ct404_role_id"})})
+>>>>>>> aff6c0fe01d2913333828d0f61479df5fae9e628
  * @ORM\Entity
  */
 class Ct404particular

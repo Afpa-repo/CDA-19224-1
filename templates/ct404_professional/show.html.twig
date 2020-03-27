@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ct404Professional{% endblock %}
+
+{% block body %}
+    <h1>Ct404Professional</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ct404_professional.id }}</td>
+            </tr>
+            <tr>
+                <th>SiretNumber</th>
+                <td>{{ ct404_professional.siretNumber }}</td>
+            </tr>
+            <tr>
+                <th>CompagnyName</th>
+                <td>{{ ct404_professional.compagnyName }}</td>
+            </tr>
+            <tr>
+                <th>ContactName</th>
+                <td>{{ ct404_professional.contactName }}</td>
+            </tr>
+            <tr>
+                <th>Mail</th>
+                <td>{{ ct404_professional.mail }}</td>
+            </tr>
+            <tr>
+                <th>DateRegister</th>
+                <td>{{ ct404_professional.dateRegister ? ct404_professional.dateRegister|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Clef</th>
+                <td>{{ ct404_professional.clef }}</td>
+            </tr>
+            <tr>
+                <th>Actif</th>
+                <td>{{ ct404_professional.actif ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct404_professional_index') }}">back to list</a>
+
+    <a href="{{ path('ct404_professional_edit', {'id': ct404_professional.id}) }}">edit</a>
+
+    {{ include('ct404_professional/_delete_form.html.twig') }}
+{% endblock %}

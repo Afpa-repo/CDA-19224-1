@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Ct404commercial{% endblock %}
+
+{% block body %}
+    <h1>Edit Ct404commercial</h1>
+
+    {{ include('ct404_commercial/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('ct404_commercial_index') }}">back to list</a>
+
+    {{ include('ct404_commercial/_delete_form.html.twig') }}
+{% endblock %}

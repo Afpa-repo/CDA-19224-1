@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ct404supplier index{% endblock %}
+
+{% block body %}
+    <h1>Ct404supplier index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>SupplierName</th>
+                <th>SupplierAddress</th>
+                <th>SupplierCity</th>
+                <th>SupplierZipeCode</th>
+                <th>SupplierPhone</th>
+                <th>SupplierMail</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct404supplier in ct404suppliers %}
+            <tr>
+                <td>{{ ct404supplier.id }}</td>
+                <td>{{ ct404supplier.supplierName }}</td>
+                <td>{{ ct404supplier.supplierAddress }}</td>
+                <td>{{ ct404supplier.supplierCity }}</td>
+                <td>{{ ct404supplier.supplierZipeCode }}</td>
+                <td>{{ ct404supplier.supplierPhone }}</td>
+                <td>{{ ct404supplier.supplierMail }}</td>
+                <td>
+                    <a href="{{ path('ct404_supplier_show', {'id': ct404supplier.id}) }}">show</a>
+                    <a href="{{ path('ct404_supplier_edit', {'id': ct404supplier.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct404_supplier_new') }}">Create new</a>
+{% endblock %}

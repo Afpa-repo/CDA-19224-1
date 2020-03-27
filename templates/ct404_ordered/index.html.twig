@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ct404ordered index{% endblock %}
+
+{% block body %}
+    <h1>Ct404ordered index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>OrderDate</th>
+                <th>DeliveryDate</th>
+                <th>TotalPrice</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct404ordered in ct404ordereds %}
+            <tr>
+                <td>{{ ct404ordered.id }}</td>
+                <td>{{ ct404ordered.orderDate ? ct404ordered.orderDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ct404ordered.deliveryDate ? ct404ordered.deliveryDate|date('Y-m-d') : '' }}</td>
+                <td>{{ ct404ordered.totalPrice }}</td>
+                <td>
+                    <a href="{{ path('ct404_ordered_show', {'id': ct404ordered.id}) }}">show</a>
+                    <a href="{{ path('ct404_ordered_edit', {'id': ct404ordered.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct404_ordered_new') }}">Create new</a>
+{% endblock %}

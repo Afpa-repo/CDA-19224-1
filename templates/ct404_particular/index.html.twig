@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ct404particular index{% endblock %}
+
+{% block body %}
+    <h1>Ct404particular index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Address</th>
+                <th>ZipCode</th>
+                <th>City</th>
+                <th>Mail</th>
+                <th>PhoneNumber</th>
+                <th>Password</th>
+                <th>Pseudo</th>
+                <th>Clef</th>
+                <th>Actif</th>
+                <th>DateRegisteur</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct404particular in ct404particulars %}
+            <tr>
+                <td>{{ ct404particular.id }}</td>
+                <td>{{ ct404particular.firstname }}</td>
+                <td>{{ ct404particular.lastname }}</td>
+                <td>{{ ct404particular.address }}</td>
+                <td>{{ ct404particular.zipCode }}</td>
+                <td>{{ ct404particular.city }}</td>
+                <td>{{ ct404particular.mail }}</td>
+                <td>{{ ct404particular.phoneNumber }}</td>
+                <td>{{ ct404particular.password }}</td>
+                <td>{{ ct404particular.pseudo }}</td>
+                <td>{{ ct404particular.clef }}</td>
+                <td>{{ ct404particular.actif ? 'Yes' : 'No' }}</td>
+                <td>{{ ct404particular.dateRegisteur ? ct404particular.dateRegisteur|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('ct404_particular_show', {'id': ct404particular.id}) }}">show</a>
+                    <a href="{{ path('ct404_particular_edit', {'id': ct404particular.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct404_particular_new') }}">Create new</a>
+{% endblock %}

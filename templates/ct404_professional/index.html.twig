@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ct404Professional index{% endblock %}
+
+{% block body %}
+    <h1>Ct404Professional index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>SiretNumber</th>
+                <th>CompagnyName</th>
+                <th>ContactName</th>
+                <th>Mail</th>
+                <th>DateRegister</th>
+                <th>Clef</th>
+                <th>Actif</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct404_professional in ct404_professionals %}
+            <tr>
+                <td>{{ ct404_professional.id }}</td>
+                <td>{{ ct404_professional.siretNumber }}</td>
+                <td>{{ ct404_professional.compagnyName }}</td>
+                <td>{{ ct404_professional.contactName }}</td>
+                <td>{{ ct404_professional.mail }}</td>
+                <td>{{ ct404_professional.dateRegister ? ct404_professional.dateRegister|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ct404_professional.clef }}</td>
+                <td>{{ ct404_professional.actif ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('ct404_professional_show', {'id': ct404_professional.id}) }}">show</a>
+                    <a href="{{ path('ct404_professional_edit', {'id': ct404_professional.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct404_professional_new') }}">Create new</a>
+{% endblock %}

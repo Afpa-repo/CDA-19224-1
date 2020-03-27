@@ -26,7 +26,7 @@ class Ct404ordered
      *
      * @ORM\Column(name="order_date", type="datetime", nullable=false, options={"default"="current_timestamp()"})
      */
-    private $orderDate = 'current_timestamp()';
+    private $orderDate ;
 
     /**
      * @var \DateTime
@@ -64,7 +64,7 @@ class Ct404ordered
 
     public function setOrderDate(\DateTimeInterface $orderDate): self
     {
-        $this->orderDate = $orderDate;
+        $this->orderDate = new \DateTime();
 
         return $this;
     }

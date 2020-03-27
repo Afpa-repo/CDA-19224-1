@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/ct404/order/detail")
+ * @Route("/admin/orderdetail")
  */
 class Ct404OrderDetailController extends AbstractController
 {

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+date_default_timezone_set("Europe/Paris");
 
 /**
  * Ct404Professional
@@ -52,9 +53,9 @@ class Ct404Professional
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_register", type="datetime", nullable=false, options={"default"="current_timestamp()"})
+     * @ORM\Column(name="date_register", type="datetime", nullable=false)
      */
-    private $dateRegister = 'current_timestamp()';
+    private $dateRegister;
 
     /**
      * @var string
@@ -140,7 +141,7 @@ class Ct404Professional
 
     public function setDateRegister(\DateTimeInterface $dateRegister): self
     {
-        $this->dateRegister = $dateRegister;
+        $this->dateRegister = new \DateTime();
 
         return $this;
     }

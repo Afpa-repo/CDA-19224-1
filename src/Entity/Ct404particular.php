@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+date_default_timezone_set("Europe/Paris");
 
 /**
  * Ct404particular
@@ -101,9 +102,9 @@ class Ct404particular
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_registeur", type="datetime", nullable=false, options={"default"="current_timestamp()"})
+     * @ORM\Column(name="date_registeur", type="datetime", nullable=false)
      */
-    private $dateRegisteur = 'current_timestamp()';
+    private $dateRegisteur;
 
     /**
      * @var \Ct404Role
@@ -269,7 +270,7 @@ class Ct404particular
 
     public function setDateRegisteur(\DateTimeInterface $dateRegisteur): self
     {
-        $this->dateRegisteur = $dateRegisteur;
+        $this->dateRegisteur = new \DateTime();
 
         return $this;
     }

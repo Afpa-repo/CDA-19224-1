@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+date_default_timezone_set("Europe/Paris");
 
 /**
  * Ct404ordered
@@ -24,7 +25,7 @@ class Ct404ordered
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="order_date", type="datetime", nullable=false, options={"default"="current_timestamp()"})
+     * @ORM\Column(name="order_date", type="datetime", nullable=false)
      */
     private $orderDate ;
 

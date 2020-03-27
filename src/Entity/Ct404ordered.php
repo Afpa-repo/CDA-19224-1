@@ -24,9 +24,15 @@ class Ct404ordered
     /**
      * @var \DateTime
      *
+<<<<<<< HEAD
      * @ORM\Column(name="order_date", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
     private $orderDate = 'CURRENT_TIMESTAMP';
+=======
+     * @ORM\Column(name="order_date", type="datetime", nullable=false, options={"default"="current_timestamp()"})
+     */
+    private $orderDate = 'current_timestamp()';
+>>>>>>> aff6c0fe01d2913333828d0f61479df5fae9e628
 
     /**
      * @var \DateTime

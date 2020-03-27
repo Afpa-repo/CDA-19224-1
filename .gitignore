@@ -139,7 +139,7 @@ fabric.properties
 /composer.phar
 
 # Backup entities generated with doctrine:generate:entities command
-**/Entity/*~
+**/Entity/*~s
 
 # Embedded web-server pid file
 /.web-server-pid
@@ -149,4 +149,6 @@ fabric.properties
 /web/js/
 
 # End of https://www.gitignore.io/api/symfony,phpstorm
+
+.env
 

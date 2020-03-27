@@ -52,9 +52,15 @@ class Ct404Professional
     /**
      * @var \DateTime
      *
+<<<<<<< HEAD
      * @ORM\Column(name="date_register", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
     private $dateRegister = 'CURRENT_TIMESTAMP';
+=======
+     * @ORM\Column(name="date_register", type="datetime", nullable=false, options={"default"="current_timestamp()"})
+     */
+    private $dateRegister = 'current_timestamp()';
+>>>>>>> aff6c0fe01d2913333828d0f61479df5fae9e628
 
     /**
      * @var string

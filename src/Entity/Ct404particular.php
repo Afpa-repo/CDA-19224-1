@@ -7,7 +7,11 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Ct404particular
  *
+<<<<<<< HEAD
  * @ORM\Table(name="ct404particular", indexes={@ORM\Index(name="IDX_59A290B961DDAC3C", columns={"id_ct404_role_id"}), @ORM\Index(name="IDX_59A290B96D7E3993", columns={"id_ct404_commercial_id"})})
+=======
+ * @ORM\Table(name="ct404particular", indexes={@ORM\Index(name="IDX_59A290B96D7E3993", columns={"id_ct404_commercial_id"}), @ORM\Index(name="IDX_59A290B961DDAC3C", columns={"id_ct404_role_id"})})
+>>>>>>> aff6c0fe01d2913333828d0f61479df5fae9e628
  * @ORM\Entity
  */
 class Ct404particular
@@ -101,9 +105,15 @@ class Ct404particular
     /**
      * @var \DateTime
      *
+<<<<<<< HEAD
      * @ORM\Column(name="date_registeur", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
     private $dateRegisteur = 'CURRENT_TIMESTAMP';
+=======
+     * @ORM\Column(name="date_registeur", type="datetime", nullable=false, options={"default"="current_timestamp()"})
+     */
+    private $dateRegisteur = 'current_timestamp()';
+>>>>>>> aff6c0fe01d2913333828d0f61479df5fae9e628
 
     /**
      * @var \Ct404Role

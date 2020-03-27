@@ -7,7 +7,11 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Ct404OrderDetail
  *
+<<<<<<< HEAD
  * @ORM\Table(name="ct404_order_detail", indexes={@ORM\Index(name="IDX_ED896F46274A2535", columns={"idorder_id"}), @ORM\Index(name="IDX_ED896F46E00EE68D", columns={"id_product_id"})})
+=======
+ * @ORM\Table(name="ct404_order_detail", indexes={@ORM\Index(name="IDX_ED896F46E00EE68D", columns={"id_product_id"}), @ORM\Index(name="IDX_ED896F46274A2535", columns={"idorder_id"})})
+>>>>>>> aff6c0fe01d2913333828d0f61479df5fae9e628
  * @ORM\Entity
  */
 class Ct404OrderDetail

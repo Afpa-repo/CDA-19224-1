@@ -14,8 +14,9 @@ Renommez le fichier .env.test en .env et remplissez les valeurs vides
 
 Vous devez installer [Node.js](https://nodejs.org/en/) pour cette étape
 
-Pour build les assets lancez cette commande
+Pour build les assets lancez ces commandes
 
 ```shell script
+.yarn/releases/yarn-1.22.4.js install
 .yarn/releases/yarn-1.22.4.js build
 ```

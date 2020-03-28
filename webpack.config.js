@@ -11,7 +11,7 @@ Encore
     // Public path used by the web server to access the output path.
     .setPublicPath('/build')
     // Add 1 entry for each "page" of your app.
-    .addEntry('app', './assets/js/index.js')
+    .addEntry('index', './assets/js/index.js')
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
     // Helps Webpack do it's job for multiple entry files.

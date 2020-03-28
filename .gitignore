@@ -7,6 +7,7 @@
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff
+.DS_Store
 .idea
 .idea/**/workspace.xml
 .idea/**/tasks.xml
@@ -160,3 +161,4 @@ fabric.properties
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+

@@ -1,7 +1,25 @@
 {% extends 'base.html.twig' %}
+
+{% block title 'Accueil' %}
+
+{% block h1 'Bienvenue' %}
+
 {% block body %}
 
-    <h1 class="center-align">Bienvenue</h1>
 
+    {#    All pages must have a main    #}
+    <main class="white container z-depth-2">
+        <section class="row">
+            <h2 class="center-align col s12">Titre Section</h2>
+            <article class="col s6">
+                <p>Partie 1a</p>
+                <p>Partie 1b</p>
+            </article>
+            <article class="col s6">
+                <p>Partie 2a</p>
+                <p>Partie 2b</p>
+            </article>
+        </section>
+    </main>
 
 {% endblock %}

@@ -3,7 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
         <title>{% block title %}Titre{% endblock %}</title>
+
+{#       TODO : REMPLACER LES LIENS (PROBLEM WEBPACK)    #}
+
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
         <link rel="stylesheet" href="{{ asset('css/base.css') }}">
@@ -11,107 +15,141 @@
 {#            {{ encore_entry_link_tags('index') }}#}
         {% endblock %}
     </head>
+
     <body>
-
-        <header>
-
-                <section class="white row fix-nav valign-wrapper" role="navigation">
-                    <div class="col l3 m4 s5">
-                        <a href="{{ path('home') }}"><img class="responsive-img" src="{{ asset('images/logo.png') }}" alt="Logo" title="Notre Logo"></a>
-                    </div>
-
-                    <div class="col l4 offset-l1 m6 z-depth-2 hide-on-small-only">
-                        <label>
-                            <input type="text" id="searchInput" name="searchInput">
-                        </label>
-                    </div>
-
-                    <div class="col l2 offset-l1">
-                        <a href="#" title="Espace client">
-                            <div class="row black-text">
-                                <div class="col s12 center-align">
-                                    <i class="medium material-icons">person</i>
-                                </div>
-                                <div class="col s12 center-align">
-                                <ins>Mon compte</ins>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col l1 orange darken-3 center-align z-depth-2">
-                        <a href="#">
-                            <i class="medium material-icons white-text">shopping_basket</i>
-                        </a>
-                    </div>
-                    
-                </section>
-
-            <nav role="navigation" class="grey z-depth-1">
-                <div class="nav-wrapper row">
-                    <a href="#" class="brand-logo col s3 offset-s1 black-text hide-on-med-and-down">Baguettes</a>
-                    <a href="#" data-target="mobile-demo" class="sidenav-trigger" title="Menu"><i class="material-icons">menu</i></a>
-                    <ul class="right hide-on-med-and-down">
-                        <li><a href="#" class="black-text">Vêtements</a></li>
-                        <li><a href="#" class="black-text">Bijoux</a></li>
-                        <li><a href="#" class="black-text">Papeterie</a></li>
-                        <li><a href="#" class="black-text">Accessoires</a></li>
-                    </ul>
+{#  HEADER  #}
+        <header role="banner">
+            {#  TOP BANNER  #}
+            <section class="white row fix-nav valign-wrapper">
+                <div class="col l3 m4 s5">
+                    <a href="{{ path('home') }}" title="Accueil">
+                        <img class="responsive-img" src="{{ asset('images/logo.png') }}" alt="Logo" title="Notre Logo">
+                    </a>
                 </div>
-            </nav>
+                {#   For the accessibily, use an aria-label   #}
+                {#   TODO :  Mettre en place le formlaire de recherche  #}
+                {#   TODO :  Mettre en place web speech API  #}
+                <div class="col l4 offset-l1 m6 z-depth-2 hide-on-small-only">
+                    <label for="searchInput" aria-label="searchInput">
+                        <input aria-labelledby="searchInput" type="text" id="searchInput" name="searchInput">
+                    </label>
+                </div>
 
-            <ul class="sidenav" id="mobile-demo">
-                <li><a href="#">Baguettes</a></li>
-                <li><a href="#">Vêtements</a></li>
-                <li><a href="#">Bijoux</a></li>
-                <li><a href="#">Papeterie</a></li>
-                <li><a href="#">Accessoires</a></li>
-            </ul>
+                {#  Client Setting  #}
+                <div class="col l2 offset-l1">
+                    <a href="#" title="Espace client">
+                        <div class="row black-text">
+                            <div class="col s12 center-align">
+                                <i class="medium material-icons">person</i>
+                            </div>
+                            <div class="col s12 center-align">
+                                <ins>Mon compte</ins>
+                            </div>
+                        </div>
+                    </a>
+                </div>
 
+                {#  Shopping Basket  #}
+                <div class="col l1 orange darken-3 center-align z-depth-2">
+                    <a href="#" title="Panier">
+                        <i class="medium material-icons white-text">shopping_basket</i>
+                    </a>
+                </div>
+            </section>
         </header>
 
+        {#  BOTTOM BANNER : NAVBAR  #}
+        <section>
+            <nav class="grey z-depth-1">
+                <div class="nav-wrapper row">
+                    <a href="#" class="brand-logo col s3 offset-s1 black-text hide-on-med-and-down" title="baguettes">
+                        Baguettes
+                    </a>
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger black-text" title="Menu">
+                        <i class="material-icons">menu</i>
+                    </a>
+                    <div aria-label="othersMenuItems">
+                        <ul class="right hide-on-med-and-down" id="othersMenuItems">
+                            <li><a href="#" class="black-text">Vêtements</a></li>
+                            <li><a href="#" class="black-text">Bijoux</a></li>
+                            <li><a href="#" class="black-text">Papeterie</a></li>
+                            <li><a href="#" class="black-text">Accessoires</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            {#   SIDENAV   #}
+            <div aria-label="mobile-demo" role="navigation">
+                <ul class="sidenav" id="mobile-demo">
+                    <li><a href="#" title="Baguettes">Baguettes</a></li>
+                    <li><a href="#" title="Vêtements">Vêtements</a></li>
+                    <li><a href="#" title="Bijoux">Bijoux</a></li>
+                    <li><a href="#" title="Papeterie">Papeterie</a></li>
+                    <li><a href="#" title="Autres accessoires">Accessoires</a></li>
+                </ul>
+            </div>
+        </section>
 
-        {% block body %}{% endblock %}
 
 
-        <footer class="page-footer grey z-depth-2" role="contentinfo">
+        <div aria-labelledby="pageTitle" role="complementary">
+            <h1 id="pageTitle" class="center-align">
+                {% block h1 %}{% endblock %}
+            </h1>
+        </div>
+
+        {#    BODY CONTENT   #}
+        {% block body %} {% endblock %}
+
+        {#    FOOTER    #}
+        <footer class="page-footer grey z-depth-2">
+
+            {#  FOOTER BODY  #}
             <div class="container">
                 <div class="row">
-                    <div class="col l6 s12">
-                        <h5 class="black-text">Merci de votre attention</h5>
+                    <div class="col l6 s12 hide-on-med-and-down">
+                        <article class="black-text flow-text">
+                            <b>Merci de votre attention</b>
+                        </article>
                         <p class="black-text">
                             Ce projet est réaliser dans le cadre de notre diplôme, en groupe avec Symfony.
                             Les objets présentés ne sont, bien évidemment, pas réellement en vente.
                             Aussi nous vous invitons à ne jamais renseigner vos coordonnées bancaires.
                         </p>
-                        <p class="black-text">
-                            Nous vous souhaitons une bonne visite au pays des sorciers.
-                        </p>
                     </div>
-                    <div class="col l4 offset-l2 s12">
-                        <h5 class="black-text">Projet réalisé par</h5>
-                        <div class="black-text">
-                            <a class="black-text" href="">Julien</a>,
-                            <a class="black-text" href="">Corentin</a>,
-                            <a class="black-text" href="">Arnaud</a>,
-                            <a class="black-text" href="">Gaëtan</a> &
-                            <a class="black-text" href="">Valentin</a>
-                        </div>
-                    </div>
+                    <section class="col l4 offset-l2 s12">
+                        <article class="black-text flow-text">
+                            <strong>Projet réalisé par</strong>
+                        </article>
+                        <article class="black-text">
+                            <a class="black-text" href="https://github.com/Julien-Broyard" target="_blank" title="Github Julien">Julien</a>,
+                            <a class="black-text" href="https://github.com/CocoCouq" target="_blank" title="Github Corentin">Corentin</a>,
+                            <a class="black-text" href="https://github.com/arnaud567" target="_blank" title="Github Arnaud">Arnaud</a>,
+                            <a class="black-text" href="https://github.com/ffmc02" target="_blank" title="Github Gaëtan">Gaëtan</a> &
+                            <a class="black-text" href="#AJOUTESTONGITHUBVALENTIN" target="_blank" title="Github Valentin">Valentin</a>
+                        </article>
+                    </section>
+
+                    <p class="col s12 center-align black-text">
+                        Nous vous souhaitons une bonne visite au pays des sorciers.
+                    </p>
                 </div>
             </div>
-            <div class="footer-copyright">
-                <div id="copy-cont" class="container">
+            <div class="footer-copyright grey darken-4">
+                <div id="copy-cont" class="container white-text">
                     © 2020 Gatean's Team
-                    <a class="grey-text text-lighten-4 right row" href="https://github.com/Afpa-repo/CDA-19224-1" target="_blank">
+                    <a class="white-text right row" href="https://github.com/Afpa-repo/CDA-19224-1" target="_blank">
                         Github
                     </a>
                 </div>
             </div>
+
         </footer>
 
+        {#   TODO : WEBPACK ENCORE   #}
         <script src="{{ asset('js/base.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
         {% block javascripts %}
 {#            {{ encore_entry_script_tags('index') }}#}
         {% endblock %}

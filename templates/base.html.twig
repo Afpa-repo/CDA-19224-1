@@ -6,7 +6,7 @@
 
         <title>{% block title %}Titre{% endblock %}</title>
 
-{#       TODO : REMPLACER LES LIENS (PROBLEM WEBPACK)    #}
+        {#  TODO : REMPLACER LES LIENS (PROBLEM WEBPACK)  #}
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -17,7 +17,7 @@
     </head>
 
     <body>
-{#  HEADER  #}
+        {#  HEADER  #}
         <header role="banner">
             {#  TOP BANNER  #}
             <section class="white row fix-nav valign-wrapper">
@@ -91,19 +91,20 @@
         </section>
 
 
-
+        {#   Heading   #}
         <div aria-labelledby="pageTitle" role="complementary">
             <h1 id="pageTitle" class="center-align">
                 {% block h1 %}{% endblock %}
             </h1>
         </div>
 
+
         {#    BODY CONTENT   #}
         {% block body %} {% endblock %}
 
+
         {#    FOOTER    #}
         <footer class="page-footer grey z-depth-2">
-
             {#  FOOTER BODY  #}
             <div class="container">
                 <div class="row">

@@ -26,8 +26,6 @@ h1{
 
     font-family: HarryPotter, sans-serif;
     font-size: 12vw;
-    /* If the webkit is not ok */
-    color:	#ffd700;
 
     text-shadow: 0px 0px 1px grey,
         1px 1px 2px #cba100,

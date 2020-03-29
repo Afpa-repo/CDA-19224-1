@@ -17,80 +17,90 @@
     </head>
 
     <body>
-    <div id="divHeader">
-        {#  HEADER  #}
-        <header role="banner">
-            {#  TOP BANNER  #}
-            <section class="white row mb-auto valign-wrapper">
-                <div class="col l3 m4 s5">
-                    <a href="{{ path('home') }}" title="Accueil">
-                        <img class="responsive-img" src="{{ asset('images/logo.png') }}" alt="Logo" title="Notre Logo">
-                    </a>
-                </div>
-                {#   For the accessibily, use an aria-label   #}
-                {#   TODO :  Mettre en place le formlaire de recherche  #}
-                {#   TODO :  Mettre en place web speech API  #}
-                <div class="col l4 offset-l1 m6 z-depth-2 hide-on-small-only">
-                    <label for="searchInput" aria-label="searchInput">
-                        <input aria-labelledby="searchInput" type="text" id="searchInput" name="searchInput">
-                    </label>
-                </div>
+        <div id="divHeader">
+            {#  HEADER  #}
+            <header role="banner">
+                {#  TOP BANNER  #}
+                <section class="white row mb-auto valign-wrapper">
+                    <div class="col l3 m4 s5">
+                        <a href="{{ path('home') }}" title="Accueil">
+                            <img class="responsive-img" src="{{ asset('images/logo.png') }}" alt="Logo" title="Notre Logo">
+                        </a>
+                    </div>
+                    {#   For the accessibily, use an aria-label   #}
+                    {#   TODO :  Mettre en place le formlaire de recherche  #}
+                    {#   TODO :  Mettre en place web speech API  #}
+                    <div class="col l4 offset-l1 m6 z-depth-2 hide-on-small-only">
+                        <label for="searchInput" aria-label="searchInput">
+                            <input aria-labelledby="searchInput" type="text" id="searchInput" name="searchInput">
+                        </label>
+                    </div>
 
-                {#  Client Setting  #}
-                <div class="col l2 offset-l1">
-                    <a href="#" title="Espace client">
-                        <div class="row black-text">
-                            <div class="col s12 center-align">
-                                <i class="medium material-icons">person</i>
+                    {#  Client Setting  #}
+                    <div class="col l2 offset-l1">
+                        <a href="#" title="Espace client">
+                            <div class="row black-text">
+                                <div class="col s12 center-align">
+                                    <i class="medium material-icons">person</i>
+                                </div>
+                                <div class="col s12 center-align">
+                                    <ins>Mon compte</ins>
+                                </div>
                             </div>
-                            <div class="col s12 center-align">
-                                <ins>Mon compte</ins>
-                            </div>
+                        </a>
+                    </div>
+
+                    {#  Shopping Basket  #}
+                    <div class="col l1 orange darken-3 center-align z-depth-2">
+                        <a href="#" title="Panier">
+                            <i class="medium material-icons white-text">shopping_basket</i>
+                        </a>
+                    </div>
+                </section>
+            </header>
+
+            {#  BOTTOM BANNER : NAVBAR  #}
+            <section>
+                <nav class="grey z-depth-1">
+                    <div class="nav-wrapper row">
+                        <a href="#" class="brand-logo col s3 offset-s1 black-text hide-on-med-and-down" title="baguettes">
+                            Baguettes
+                        </a>
+                        <a href="#" data-target="mobile-demo" class="sidenav-trigger black-text" title="Menu">
+                            <i class="material-icons">menu</i>
+                        </a>
+                        <div aria-label="othersMenuItems">
+                            <ul class="right hide-on-med-and-down" id="othersMenuItems">
+                                <li><a href="#" class="black-text" title="Vêtements">Vêtements</a></li>
+                                <li><a href="#" class="black-text" title="Bijoux">Bijoux</a></li>
+                                <li><a href="#" class="black-text" title="Papetrie">Papeterie</a></li>
+                                <li><a href="#" class="black-text" title="Accessoires">Accessoires</a></li>
+                            </ul>
                         </div>
-                    </a>
-                </div>
-
-                {#  Shopping Basket  #}
-                <div class="col l1 orange darken-3 center-align z-depth-2">
-                    <a href="#" title="Panier">
-                        <i class="medium material-icons white-text">shopping_basket</i>
-                    </a>
+                    </div>
+                </nav>
+                {#   SIDENAV   #}
+                <div aria-label="mobile-demo" role="navigation">
+                    <ul class="sidenav" id="mobile-demo">
+                        <li><a href="#" title="Baguettes">Baguettes</a></li>
+                        <li><a href="#" title="Vêtements">Vêtements</a></li>
+                        <li><a href="#" title="Bijoux">Bijoux</a></li>
+                        <li><a href="#" title="Papeterie">Papeterie</a></li>
+                        <li><a href="#" title="Autres accessoires">Accessoires</a></li>
+                    </ul>
                 </div>
             </section>
-        </header>
-
-        {#  BOTTOM BANNER : NAVBAR  #}
-        <section>
-            <nav class="grey z-depth-1">
-                <div class="nav-wrapper row">
-                    <a href="#" class="brand-logo col s3 offset-s1 black-text hide-on-med-and-down" title="baguettes">
-                        Baguettes
-                    </a>
-                    <a href="#" data-target="mobile-demo" class="sidenav-trigger black-text" title="Menu">
-                        <i class="material-icons">menu</i>
-                    </a>
-                    <div aria-label="othersMenuItems">
-                        <ul class="right hide-on-med-and-down" id="othersMenuItems">
-                            <li><a href="#" class="black-text" title="Vêtements">Vêtements</a></li>
-                            <li><a href="#" class="black-text" title="Bijoux">Bijoux</a></li>
-                            <li><a href="#" class="black-text" title="Papetrie">Papeterie</a></li>
-                            <li><a href="#" class="black-text" title="Accessoires">Accessoires</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            {#   SIDENAV   #}
-            <div aria-label="mobile-demo" role="navigation">
-                <ul class="sidenav" id="mobile-demo">
-                    <li><a href="#" title="Baguettes">Baguettes</a></li>
-                    <li><a href="#" title="Vêtements">Vêtements</a></li>
-                    <li><a href="#" title="Bijoux">Bijoux</a></li>
-                    <li><a href="#" title="Papeterie">Papeterie</a></li>
-                    <li><a href="#" title="Autres accessoires">Accessoires</a></li>
-                </ul>
+            {#   History routes pages   #}
+            {% if history_routes %}
+            <div aria-label="routingDiv" class="nav-wrapper" role="complementary">
+                <section id="routingDiv"  class="col s12 valign-wrapper">
+                    {% for key, route in history_routes %}
+                        <a href="{{ route }}" class="breadcrumb valign-wrapper" title="{{ key }}">{{ key }}</a>
+                    {% endfor %}
+                </section>
             </div>
-        </section>
-    </div>
+            {% endif %}
+        </div>
 
 
         {#   Heading   #}

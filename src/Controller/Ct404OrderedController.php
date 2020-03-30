@@ -21,7 +21,8 @@ class Ct404OrderedController extends AbstractController
     {
         $ct404ordereds = $this->getDoctrine()
             ->getRepository(Ct404Ordered::class)
-            ->findAll();
+            ->findAll()
+        ;
 
         return $this->render('ct404_ordered/index.html.twig', [
             'ct404ordereds' => $ct404ordereds,

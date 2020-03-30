@@ -3,10 +3,11 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-date_default_timezone_set("Europe/Paris");
+
+date_default_timezone_set('Europe/Paris');
 
 /**
- * Ct404particular
+ * Ct404particular.
  *
  * @ORM\Table(name="ct404particular", indexes={@ORM\Index(name="IDX_59A290B961DDAC3C", columns={"id_ct404_role_id"}), @ORM\Index(name="IDX_59A290B96D7E3993", columns={"id_ct404_commercial_id"})})
  * @ORM\Entity
@@ -298,6 +299,4 @@ class Ct404Particular
 
         return $this;
     }
-
-
 }

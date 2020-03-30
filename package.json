@@ -29,6 +29,7 @@
     "build": "encore production --progress",
     "dev": "encore dev",
     "dev-server": "encore dev-server",
+    "fix": "php vendor/bin/php-cs-fixer fix -vvv --show-progress=estimating",
     "watch": "encore dev --watch"
   }
 }

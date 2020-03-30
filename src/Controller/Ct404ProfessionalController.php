@@ -21,7 +21,8 @@ class Ct404ProfessionalController extends AbstractController
     {
         $ct404Professionals = $this->getDoctrine()
             ->getRepository(Ct404Professional::class)
-            ->findAll();
+            ->findAll()
+        ;
 
         return $this->render('ct404_professional/index.html.twig', [
             'ct404_professionals' => $ct404Professionals,

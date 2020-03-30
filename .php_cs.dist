@@ -11,8 +11,10 @@ $finder = PhpCsFixer\Finder::create()
 
 return PhpCsFixer\Config::create()
     ->setRules([
+        '@PhpCsFixer' => true,
         '@Symfony' => true,
         'array_syntax' => ['syntax' => 'short'],
+        'ternary_to_null_coalescing' => true
     ])
     ->setFinder($finder)
 ;

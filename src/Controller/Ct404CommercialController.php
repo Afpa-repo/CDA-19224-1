@@ -21,7 +21,8 @@ class Ct404CommercialController extends AbstractController
     {
         $ct404commercials = $this->getDoctrine()
             ->getRepository(Ct404Commercial::class)
-            ->findAll();
+            ->findAll()
+        ;
 
         return $this->render('ct404_commercial/index.html.twig', [
             'ct404commercials' => $ct404commercials,

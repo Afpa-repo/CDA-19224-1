@@ -21,7 +21,8 @@ class Ct404SupplierController extends AbstractController
     {
         $ct404suppliers = $this->getDoctrine()
             ->getRepository(Ct404Supplier::class)
-            ->findAll();
+            ->findAll()
+        ;
 
         return $this->render('ct404_supplier/index.html.twig', [
             'ct404suppliers' => $ct404suppliers,

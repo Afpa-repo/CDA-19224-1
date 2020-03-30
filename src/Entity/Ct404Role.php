@@ -5,7 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Ct404Role
+ * Ct404Role.
  *
  * @ORM\Table(name="ct404_role")
  * @ORM\Entity
@@ -44,6 +44,4 @@ class Ct404Role
 
         return $this;
     }
-
-
 }

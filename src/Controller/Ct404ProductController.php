@@ -21,7 +21,8 @@ class Ct404ProductController extends AbstractController
     {
         $ct404Products = $this->getDoctrine()
             ->getRepository(Ct404Product::class)
-            ->findAll();
+            ->findAll()
+        ;
 
         return $this->render('ct404_product/index.html.twig', [
             'ct404_products' => $ct404Products,

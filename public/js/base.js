@@ -1,14 +1,17 @@
 /***** MATERIALIZE *****/
 
-// NavBar
+// SideNav
 document.addEventListener('DOMContentLoaded', function() {
-    let elems = document.querySelectorAll('.sidenav');
-    let instances = M.Sidenav.init(elems);
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems);
 });
 
 /***** INDEX *****/
-//
+
+// SPEECH RECOGNITION
 const btn = document.getElementById('btnSearchInput');
+const icon = document.getElementById('materialMicro');
+const searchInput = document.getElementById('searchInput');
 
 // If browser can run Speech Recognition
 if ('webkitSpeechRecognition' in window)
@@ -24,6 +27,7 @@ if ('webkitSpeechRecognition' in window)
 
     // Add event on the material icon 'micro'
     btn.addEventListener("click", function (event) {
+        icon.style.color = 'red';
         event.preventDefault();
         // Start recognition
         recognition.start();
@@ -33,7 +37,7 @@ if ('webkitSpeechRecognition' in window)
     recognition.onresult = function (event){
 
         // Remove input value
-        document.getElementById('searchInput').value = '';
+        searchInput.value = '';
 
         // Recover the index
         let i = event.resultIndex - 1;
@@ -42,13 +46,24 @@ if ('webkitSpeechRecognition' in window)
         {
             // Recovery of parts of transcription
             let transcript = event.results[i][0].transcript;
-            // Add the new transcription with intermediates values
-            document.getElementById('searchInput').value = (document.getElementById('searchInput').value + transcript);
+
+            if (event.results[i].isFinal)
+            {
+                searchInput.value = transcript;
+                icon.style.color = 'inherit';
+
+                // Stop recognition
+                recognition.stop();
+            }
+            else
+            {
+                // Add the new transcription with intermediates values
+                searchInput.value = (document.getElementById('searchInput').value + transcript);
+            }
+
         }
 
     }
-    // Stop recognition
-    recognition.stop();
 }
 else
 {

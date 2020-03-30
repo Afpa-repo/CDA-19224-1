@@ -9,10 +9,17 @@
         {#  TODO : REMPLACER LES LIENS (PROBLEM WEBPACK)  #}
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-        <link rel="stylesheet" href="{{ asset('css/base.css') }}">
+        <style>
+            @font-face
+            {
+                font-family: 'HarryPotter';
+                src: url('public/css/fonts/HARRY_POTTER.TTF') format('truetype');
+            }
+        </style>
+{#        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">#}
+{#        <link rel="stylesheet" href="{{ asset('css/base.css') }}">#}
         {% block stylesheets %}
-{#            {{ encore_entry_link_tags('index') }}#}
+            {{ encore_entry_link_tags('index') }}
         {% endblock %}
     </head>
 
@@ -29,14 +36,13 @@
                     </div>
                     {#   For the accessibily, use an aria-label   #}
                     {#   TODO :  Mettre en place le formlaire de recherche  #}
-                    {#   TODO :  Mettre en place web speech API  #}
                     <div class="col l4 offset-l1 m6 z-depth-2 hide-on-small-only">
                         <div class="row">
                             <label class="col s10" for="searchInput" aria-label="searchInput">
                                 <input aria-labelledby="searchInput" type="text" id="searchInput" name="searchInput" placeholder="">
                             </label>
                             <div id="speechBtn" class="col s2 mx-auto" aria-label="btnSearchInput">
-                                {#  TODO : Remplacer par un button si formulaire  #}
+                                {#  TODO : Remplacer par un button si formulaire | Problement method GET ?  #}
                                 <a href="#" id="btnSearchInput"><i id="materialMicro" class="material-icons">micro</i></a>
                             </div>
                         </div>
@@ -44,7 +50,7 @@
 
 
                     {#  Client Setting  #}
-                    <div class="col l2 offset-l1">
+                    <div class="col l2 offset-l1 hide-on-med-and-down">
                         <a href="#" title="Espace client">
                             <div class="row black-text">
                                 <div class="col s12 center-align">
@@ -58,7 +64,7 @@
                     </div>
 
                     {#  Shopping Basket  #}
-                    <div class="col l1 orange darken-3 center-align z-depth-2">
+                    <div class="col s3 offset-s6 m2 offset-m1 l1 offset-l0 orange darken-3 center-align z-depth-2">
                         <a href="#" title="Panier">
                             <i class="medium material-icons white-text">shopping_basket</i>
                         </a>
@@ -73,30 +79,23 @@
                         <a href="#" class="brand-logo col s3 offset-s1 black-text hide-on-med-and-down" title="baguettes">
                             Baguettes
                         </a>
-                        <a href="#" data-target="mobile-demo" class="sidenav-trigger black-text" title="Menu">
+
+                        <a href="#" data-target="slide-out" class="sidenav-trigger" title="Menu">
                             <i class="material-icons">menu</i>
                         </a>
+
                         <div aria-label="othersMenuItems">
                             <ul class="right hide-on-med-and-down" id="othersMenuItems">
-                                <li><a href="#" class="black-text" title="Vêtements">Vêtements</a></li>
-                                <li><a href="#" class="black-text" title="Bijoux">Bijoux</a></li>
-                                <li><a href="#" class="black-text" title="Papetrie">Papeterie</a></li>
-                                <li><a href="#" class="black-text" title="Accessoires">Accessoires</a></li>
+                                <li><a href="" class="black-text" title="Vêtements">Vêtements</a></li>
+                                <li><a href="" class="black-text" title="Bijoux">Bijoux</a></li>
+                                <li><a href="" class="black-text" title="Papetrie">Papeterie</a></li>
+                                <li><a href="" class="black-text" title="Accessoires">Accessoires</a></li>
                             </ul>
                         </div>
                     </div>
-                </nav>
-                {#   SIDENAV   #}
-                <div aria-label="mobile-demo" role="navigation">
-                    <ul class="sidenav" id="mobile-demo">
-                        <li><a href="#" title="Baguettes">Baguettes</a></li>
-                        <li><a href="#" title="Vêtements">Vêtements</a></li>
-                        <li><a href="#" title="Bijoux">Bijoux</a></li>
-                        <li><a href="#" title="Papeterie">Papeterie</a></li>
-                        <li><a href="#" title="Autres accessoires">Accessoires</a></li>
-                    </ul>
-                </div>
             </section>
+
+
             {#   History routes pages   #}
             {% if history_routes %}
             <div aria-label="routingDiv" class="nav-wrapper" role="complementary">
@@ -116,6 +115,27 @@
                 {% block h1 %}Titre de page{% endblock %}
             </h1>
         </div>
+
+        {#  Sidenav : Outside the fixed part #}
+        <ul id="slide-out" class="sidenav">
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img class="responsive-img" src="{{ asset('images/side_background.jpg') }}">
+                    </div>
+                    <a href="#user" title="Mon Compte"><img class="circle" src="{{ asset('images/user_images/Neville.png') }}" alt="Image Profil"></a>
+                    {#  TODO : informations utilisateurs  #}
+                    <span class="white-text name">Name Firstname</span>
+                    <span class="white-text email">email@gmail.com</span>
+                </div>
+            </li>
+            <li><div class="divider orange"></div></li>
+            <li><a href="#" title="Baguettes">Baguettes</a></li>
+            <li><a href="#" title="Vêtements">Vêtements</a></li>
+            <li><a href="#" title="Bijoux">Bijoux</a></li>
+            <li><a href="#" title="Papeterie">Papeterie</a></li>
+            <li><div class="divider orange"></div></li>
+        </ul>
 
 
         {#    BODY CONTENT   #}
@@ -168,10 +188,10 @@
 
         {#   TODO : WEBPACK ENCORE   #}
         <script src="{{ asset('js/base.js') }}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+{#        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>#}
 
         {% block javascripts %}
-{#            {{ encore_entry_script_tags('index') }}#}
+            {{ encore_entry_script_tags('index') }}
         {% endblock %}
     </body>
 </html>

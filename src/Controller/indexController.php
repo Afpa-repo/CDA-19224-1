@@ -19,8 +19,7 @@ class indexController extends AbstractController
         /* If you want use this, you have to inject precisely
         'history_route' to the base.html contained in all pages */
         $Routes = [
-            'Accueil' => '/',
-            'Test' => '/login_check'
+            'Accueil' => '/'
         ];
 
         return $this->render('pages/index.html.twig', [

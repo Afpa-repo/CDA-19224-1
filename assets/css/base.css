@@ -1,15 +1,11 @@
 /* Add FONT-FAMILY */
-@font-face
-{
-    font-family: 'HarryPotter';
-    src: url('fonts/HARRYP.TTF') format('truetype');
-}
+
 
 /* HTML TAGS */
 html{
     margin:0;
     padding:0;
-    background: url(../images/background_street.jpg) no-repeat center fixed;
+    background: url(../../public/images/background_street.jpg) no-repeat center fixed;
     -webkit-background-size: cover;
     background-size: cover;
 }
@@ -52,7 +48,7 @@ h1{
 }
 
 
-/* ID */
+ ID
 #divCopyright{
     max-height: 15px;
     color: #718C00;

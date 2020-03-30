@@ -1,9 +1,9 @@
 /***** MATERIALIZE *****/
 
 // SideNav
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems);
+document.addEventListener('DOMContentLoaded', function () {
+    const elems = document.querySelectorAll('.sidenav');
+    M.Sidenav.init(elems);
 });
 
 /***** INDEX *****/
@@ -14,10 +14,9 @@ const icon = document.getElementById('materialMicro');
 const searchInput = document.getElementById('searchInput');
 
 // If browser can run Speech Recognition
-if ('webkitSpeechRecognition' in window)
-{
+if ('webkitSpeechRecognition' in window) {
     // Declare webKitSpeechRecognition class
-    let recognition = new webkitSpeechRecognition();
+    const recognition = new webkitSpeechRecognition();
     // Define french language
     recognition.lang = 'fr-FR';
 
@@ -34,7 +33,7 @@ if ('webkitSpeechRecognition' in window)
     });
 
     // Recover the transcript results
-    recognition.onresult = function (event){
+    recognition.onresult = function (event) {
 
         // Remove input value
         searchInput.value = '';
@@ -42,21 +41,17 @@ if ('webkitSpeechRecognition' in window)
         // Recover the index
         let i = event.resultIndex - 1;
         // While i inferior to the results length
-        while (++i < event.results.length)
-        {
+        while (++i < event.results.length) {
             // Recovery of parts of transcription
             let transcript = event.results[i][0].transcript;
 
-            if (event.results[i].isFinal)
-            {
+            if (event.results[i].isFinal) {
                 searchInput.value = transcript;
                 icon.style.color = 'inherit';
 
                 // Stop recognition
                 recognition.stop();
-            }
-            else
-            {
+            } else {
                 // Add the new transcription with intermediates values
                 searchInput.value = (document.getElementById('searchInput').value + transcript);
             }
@@ -64,9 +59,7 @@ if ('webkitSpeechRecognition' in window)
         }
 
     }
-}
-else
-{
+} else {
     // If SpeechRecognition doesn't work in the browser, so hide him
     document.getElementById('speechBtn').style.display = 'none';
 }

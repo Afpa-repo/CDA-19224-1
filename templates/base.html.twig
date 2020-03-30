@@ -31,10 +31,17 @@
                     {#   TODO :  Mettre en place le formlaire de recherche  #}
                     {#   TODO :  Mettre en place web speech API  #}
                     <div class="col l4 offset-l1 m6 z-depth-2 hide-on-small-only">
-                        <label for="searchInput" aria-label="searchInput">
-                            <input aria-labelledby="searchInput" type="text" id="searchInput" name="searchInput">
-                        </label>
+                        <div class="row">
+                            <label class="col s10" for="searchInput" aria-label="searchInput">
+                                <input aria-labelledby="searchInput" type="text" id="searchInput" name="searchInput">
+                            </label>
+                            <label id="speechBtn" class="col s2 mx-auto" for="btnSearchInput">
+                                {#  TODO : Remplacer par un button si formulaire  #}
+                                <a href="#" id="btnSearchInput"><i class="material-icons">micro</i></a>
+                            </label>
+                        </div>
                     </div>
+
 
                     {#  Client Setting  #}
                     <div class="col l2 offset-l1">

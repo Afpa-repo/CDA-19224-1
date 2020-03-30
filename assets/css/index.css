@@ -1,3 +1,5 @@
 /* Imports materialize-css in the current project */
 @import "~materialize-css/dist/css/materialize.css";
-/*@import "base.css";*/
+
+/* Imports custom css */
+@import "base.css";

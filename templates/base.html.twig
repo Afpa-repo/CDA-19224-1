@@ -3,21 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-        <title>{% block title %}Titre{% endblock %}</title>
-
-        {#  TODO : REMPLACER LES LIENS (PROBLEM WEBPACK)  #}
-
+        <title>{% block title %}{% endblock %}</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet">
-        <style>
-            @font-face
-            {
-                font-family: 'HarryPotter';
-                src: url('public/css/fonts/HARRY_POTTER.TTF') format('truetype');
-            }
-        </style>
-{#        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">#}
-{#        <link rel="stylesheet" href="{{ asset('css/base.css') }}">#}
         {% block stylesheets %}
             {{ encore_entry_link_tags('index') }}
         {% endblock %}
@@ -31,7 +18,7 @@
                 <section class="white row mb-auto valign-wrapper">
                     <div class="col l3 m4 s5">
                         <a href="{{ path('home') }}" title="Accueil">
-                            <img class="responsive-img" src="{{ asset('images/logo.png') }}" alt="Logo" title="Notre Logo">
+                            <img class="responsive-img" src="{{ asset('build/images/logo.png') }}" alt="Logo" title="Notre Logo">
                         </a>
                     </div>
                     {#   For the accessibily, use an aria-label   #}
@@ -93,6 +80,7 @@
                             </ul>
                         </div>
                     </div>
+                </nav>
             </section>
 
 
@@ -121,9 +109,9 @@
             <li>
                 <div class="user-view">
                     <div class="background">
-                        <img class="responsive-img" src="{{ asset('images/side_background.jpg') }}">
+                        <img class="responsive-img" src="{{ asset('build/images/side_background.jpg') }}">
                     </div>
-                    <a href="#user" title="Mon Compte"><img class="circle" src="{{ asset('images/user_images/Neville.png') }}" alt="Image Profil"></a>
+                    <a href="#user" title="Mon Compte"><img class="circle" src="{{ asset('build/images/user_images/Neville.png') }}" alt="Image Profil"></a>
                     {#  TODO : informations utilisateurs  #}
                     <span class="white-text name">Name Firstname</span>
                     <span class="white-text email">email@gmail.com</span>
@@ -183,12 +171,7 @@
                     </a>
                 </div>
             </div>
-
         </footer>
-
-        {#   TODO : WEBPACK ENCORE   #}
-        <script src="{{ asset('js/base.js') }}"></script>
-{#        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>#}
 
         {% block javascripts %}
             {{ encore_entry_script_tags('index') }}

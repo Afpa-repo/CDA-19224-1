@@ -6,7 +6,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Ct404Product
+ * Ct404Product.
  *
  * @ORM\Table(name="ct404_product", indexes={@ORM\Index(name="IDX_DABC5B583688741C", columns={"id_ct404_supplier_id"}), @ORM\Index(name="IDX_DABC5B58B56FCC00", columns={"idct404_category_id"})})
  * @ORM\Entity
@@ -189,6 +189,4 @@ class Ct404Product
 
         return $this;
     }
-
-
 }

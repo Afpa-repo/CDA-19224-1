@@ -29,19 +29,22 @@ Encore
         config.useBuiltIns = 'usage';
         config.corejs = 3;
     })
-    // Gets integrity="..." attributes on your script & link tags
-    .enableIntegrityHashes(Encore.isProduction())
     // Enables and loads PostCSS
     .enablePostCssLoader(options => {
         options.config = {
             path: 'postcss.config.js'
-        }
+        };
     })
     // Reduce the number of HTTP requests inlining small files as base64 encoded URLs in the generated CSS files.
     .configureUrlLoader({
-        fonts: {limit: 4096},
-        images: {limit: 4096}
+        fonts: {limit: 4200},
+        images: {limit: 4200}
     })
-;
+    // Copies the images to the build folder
+    .copyFiles({
+        from: './assets/images',
+        to: 'images/[path][name].[hash:8].[ext]',
+        pattern: /\.(png|jpg|jpeg)$/
+    });
 
 module.exports = Encore.getWebpackConfig();

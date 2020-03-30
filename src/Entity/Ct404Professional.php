@@ -6,10 +6,11 @@ use DateTime;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
-date_default_timezone_set("Europe/Paris");
+
+date_default_timezone_set('Europe/Paris');
 
 /**
- * Ct404Professional
+ * Ct404Professional.
  *
  * @ORM\Table(name="ct404_professional", indexes={@ORM\Index(name="IDX_C08407583E4A79C1", columns={"password_id"})})
  * @ORM\Entity
@@ -191,6 +192,4 @@ class Ct404Professional
 
         return $this;
     }
-
-
 }

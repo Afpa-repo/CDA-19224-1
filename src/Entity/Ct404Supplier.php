@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Ct404supplier
+ * Ct404supplier.
  *
  * @ORM\Table(name="ct404supplier")
  * @ORM\Entity
@@ -151,6 +151,4 @@ class Ct404Supplier
 
         return $this;
     }
-
-
 }

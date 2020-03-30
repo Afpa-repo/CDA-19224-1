@@ -12,6 +12,8 @@ class Ct404CategoryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('categoryName')
+            ->add('idCategory')
         ;
     }
 

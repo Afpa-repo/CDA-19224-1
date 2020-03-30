@@ -28,7 +28,7 @@ class Ct404Category
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Ct404Category")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $idCategory;
 

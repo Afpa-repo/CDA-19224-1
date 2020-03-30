@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,28 +24,30 @@ class Ct404Commercial
 
     /**
      * @var string
-     *
+     * @Assert\Regex("/^[\w\-éèêëûüùîïíôöœàáâæ]+$/",
+     *     message="Vous utilisez des caractères interdits")
      * @ORM\Column(name="firstname", type="string", length=50, nullable=false)
      */
     private $firstname;
 
     /**
      * @var string
-     *
+     * @Assert\Regex("/^[\w\-éèêëûüùîïíôöœàáâæ]+$/",
+     *     message="Vous utilisez des caractères interdits")
      * @ORM\Column(name="lastname", type="string", length=50, nullable=false)
      */
     private $lastname;
 
     /**
      * @var bool
-     *
+     * @Assert\NotNull()
      * @ORM\Column(name="commercial_for_individual", type="boolean", nullable=false)
      */
     private $commercialForIndividual;
 
     /**
      * @var bool
-     *
+     * @Assert\NotNull()
      * @ORM\Column(name="commercial_for_professional", type="boolean", nullable=false)
      */
     private $commercialForProfessional;

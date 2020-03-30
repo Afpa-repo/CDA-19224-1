@@ -2,6 +2,9 @@
 
 namespace App\Entity;
 
+use DateTime;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 date_default_timezone_set("Europe/Paris");
 
@@ -10,6 +13,8 @@ date_default_timezone_set("Europe/Paris");
  *
  * @ORM\Table(name="ct404_professional", indexes={@ORM\Index(name="IDX_C08407583E4A79C1", columns={"password_id"})})
  * @ORM\Entity
+ * @UniqueEntity("siret_number")
+ * @UniqueEntity("mail")
  */
 class Ct404Professional
 {
@@ -24,35 +29,40 @@ class Ct404Professional
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="siret_number", type="string", length=50, nullable=false)
+     * @Assert\NotBlank()
+     * @ORM\Column(name="siret_number", type="string", length=50, nullable=false, unique=true)
      */
     private $siretNumber;
 
     /**
      * @var string
-     *
+     * @Assert\Regex("/^[\w\s\&\;\:\.\,\'\(\)\%""\?\!\€\-éèêëûüùîïíôöœàáâæç]+$/",
+     *     message="Voua utilisez des caractères interdits")
      * @ORM\Column(name="compagny_name", type="string", length=50, nullable=false)
      */
     private $compagnyName;
 
     /**
      * @var string
-     *
+     * @Assert\Regex("/^[\w\-éèêëûüùîïíôöœàáâæç]+$/",
+     *     message="Vous utilisez des caractères interdits")
      * @ORM\Column(name="contact_name", type="string", length=50, nullable=false)
      */
     private $contactName;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="mail", type="string", length=50, nullable=false)
+     * @Assert\Email(
+     *     message="Votre adresse email n'est pas valide")
+     * @ORM\Column(name="mail", type="string", length=50, nullable=false, unique=true)
      */
     private $mail;
 
     /**
-     * @var \DateTime
-     *
+     * @var DateTime
+     * @Assert\DateTime(
+     *     message="Problème d'enregistrement de la date"
+     * )
      * @ORM\Column(name="date_register", type="datetime", nullable=false)
      */
     private $dateRegister;
@@ -66,7 +76,7 @@ class Ct404Professional
 
     /**
      * @var bool
-     *
+     * @Assert\NotNull()
      * @ORM\Column(name="actif", type="boolean", nullable=false)
      */
     private $actif;
@@ -141,7 +151,7 @@ class Ct404Professional
 
     public function setDateRegister(\DateTimeInterface $dateRegister): self
     {
-        $this->dateRegister = new \DateTime();
+        $this->dateRegister = new DateTime();
 
         return $this;
     }

@@ -26,5 +26,5 @@ class Ct404Category
         return $this->id;
     }
 
-
+    // TODO : On met pas de nom ?
 }

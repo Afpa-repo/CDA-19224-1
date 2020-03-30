@@ -2,14 +2,18 @@
 
 namespace App\Entity;
 
+use DateTime;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 date_default_timezone_set("Europe/Paris");
 
 /**
  * Ct404particular
- *
  * @ORM\Table(name="ct404particular", indexes={@ORM\Index(name="IDX_59A290B961DDAC3C", columns={"id_ct404_role_id"}), @ORM\Index(name="IDX_59A290B96D7E3993", columns={"id_ct404_commercial_id"})})
  * @ORM\Entity
+ * @UniqueEntity("pseudo")
+ * @UniqueEntity("mail")
  */
 class Ct404Particular
 {
@@ -24,53 +28,62 @@ class Ct404Particular
 
     /**
      * @var string
-     *
+     * @Assert\Regex("/^[\w\-éèêëûüùîïíôöœàáâæç]+$/",
+     *     message="Vous utilisez des caractères interdits")
      * @ORM\Column(name="firstname", type="string", length=50, nullable=false)
      */
     private $firstname;
 
     /**
      * @var string
-     *
+     * @Assert\Regex("/^[\w\-éèêëûüùîïíôöœàáâæç]+$/",
+     *     message="Vous utilisez des caractères interdits")
      * @ORM\Column(name="lastname", type="string", length=50, nullable=false)
      */
     private $lastname;
 
     /**
      * @var string
-     *
+     * @Assert\Regex("/^[\w\d\.\,\(\)\-éèêëûüùîïíôöœàáâæç]+$/",
+     *     message="Vous utilisez des caractères interdits")
      * @ORM\Column(name="address", type="string", length=50, nullable=false)
      */
     private $address;
 
     /**
      * @var string
-     *
+     * @Assert\Regex("/^\d{5}$/",
+     *     message="Votre code postal n'est pas valide")
      * @ORM\Column(name="zip_code", type="string", length=5, nullable=false)
      */
     private $zipCode;
 
     /**
      * @var string
-     *
+     * @Assert\Regex("/^[\w\-éèêëûüùîïíôöœàáâæç]+$/",
+     *     message="Vous utilisez des caractères interdits")
      * @ORM\Column(name="city", type="string", length=50, nullable=false)
      */
     private $city;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="mail", type="string", length=50, nullable=false)
+     * @Assert\Email(
+     *     message="Votre email n'est pas valide"
+     * )
+     * @ORM\Column(name="mail", type="string", length=50, nullable=false, unique=true)
      */
     private $mail;
 
     /**
      * @var int
-     *
+     * @Assert\Regex("/^(0{1}\d{9})$/",
+     *      message="Votre numero de téléphone n'est pas valide")
      * @ORM\Column(name="phone_number", type="integer", nullable=false)
      */
     private $phoneNumber;
 
+    // TODO : Assert pour le password
     /**
      * @var string
      *
@@ -80,35 +93,38 @@ class Ct404Particular
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="pseudo", type="string", length=50, nullable=false)
+     * @Assert\Regex("/^[\w\d\.\_\-éèêëûüùîïíôöœàáâæç]+$/",
+     *     message="Votre pseudo n'est pas valide")
+     * @ORM\Column(name="pseudo", type="string", length=50, nullable=false, unique=true)
      */
     private $pseudo;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="clef", type="string", length=100, nullable=false)
      */
     private $clef;
 
+    // TODO : On peut utiliser le role pour la validation d'email (['ROLE_NOT_VALID'] par défault et passer ensuite en ['ROLE_USER'])
+
     /**
      * @var bool
-     *
+     * @Assert\NotNull()
      * @ORM\Column(name="actif", type="boolean", nullable=false)
      */
     private $actif;
 
     /**
-     * @var \DateTime
-     *
+     * @var DateTime
+     * @Assert\DateTime()
      * @ORM\Column(name="date_registeur", type="datetime", nullable=false)
      */
     private $dateRegisteur;
 
     /**
      * @var \Ct404Role
-     *
+     * @Assert\DateTime()
      * @ORM\ManyToOne(targetEntity="Ct404Role")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_ct404_role_id", referencedColumnName="id")
@@ -118,7 +134,7 @@ class Ct404Particular
 
     /**
      * @var \Ct404Commercial
-     *
+     * @Assert\Positive()
      * @ORM\ManyToOne(targetEntity="Ct404Commercial")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_ct404_commercial_id", referencedColumnName="id")
@@ -270,7 +286,7 @@ class Ct404Particular
 
     public function setDateRegisteur(\DateTimeInterface $dateRegisteur): self
     {
-        $this->dateRegisteur = new \DateTime();
+        $this->dateRegisteur = new DateTime();
 
         return $this;
     }

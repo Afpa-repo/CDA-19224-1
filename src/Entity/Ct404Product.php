@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,39 +24,44 @@ class Ct404Product
 
     /**
      * @var string
-     *
+     * @Assert\Regex("/^[\w\&\'\-éèêëûüùîïíôöœàáâæç]+$/",
+     *     message="Vous utilisez des caractères interdits")
      * @ORM\Column(name="product_name", type="string", length=50, nullable=false)
      */
     private $productName;
 
     /**
      * @var string
-     *
+     * @Assert\Regex("/^[\w\s\&\;\:\.\,\'\(\)\%""\?\!\€\-éèêëûüùîïíôöœàáâæç]+$/",
+     *     message="Vous utilisez des caractères interdits")
      * @ORM\Column(name="description", type="text", length=0, nullable=false)
      */
     private $description;
 
     /**
      * @var string
-     *
+     * @Assert\Regex("/^([\d]{1,9}((\.|\,){1}[\d]{0,2})?)$/",
+     *      message="Le prix c'est pas valide")
      * @ORM\Column(name="price", type="decimal", precision=15, scale=2, nullable=false)
      */
     private $price;
 
     /**
      * @var string
-     *
+     * @Assert\Range(min="0", max="99999999999")
      * @ORM\Column(name="quantity_stock", type="string", length=11, nullable=false)
      */
     private $quantityStock;
 
     /**
      * @var string
-     *
+     * @Assert\Range(min="0", max="99999999999")
      * @ORM\Column(name="quantity_of_alerte", type="string", length=11, nullable=false)
      */
     private $quantityOfAlerte;
 
+
+    // TODO : C'est normal que le nom ne soit pas dans la table categorie ?
     /**
      * @var string
      *
@@ -65,7 +71,7 @@ class Ct404Product
 
     /**
      * @var \Ct404Supplier
-     *
+     * @Assert\Positive()
      * @ORM\ManyToOne(targetEntity="Ct404Supplier")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_ct404_supplier_id", referencedColumnName="id")
@@ -75,7 +81,7 @@ class Ct404Product
 
     /**
      * @var \Ct404Category
-     *
+     * @Assert\Positive()
      * @ORM\ManyToOne(targetEntity="Ct404Category")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idct404_category_id", referencedColumnName="id")

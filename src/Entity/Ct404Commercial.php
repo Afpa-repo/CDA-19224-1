@@ -5,7 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Ct404commercial
+ * Ct404commercial.
  *
  * @ORM\Table(name="ct404commercial")
  * @ORM\Entity
@@ -101,6 +101,4 @@ class Ct404Commercial
 
         return $this;
     }
-
-
 }

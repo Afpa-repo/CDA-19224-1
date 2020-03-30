@@ -21,7 +21,8 @@ class Ct404ParticularController extends AbstractController
     {
         $ct404particulars = $this->getDoctrine()
             ->getRepository(Ct404Particular::class)
-            ->findAll();
+            ->findAll()
+        ;
 
         return $this->render('ct404_particular/index.html.twig', [
             'ct404particulars' => $ct404particulars,

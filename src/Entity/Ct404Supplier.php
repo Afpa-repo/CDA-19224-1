@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -9,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="ct404supplier")
  * @ORM\Entity
+ * @UniqueEntity("supplier_name")
+ * @UniqueEntity("supplier_mail")
  */
 class Ct404Supplier
 {
@@ -23,43 +27,51 @@ class Ct404Supplier
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="supplier_name", type="string", length=50, nullable=false)
+     * @Assert\Regex("/^[\w\&\'\-éèêëûüùîïíôöœàáâæç]+$/",
+     *     message="Vous utilisez des caractères interdits")
+     * @ORM\Column(name="supplier_name", type="string", length=50, nullable=false, unique=true)
      */
     private $supplierName;
 
     /**
      * @var string
-     *
+     * @Assert\Regex("/^[\w\d\.\,\(\)\-éèêëûüùîïíôöœàáâæç]+$/",
+     *     message="Vous utilisez des caractères interdits")
      * @ORM\Column(name="supplier_address", type="string", length=50, nullable=false)
      */
     private $supplierAddress;
 
     /**
      * @var string
-     *
+     * @Assert\Regex("/^[\w\-éèêëûüùîïíôöœàáâæç]+$/",
+     *     message="Vous utilisez des caractères interdits")
      * @ORM\Column(name="supplier_city", type="string", length=50, nullable=false)
      */
     private $supplierCity;
 
+    // TODO : Corriger le nom de variable
     /**
      * @var int
-     *
+     * @Assert\Regex("/^\d{5}$/",
+     *     message="Code postal invalide")
      * @ORM\Column(name="supplier_zipe_code", type="integer", nullable=false)
      */
     private $supplierZipeCode;
 
     /**
      * @var string
-     *
+     * @Assert\Regex("/^(0{1}\d{9})$/",
+     *     message="Votre numéro de téléphone n'est pas valide")
      * @ORM\Column(name="supplier_phone", type="string", length=14, nullable=false)
      */
     private $supplierPhone;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="supplier_mail", type="string", length=50, nullable=false)
+     * @Assert\Email(
+     *     message="Votre adresse email n'est pas valide"
+     * )
+     * @ORM\Column(name="supplier_mail", type="string", length=50, nullable=false, unique=true)
      */
     private $supplierMail;
 

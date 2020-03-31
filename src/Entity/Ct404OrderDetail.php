@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,14 +24,14 @@ class Ct404OrderDetail
 
     /**
      * @var string
-     *
+     * @Assert\Range(min="0", max="99999999999")
      * @ORM\Column(name="quantity", type="string", length=11, nullable=false)
      */
     private $quantity;
 
     /**
      * @var \Ct404Ordered
-     *
+     * @Assert\Positive()
      * @ORM\ManyToOne(targetEntity="Ct404Ordered")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idorder_id", referencedColumnName="id")
@@ -40,7 +41,7 @@ class Ct404OrderDetail
 
     /**
      * @var \Ct404Product
-     *
+     * @Assert\Positive()
      * @ORM\ManyToOne(targetEntity="Ct404Product")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_product_id", referencedColumnName="id")

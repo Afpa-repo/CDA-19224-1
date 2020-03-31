@@ -61,3 +61,4 @@ class Ct404Category
         return $this;
     }
 }
+    // TODO : On met pas de nom ?

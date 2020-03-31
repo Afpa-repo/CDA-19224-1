@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use DateTime;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 date_default_timezone_set('Europe/Paris');
@@ -24,35 +26,37 @@ class Ct404Ordered
     private $id;
 
     /**
-     * @var \DateTime
-     *
+     * @var DateTime
+     * @Assert\DateTime()
      * @ORM\Column(name="order_date", type="datetime", nullable=false)
      */
     private $orderDate;
 
     /**
-     * @var \DateTime
-     *
+     * @var DateTime
+     * @Assert\DateTime()
      * @ORM\Column(name="delivery_date", type="date", nullable=false)
      */
     private $deliveryDate;
 
     /**
      * @var string
-     *
+     * @Assert\Regex("/^([\d]{1,9}((\.|\,){1}[\d]{0,2})?)$/",
+     *     message="Votre prix n'est pas valide")
      * @ORM\Column(name="total_price", type="decimal", precision=10, scale=2, nullable=false)
      */
     private $totalPrice;
 
     /**
      * @var \Ct404Commercial
-     *
+     * @Assert\Positive()
      * @ORM\ManyToOne(targetEntity="Ct404Commercial")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_ct404_commercial_id", referencedColumnName="id")
      * })
      */
     private $idCt404Commercial;
+
 
     public function getId(): ?int
     {
@@ -66,7 +70,7 @@ class Ct404Ordered
 
     public function setOrderDate(\DateTimeInterface $orderDate): self
     {
-        $this->orderDate = new \DateTime();
+        $this->orderDate = new DateTime();
 
         return $this;
     }

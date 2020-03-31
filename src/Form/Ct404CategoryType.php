@@ -6,6 +6,7 @@ use App\Entity\Ct404Category;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class Ct404CategoryType extends AbstractType
 {
@@ -13,7 +14,17 @@ class Ct404CategoryType extends AbstractType
     {
         $builder
             ->add('categoryName')
-            ->add('idCategory')
+            ->add('idCategory', EntityType::class, [
+                // looks for choices from this entity
+                'class' => Ct404Category::class,
+            
+                // uses the User.username property as the visible option string
+                'choice_label' => 'categoryName',
+            
+                // used to render a select box, check boxes or radios
+                // 'multiple' => true,
+                // 'expanded' => true,
+            ])
         ;
     }
 

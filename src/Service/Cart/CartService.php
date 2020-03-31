@@ -4,6 +4,7 @@ namespace App\Service\Cart;
 
 use App\Repository\Ct404ProductRepository;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
 // Le service CartService comprenant les méthodes liées au panier
 // TODO: Ajouter une des méthodes pour incrémenter et  décrémenter la quantité d'un produit directement dans le panier
 class CartService
@@ -23,7 +24,7 @@ class CartService
         $panier = $this->session->get('panier', []);
         // si le produit est déjà dans le panier, on incrémente sa quantité
         if (!empty($panier[$id])) {
-            $panier[$id]++;
+            ++$panier[$id];
         } else {
             // sinon, on lui attribue la valeur 1
             $panier[$id] = 1;
@@ -53,10 +54,10 @@ class CartService
         foreach ($panier as $id => $quantity) {
             $panierWithData[] = [
                 'product' => $this->Ct404ProductRepository->find($id),
-                'quantity' => $quantity
-
+                'quantity' => $quantity,
             ];
         }
+
         return $panierWithData;
     }
 
@@ -64,9 +65,11 @@ class CartService
     public function getTotal(): float
     {
         $total = 0;
+        
         foreach ($this->getFullCart() as $item) {
             $total += $item['product']->getPrice() * $item['quantity'];
         }
+
         return $total;
     }
 }

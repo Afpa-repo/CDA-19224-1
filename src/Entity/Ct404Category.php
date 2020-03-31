@@ -60,6 +60,4 @@ class Ct404Category
 
         return $this;
     }
-
-
 }

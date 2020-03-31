@@ -1,5 +1,14 @@
 <?php
 
+/* TODO:
+ * Ajouter d'autres Validation
+ * Pourquoi Strategy IDENTITY ?
+ * Pourquoi il y a des INDEX ?
+ * Vérifier que tout est bien là
+ * Changer de length pour la quantité
+ * Pourquoi il y a un join dans un join ?
+ * */
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -15,7 +24,6 @@ class Ct404OrderDetail
 {
     /**
      * @var int
-     *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -24,13 +32,18 @@ class Ct404OrderDetail
 
     /**
      * @var string
-     * @Assert\Range(min="0", max="99999999999")
+     * @Assert\Range(
+     *     min="1",
+     *     minMessage="Vous devez acheter au moins 1 article",
+     *     max="10000",
+     *     maxMessage="Vous pouvez acheter au maximum 10000 articles"
+     * )
      * @ORM\Column(name="quantity", type="string", length=11, nullable=false)
      */
     private $quantity;
 
     /**
-     * @var \Ct404Ordered
+     * @var Ct404Ordered
      * @Assert\Positive()
      * @ORM\ManyToOne(targetEntity="Ct404Ordered")
      * @ORM\JoinColumns({
@@ -40,7 +53,7 @@ class Ct404OrderDetail
     private $idorder;
 
     /**
-     * @var \Ct404Product
+     * @var Ct404Product
      * @Assert\Positive()
      * @ORM\ManyToOne(targetEntity="Ct404Product")
      * @ORM\JoinColumns({

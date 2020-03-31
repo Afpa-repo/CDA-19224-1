@@ -3,8 +3,8 @@
 namespace App\Entity;
 
 use DateTime;
-use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 date_default_timezone_set('Europe/Paris');
 
@@ -56,7 +56,6 @@ class Ct404Ordered
      * })
      */
     private $idCt404Commercial;
-
 
     public function getId(): ?int
     {

@@ -21,7 +21,6 @@ class Ct404Role
      */
     private $id;
 
-
     // TODO : On ferait peut être mieux de mettre des role style ['ROLE_USER'] en tableau simple
     /**
      * @var string

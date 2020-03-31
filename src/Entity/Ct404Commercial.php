@@ -1,21 +1,26 @@
 <?php
 
+/* TODO:
+ * Ajouter d'autres Validation
+ * Pourquoi Strategy IDENTITY ?
+ * Vérifier que tout est bien là
+ * */
+
 namespace App\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Ct404commercial.
  *
- * @ORM\Table(name="ct404commercial")
+ * @ORM\Table(name="ct404_commercial")
  * @ORM\Entity
  */
 class Ct404Commercial
 {
     /**
      * @var int
-     *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -24,30 +29,38 @@ class Ct404Commercial
 
     /**
      * @var string
-     * @Assert\Regex("/^[\w\-éèêëûüùîïíôöœàáâæ]+$/",
-     *     message="Vous utilisez des caractères interdits")
+     * @Assert\Regex(
+     *     "/^[\w\-éèêëûüùîïíôöœàáâæ]+$/",
+     *     message="Vous utilisez des caractères interdits"
+     * )
      * @ORM\Column(name="firstname", type="string", length=50, nullable=false)
      */
     private $firstname;
 
     /**
      * @var string
-     * @Assert\Regex("/^[\w\-éèêëûüùîïíôöœàáâæ]+$/",
-     *     message="Vous utilisez des caractères interdits")
+     * @Assert\Regex(
+     *     "/^[\w\-éèêëûüùîïíôöœàáâæ]+$/",
+     *     message="Vous utilisez des caractères interdits"
+     * )
      * @ORM\Column(name="lastname", type="string", length=50, nullable=false)
      */
     private $lastname;
 
     /**
      * @var bool
-     * @Assert\NotNull()
+     * @Assert\NotBlank(
+     *     message="Vous devez utiliser un boolean"
+     * )
      * @ORM\Column(name="commercial_for_individual", type="boolean", nullable=false)
      */
     private $commercialForIndividual;
 
     /**
      * @var bool
-     * @Assert\NotNull()
+     * @Assert\NotNull(
+     *     message="Vous devez utiliser un boolean"
+     * )
      * @ORM\Column(name="commercial_for_professional", type="boolean", nullable=false)
      */
     private $commercialForProfessional;

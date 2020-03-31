@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Ct404Product.
@@ -59,7 +59,6 @@ class Ct404Product
      * @ORM\Column(name="quantity_of_alerte", type="string", length=11, nullable=false)
      */
     private $quantityOfAlerte;
-
 
     // TODO : C'est normal que le nom ne soit pas dans la table categorie ?
     /**

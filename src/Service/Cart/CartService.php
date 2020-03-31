@@ -65,7 +65,7 @@ class CartService
     public function getTotal(): float
     {
         $total = 0;
-        
+
         foreach ($this->getFullCart() as $item) {
             $total += $item['product']->getPrice() * $item['quantity'];
         }

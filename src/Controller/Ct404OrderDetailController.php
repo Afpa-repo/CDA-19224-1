@@ -21,7 +21,8 @@ class Ct404OrderDetailController extends AbstractController
     {
         $ct404OrderDetails = $this->getDoctrine()
             ->getRepository(Ct404OrderDetail::class)
-            ->findAll();
+            ->findAll()
+        ;
 
         return $this->render('ct404_order_detail/index.html.twig', [
             'ct404_order_details' => $ct404OrderDetails,

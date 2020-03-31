@@ -21,7 +21,8 @@ class Ct404CategoryController extends AbstractController
     {
         $ct404Categories = $this->getDoctrine()
             ->getRepository(Ct404Category::class)
-            ->findAll();
+            ->findAll()
+        ;
 
         return $this->render('ct404_category/index.html.twig', [
             'ct404_categories' => $ct404Categories,

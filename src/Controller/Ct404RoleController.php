@@ -21,7 +21,8 @@ class Ct404RoleController extends AbstractController
     {
         $ct404Roles = $this->getDoctrine()
             ->getRepository(Ct404Role::class)
-            ->findAll();
+            ->findAll()
+        ;
 
         return $this->render('ct404_role/index.html.twig', [
             'ct404_roles' => $ct404Roles,

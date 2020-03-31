@@ -20,3 +20,9 @@ Pour build les assets lancez ces commandes
 .yarn/releases/yarn-1.22.4.js install
 .yarn/releases/yarn-1.22.4.js build
 ```
+
+## Utiliser PHPCSFixer
+
+```shell script
+.yarn/releases/yarn-1-22.4.js fix
+```

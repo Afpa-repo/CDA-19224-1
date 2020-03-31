@@ -5,7 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Ct404Category
+ * Ct404Category.
  *
  * @ORM\Table(name="ct404_category")
  * @ORM\Entity

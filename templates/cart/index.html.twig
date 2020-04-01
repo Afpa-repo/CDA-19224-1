@@ -17,7 +17,7 @@
 				{% for item in items %}
 					<tr>
 						<td>{{ item.product.productName }}</td>
-						<td>{{ item.product.price }}</td>
+						<td>{{ item.product.price }} &euro;</td>
 						<td>
 							<a href="{{ path('cart_subtract', {'id': item.product.id}) }}" class="btn btn-danger btn-sm">
 								-
@@ -29,7 +29,7 @@
 								+
 							</a>
 						</td>
-						<td>{{ item.product.price * item.quantity }}</td>
+						<td>{{ item.product.price * item.quantity }} &euro;</td>
 						<td>
 							<a href="{{ path('cart_remove', {'id': item.product.id}) }}" class="btn btn-danger btn-sm">
 								Supp
@@ -41,7 +41,7 @@
 			<tfoot>
 				<tr>
 					<td colspan="3">Total :</td>
-					<td>{{ total }}</td>
+					<td>{{ total }} &euro;</td>
 					<td></td>
 				</tr>
 			</tfoot>

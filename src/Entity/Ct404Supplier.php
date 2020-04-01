@@ -50,7 +50,7 @@ class Ct404Supplier
      *     "/^[\w\d\.\,\(\)\-éèêëûüùîïíôöœàáâæç]+$/",
      *     message="Vous utilisez des caractères interdits"
      * )
-     * @ORM\Column(name="supplier_address", type="string", length=50, nullable=false)
+     * @ORM\Column(name="supplier_address", type="string", length=255, nullable=false)
      */
     private $supplierAddress;
 
@@ -77,10 +77,10 @@ class Ct404Supplier
     /**
      * @var string
      * @Assert\Regex(
-     *     "/^(0{1}\d{9})$/",
+     *     "/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/",
      *     message="Votre numéro de téléphone n'est pas valide"
      * )
-     * @ORM\Column(name="supplier_phone", type="string", length=14, nullable=false)
+     * @ORM\Column(name="supplier_phone", type="string", length=30, nullable=false)
      */
     private $supplierPhone;
 

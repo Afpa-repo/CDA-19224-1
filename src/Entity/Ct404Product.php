@@ -1,5 +1,18 @@
 <?php
 
+/* TODO:
+ * Ajouter d'autres Validation
+ * Pourquoi Strategy IDENTITY ?
+ * Pourquoi il y a des INDEX ?
+ * Vérifier que tout est bien là
+ * Vérifier que les regex soient protégers contre les injections
+ * Revoir les validations Range
+ * Pourquoi le text a un length 0 ?
+ * Les vars ne sont pas tous correct
+ * Renommer les variables des joins
+ * Pourquoi les ID des joins sont des strings ?
+ * */
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -15,7 +28,6 @@ class Ct404Product
 {
     /**
      * @var int
-     *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -24,52 +36,60 @@ class Ct404Product
 
     /**
      * @var string
-     * @Assert\Regex("/^[\w\&\'\-éèêëûüùîïíôöœàáâæç]+$/",
-     *     message="Vous utilisez des caractères interdits")
+     * @Assert\Regex(
+     *     "/^[\w\&\'\-éèêëûüùîïíôöœàáâæç]+$/",
+     *     message="Vous utilisez des caractères interdits"
+     * )
      * @ORM\Column(name="product_name", type="string", length=50, nullable=false)
      */
     private $productName;
 
     /**
      * @var string
-     * @Assert\Regex("/^[\w\s\&\;\:\.\,\'\(\)\%""\?\!\€\-éèêëûüùîïíôöœàáâæç]+$/",
-     *     message="Vous utilisez des caractères interdits")
+     * @Assert\Regex(
+     *     "/^[\w\s\&\;\:\.\,\'\(\)\%""\?\!\€\-éèêëûüùîïíôöœàáâæç]+$/",
+     *     message="Vous utilisez des caractères interdits"
+     * )
      * @ORM\Column(name="description", type="text", length=0, nullable=false)
      */
     private $description;
 
     /**
-     * @var string
-     * @Assert\Regex("/^([\d]{1,9}((\.|\,){1}[\d]{0,2})?)$/",
-     *      message="Le prix c'est pas valide")
+     * @var float
+     * @Assert\Regex(
+     *     "/^([\d]{1,9}((\.|\,){1}[\d]{0,2})?)$/",
+     *      message="Le prix c'est pas valide"
+     * )
      * @ORM\Column(name="price", type="decimal", precision=15, scale=2, nullable=false)
      */
     private $price;
 
     /**
      * @var string
-     * @Assert\Range(min="0", max="99999999999")
+     * @Assert\Range(
+     *     min="1",
+     *     minMessage="Vous devez acheter au moins 1 article",
+     *     max="10000",
+     *     maxMessage="Vous pouvez acheter au maximum 10000 articles"
+     * )
      * @ORM\Column(name="quantity_stock", type="string", length=11, nullable=false)
      */
     private $quantityStock;
 
     /**
      * @var string
-     * @Assert\Range(min="0", max="99999999999")
+     * @Assert\Range(
+     *     min="1",
+     *     minMessage="Vous devez acheter au moins 1 article",
+     *     max="10000",
+     *     maxMessage="Vous pouvez acheter au maximum 10000 articles"
+     * )
      * @ORM\Column(name="quantity_of_alerte", type="string", length=11, nullable=false)
      */
     private $quantityOfAlerte;
 
-    // TODO : C'est normal que le nom ne soit pas dans la table categorie ?
     /**
-     * @var string
-     *
-     * @ORM\Column(name="category_name", type="string", length=255, nullable=false)
-     */
-    private $categoryName;
-
-    /**
-     * @var \Ct404Supplier
+     * @var Ct404Supplier
      * @Assert\Positive()
      * @ORM\ManyToOne(targetEntity="Ct404Supplier")
      * @ORM\JoinColumns({
@@ -79,14 +99,14 @@ class Ct404Product
     private $idCt404Supplier;
 
     /**
-     * @var \Ct404Category
+     * @var Ct404Category
      * @Assert\Positive()
      * @ORM\ManyToOne(targetEntity="Ct404Category")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idct404_category_id", referencedColumnName="id")
      * })
      */
-    private $idct404Category;
+    private $idCt404Category;
 
     public function getId(): ?int
     {
@@ -153,18 +173,6 @@ class Ct404Product
         return $this;
     }
 
-    public function getCategoryName(): ?string
-    {
-        return $this->categoryName;
-    }
-
-    public function setCategoryName(string $categoryName): self
-    {
-        $this->categoryName = $categoryName;
-
-        return $this;
-    }
-
     public function getIdCt404Supplier(): ?Ct404Supplier
     {
         return $this->idCt404Supplier;
@@ -177,14 +185,14 @@ class Ct404Product
         return $this;
     }
 
-    public function getIdct404Category(): ?Ct404Category
+    public function getIdCt404Category(): ?Ct404Category
     {
-        return $this->idct404Category;
+        return $this->idCt404Category;
     }
 
-    public function setIdct404Category(?Ct404Category $idct404Category): self
+    public function setIdCt404Category(?Ct404Category $idCt404Category): self
     {
-        $this->idct404Category = $idct404Category;
+        $this->idCt404Category = $idCt404Category;
 
         return $this;
     }

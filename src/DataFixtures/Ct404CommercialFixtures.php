@@ -15,8 +15,8 @@ class Ct404CommercialFixtures extends BaseFixture
             $commercial
                 ->setCommercialForIndividual($this->faker->boolean)
                 ->setCommercialForProfessional($this->faker->boolean)
-                ->setFirstname($this->faker->firstName)
-                ->setLastname($this->faker->lastName)
+                ->setFirstname($this->faker->unique()->firstName)
+                ->setLastname($this->faker->unique()->lastName)
             ;
         });
 

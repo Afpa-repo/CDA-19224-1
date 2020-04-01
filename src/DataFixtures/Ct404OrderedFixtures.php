@@ -22,6 +22,7 @@ class Ct404OrderedFixtures extends BaseFixture implements DependentFixtureInterf
 
     protected function loadData(ObjectManager $manager)
     {
+        // Creates between 5 and 10 Ordered
         $this->createMany(Ct404Ordered::class, mt_rand(5, 10), function (Ct404Ordered $ordered) {
             // Creates a random date between now and 30 days ago
             $orderDate = $this->faker->dateTimeBetween('-30 days');

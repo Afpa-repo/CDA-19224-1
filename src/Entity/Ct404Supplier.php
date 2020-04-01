@@ -1,5 +1,15 @@
 <?php
 
+/* TODO:
+ * Ajouter d'autres Validation
+ * Pourquoi Strategy IDENTITY ?
+ * Pourquoi il y a des INDEX ?
+ * Vérifier que tout est bien là
+ * Pourquoi il y a 2 fois UniqueEntity ?
+ * Vérifier que les regex soient protégers contre les injections
+ * Rajouter SIRET ?
+ * */
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -9,7 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Ct404supplier.
  *
- * @ORM\Table(name="ct404supplier")
+ * @ORM\Table(name="ct404_supplier")
  * @ORM\Entity
  * @UniqueEntity("supplier_name")
  * @UniqueEntity("supplier_mail")
@@ -18,7 +28,6 @@ class Ct404Supplier
 {
     /**
      * @var int
-     *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -27,41 +36,50 @@ class Ct404Supplier
 
     /**
      * @var string
-     * @Assert\Regex("/^[\w\&\'\-éèêëûüùîïíôöœàáâæç]+$/",
-     *     message="Vous utilisez des caractères interdits")
+     * @Assert\Regex(
+     *     "/^[\w\&\'\-éèêëûüùîïíôöœàáâæç]+$/",
+     *     message="Vous utilisez des caractères interdits"
+     * )
      * @ORM\Column(name="supplier_name", type="string", length=50, nullable=false, unique=true)
      */
     private $supplierName;
 
     /**
      * @var string
-     * @Assert\Regex("/^[\w\d\.\,\(\)\-éèêëûüùîïíôöœàáâæç]+$/",
-     *     message="Vous utilisez des caractères interdits")
+     * @Assert\Regex(
+     *     "/^[\w\d\.\,\(\)\-éèêëûüùîïíôöœàáâæç]+$/",
+     *     message="Vous utilisez des caractères interdits"
+     * )
      * @ORM\Column(name="supplier_address", type="string", length=50, nullable=false)
      */
     private $supplierAddress;
 
     /**
      * @var string
-     * @Assert\Regex("/^[\w\-éèêëûüùîïíôöœàáâæç]+$/",
-     *     message="Vous utilisez des caractères interdits")
+     * @Assert\Regex(
+     *     "/^[\w\-éèêëûüùîïíôöœàáâæç]+$/",
+     *     message="Vous utilisez des caractères interdits"
+     * )
      * @ORM\Column(name="supplier_city", type="string", length=50, nullable=false)
      */
     private $supplierCity;
 
-    // TODO : Corriger le nom de variable
     /**
      * @var int
-     * @Assert\Regex("/^\d{5}$/",
-     *     message="Code postal invalide")
-     * @ORM\Column(name="supplier_zipe_code", type="integer", nullable=false)
+     * @Assert\Regex(
+     *     "/^\d{5}$/",
+     *     message="Code postal invalide"
+     * )
+     * @ORM\Column(name="supplier_zip_code", type="integer", nullable=false)
      */
-    private $supplierZipeCode;
+    private $supplierZipCode;
 
     /**
      * @var string
-     * @Assert\Regex("/^(0{1}\d{9})$/",
-     *     message="Votre numéro de téléphone n'est pas valide")
+     * @Assert\Regex(
+     *     "/^(0{1}\d{9})$/",
+     *     message="Votre numéro de téléphone n'est pas valide"
+     * )
      * @ORM\Column(name="supplier_phone", type="string", length=14, nullable=false)
      */
     private $supplierPhone;
@@ -116,14 +134,14 @@ class Ct404Supplier
         return $this;
     }
 
-    public function getSupplierZipeCode(): ?int
+    public function getSupplierZipCode(): ?int
     {
-        return $this->supplierZipeCode;
+        return $this->supplierZipCode;
     }
 
-    public function setSupplierZipeCode(int $supplierZipeCode): self
+    public function setSupplierZipCode(int $supplierZipCode): self
     {
-        $this->supplierZipeCode = $supplierZipeCode;
+        $this->supplierZipCode = $supplierZipCode;
 
         return $this;
     }

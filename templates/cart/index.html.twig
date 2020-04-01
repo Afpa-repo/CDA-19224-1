@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %} #}
 {% block body %}
 {# vue panier (ultra simpliste pour l'instant ) #}
 	<h1>Votre panier</h1>
@@ -18,7 +18,17 @@
 					<tr>
 						<td>{{ item.product.productName }}</td>
 						<td>{{ item.product.price }}</td>
+						<td>
+							<a href="{{ path('cart_subtract', {'id': item.product.id}) }}" class="btn btn-danger btn-sm">
+								-
+							</a>
+						</td>
 						<td>{{ item.quantity }}</td>
+						<td>
+							<a href="{{ path('cart_add', {'id': item.product.id}) }}" class="btn btn-danger btn-sm">
+								+
+							</a>
+						</td>
 						<td>{{ item.product.price * item.quantity }}</td>
 						<td>
 							<a href="{{ path('cart_remove', {'id': item.product.id}) }}" class="btn btn-danger btn-sm">

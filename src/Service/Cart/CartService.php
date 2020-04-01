@@ -33,6 +33,22 @@ class CartService
         $this->session->set('panier', $panier);
     }
 
+    // Réduire quantité panier
+    public function subtract(int $id)
+    {
+        $panier = $this->session->get('panier', []);
+        // si le produit est déjà dans le panier, on décrémente sa quantité
+        if (!empty($panier[$id])) {
+            if ($panier[$id] > 1) {
+                --$panier[$id];
+            } else {
+                unset($panier[$id]);
+            }
+        }
+
+        $this->session->set('panier', $panier);
+    }
+
     // Suppression d'un produit du panier
     public function remove(int $id)
     {
@@ -65,7 +81,7 @@ class CartService
     public function getTotal(): float
     {
         $total = 0;
-        
+
         foreach ($this->getFullCart() as $item) {
             $total += $item['product']->getPrice() * $item['quantity'];
         }

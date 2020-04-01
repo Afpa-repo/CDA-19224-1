@@ -1,13 +1,5 @@
 <?php
 
-/* TODO:
- * Ajouter Validation
- * Ajouter nom à la catégorie ?
- * Pourquoi Strategy IDENTITY ?
- * Pourquoi la relation ManyToOne n'a pas d'attribut inversedBy ?
- * Pourquoi il y a deux ID ?
- * */
-
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -22,7 +14,6 @@ class Ct404Category
 {
     /**
      * @var int
-     *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")

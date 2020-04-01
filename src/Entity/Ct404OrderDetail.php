@@ -1,16 +1,5 @@
 <?php
 
-/* TODO:
- * Ajouter d'autres Validation
- * Pourquoi Strategy IDENTITY ?
- * Pourquoi il y a des INDEX ?
- * Vérifier que tout est bien là
- * Changer de length pour la quantité
- * Pourquoi il y a un join dans un join ?
- * Revoir tout les relations
- * Revoir le nom des joins
- * */
-
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;

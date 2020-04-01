@@ -1,11 +1,5 @@
 <?php
 
-/* TODO:
- * Ajouter d'autres Validation
- * Pourquoi Strategy IDENTITY ?
- * Vérifier que tout est bien là
- * */
-
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;

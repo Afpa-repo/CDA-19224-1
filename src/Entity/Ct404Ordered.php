@@ -1,15 +1,5 @@
 <?php
 
-/* TODO:
- * Ajouter d'autres Validation
- * Pourquoi Strategy IDENTITY ?
- * Pourquoi il y a des INDEX ?
- * Vérifier que tout est bien là
- * Pourquoi il y a un join dans un join ?
- * Mettre le date default dans un autre fichier ? (index.php)
- * Changer le nom des JOINS
- * */
-
 namespace App\Entity;
 
 use DateTime;

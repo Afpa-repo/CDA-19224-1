@@ -17,4 +17,4 @@ return PhpCsFixer\Config::create()
         'ternary_to_null_coalescing' => true
     ])
     ->setFinder($finder)
-;
+    ;

@@ -12,7 +12,7 @@ date_default_timezone_set('Europe/Paris');
 /**
  * Ct404particular.
  *
- * @ORM\Table(name="ct404particular", indexes={@ORM\Index(name="IDX_59A290B961DDAC3C", columns={"id_ct404_role_id"}), @ORM\Index(name="IDX_59A290B96D7E3993", columns={"id_ct404_commercial_id"})})
+ * @ORM\Table(name="ct404_particular", indexes={@ORM\Index(name="IDX_59A290B961DDAC3C", columns={"id_ct404_role_id"}), @ORM\Index(name="IDX_59A290B96D7E3993", columns={"id_ct404_commercial_id"})})
  * @ORM\Entity
  * @UniqueEntity("pseudo")
  * @UniqueEntity("mail")
@@ -21,7 +21,6 @@ class Ct404Particular
 {
     /**
      * @var int
-     *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -30,40 +29,50 @@ class Ct404Particular
 
     /**
      * @var string
-     * @Assert\Regex("/^[\w\-éèêëûüùîïíôöœàáâæç]+$/",
-     *     message="Vous utilisez des caractères interdits")
+     * @Assert\Regex(
+     *     "/^[\w\-éèêëûüùîïíôöœàáâæç]+$/",
+     *     message="Vous utilisez des caractères interdits"
+     * )
      * @ORM\Column(name="firstname", type="string", length=50, nullable=false)
      */
     private $firstname;
 
     /**
      * @var string
-     * @Assert\Regex("/^[\w\-éèêëûüùîïíôöœàáâæç]+$/",
-     *     message="Vous utilisez des caractères interdits")
+     * @Assert\Regex(
+     *     "/^[\w\-éèêëûüùîïíôöœàáâæç]+$/",
+     *     message="Vous utilisez des caractères interdits"
+     * )
      * @ORM\Column(name="lastname", type="string", length=50, nullable=false)
      */
     private $lastname;
 
     /**
      * @var string
-     * @Assert\Regex("/^[\w\d\.\,\(\)\-éèêëûüùîïíôöœàáâæç]+$/",
-     *     message="Vous utilisez des caractères interdits")
+     * @Assert\Regex(
+     *     "/^[\w\d\.\,\(\)\-éèêëûüùîïíôöœàáâæç]+$/",
+     *     message="Vous utilisez des caractères interdits"
+     * )
      * @ORM\Column(name="address", type="string", length=50, nullable=false)
      */
     private $address;
 
     /**
      * @var string
-     * @Assert\Regex("/^\d{5}$/",
-     *     message="Votre code postal n'est pas valide")
+     * @Assert\Regex(
+     *     "/^\d{5}$/",
+     *     message="Votre code postal n'est pas valide"
+     * )
      * @ORM\Column(name="zip_code", type="string", length=5, nullable=false)
      */
     private $zipCode;
 
     /**
      * @var string
-     * @Assert\Regex("/^[\w\-éèêëûüùîïíôöœàáâæç]+$/",
-     *     message="Vous utilisez des caractères interdits")
+     * @Assert\Regex(
+     *     "/^[\w\-éèêëûüùîïíôöœàáâæç]+$/",
+     *     message="Vous utilisez des caractères interdits"
+     * )
      * @ORM\Column(name="city", type="string", length=50, nullable=false)
      */
     private $city;
@@ -79,36 +88,38 @@ class Ct404Particular
 
     /**
      * @var int
-     * @Assert\Regex("/^(0{1}\d{9})$/",
-     *      message="Votre numero de téléphone n'est pas valide")
+     * @Assert\Regex(
+     *     "/^(0{1}\d{9})$/",
+     *      message="Votre numero de téléphone n'est pas valide"
+     * )
      * @ORM\Column(name="phone_number", type="integer", nullable=false)
      */
     private $phoneNumber;
 
-    // TODO : Assert pour le password
     /**
      * @var string
-     *
      * @ORM\Column(name="password", type="string", length=60, nullable=false)
      */
     private $password;
 
     /**
      * @var string
-     * @Assert\Regex("/^[\w\d\.\_\-éèêëûüùîïíôöœàáâæç]+$/",
-     *     message="Votre pseudo n'est pas valide")
+     * @Assert\Regex(
+     *     "/^[\w\d\.\_\-éèêëûüùîïíôöœàáâæç]+$/",
+     *     message="Votre pseudo n'est pas valide"
+     * )
      * @ORM\Column(name="pseudo", type="string", length=50, nullable=false, unique=true)
      */
     private $pseudo;
 
     /**
      * @var string
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *     message="La clé est requise"
+     * )
      * @ORM\Column(name="clef", type="string", length=100, nullable=false)
      */
     private $clef;
-
-    // TODO : On peut utiliser le role pour la validation d'email (['ROLE_NOT_VALID'] par défault et passer ensuite en ['ROLE_USER'])
 
     /**
      * @var bool
@@ -119,14 +130,18 @@ class Ct404Particular
 
     /**
      * @var DateTime
-     * @Assert\DateTime()
+     * @Assert\DateTime(
+     *     message="La date n'est pas valide"
+     * )
      * @ORM\Column(name="date_registeur", type="datetime", nullable=false)
      */
     private $dateRegisteur;
 
     /**
-     * @var \Ct404Role
-     * @Assert\DateTime()
+     * @var Ct404Role
+     * @Assert\DateTime(
+     *     message="La date n'est pas valide"
+     * )
      * @ORM\ManyToOne(targetEntity="Ct404Role")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_ct404_role_id", referencedColumnName="id")
@@ -135,7 +150,7 @@ class Ct404Particular
     private $idCt404Role;
 
     /**
-     * @var \Ct404Commercial
+     * @var Ct404Commercial
      * @Assert\Positive()
      * @ORM\ManyToOne(targetEntity="Ct404Commercial")
      * @ORM\JoinColumns({

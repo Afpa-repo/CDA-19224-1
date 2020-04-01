@@ -1,18 +1,5 @@
 <?php
 
-/* TODO:
- * Ajouter d'autres Validation
- * Pourquoi Strategy IDENTITY ?
- * Pourquoi il y a des INDEX ?
- * Vérifier que tout est bien là
- * Vérifier que les regex soient protégers contre les injections
- * Revoir les validations Range
- * Pourquoi le text a un length 0 ?
- * Les vars ne sont pas tous correct
- * Renommer les variables des joins
- * Pourquoi les ID des joins sont des strings ?
- * */
-
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;

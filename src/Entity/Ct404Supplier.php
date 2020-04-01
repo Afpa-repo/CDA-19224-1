@@ -1,15 +1,5 @@
 <?php
 
-/* TODO:
- * Ajouter d'autres Validation
- * Pourquoi Strategy IDENTITY ?
- * Pourquoi il y a des INDEX ?
- * Vérifier que tout est bien là
- * Pourquoi il y a 2 fois UniqueEntity ?
- * Vérifier que les regex soient protégers contre les injections
- * Rajouter SIRET ?
- * */
-
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;

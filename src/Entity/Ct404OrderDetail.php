@@ -7,6 +7,8 @@
  * Vérifier que tout est bien là
  * Changer de length pour la quantité
  * Pourquoi il y a un join dans un join ?
+ * Revoir tout les relations
+ * Revoir le nom des joins
  * */
 
 namespace App\Entity;
@@ -50,7 +52,7 @@ class Ct404OrderDetail
      *   @ORM\JoinColumn(name="idorder_id", referencedColumnName="id")
      * })
      */
-    private $idorder;
+    private $idOrder;
 
     /**
      * @var Ct404Product
@@ -79,14 +81,14 @@ class Ct404OrderDetail
         return $this;
     }
 
-    public function getIdorder(): ?Ct404Ordered
+    public function getIdOrder(): ?Ct404Ordered
     {
-        return $this->idorder;
+        return $this->idOrder;
     }
 
-    public function setIdorder(?Ct404Ordered $idorder): self
+    public function setIdOrder(?Ct404Ordered $idOrder): self
     {
-        $this->idorder = $idorder;
+        $this->idOrder = $idOrder;
 
         return $this;
     }

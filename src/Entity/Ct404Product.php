@@ -86,7 +86,7 @@ class Ct404Product
      * )
      * @ORM\Column(name="quantity_of_alerte", type="string", length=11, nullable=false)
      */
-    private $quantityOfAlerte;
+    private $quantityOfAlert;
 
     /**
      * @var Ct404Supplier
@@ -161,14 +161,14 @@ class Ct404Product
         return $this;
     }
 
-    public function getQuantityOfAlerte(): ?string
+    public function getQuantityOfAlert(): ?string
     {
-        return $this->quantityOfAlerte;
+        return $this->quantityOfAlert;
     }
 
-    public function setQuantityOfAlerte(string $quantityOfAlerte): self
+    public function setQuantityOfAlert(string $quantityOfAlert): self
     {
-        $this->quantityOfAlerte = $quantityOfAlerte;
+        $this->quantityOfAlert = $quantityOfAlert;
 
         return $this;
     }

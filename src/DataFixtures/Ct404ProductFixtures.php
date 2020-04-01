@@ -31,7 +31,7 @@ class Ct404ProductFixtures extends BaseFixture implements DependentFixtureInterf
                 ->setDescription($this->faker->realText())
                 ->setPrice($this->faker->randomFloat(2, 1, 10000))
                 ->setQuantityStock($this->faker->numberBetween(0, 10000))
-                ->setQuantityOfAlerte($this->faker->numberBetween(0, 1000))
+                ->setQuantityOfAlert($this->faker->numberBetween(0, 1000))
                 ->setIdCt404Category($this->getRandomReference(Ct404Category::class))
                 ->setIdCt404Supplier($this->getRandomReference(Ct404Supplier::class))
             ;

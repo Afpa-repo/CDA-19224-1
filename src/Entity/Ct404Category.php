@@ -40,12 +40,19 @@ class Ct404Category
     /**
      * @var Ct404Product
      * @ORM\OneToMany(targetEntity="App\Entity\Ct404Product", mappedBy="category", orphanRemoval=true)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $products;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Ct404SubCategory", mappedBy="category", orphanRemoval=true)
+     */
+    private $subCategories;
 
     public function __construct()
     {
         $this->products = new ArrayCollection();
+        $this->subCategories = new ArrayCollection();
     }
 
     public function getName(): ?string
@@ -87,6 +94,37 @@ class Ct404Category
 
             if ($product->getCategory() === $this) {
                 $product->setCategory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Ct404SubCategory[]
+     */
+    public function getSubCategories(): Collection
+    {
+        return $this->subCategories;
+    }
+
+    public function addSubCategory(Ct404SubCategory $subCategory): self
+    {
+        if (!$this->subCategories->contains($subCategory)) {
+            $this->subCategories[] = $subCategory;
+            $subCategory->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSubCategory(Ct404SubCategory $subCategory): self
+    {
+        if ($this->subCategories->contains($subCategory)) {
+            $this->subCategories->removeElement($subCategory);
+            // set the owning side to null (unless already changed)
+            if ($subCategory->getCategory() === $this) {
+                $subCategory->setCategory(null);
             }
         }
 

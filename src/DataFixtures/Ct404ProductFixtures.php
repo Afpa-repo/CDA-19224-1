@@ -27,13 +27,13 @@ class Ct404ProductFixtures extends BaseFixture implements DependentFixtureInterf
         $this->createMany(Ct404Product::class, mt_rand(10, 20), function (Ct404Product $product) {
             // Fills the newly created Product
             $product
-                ->setProductName($this->faker->unique()->word)
+                ->setName($this->faker->unique()->word)
                 ->setDescription($this->faker->realText())
-                ->setPrice($this->faker->randomFloat(2, 1, 10000))
-                ->setQuantityStock($this->faker->numberBetween(0, 10000))
-                ->setQuantityOfAlert($this->faker->numberBetween(0, 1000))
-                ->setIdCt404Category($this->getRandomReference(Ct404Category::class))
-                ->setIdCt404Supplier($this->getRandomReference(Ct404Supplier::class))
+                ->setPrice($this->faker->randomFloat(2, 1, 10000000))
+                ->setStockQuantity($this->faker->numberBetween(1, 999999))
+                ->setAlertQuantity($this->faker->numberBetween(1, 1000))
+                ->setCategory($this->getRandomReference(Ct404Category::class))
+                ->setSupplier($this->getRandomReference(Ct404Supplier::class))
             ;
         });
 

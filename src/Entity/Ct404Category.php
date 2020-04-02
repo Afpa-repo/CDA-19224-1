@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Ct404Category.
- *
  * @ORM\Table(name="ct404_category")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\Ct404CategoryRepository")
  */
 class Ct404Category
 {
@@ -16,46 +17,78 @@ class Ct404Category
      * @var int
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @var string
+     * @Assert\NotBlank(
+     *     message="Le nom est requis"
+     * )
+     * @Assert\Length(
+     *     max="50",
+     *     min="3",
+     *     maxMessage="Le nom de la catégorie doit faire au maximum {{ limit }} caractères",
+     *     minMessage="Le nom de la catégorie doit faire au minimum {{ limit }} caractères",
+     *     normalizer="trim"
+     * )
+     * @ORM\Column(type="string", length=50, nullable=false)
      */
-    private $categoryName;
+    private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Ct404Category")
-     * @ORM\JoinColumn(nullable=true)
+     * @var Ct404Product
+     * @ORM\OneToMany(targetEntity="App\Entity\Ct404Product", mappedBy="category", orphanRemoval=true)
      */
-    private $idCategory;
+    private $products;
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getCategoryName(): ?string
+    public function getProducts(): Collection
     {
-        return $this->categoryName;
+        return $this->products;
     }
 
-    public function setCategoryName(string $categoryName): self
+    public function addProduct(Ct404Product $product): self
     {
-        $this->categoryName = $categoryName;
+        if (!$this->products->contains($product)) {
+            $this->products[] = $product;
+            $product->setCategory($this);
+        }
 
         return $this;
     }
 
-    public function getIdCategory(): ?self
+    public function removeProduct(Ct404Product $product): self
     {
-        return $this->idCategory;
-    }
+        if ($this->products->contains($product)) {
+            $this->products->removeElement($product);
 
-    public function setIdCategory(?self $idCategory): self
-    {
-        $this->idCategory = $idCategory;
+            if ($product->getCategory() === $this) {
+                $product->setCategory(null);
+            }
+        }
 
         return $this;
     }

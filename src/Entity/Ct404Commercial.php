@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Ct404commercial.
- *
  * @ORM\Table(name="ct404_commercial")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\Ct404CommercialRepository")
  */
 class Ct404Commercial
 {
@@ -17,51 +17,81 @@ class Ct404Commercial
      * @var int
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
-     * @Assert\Regex(
-     *     "/^[\w\-éèêëûüùîïíôöœàáâæ]+$/",
-     *     message="Vous utilisez des caractères interdits"
+     * @Assert\Length(
+     *     max="50",
+     *     min="30",
+     *     maxMessage="Le prénom doit faire au maximum {{ limit }} caractères",
+     *     minMessage="Le prénom doit faire au minimum {{ limit }} caractères",
+     *     normalizer="trim"
      * )
-     * @ORM\Column(name="firstname", type="string", length=50, nullable=false)
+     * @Assert\NotBlank(
+     *     message="Le prénom est requis"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[\w\-éèêëûüùîïíôöœàáâæ]+$/i",
+     *     message="{{ value }} n'est pas un prénom valide",
+     *     normalizer="trim"
+     * )
+     * @ORM\Column(type="string", length=50, nullable=false)
      */
     private $firstname;
 
     /**
      * @var string
-     * @Assert\Regex(
-     *     "/^[\w\-éèêëûüùîïíôöœàáâæ]+$/",
-     *     message="Vous utilisez des caractères interdits"
+     * @Assert\Length(
+     *     max="50",
+     *     min="30",
+     *     maxMessage="Le nom doit faire au maximum {{ limit }} caractères",
+     *     minMessage="Le nom doit faire au minimum {{ limit }} caractères",
+     *     normalizer="trim"
      * )
-     * @ORM\Column(name="lastname", type="string", length=50, nullable=false)
+     * @Assert\NotBlank(
+     *     message="Le nom est requis"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[\w\-éèêëûüùîïíôöœàáâæ]+$/i",
+     *     message="{{ value }} n'est pas un nom valide",
+     *     normalizer="trim"
+     * )
+     * @ORM\Column(type="string", length=50, nullable=false)
      */
     private $lastname;
 
     /**
      * @var bool
      * @Assert\NotBlank(
-     *     message="Vous devez utiliser un boolean"
+     *     allowNull=false,
+     *     message="Vous devez donner une réponse"
      * )
-     * @ORM\Column(name="commercial_for_individual", type="boolean", nullable=false)
+     * @ORM\Column(type="boolean", nullable=false)
      */
     private $commercialForIndividual;
 
     /**
      * @var bool
-     * @Assert\NotNull(
-     *     message="Vous devez utiliser un boolean"
+     * @Assert\NotBlank(
+     *     allowNull=false,
+     *     message="Vous devez donner une réponse"
      * )
-     * @ORM\Column(name="commercial_for_professional", type="boolean", nullable=false)
+     * @ORM\Column(type="boolean", nullable=false)
      */
     private $commercialForProfessional;
 
-    public function getId(): ?int
+    /**
+     * @var Ct404Ordered
+     * @ORM\OneToMany(targetEntity="App\Entity\Ct404Ordered", mappedBy="commercial")
+     */
+    private $commercialOrdereds;
+
+    public function __construct()
     {
-        return $this->id;
+        $this->commercialOrdereds = new ArrayCollection();
     }
 
     public function getFirstname(): ?string
@@ -110,5 +140,38 @@ class Ct404Commercial
         $this->commercialForProfessional = $commercialForProfessional;
 
         return $this;
+    }
+
+    public function getCommercialOrdereds(): Collection
+    {
+        return $this->commercialOrdereds;
+    }
+
+    public function addCommercialOrdered(Ct404Ordered $commercialOrdered): self
+    {
+        if (!$this->commercialOrdereds->contains($commercialOrdered)) {
+            $this->commercialOrdereds[] = $commercialOrdered;
+            $commercialOrdered->setCommercial($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommercialOrdered(Ct404Ordered $commercialOrdered): self
+    {
+        if ($this->commercialOrdereds->contains($commercialOrdered)) {
+            $this->commercialOrdereds->removeElement($commercialOrdered);
+
+            if ($commercialOrdered->getCommercial() === $this) {
+                $commercialOrdered->setCommercial(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 }

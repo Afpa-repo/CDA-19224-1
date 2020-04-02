@@ -22,7 +22,7 @@ class Ct404OrderedFixtures extends BaseFixture implements DependentFixtureInterf
 
     protected function loadData(ObjectManager $manager)
     {
-        // Creates between 10 Ordered
+        // Creates 10 Ordered
         $this->createMany(Ct404Ordered::class, 10, function (Ct404Ordered $ordered) {
             // Creates a random date between now and 30 days ago
             $orderDate = $this->faker->dateTimeBetween('-30 days');
@@ -31,9 +31,9 @@ class Ct404OrderedFixtures extends BaseFixture implements DependentFixtureInterf
             // Fills the newly created Ordered
             $ordered
                 ->setDeliveryDate($this->faker->dateTimeBetween("-{$days} days"))
-                ->setIdCt404Commercial($this->getRandomReference(Ct404Commercial::class))
+                ->setCommercial($this->getRandomReference(Ct404Commercial::class))
                 ->setOrderDate($orderDate)
-                ->setTotalPrice($this->faker->randomFloat(2, 1, 10000))
+                ->setTotalPrice($this->faker->randomFloat(2, 1, 10000000))
             ;
         });
 

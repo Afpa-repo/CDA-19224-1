@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Ct404Product.
- *
- * @ORM\Table(name="ct404_product", indexes={@ORM\Index(name="IDX_DABC5B583688741C", columns={"id_ct404_supplier_id"}), @ORM\Index(name="IDX_DABC5B58B56FCC00", columns={"idct404_category_id"})})
+ * @ORM\Table(name="ct404_product")
  * @ORM\Entity(repositoryClass="App\Repository\Ct404ProductRepository")
  */
 class Ct404Product
@@ -17,97 +17,112 @@ class Ct404Product
      * @var int
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
-     * @Assert\Regex(
-     *     "/^[\w\&\'\-éèêëûüùîïíôöœàáâæç]+$/",
-     *     message="Vous utilisez des caractères interdits"
+     * @Assert\NotBlank(
+     *     message="Le nom du produit est requis"
      * )
-     * @ORM\Column(name="product_name", type="string", length=50, nullable=false)
+     * @Assert\Length(
+     *     max="100",
+     *     min="3",
+     *     maxMessage="Le nom du produit doit faire au maximum {{ limit }} caractères",
+     *     minMessage="Le nom du produit doit faire au minimum {{ limit }} caractères",
+     *     normalizer="trim"
+     * )
+     * @ORM\Column(type="string", length=100, nullable=false)
      */
-    private $productName;
+    private $name;
 
     /**
      * @var string
-     * @Assert\Regex(
-     *     "/^[\w\s\&\;\:\.\,\'\(\)\%""\?\!\€\-éèêëûüùîïíôöœàáâæç]+$/",
-     *     message="Vous utilisez des caractères interdits"
+     * @Assert\NotBlank(
+     *     message="La description est requise"
      * )
-     * @ORM\Column(name="description", type="text", length=0, nullable=false)
+     * @ORM\Column(type="text", nullable=false)
      */
     private $description;
 
     /**
      * @var float
-     * @Assert\Regex(
-     *     "/^([\d]{1,9}((\.|\,){1}[\d]{0,2})?)$/",
-     *      message="Le prix c'est pas valide"
+     * @Assert\NotBlank(
+     *     message="Le prix est requis"
      * )
-     * @ORM\Column(name="price", type="decimal", precision=15, scale=2, nullable=false)
+     * @Assert\Regex(
+     *     pattern="/^([\d]{1,9}((\.|\,){1}[\d]{0,2})?)$/",
+     *     message="{{ value }} n'est pas un prix valide",
+     *     normalizer="trim"
+     * )
+     * @ORM\Column(type="decimal", precision=10, scale=2, nullable=false)
      */
     private $price;
 
     /**
      * @var string
-     * @Assert\Range(
-     *     min="1",
-     *     minMessage="Vous devez acheter au moins 1 article",
-     *     max="10000",
-     *     maxMessage="Vous pouvez acheter au maximum 10000 articles"
+     * @Assert\NotBlank(
+     *     message="La quantité de stock est requise"
      * )
-     * @ORM\Column(name="quantity_stock", type="string", length=11, nullable=false)
+     * @Assert\Range(
+     *     max="999999",
+     *     min="1",
+     *     maxMessage="La quantité de stock ne peut pas être supérieure à {{ limit }}",
+     *     minMessage="La quantité de stock ne peut pas être inférieure à {{ limit }}"
+     * )
+     * @ORM\Column(type="string", length=6, nullable=false)
      */
-    private $quantityStock;
+    private $stockQuantity;
 
     /**
      * @var string
-     * @Assert\Range(
-     *     min="1",
-     *     minMessage="Vous devez acheter au moins 1 article",
-     *     max="10000",
-     *     maxMessage="Vous pouvez acheter au maximum 10000 articles"
+     * @Assert\NotBlank(
+     *     message="La quantité d'alerte est requise"
      * )
-     * @ORM\Column(name="quantity_of_alerte", type="string", length=11, nullable=false)
+     * @Assert\Range(
+     *     max="999999",
+     *     min="1",
+     *     maxMessage="La quantité d'alerte ne peut pas être supérieure à {{ limit }}",
+     *     minMessage="La quantité d'alerte ne peut pas être inférieure à {{ limit }}"
+     * )
+     * @ORM\Column(type="string", length=6, nullable=false)
      */
-    private $quantityOfAlert;
-
-    /**
-     * @var Ct404Supplier
-     * @Assert\Positive()
-     * @ORM\ManyToOne(targetEntity="Ct404Supplier")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_ct404_supplier_id", referencedColumnName="id")
-     * })
-     */
-    private $idCt404Supplier;
+    private $alertQuantity;
 
     /**
      * @var Ct404Category
-     * @Assert\Positive()
-     * @ORM\ManyToOne(targetEntity="Ct404Category")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idct404_category_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="App\Entity\Ct404Category", inversedBy="products")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $idCt404Category;
+    private $category;
 
-    public function getId(): ?int
+    /**
+     * @var Ct404Supplier
+     * @ORM\ManyToOne(targetEntity="App\Entity\Ct404Supplier", inversedBy="products")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $supplier;
+
+    /**
+     * @var Ct404OrderDetail
+     * @ORM\OneToMany(targetEntity="App\Entity\Ct404OrderDetail", mappedBy="product", orphanRemoval=true)
+     */
+    private $orderDetail;
+
+    public function __construct()
     {
-        return $this->id;
+        $this->orderDetail = new ArrayCollection();
     }
 
-    public function getProductName(): ?string
+    public function getName(): ?string
     {
-        return $this->productName;
+        return $this->name;
     }
 
-    public function setProductName(string $productName): self
+    public function setName(string $name): self
     {
-        $this->productName = $productName;
+        $this->name = $name;
 
         return $this;
     }
@@ -136,50 +151,83 @@ class Ct404Product
         return $this;
     }
 
-    public function getQuantityStock(): ?string
+    public function getStockQuantity(): ?string
     {
-        return $this->quantityStock;
+        return $this->stockQuantity;
     }
 
-    public function setQuantityStock(string $quantityStock): self
+    public function setStockQuantity(string $stockQuantity): self
     {
-        $this->quantityStock = $quantityStock;
+        $this->stockQuantity = $stockQuantity;
 
         return $this;
     }
 
-    public function getQuantityOfAlert(): ?string
+    public function getAlertQuantity(): ?string
     {
-        return $this->quantityOfAlert;
+        return $this->alertQuantity;
     }
 
-    public function setQuantityOfAlert(string $quantityOfAlert): self
+    public function setAlertQuantity(string $alertQuantity): self
     {
-        $this->quantityOfAlert = $quantityOfAlert;
+        $this->alertQuantity = $alertQuantity;
 
         return $this;
     }
 
-    public function getIdCt404Supplier(): ?Ct404Supplier
+    public function getCategory(): ?Ct404Category
     {
-        return $this->idCt404Supplier;
+        return $this->category;
     }
 
-    public function setIdCt404Supplier(?Ct404Supplier $idCt404Supplier): self
+    public function setCategory(?Ct404Category $category): self
     {
-        $this->idCt404Supplier = $idCt404Supplier;
+        $this->category = $category;
 
         return $this;
     }
 
-    public function getIdCt404Category(): ?Ct404Category
+    public function getId(): ?int
     {
-        return $this->idCt404Category;
+        return $this->id;
     }
 
-    public function setIdCt404Category(?Ct404Category $idCt404Category): self
+    public function getSupplier(): ?Ct404Supplier
     {
-        $this->idCt404Category = $idCt404Category;
+        return $this->supplier;
+    }
+
+    public function setSupplier(?Ct404Supplier $supplier): self
+    {
+        $this->supplier = $supplier;
+
+        return $this;
+    }
+
+    public function getOrderDetail(): Collection
+    {
+        return $this->orderDetail;
+    }
+
+    public function addOrderDetail(Ct404OrderDetail $orderDetail): self
+    {
+        if (!$this->orderDetail->contains($orderDetail)) {
+            $this->orderDetail[] = $orderDetail;
+            $orderDetail->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrderDetail(Ct404OrderDetail $orderDetail): self
+    {
+        if ($this->orderDetail->contains($orderDetail)) {
+            $this->orderDetail->removeElement($orderDetail);
+
+            if ($orderDetail->getProduct() === $this) {
+                $orderDetail->setProduct(null);
+            }
+        }
 
         return $this;
     }

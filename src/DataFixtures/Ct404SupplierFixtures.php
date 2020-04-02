@@ -13,12 +13,12 @@ class Ct404SupplierFixtures extends BaseFixture
         $this->createMany(Ct404Supplier::class, mt_rand(2, 4), function (Ct404Supplier $supplier) {
             // Fills the newly created Supplier
             $supplier
-                ->setSupplierAddress($this->faker->address)
-                ->setSupplierCity($this->faker->city)
-                ->setSupplierMail($this->faker->unique()->companyEmail)
-                ->setSupplierName($this->faker->unique()->company)
-                ->setSupplierPhone($this->faker->unique()->serviceNumber)
-                ->setSupplierZipCode((int) $this->faker->postcode)
+                ->setAddress($this->faker->address)
+                ->setCity($this->faker->city)
+                ->setEmail($this->faker->unique()->companyEmail)
+                ->setName($this->faker->unique()->company)
+                ->setPhoneNumber($this->faker->unique()->serviceNumber)
+                ->setZipCode((int) $this->faker->postcode)
             ;
         });
 

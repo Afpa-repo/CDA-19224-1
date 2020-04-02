@@ -1,0 +1,190 @@
+/* PORTABLE PC VERSION */
+
+@media screen and (max-width: 1440px){
+
+  /* INDEX */
+
+  .index{
+    width: 100%;
+  }
+
+}
+
+/* MOBILE VERSION */
+
+@media screen and (max-width: 992px){
+
+  /* BASE */
+
+  nav{
+    font-size: 100%;
+  }
+
+  /* INDEX */
+
+  .index{
+    height: 100%;
+  }
+
+  .index>article{
+    margin-bottom: 2%;
+  }
+
+  .indexMessage>h2{
+    font-size: 200%;
+  }
+
+  .indexMessage>p{
+    font-size: 100%;
+  }
+
+  .indexHousesGryffondor>h3{
+    display: none;
+  }
+
+  .indexHousesGryffondor>img{
+    width: 100%;
+  }
+
+  .indexHousesSerdaigle>h3{
+    display: none;
+  }
+
+  .indexHousesSerdaigle>img{
+    width: 100%;
+  }
+
+  .indexHousesPoufsouffle>h3{
+    display: none;
+  }
+
+  .indexHousesPoufsouffle>img{
+    width: 100%;
+  }
+
+  .indexHousesSerpentard>h3{
+    display: none;
+  }
+
+  .indexHousesSerpentard>img{
+    width: 100%;
+  }
+
+  .indexHousesPoudlard>h3{
+    display: none;
+  }
+
+  .indexHousesPoudlard>img{
+    width: 100%;
+  }
+
+  .indexChopsticks{
+    flex-direction: column-reverse;
+  }
+
+  .indexChopsticksImg{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .indexChopsticksImg>img{
+    width: 50%;
+  }
+
+  .indexChopsticksText{
+    width: 100%;
+  }
+
+  .indexChopsticksText>img{
+    display: none;
+  }
+
+  .indexClothing{
+    flex-direction: column;
+  }
+
+  .indexClothingImg{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .indexClothingImg>img{
+    width: 50%;
+  }
+
+  .indexClothingText{
+    width: 100%;
+  }
+
+  .indexClothingText>img{
+    display: none;
+  }
+
+  .indexJewelry{
+    flex-direction: column-reverse;
+  }
+
+  .indexJewelryImg{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .indexJewelryImg>img{
+    width: 50%;
+  }
+
+  .indexJewelryText{
+    width: 100%;
+  }
+
+  .indexJewelryText>img{
+    display: none;
+  }
+
+  .indexStationeryAccessories{
+    flex-direction: column;
+  }
+
+  .indexStationeryAccessories>div{
+    margin-bottom: 2%;
+  }
+
+  .indexStationery{
+    width: 100%;
+  }
+
+  .indexStationeryText{
+    width: 75%;
+  }
+
+  .indexStationeryImg{
+    width: 25%;
+  }
+
+  .indexStationeryImg>img{
+    width: 100%;
+  }
+
+  .indexAccessories{
+    width: 100%;
+  }
+
+  .indexAccessoriesText{
+    width: 75%;
+  }
+
+  .indexAccessoriesImg{
+    width: 25%;
+  }
+
+  .indexAccessoriesImg>img{
+    width: 100%;
+  }
+
+}

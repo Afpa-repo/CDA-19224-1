@@ -18,11 +18,12 @@ nav{
 }
 
 nav>a{
-  transition: 1s;
+  transition: 0.5s;
 }
 
 nav>a:hover{
   color: #ffd700;
+  transform: scale(1.1);
 }
 
 #pageTitle {
@@ -32,8 +33,8 @@ nav>a:hover{
   font-size: 12vw;
   color: #ffd700;
   text-shadow: 0px 0px 1px grey, 1px 1px 2px #cba100, 2px 2px 3px #8e7100,
-    3px 3px 3px #675200, 4px 4px 4px #4b3900, 5px 5px 2px #3d2d00,
-    6px 6px 4px #290e00, 7px 7px 1px #210d00, 8px 8px rgba(255, 215, 0, 0.24);
+  3px 3px 3px #675200, 4px 4px 4px #4b3900, 5px 5px 2px #3d2d00,
+  6px 6px 4px #290e00, 7px 7px 1px #210d00, 8px 8px rgba(255, 215, 0, 0.24);
 }
 
 /* CLASSES */
@@ -161,12 +162,12 @@ ID #divCopyright {
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  transition: 1s;
-  filter: grayscale(75%);
+  transition: 0.5s;
+  cursor: pointer;
 }
 
 .indexHousesGryffondor:hover{
-  filter: grayscale(0%);
+  transform: scale(1.1);
 }
 
 .indexHousesSerdaigle{
@@ -178,12 +179,12 @@ ID #divCopyright {
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  transition: 1s;
-  filter: grayscale(75%);
+  transition: 0.5s;
+  cursor: pointer;
 }
 
 .indexHousesSerdaigle:hover{
-  filter: grayscale(0%);
+  transform: scale(1.1);
 }
 
 .indexHousesPoufsouffle{
@@ -195,12 +196,12 @@ ID #divCopyright {
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  transition: 1s;
-  filter: grayscale(75%);
+  transition: 0.5s;
+  cursor: pointer;
 }
 
 .indexHousesPoufsouffle:hover{
-  filter: grayscale(0%);
+  transform: scale(1.1);
 }
 
 .indexHousesSerpentard{
@@ -212,12 +213,12 @@ ID #divCopyright {
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  transition: 1s;
-  filter: grayscale(75%);
+  transition: 0.5s;
+  cursor: pointer;
 }
 
 .indexHousesSerpentard:hover{
-  filter: grayscale(0%);
+  transform: scale(1.1);
 }
 
 .indexHousesPoudlard{
@@ -229,12 +230,12 @@ ID #divCopyright {
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  transition: 1s;
-  filter: grayscale(75%);
+  transition: 0.5s;
+  cursor: pointer;
 }
 
 .indexHousesPoudlard:hover{
-  filter: grayscale(0%);
+  transform: scale(1.1);
 }
 
 .indexChopsticks{
@@ -244,6 +245,13 @@ ID #divCopyright {
   border-radius: 10px;
   display: flex;
   font-family: 'Henny Penny';
+  cursor: pointer;
+  padding: 2%;
+  transition: 0.5s;
+}
+
+.indexChopsticks:hover{
+  padding: 0%;
 }
 
 .indexChopsticksText{
@@ -266,7 +274,7 @@ ID #divCopyright {
   font-size: 125%;
   padding: 2%;
   filter: grayscale(75%);
-  transition: 1s;
+  transition: 0.5s;
 }
 
 .indexChopsticksText>button:hover{
@@ -280,6 +288,10 @@ ID #divCopyright {
   justify-content: flex-end;
 }
 
+.indexChopsticksImg>img{
+  border-radius: 10px;
+}
+
 .indexClothing{
   width: 100%;
   height: 19%;
@@ -287,6 +299,13 @@ ID #divCopyright {
   border-radius: 10px;
   display: flex;
   font-family: 'Henny Penny';
+  cursor: pointer;
+  padding: 2%;
+  transition: 0.5s;
+}
+
+.indexClothing:hover{
+  padding: 0%;
 }
 
 .indexClothingImg{
@@ -294,6 +313,10 @@ ID #divCopyright {
   height: 100%;
   display: flex;
   justify-content: flex-start;
+}
+
+.indexClothingImg>img{
+  border-radius: 10px;
 }
 
 .indexClothingText{
@@ -316,7 +339,7 @@ ID #divCopyright {
   font-size: 125%;
   padding: 2%;
   filter: grayscale(75%);
-  transition: 1s;
+  transition: 0.5s;
 }
 
 .indexClothingText>button:hover{
@@ -330,6 +353,13 @@ ID #divCopyright {
   border-radius: 10px;
   display: flex;
   font-family: 'Henny Penny';
+  cursor: pointer;
+  padding: 2%;
+  transition: 0.5s;
+}
+
+.indexJewelry:hover{
+  padding: 0%;
 }
 
 .indexJewelryText{
@@ -352,7 +382,7 @@ ID #divCopyright {
   font-size: 125%;
   padding: 2%;
   filter: grayscale(75%);
-  transition: 1s;
+  transition: 0.5s;
 }
 
 .indexJewelryText>button:hover{
@@ -364,6 +394,10 @@ ID #divCopyright {
   height: 100%;
   display: flex;
   justify-content: flex-end;
+}
+
+.indexJewelryImg>img{
+  border-radius: 10px;
 }
 
 .indexStationeryAccessories{
@@ -380,6 +414,13 @@ ID #divCopyright {
   background-image: url("https://static.warnerbros.fr/static/version1585734374/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/papeterie-2.webp");
   display: flex;
   border-radius: 10px;
+  cursor: pointer;
+  padding: 2%;
+  transition: 0.5s;
+}
+
+.indexStationery:hover{
+  padding: 0%;
 }
 
 .indexStationeryText{
@@ -398,7 +439,7 @@ ID #divCopyright {
   font-size: 125%;
   padding: 2%;
   filter: grayscale(75%);
-  transition: 1s;
+  transition: 0.5s;
 }
 
 .indexStationeryText>button:hover{
@@ -412,12 +453,23 @@ ID #divCopyright {
   justify-content: flex-end;
 }
 
+.indexStationeryImg>img{
+  border-radius: 10px;
+}
+
 .indexAccessories{
   width: 49%;
   height: 100%;
   background-image: url("https://static.warnerbros.fr/static/version1585734374/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/accessoires-2.webp");
   display: flex;
   border-radius: 10px;
+  cursor: pointer;
+  padding: 2%;
+  transition: 0.5s;
+}
+
+.indexAccessories:hover{
+  padding: 0%;
 }
 
 .indexAccessoriesText{
@@ -436,7 +488,7 @@ ID #divCopyright {
   font-size: 125%;
   padding: 2%;
   filter: grayscale(75%);
-  transition: 1s;
+  transition: 0.5s;
 }
 
 .indexAccessoriesText>button:hover{
@@ -448,4 +500,8 @@ ID #divCopyright {
   height: 100%;
   display: flex;
   justify-content: flex-end;
+}
+
+.indexAccessoriesImg>img{
+  border-radius: 10px;
 }

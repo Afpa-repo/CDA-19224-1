@@ -26,6 +26,11 @@ class Ct404Product
      * @Assert\NotBlank(
      *     message="Le nom du produit est requis"
      * )
+     * @Assert\Regex(
+     *     pattern="/^[\w\&\'\-éèêëûüùîïíôöœàáâæç]+$/i",
+     *     message="{{ value }} n'est pas un nom valide",
+     *     normalizer="trim"
+     * )
      * @Assert\Length(
      *     max="100",
      *     min="3",
@@ -106,7 +111,8 @@ class Ct404Product
 
     /**
      * @var Ct404OrderDetail
-     * @ORM\OneToMany(targetEntity="App\Entity\Ct404OrderDetail", mappedBy="product", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Ct404OrderDetail", mappedBy="product")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $orderDetail;
 

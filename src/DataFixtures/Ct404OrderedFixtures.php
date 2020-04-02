@@ -4,7 +4,6 @@ namespace App\DataFixtures;
 
 use App\Entity\Ct404Commercial;
 use App\Entity\Ct404Ordered;
-use DateTime;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
@@ -24,15 +23,10 @@ class Ct404OrderedFixtures extends BaseFixture implements DependentFixtureInterf
     {
         // Creates 10 Ordered
         $this->createMany(Ct404Ordered::class, 10, function (Ct404Ordered $ordered) {
-            // Creates a random date between now and 30 days ago
-            $orderDate = $this->faker->dateTimeBetween('-30 days');
-            // Gives the remaining days before the delivery date
-            $days = (new DateTime())->diff($orderDate)->days;
             // Fills the newly created Ordered
             $ordered
-                ->setDeliveryDate($this->faker->dateTimeBetween("-{$days} days"))
+                ->setDeliveryDate($this->faker->dateTimeBetween('+1 day', '+14 days'))
                 ->setCommercial($this->getRandomReference(Ct404Commercial::class))
-                ->setOrderDate($orderDate)
                 ->setTotalPrice($this->faker->randomFloat(2, 1, 10000000))
             ;
         });

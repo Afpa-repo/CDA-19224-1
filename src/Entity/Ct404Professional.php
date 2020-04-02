@@ -4,191 +4,278 @@ namespace App\Entity;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
-date_default_timezone_set('Europe/Paris');
-
 /**
- * Ct404Professional.
- *
- * @ORM\Table(name="ct404_professional", indexes={@ORM\Index(name="IDX_C08407583E4A79C1", columns={"password_id"})})
- * @ORM\Entity
- * @UniqueEntity("siret_number")
- * @UniqueEntity("mail")
+ * @ORM\Table(name="ct404_professional")
+ * @ORM\Entity(repositoryClass="App\Repository\Ct404ProfessionalRepository")
+ * @UniqueEntity(
+ *     errorPath="email",
+ *     fields={"email", "siret"},
+ *     message="L'email et/ou le n° de SIRET sont déjà pris"
+ * )
  */
 class Ct404Professional
 {
     /**
      * @var int
-     *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
-     * @Assert\NotBlank()
-     * @ORM\Column(name="siret_number", type="string", length=50, nullable=false, unique=true)
+     * @Assert\NotBlank(
+     *     message="Le n° de SIRET est requis"
+     * )
+     * @Assert\Length(
+     *     max="50",
+     *     maxMessage="Le n° de SIRET doit faire au maximum {{ limit }} caractères",
+     *     normalizer="trim"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[\d]{3}\s[\d]{3}\s[\d]{3}\s[\d]{5}$/",
+     *     message="{{ value }} n'est pas un n° de SIRET valide",
+     *     normalizer="trim"
+     * )
+     * @ORM\Column(type="string", length=50, nullable=false)
      */
-    private $siretNumber;
+    private $siret;
 
     /**
      * @var string
-     * @Assert\Regex("/^[\w\s\&\;\:\.\,\'\(\)\%""\?\!\€\-éèêëûüùîïíôöœàáâæç]+$/",
-     *     message="Voua utilisez des caractères interdits")
-     * @ORM\Column(name="compagny_name", type="string", length=50, nullable=false)
+     * @Assert\NotBlank(
+     *     message="Le nom de l'entreprise est requis"
+     * )
+     * @Assert\Length(
+     *     max="100",
+     *     maxMessage="Le nom de l'entreprise doit faire au maximum {{ limit }} caractères",
+     *     normalizer="trim"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[\w\&\'\-éèêëûüùîïíôöœàáâæç]+$/i",
+     *     message="{{ value }} n'est pas un nom d'entreprise valide",
+     *     normalizer="trim"
+     * )
+     * @ORM\Column(type="string", length=100, nullable=false)
      */
-    private $compagnyName;
+    private $company;
 
     /**
      * @var string
-     * @Assert\Regex("/^[\w\-éèêëûüùîïíôöœàáâæç]+$/",
-     *     message="Vous utilisez des caractères interdits")
-     * @ORM\Column(name="contact_name", type="string", length=50, nullable=false)
+     * @Assert\NotBlank(
+     *     message="Le nom du contact est requis"
+     * )
+     * @Assert\Length(
+     *     max="50",
+     *     maxMessage="Le nom du contact doit faire au maximum {{ limit }} caractères",
+     *     normalizer="trim"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[\w\&\'\-éèêëûüùîïíôöœàáâæç]+$/i",
+     *     message="{{ value }} n'est pas un nom de contact valide",
+     *     normalizer="trim"
+     * )
+     * @ORM\Column(type="string", length=50, nullable=false)
      */
-    private $contactName;
+    private $contact;
 
     /**
      * @var string
      * @Assert\Email(
-     *     message="Votre adresse email n'est pas valide")
-     * @ORM\Column(name="mail", type="string", length=50, nullable=false, unique=true)
+     *     message="{{ value }} n'est pas un email valide",
+     *     mode="strict"
+     * )
+     * @Assert\NotBlank(
+     *     message="L'email est requis"
+     * )
+     * @ORM\Column(type="string", length=100, nullable=false)
      */
-    private $mail;
+    private $email;
 
     /**
      * @var DateTime
      * @Assert\DateTime(
-     *     message="Problème d'enregistrement de la date"
+     *     message="{{ value }} n'est pas une date valide"
      * )
-     * @ORM\Column(name="date_register", type="datetime", nullable=false)
+     * @Assert\NotBlank(
+     *     message="La date est requise"
+     * )
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=false)
      */
-    private $dateRegister;
+    private $createdAt;
+
+    /**
+     * @var Datetime
+     * @Assert\DateTime(
+     *     message="{{ value }} n'est pas une date valide"
+     * )
+     * @Assert\NotBlank(
+     *     message="La date est requise"
+     * )
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime", nullable=false)
+     */
+    private $updatedAt;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="clef", type="string", length=100, nullable=false)
+     * @Assert\NotBlank(
+     *     message="La clé est requise"
+     * )
+     * @ORM\Column(type="string", length=100, nullable=false)
      */
-    private $clef;
+    private $userKey;
 
     /**
      * @var bool
-     * @Assert\NotNull()
-     * @ORM\Column(name="actif", type="boolean", nullable=false)
+     * @Assert\NotBlank(
+     *     allowNull=false,
+     *     message="Vous devez donner une réponse"
+     * )
+     * @ORM\Column(type="boolean", nullable=false)
      */
-    private $actif;
+    private $active;
 
     /**
-     * @var \Ct404Commercial
-     *
-     * @ORM\ManyToOne(targetEntity="Ct404Commercial")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="password_id", referencedColumnName="id")
-     * })
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $password;
+
+    /**
+     * @var Ct404Commercial
+     * @ORM\ManyToOne(targetEntity="App\Entity\Ct404Commercial", inversedBy="professionals")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $commercial;
+
+    public function getSiret(): ?string
+    {
+        return $this->siret;
+    }
+
+    public function setSiret(string $siret): self
+    {
+        $this->siret = $siret;
+
+        return $this;
+    }
+
+    public function getCompany(): ?string
+    {
+        return $this->company;
+    }
+
+    public function setCompany(string $company): self
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    public function getContact(): ?string
+    {
+        return $this->contact;
+    }
+
+    public function setContact(string $contact): self
+    {
+        $this->contact = $contact;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getUserKey(): ?string
+    {
+        return $this->userKey;
+    }
+
+    public function setUserKey(string $userKey): self
+    {
+        $this->userKey = $userKey;
+
+        return $this;
+    }
+
+    public function getActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getSiretNumber(): ?string
+    public function getCommercial(): ?Ct404Commercial
     {
-        return $this->siretNumber;
+        return $this->commercial;
     }
 
-    public function setSiretNumber(string $siretNumber): self
+    public function setCommercial(?Ct404Commercial $commercial): self
     {
-        $this->siretNumber = $siretNumber;
-
-        return $this;
-    }
-
-    public function getCompagnyName(): ?string
-    {
-        return $this->compagnyName;
-    }
-
-    public function setCompagnyName(string $compagnyName): self
-    {
-        $this->compagnyName = $compagnyName;
-
-        return $this;
-    }
-
-    public function getContactName(): ?string
-    {
-        return $this->contactName;
-    }
-
-    public function setContactName(string $contactName): self
-    {
-        $this->contactName = $contactName;
-
-        return $this;
-    }
-
-    public function getMail(): ?string
-    {
-        return $this->mail;
-    }
-
-    public function setMail(string $mail): self
-    {
-        $this->mail = $mail;
-
-        return $this;
-    }
-
-    public function getDateRegister(): ?\DateTimeInterface
-    {
-        return $this->dateRegister;
-    }
-
-    public function setDateRegister(\DateTimeInterface $dateRegister): self
-    {
-        $this->dateRegister = new DateTime();
-
-        return $this;
-    }
-
-    public function getClef(): ?string
-    {
-        return $this->clef;
-    }
-
-    public function setClef(string $clef): self
-    {
-        $this->clef = $clef;
-
-        return $this;
-    }
-
-    public function getActif(): ?bool
-    {
-        return $this->actif;
-    }
-
-    public function setActif(bool $actif): self
-    {
-        $this->actif = $actif;
-
-        return $this;
-    }
-
-    public function getPassword(): ?Ct404Commercial
-    {
-        return $this->password;
-    }
-
-    public function setPassword(?Ct404Commercial $password): self
-    {
-        $this->password = $password;
+        $this->commercial = $commercial;
 
         return $this;
     }

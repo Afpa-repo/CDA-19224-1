@@ -45,7 +45,9 @@ class Ct404Category
     private $products;
 
     /**
+     * @var Ct404SubCategory
      * @ORM\OneToMany(targetEntity="App\Entity\Ct404SubCategory", mappedBy="category", orphanRemoval=true)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $subCategories;
 
@@ -100,9 +102,6 @@ class Ct404Category
         return $this;
     }
 
-    /**
-     * @return Collection|Ct404SubCategory[]
-     */
     public function getSubCategories(): Collection
     {
         return $this->subCategories;
@@ -122,7 +121,7 @@ class Ct404Category
     {
         if ($this->subCategories->contains($subCategory)) {
             $this->subCategories->removeElement($subCategory);
-            // set the owning side to null (unless already changed)
+
             if ($subCategory->getCategory() === $this) {
                 $subCategory->setCategory(null);
             }

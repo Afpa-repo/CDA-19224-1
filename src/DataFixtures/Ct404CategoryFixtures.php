@@ -16,7 +16,7 @@ class Ct404CategoryFixtures extends BaseFixture
 
             // All categories might not have one or multiple sub categories
             if ($this->faker->boolean) {
-                for ($i = 0; $i < mt_rand(0, 3); ++$i) {
+                for ($i = 0; $i < mt_rand(1, 3); ++$i) {
                     $subCategory = new Ct404SubCategory();
                     $subCategory->setName($this->faker->unique()->word);
                     $category->addSubCategory($subCategory);

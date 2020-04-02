@@ -86,12 +86,29 @@ class Ct404Commercial
     /**
      * @var Ct404Ordered
      * @ORM\OneToMany(targetEntity="App\Entity\Ct404Ordered", mappedBy="commercial")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $commercialOrdereds;
+
+    /**
+     * @var Ct404Particular
+     * @ORM\OneToMany(targetEntity="App\Entity\Ct404Particular", mappedBy="commercial")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $particulars;
+
+    /**
+     * @var Ct404Professional
+     * @ORM\OneToMany(targetEntity="App\Entity\Ct404Professional", mappedBy="commercial", orphanRemoval=true)
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $professionals;
 
     public function __construct()
     {
         $this->commercialOrdereds = new ArrayCollection();
+        $this->particulars = new ArrayCollection();
+        $this->professionals = new ArrayCollection();
     }
 
     public function getFirstname(): ?string
@@ -173,5 +190,64 @@ class Ct404Commercial
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getParticulars(): Collection
+    {
+        return $this->particulars;
+    }
+
+    public function addParticular(Ct404Particular $particular): self
+    {
+        if (!$this->particulars->contains($particular)) {
+            $this->particulars[] = $particular;
+            $particular->setCommercial($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticular(Ct404Particular $particular): self
+    {
+        if ($this->particulars->contains($particular)) {
+            $this->particulars->removeElement($particular);
+
+            if ($particular->getCommercial() === $this) {
+                $particular->setCommercial(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Ct404Professional[]
+     */
+    public function getProfessionals(): Collection
+    {
+        return $this->professionals;
+    }
+
+    public function addProfessional(Ct404Professional $professional): self
+    {
+        if (!$this->professionals->contains($professional)) {
+            $this->professionals[] = $professional;
+            $professional->setCommercial($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProfessional(Ct404Professional $professional): self
+    {
+        if ($this->professionals->contains($professional)) {
+            $this->professionals->removeElement($professional);
+            // set the owning side to null (unless already changed)
+            if ($professional->getCommercial() === $this) {
+                $professional->setCommercial(null);
+            }
+        }
+
+        return $this;
     }
 }

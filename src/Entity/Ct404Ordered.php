@@ -7,6 +7,7 @@ use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -31,6 +32,7 @@ class Ct404Ordered
      * @Assert\NotBlank(
      *     message="La date de commande est requise"
      * )
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime", nullable=false)
      */
     private $orderDate;
@@ -71,6 +73,7 @@ class Ct404Ordered
     /**
      * @var Ct404OrderDetail
      * @ORM\OneToMany(targetEntity="App\Entity\Ct404OrderDetail", mappedBy="cOrder", orphanRemoval=true)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $orderDetail;
 

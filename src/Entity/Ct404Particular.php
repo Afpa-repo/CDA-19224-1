@@ -3,19 +3,20 @@
 namespace App\Entity;
 
 use DateTime;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
-date_default_timezone_set('Europe/Paris');
-
 /**
- * Ct404particular.
- *
- * @ORM\Table(name="ct404_particular", indexes={@ORM\Index(name="IDX_59A290B961DDAC3C", columns={"id_ct404_role_id"}), @ORM\Index(name="IDX_59A290B96D7E3993", columns={"id_ct404_commercial_id"})})
- * @ORM\Entity
- * @UniqueEntity("pseudo")
- * @UniqueEntity("mail")
+ * @ORM\Table(name="ct404_particular")
+ * @ORM\Entity(repositoryClass="App\Repository\Ct404ParticularRepository")
+ * @UniqueEntity(
+ *     errorPath="email",
+ *     fields={"email", "pseudo"},
+ *     message="L'email et/ou le pseudo ont déjà été pris"
+ * )
  */
 class Ct404Particular
 {
@@ -23,92 +24,155 @@ class Ct404Particular
      * @var int
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
-     * @Assert\Regex(
-     *     "/^[\w\-éèêëûüùîïíôöœàáâæç]+$/",
-     *     message="Vous utilisez des caractères interdits"
+     * @Assert\NotBlank(
+     *     message="Le prénom est requis"
      * )
-     * @ORM\Column(name="firstname", type="string", length=50, nullable=false)
+     * @Assert\Length(
+     *     max="50",
+     *     min="3",
+     *     maxMessage="Le prénom doit faire au maximum {{ limit }} caractères",
+     *     minMessage="Le prénom doit faire au minimum {{ limit }} caractères",
+     *     normalizer="trim"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[\w\&\'\-éèêëûüùîïíôöœàáâæç]+$/i",
+     *     message="{{ value }} n'est pas un prénom valide",
+     *     normalizer="trim"
+     * )
+     * @ORM\Column(type="string", length=50, nullable=false)
      */
     private $firstname;
 
     /**
      * @var string
-     * @Assert\Regex(
-     *     "/^[\w\-éèêëûüùîïíôöœàáâæç]+$/",
-     *     message="Vous utilisez des caractères interdits"
+     * @Assert\NotBlank(
+     *     message="Le nom est requis"
      * )
-     * @ORM\Column(name="lastname", type="string", length=50, nullable=false)
+     * @Assert\Length(
+     *     max="50",
+     *     min="3",
+     *     maxMessage="Le nom doit faire au maximum {{ limit }} caractères",
+     *     minMessage="Le nom doit faire au minimum {{ limit }} caractères",
+     *     normalizer="trim"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[\w\&\'\-éèêëûüùîïíôöœàáâæç]+$/i",
+     *     message="{{ value }} n'est pas un nom valide",
+     *     normalizer="trim"
+     * )
+     * @ORM\Column(type="string", length=50, nullable=false)
      */
     private $lastname;
 
     /**
      * @var string
-     * @Assert\Regex(
-     *     "/^[\w\d\.\,\(\)\-éèêëûüùîïíôöœàáâæç]+$/",
-     *     message="Vous utilisez des caractères interdits"
+     * @Assert\NotBlank(
+     *     message="L'adresse est requise"
      * )
-     * @ORM\Column(name="address", type="string", length=50, nullable=false)
+     * @Assert\Length(
+     *     max="100",
+     *     maxMessage="L'adresse doit faire au maximum {{ limit }} caractères",
+     *     normalizer="trim"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[\w\d\.\,\(\)\-éèêëûüùîïíôöœàáâæç]+$/i",
+     *     message="{{ value }} n'est pas une adresse valide",
+     *     normalizer="trim"
+     * )
+     * @ORM\Column(type="string", length=100, nullable=false)
      */
     private $address;
 
     /**
-     * @var string
-     * @Assert\Regex(
-     *     "/^\d{5}$/",
-     *     message="Votre code postal n'est pas valide"
+     * @var int
+     * @Assert\NotBlank(
+     *     message="Le code postal est requis"
      * )
-     * @ORM\Column(name="zip_code", type="string", length=5, nullable=false)
+     * @Assert\Regex(
+     *     pattern="/^\d{5}$/",
+     *     message="{{ value }} n'est pas un code postal valide",
+     *     normalizer="trim"
+     * )
+     * @ORM\Column(type="integer", nullable=false)
      */
     private $zipCode;
 
     /**
      * @var string
-     * @Assert\Regex(
-     *     "/^[\w\-éèêëûüùîïíôöœàáâæç]+$/",
-     *     message="Vous utilisez des caractères interdits"
+     * @Assert\NotBlank(
+     *     message="La ville est requise"
      * )
-     * @ORM\Column(name="city", type="string", length=50, nullable=false)
+     * @Assert\Length(
+     *     max="50",
+     *     maxMessage="La ville doit faire au maximum {{ limit }} caractères",
+     *     normalizer="trim"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[\w\-éèêëûüùîïíôöœàáâæç]+$/i",
+     *     message="{{ value }} n'est pas une ville valide",
+     *     normalizer="trim"
+     * )
+     * @ORM\Column(type="string", length=50, nullable=false)
      */
     private $city;
 
     /**
      * @var string
-     * @Assert\Email(
-     *     message="Votre email n'est pas valide"
+     * @Assert\NotBlank(
+     *     message="Le numéro de téléphone est requis"
      * )
-     * @ORM\Column(name="mail", type="string", length=50, nullable=false, unique=true)
-     */
-    private $mail;
-
-    /**
-     * @var int
      * @Assert\Regex(
-     *     "/^(0{1}\d{9})$/",
-     *      message="Votre numero de téléphone n'est pas valide"
+     *     pattern="/^(0{1}\d{9})$/",
+     *     message="{{ value }} n'est pas un numéro de téléphone valide",
+     *     normalizer="trim"
      * )
-     * @ORM\Column(name="phone_number", type="integer", nullable=false)
+     * @ORM\Column(type="string", length=20, nullable=false)
      */
     private $phoneNumber;
 
     /**
      * @var string
-     * @ORM\Column(name="password", type="string", length=60, nullable=false)
+     * @Assert\Email(
+     *     message="{{ value }} n'est pas un email valide",
+     *     mode="strict"
+     * )
+     * @Assert\NotBlank(
+     *     message="L'email est requis"
+     * )
+     * @ORM\Column(type="string", length=100, nullable=false)
+     */
+    private $email;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $password;
 
     /**
      * @var string
-     * @Assert\Regex(
-     *     "/^[\w\d\.\_\-éèêëûüùîïíôöœàáâæç]+$/",
-     *     message="Votre pseudo n'est pas valide"
+     * @Assert\NotBlank(
+     *     message="Le pseudo est requis"
      * )
-     * @ORM\Column(name="pseudo", type="string", length=50, nullable=false, unique=true)
+     * @Assert\Length(
+     *     max="50",
+     *     min="3",
+     *     maxMessage="Le pseudo doit faire au maximum {{ limit }} caractères",
+     *     minMessage="Le pseudo doit faire au minimum {{ limit }} caractères",
+     *     normalizer="trim"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[\w\&\'\-éèêëûüùîïíôöœàáâæç]+$/i",
+     *     message="{{ value }} n'est pas un pseudo valide",
+     *     normalizer="trim"
+     * )
+     * @ORM\Column(type="string", length=50, nullable=false)
      */
     private $pseudo;
 
@@ -117,52 +181,52 @@ class Ct404Particular
      * @Assert\NotBlank(
      *     message="La clé est requise"
      * )
-     * @ORM\Column(name="clef", type="string", length=100, nullable=false)
+     * @ORM\Column(type="string", length=100, nullable=false)
      */
-    private $clef;
+    private $userKey;
 
     /**
      * @var bool
-     * @Assert\NotNull()
-     * @ORM\Column(name="actif", type="boolean", nullable=false)
+     * @Assert\NotBlank(
+     *     allowNull=false,
+     *     message="Vous devez donner une réponse"
+     * )
+     * @ORM\Column(type="boolean", nullable=false)
      */
-    private $actif;
+    private $active;
 
     /**
      * @var DateTime
      * @Assert\DateTime(
-     *     message="La date n'est pas valide"
+     *     message="{{ value }} n'est pas une date valide"
      * )
-     * @ORM\Column(name="date_registeur", type="datetime", nullable=false)
+     * @Assert\NotBlank(
+     *     message="La date est requise"
+     * )
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=false)
      */
-    private $dateRegisteur;
+    private $createdAt;
 
     /**
-     * @var Ct404Role
+     * @var Datetime
      * @Assert\DateTime(
-     *     message="La date n'est pas valide"
+     *     message="{{ value }} n'est pas une date valide"
      * )
-     * @ORM\ManyToOne(targetEntity="Ct404Role")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_ct404_role_id", referencedColumnName="id")
-     * })
+     * @Assert\NotBlank(
+     *     message="La date est requise"
+     * )
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime", nullable=false)
      */
-    private $idCt404Role;
+    private $updatedAt;
 
     /**
      * @var Ct404Commercial
-     * @Assert\Positive()
-     * @ORM\ManyToOne(targetEntity="Ct404Commercial")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_ct404_commercial_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="App\Entity\Ct404Commercial", inversedBy="particulars")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $idCt404Commercial;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+    private $commercial;
 
     public function getFirstname(): ?string
     {
@@ -200,12 +264,12 @@ class Ct404Particular
         return $this;
     }
 
-    public function getZipCode(): ?string
+    public function getZipCode(): ?int
     {
         return $this->zipCode;
     }
 
-    public function setZipCode(string $zipCode): self
+    public function setZipCode(int $zipCode): self
     {
         $this->zipCode = $zipCode;
 
@@ -224,26 +288,26 @@ class Ct404Particular
         return $this;
     }
 
-    public function getMail(): ?string
-    {
-        return $this->mail;
-    }
-
-    public function setMail(string $mail): self
-    {
-        $this->mail = $mail;
-
-        return $this;
-    }
-
-    public function getPhoneNumber(): ?int
+    public function getPhoneNumber(): ?string
     {
         return $this->phoneNumber;
     }
 
-    public function setPhoneNumber(int $phoneNumber): self
+    public function setPhoneNumber(string $phoneNumber): self
     {
         $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }
@@ -272,62 +336,67 @@ class Ct404Particular
         return $this;
     }
 
-    public function getClef(): ?string
+    public function getUserKey(): ?string
     {
-        return $this->clef;
+        return $this->userKey;
     }
 
-    public function setClef(string $clef): self
+    public function setUserKey(string $userKey): self
     {
-        $this->clef = $clef;
+        $this->userKey = $userKey;
 
         return $this;
     }
 
-    public function getActif(): ?bool
+    public function getActive(): ?bool
     {
-        return $this->actif;
+        return $this->active;
     }
 
-    public function setActif(bool $actif): self
+    public function setActive(bool $active): self
     {
-        $this->actif = $actif;
+        $this->active = $active;
 
         return $this;
     }
 
-    public function getDateRegisteur(): ?\DateTimeInterface
+    public function getCreatedAt(): ?DateTimeInterface
     {
-        return $this->dateRegisteur;
+        return $this->createdAt;
     }
 
-    public function setDateRegisteur(\DateTimeInterface $dateRegisteur): self
+    public function setCreatedAt(DateTimeInterface $createdAt): self
     {
-        $this->dateRegisteur = new DateTime();
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getIdCt404Role(): ?Ct404Role
+    public function getUpdatedAt(): ?DateTimeInterface
     {
-        return $this->idCt404Role;
+        return $this->updatedAt;
     }
 
-    public function setIdCt404Role(?Ct404Role $idCt404Role): self
+    public function setUpdatedAt(DateTimeInterface $updatedAt): self
     {
-        $this->idCt404Role = $idCt404Role;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
-    public function getIdCt404Commercial(): ?Ct404Commercial
+    public function getId(): ?int
     {
-        return $this->idCt404Commercial;
+        return $this->id;
     }
 
-    public function setIdCt404Commercial(?Ct404Commercial $idCt404Commercial): self
+    public function getCommercial(): ?Ct404Commercial
     {
-        $this->idCt404Commercial = $idCt404Commercial;
+        return $this->commercial;
+    }
+
+    public function setCommercial(?Ct404Commercial $commercial): self
+    {
+        $this->commercial = $commercial;
 
         return $this;
     }

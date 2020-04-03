@@ -1,5 +1,8 @@
 /* Imports materialize-css in the current project */
 @import "~materialize-css";
 
+/* Imports Material Icons */
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons&display=swap");
+
 /* Imports custom css */
 @import "base.css";

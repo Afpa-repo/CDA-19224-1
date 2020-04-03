@@ -50,6 +50,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
             'password' => $request->request->get('password'),
             'csrf_token' => $request->request->get('_csrf_token'),
         ];
+
         $request->getSession()->set(
             Security::LAST_USERNAME,
             $credentials['email']
@@ -61,6 +62,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
         $token = new CsrfToken('authenticate', $credentials['csrf_token']);
+
         if (!$this->csrfTokenManager->isTokenValid($token)) {
             throw new InvalidCsrfTokenException();
         }
@@ -68,7 +70,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $credentials['email']]);
 
         if (!$user) {
-            // fail authentication with a custom error
+            // Fail authentication with a custom error
             throw new CustomUserMessageAuthenticationException('Email could not be found.');
         }
 
@@ -82,6 +84,8 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
 
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
+     *
+     * @param mixed $credentials
      */
     public function getPassword($credentials): ?string
     {

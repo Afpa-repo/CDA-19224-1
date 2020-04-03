@@ -38,15 +38,20 @@ Encore
         };
     })
     // Reduce the number of HTTP requests inlining small files as base64 encoded URLs in the generated CSS files.
+    // Uses file-loader as a default fallback if the bytes limit has been exceeded
     .configureUrlLoader({
-        fonts: {limit: 4200},
-        images: {limit: 4200}
+        fonts: {limit: 4096},
+        images: {limit: 4096},
     })
     // Copies the images to the build folder
     .copyFiles({
         from: './assets/images',
         to: 'images/[path][name].[hash:8].[ext]',
         pattern: /\.(png|jpg|jpeg)$/
+    })
+    // Fix [object Module] url error for images
+    .configureLoaderRule('images', loaderRule => {
+        loaderRule.options.esModule = false;
     });
 
 module.exports = Encore.getWebpackConfig();

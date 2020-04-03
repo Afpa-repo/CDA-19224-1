@@ -1,4 +1,8 @@
+// Imports
 const Encore = require('@symfony/webpack-encore');
+const path = require('path');
+const PurgeCssPlugin = require('purgecss-webpack-plugin');
+const glob = require('glob-all');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 if (!Encore.isRuntimeEnvironmentConfigured()) {
@@ -52,6 +56,12 @@ Encore
     // Fix [object Module] url error for images
     .configureLoaderRule('images', loaderRule => {
         loaderRule.options.esModule = false;
-    });
+    })
+    // Add PurgeCssPlugin to remove unused CSS
+    .addPlugin(new PurgeCssPlugin({
+        paths: glob.sync([
+            path.join(__dirname, 'templates/**/*.html.twig')
+        ])
+    }));
 
 module.exports = Encore.getWebpackConfig();

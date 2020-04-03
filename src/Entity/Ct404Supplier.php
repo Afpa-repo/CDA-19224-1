@@ -2,152 +2,225 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Ct404supplier.
- *
- * @ORM\Table(name="ct404supplier")
- * @ORM\Entity
- * @UniqueEntity("supplier_name")
- * @UniqueEntity("supplier_mail")
+ * @ORM\Table(name="ct404_supplier")
+ * @ORM\Entity(repositoryClass="App\Repository\Ct404SupplierRepository")
+ * @UniqueEntity(
+ *     errorPath="supplierMail",
+ *     fields={"supplierMail", "supplierName"},
+ *     message="Ce mail et/ou nom sont déjà pris"
+ * )
  */
 class Ct404Supplier
 {
     /**
      * @var int
-     *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
-     * @Assert\Regex("/^[\w\&\'\-éèêëûüùîïíôöœàáâæç]+$/",
-     *     message="Vous utilisez des caractères interdits")
-     * @ORM\Column(name="supplier_name", type="string", length=50, nullable=false, unique=true)
+     * @Assert\NotBlank(
+     *     message="Le nom est requis"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[\w\&\'\-éèêëûüùîïíôöœàáâæç]+$/i",
+     *     message="{{ value }} n'est pas un nom valide",
+     *     normalizer="trim"
+     * )
+     * @ORM\Column(type="string", length=100, nullable=false, unique=true)
      */
-    private $supplierName;
+    private $name;
 
     /**
      * @var string
-     * @Assert\Regex("/^[\w\d\.\,\(\)\-éèêëûüùîïíôöœàáâæç]+$/",
-     *     message="Vous utilisez des caractères interdits")
-     * @ORM\Column(name="supplier_address", type="string", length=50, nullable=false)
+     * @Assert\NotBlank(
+     *     message="L'adresse est requise"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[\w\d\.\,\(\)\-éèêëûüùîïíôöœàáâæç]+$/i",
+     *     message="{{ value }} n'est pas une adresse valide",
+     *     normalizer="trim"
+     * )
+     * @ORM\Column(type="string", length=100, nullable=false)
      */
-    private $supplierAddress;
+    private $address;
 
     /**
-     * @var string
-     * @Assert\Regex("/^[\w\-éèêëûüùîïíôöœàáâæç]+$/",
-     *     message="Vous utilisez des caractères interdits")
-     * @ORM\Column(name="supplier_city", type="string", length=50, nullable=false)
+     * @Assert\NotBlank(
+     *     message="La ville est requise"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[\w\-éèêëûüùîïíôöœàáâæç]+$/i",
+     *     message="{{ value }} n'est pas une ville valide",
+     *     normalizer="trim"
+     * )
+     * @ORM\Column(type="string", length=50, nullable=false)
      */
-    private $supplierCity;
+    private $city;
 
-    // TODO : Corriger le nom de variable
     /**
      * @var int
-     * @Assert\Regex("/^\d{5}$/",
-     *     message="Code postal invalide")
-     * @ORM\Column(name="supplier_zipe_code", type="integer", nullable=false)
+     * @Assert\NotBlank(
+     *     message="Le code postal est requis"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^\d{5}$/",
+     *     message="{{ value }} n'est pas un code postal valide",
+     *     normalizer="trim"
+     * )
+     * @ORM\Column(type="integer", nullable=false)
      */
-    private $supplierZipeCode;
+    private $zipCode;
 
     /**
      * @var string
-     * @Assert\Regex("/^(0{1}\d{9})$/",
-     *     message="Votre numéro de téléphone n'est pas valide")
-     * @ORM\Column(name="supplier_phone", type="string", length=14, nullable=false)
+     * @Assert\NotBlank(
+     *     message="Le numéro de téléphone est requis"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^(0{1}\d{9})$/",
+     *     message="{{ value }} n'est pas un numéro de téléphone valide",
+     *     normalizer="trim"
+     * )
+     * @ORM\Column(type="string", length=20, nullable=false)
      */
-    private $supplierPhone;
+    private $phoneNumber;
 
     /**
      * @var string
      * @Assert\Email(
-     *     message="Votre adresse email n'est pas valide"
+     *     message="{{ value }} n'est pas un email valide",
+     *     mode="strict"
      * )
-     * @ORM\Column(name="supplier_mail", type="string", length=50, nullable=false, unique=true)
+     * @Assert\NotBlank(
+     *     message="L'email est requis"
+     * )
+     * @ORM\Column(type="string", length=100, nullable=false, unique=true)
      */
-    private $supplierMail;
+    private $email;
+
+    /**
+     * @var Ct404Product
+     * @ORM\OneToMany(targetEntity="App\Entity\Ct404Product", mappedBy="supplier", orphanRemoval=true)
+     */
+    private $products;
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getZipCode(): ?int
+    {
+        return $this->zipCode;
+    }
+
+    public function setZipCode(int $zipCode): self
+    {
+        $this->zipCode = $zipCode;
+
+        return $this;
+    }
+
+    public function getPhoneNumber(): ?string
+    {
+        return $this->phoneNumber;
+    }
+
+    public function setPhoneNumber(string $phoneNumber): self
+    {
+        $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getSupplierName(): ?string
+    public function getProducts(): Collection
     {
-        return $this->supplierName;
+        return $this->products;
     }
 
-    public function setSupplierName(string $supplierName): self
+    public function addProduct(Ct404Product $product): self
     {
-        $this->supplierName = $supplierName;
+        if (!$this->products->contains($product)) {
+            $this->products[] = $product;
+            $product->setSupplier($this);
+        }
 
         return $this;
     }
 
-    public function getSupplierAddress(): ?string
+    public function removeProduct(Ct404Product $product): self
     {
-        return $this->supplierAddress;
-    }
+        if ($this->products->contains($product)) {
+            $this->products->removeElement($product);
 
-    public function setSupplierAddress(string $supplierAddress): self
-    {
-        $this->supplierAddress = $supplierAddress;
-
-        return $this;
-    }
-
-    public function getSupplierCity(): ?string
-    {
-        return $this->supplierCity;
-    }
-
-    public function setSupplierCity(string $supplierCity): self
-    {
-        $this->supplierCity = $supplierCity;
-
-        return $this;
-    }
-
-    public function getSupplierZipeCode(): ?int
-    {
-        return $this->supplierZipeCode;
-    }
-
-    public function setSupplierZipeCode(int $supplierZipeCode): self
-    {
-        $this->supplierZipeCode = $supplierZipeCode;
-
-        return $this;
-    }
-
-    public function getSupplierPhone(): ?string
-    {
-        return $this->supplierPhone;
-    }
-
-    public function setSupplierPhone(string $supplierPhone): self
-    {
-        $this->supplierPhone = $supplierPhone;
-
-        return $this;
-    }
-
-    public function getSupplierMail(): ?string
-    {
-        return $this->supplierMail;
-    }
-
-    public function setSupplierMail(string $supplierMail): self
-    {
-        $this->supplierMail = $supplierMail;
+            if ($product->getSupplier() === $this) {
+                $product->setSupplier(null);
+            }
+        }
 
         return $this;
     }

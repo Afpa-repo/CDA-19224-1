@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'S\'inscrire' %}
+
+{% block h1 'Inscription' %}
+
+{% block body %}
+
+    <main class="container">
+        {{ form_start(registrationForm) }}
+
+        <section class="row section">
+            <div class="col s10 offset-s1 m8 offset-m2 l6 offset-l3">
+                {{ form_row(registrationForm.email) }}
+            </div>
+            <div class="col s10 offset-s1 m8 offset-m2 l6 offset-l3">
+                {{ form_row(registrationForm.plainPassword) }}
+            </div>
+
+            <div class="col s10 offset-s2 m8 offset-m3 l6 offset-l4">
+                {{ form_row(registrationForm.agreeTerms) }}
+            </div>
+            {#  Pass the Unix time in the token for verify during email confirmation  #}
+            <div>
+                {{ form_row(registrationForm.user_token, {'value': date().format('U')}) }}
+            </div>
+            <div class="col s10 offset-s1 m8 offset-m2 l6 offset-l3 center-align">
+                <button class="btn">S'enregistrer</button>
+            </div>
+        </section>
+        {{ form_end(registrationForm) }}
+    </main>
+{% endblock %}

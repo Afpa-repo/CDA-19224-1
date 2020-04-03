@@ -1,4 +1,7 @@
 {
+    "behat/transliterator": {
+        "version": "v1.3.0"
+    },
     "composer/semver": {
         "version": "1.5.1"
     },
@@ -26,6 +29,9 @@
     "doctrine/common": {
         "version": "2.12.0"
     },
+    "doctrine/data-fixtures": {
+        "version": "1.4.2"
+    },
     "doctrine/dbal": {
         "version": "v2.10.1"
     },
@@ -42,6 +48,18 @@
             "config/packages/prod/doctrine.yaml",
             "src/Entity/.gitignore",
             "src/Repository/.gitignore"
+        ]
+    },
+    "doctrine/doctrine-fixtures-bundle": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "fc52d86631a6dfd9fdf3381d0b7e3df2069e51b3"
+        },
+        "files": [
+            "src/DataFixtures/AppFixtures.php"
         ]
     },
     "doctrine/doctrine-migrations-bundle": {
@@ -108,6 +126,12 @@
             ".php_cs.dist"
         ]
     },
+    "fzaninotto/faker": {
+        "version": "v1.9.1"
+    },
+    "gedmo/doctrine-extensions": {
+        "version": "v2.4.39"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
@@ -119,6 +143,9 @@
     },
     "laminas/laminas-zendframework-bridge": {
         "version": "1.0.1"
+    },
+    "lorenzo/pinky": {
+        "version": "1.0.5"
     },
     "monolog/monolog": {
         "version": "2.0.2"
@@ -172,6 +199,18 @@
         },
         "files": [
             "config/packages/sensio_framework_extra.yaml"
+        ]
+    },
+    "stof/doctrine-extensions-bundle": {
+        "version": "1.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.2",
+            "ref": "6c1ceb662f8997085f739cd089bfbef67f245983"
+        },
+        "files": [
+            "config/packages/stof_doctrine_extensions.yaml"
         ]
     },
     "symfony/asset": {
@@ -558,6 +597,9 @@
         "version": "v5.0.5"
     },
     "twig/extra-bundle": {
+        "version": "v3.0.3"
+    },
+    "twig/inky-extra": {
         "version": "v3.0.3"
     },
     "twig/twig": {

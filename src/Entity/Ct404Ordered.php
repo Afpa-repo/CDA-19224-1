@@ -3,84 +3,103 @@
 namespace App\Entity;
 
 use DateTime;
-use Symfony\Component\Validator\Constraints as Assert;
+use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
-date_default_timezone_set('Europe/Paris');
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Ct404ordered.
- *
- * @ORM\Table(name="ct404ordered", indexes={@ORM\Index(name="IDX_7A3226166D7E3993", columns={"id_ct404_commercial_id"})})
- * @ORM\Entity
+ * @ORM\Table(name="ct404_ordered")
+ * @ORM\Entity(repositoryClass="App\Repository\Ct404OrderedRepository")
  */
 class Ct404Ordered
 {
     /**
      * @var int
-     *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var DateTime
-     * @Assert\DateTime()
-     * @ORM\Column(name="order_date", type="datetime", nullable=false)
+     * @Assert\DateTime(
+     *     message="{{ value }} n'est pas une date valide"
+     * )
+     * @Assert\NotBlank(
+     *     message="La date de commande est requise"
+     * )
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=false)
      */
     private $orderDate;
 
     /**
      * @var DateTime
-     * @Assert\DateTime()
-     * @ORM\Column(name="delivery_date", type="date", nullable=false)
+     * @Assert\DateTime(
+     *     message="{{ value }} n'est pas une date valide"
+     * )
+     * @Assert\NotBlank(
+     *     message="La date de livraison est requise"
+     * )
+     * @ORM\Column(type="datetime", nullable=false)
      */
     private $deliveryDate;
 
     /**
-     * @var string
-     * @Assert\Regex("/^([\d]{1,9}((\.|\,){1}[\d]{0,2})?)$/",
-     *     message="Votre prix n'est pas valide")
-     * @ORM\Column(name="total_price", type="decimal", precision=10, scale=2, nullable=false)
+     * @var float
+     * @Assert\NotBlank(
+     *     message="Le prix total est requis"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^([\d]{1,9}((\.|\,){1}[\d]{0,2})?)$/",
+     *     message="{{ value }} n'est pas un prix valide",
+     *     normalizer="trim"
+     * )
+     * @ORM\Column(type="decimal", precision=10, scale=2, nullable=false)
      */
     private $totalPrice;
 
     /**
-     * @var \Ct404Commercial
-     * @Assert\Positive()
-     * @ORM\ManyToOne(targetEntity="Ct404Commercial")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_ct404_commercial_id", referencedColumnName="id")
-     * })
+     * @var Ct404Commercial
+     * @ORM\ManyToOne(targetEntity="App\Entity\Ct404Commercial", inversedBy="commercialOrdereds")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $idCt404Commercial;
+    private $commercial;
 
+    /**
+     * @var Ct404OrderDetail
+     * @ORM\OneToMany(targetEntity="App\Entity\Ct404OrderDetail", mappedBy="cOrder", orphanRemoval=true)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $orderDetail;
 
-    public function getId(): ?int
+    public function __construct()
     {
-        return $this->id;
+        $this->orderDetail = new ArrayCollection();
     }
 
-    public function getOrderDate(): ?\DateTimeInterface
+    public function getOrderDate(): ?DateTimeInterface
     {
         return $this->orderDate;
     }
 
-    public function setOrderDate(\DateTimeInterface $orderDate): self
+    public function setOrderDate(DateTimeInterface $orderDate): self
     {
-        $this->orderDate = new DateTime();
+        $this->orderDate = $orderDate;
 
         return $this;
     }
 
-    public function getDeliveryDate(): ?\DateTimeInterface
+    public function getDeliveryDate(): ?DateTimeInterface
     {
         return $this->deliveryDate;
     }
 
-    public function setDeliveryDate(\DateTimeInterface $deliveryDate): self
+    public function setDeliveryDate(DateTimeInterface $deliveryDate): self
     {
         $this->deliveryDate = $deliveryDate;
 
@@ -99,15 +118,48 @@ class Ct404Ordered
         return $this;
     }
 
-    public function getIdCt404Commercial(): ?Ct404Commercial
+    public function getCommercial(): ?Ct404Commercial
     {
-        return $this->idCt404Commercial;
+        return $this->commercial;
     }
 
-    public function setIdCt404Commercial(?Ct404Commercial $idCt404Commercial): self
+    public function setCommercial(?Ct404Commercial $commercial): self
     {
-        $this->idCt404Commercial = $idCt404Commercial;
+        $this->commercial = $commercial;
 
         return $this;
+    }
+
+    public function getOrderDetail(): Collection
+    {
+        return $this->orderDetail;
+    }
+
+    public function addOrderDetail(Ct404OrderDetail $orderDetail): self
+    {
+        if (!$this->orderDetail->contains($orderDetail)) {
+            $this->orderDetail[] = $orderDetail;
+            $orderDetail->setCOrder($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrderDetail(Ct404OrderDetail $orderDetail): self
+    {
+        if ($this->orderDetail->contains($orderDetail)) {
+            $this->orderDetail->removeElement($orderDetail);
+
+            if ($orderDetail->getCOrder() === $this) {
+                $orderDetail->setCOrder(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 }

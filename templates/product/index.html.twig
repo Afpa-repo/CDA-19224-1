@@ -4,11 +4,11 @@
 {% endblock %}
 
 {% block body %}
-    <div class="bg-light p-3">
+    <div class="grey lighten-5 p-3">
         <h1>Les produits</h1>
     </div>
 
-    <div class="row">
+    <div class="grey lighten-5 row">
         {% for product in products %}
             <div class="col-4 mt-4">
                 <div class="border border-dark rounded p-2 clearfix">
@@ -18,7 +18,6 @@
                         {{ product.price }}
                         €
                     </h2>
-                    {# <img class="img-fluid rounded" src="{{ product.image }}" alt="Image de {{ product.title }}"> #}
                     <hr>
                     <a href="{{ path('cart_add', {'id': product.id}) }}" class="btn btn-success float-right">
                         <i class="fas fa-shopping-cart mr-1"></i>

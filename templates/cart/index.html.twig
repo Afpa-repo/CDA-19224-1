@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %} #}
 {% block body %}
 	{# vue panier (ultra simpliste pour l'instant ) #}
 	<h1>Votre panier</h1>
@@ -16,7 +16,7 @@
 				<tbody>
 					{% for item in items %}
 						<tr>
-							<td>{{ item.product.productName }}</td>
+							<td>{{ item.product.name }}</td>
 							<td>{{ item.product.price }} &euro;</td>
 							<td>
 								<a href="{{ path('cart_subtract', {'id': item.product.id}) }}" class="btn btn-danger btn-sm">

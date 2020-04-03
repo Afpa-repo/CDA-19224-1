@@ -12,6 +12,8 @@ Encore
     .setPublicPath('/build')
     // Add 1 entry for each "page" of your app.
     .addEntry('index', './assets/js/index.js')
+    // Add 1 entry for emails of your app.
+    .addEntry('foundation', './assets/js/foundation.js')
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
     // Helps Webpack do it's job for multiple entry files.

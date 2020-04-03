@@ -44,10 +44,14 @@
                                     <i class="medium material-icons">person</i>
                                 </div>
                                 <div class="col s12 center-align">
-                                    <ins>Mon compte</ins>
+                                    <ins>Mon Compte</ins>
                                 </div>
                             </div>
                         </a>
+                        <div class="center-align">
+                        {#  Differents diplays if the user is connect #}
+                        <a href="{{ path('app_login') }}">{% if app.user %}Se déconnecter{% else %}Se connecter{% endif %}</a>
+                        </div>
                     </div>
 
                     {#  Shopping Basket  #}

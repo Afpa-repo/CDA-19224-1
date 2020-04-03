@@ -2,57 +2,53 @@
 
 namespace App\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Ct404OrderDetail.
- *
- * @ORM\Table(name="ct404_order_detail", indexes={@ORM\Index(name="IDX_ED896F46274A2535", columns={"idorder_id"}), @ORM\Index(name="IDX_ED896F46E00EE68D", columns={"id_product_id"})})
- * @ORM\Entity
+ * @ORM\Table(name="ct404_order_detail")
+ * @ORM\Entity(repositoryClass="App\Repository\Ct404OrderDetailRepository")
  */
 class Ct404OrderDetail
 {
     /**
      * @var int
-     *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
-     * @Assert\Range(min="0", max="99999999999")
-     * @ORM\Column(name="quantity", type="string", length=11, nullable=false)
+     * @Assert\NotBlank(
+     *     message="La quantité est requise"
+     * )
+     * @Assert\Range(
+     *     max="999999",
+     *     min="1",
+     *     maxMessage="La quantité ne peut pas être supérieure à {{ limit }}",
+     *     minMessage="La quantité ne peut pas être inférieure à {{ limit }}"
+     * )
+     * @ORM\Column(type="string", length=6, nullable=false)
      */
     private $quantity;
 
     /**
-     * @var \Ct404Ordered
-     * @Assert\Positive()
-     * @ORM\ManyToOne(targetEntity="Ct404Ordered")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idorder_id", referencedColumnName="id")
-     * })
+     * @var Ct404Ordered
+     * @ORM\ManyToOne(targetEntity="App\Entity\Ct404Ordered", inversedBy="orderDetails")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $idorder;
+    private $cOrder;
 
     /**
-     * @var \Ct404Product
-     * @Assert\Positive()
-     * @ORM\ManyToOne(targetEntity="Ct404Product")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_product_id", referencedColumnName="id")
-     * })
+     * @var Ct404Product
+     * @ORM\ManyToOne(targetEntity="App\Entity\Ct404Product", inversedBy="orderDetail")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $idProduct;
+    private $product;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+    // TODO Trouver un meilleur nom parce que order un mot déjà pris par PHP ou Symfony
 
     public function getQuantity(): ?string
     {
@@ -66,26 +62,31 @@ class Ct404OrderDetail
         return $this;
     }
 
-    public function getIdorder(): ?Ct404Ordered
+    public function getCOrder(): ?Ct404Ordered
     {
-        return $this->idorder;
+        return $this->cOrder;
     }
 
-    public function setIdorder(?Ct404Ordered $idorder): self
+    public function setCOrder(?Ct404Ordered $cOrder): self
     {
-        $this->idorder = $idorder;
+        $this->cOrder = $cOrder;
 
         return $this;
     }
 
-    public function getIdProduct(): ?Ct404Product
+    public function getId(): ?int
     {
-        return $this->idProduct;
+        return $this->id;
     }
 
-    public function setIdProduct(?Ct404Product $idProduct): self
+    public function getProduct(): ?Ct404Product
     {
-        $this->idProduct = $idProduct;
+        return $this->product;
+    }
+
+    public function setProduct(?Ct404Product $product): self
+    {
+        $this->product = $product;
 
         return $this;
     }

@@ -6,7 +6,7 @@ use App\Repository\Ct404ProductRepository;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 // Le service CartService comprenant les méthodes liées au panier
-// TODO: Ajouter une des méthodes pour incrémenter et  décrémenter la quantité d'un produit directement dans le panier
+// TODO: Ajouter un moyen de permettre de directement modifier la quantité dans le panier, (input ou select ?)
 class CartService
 {
     protected $session;

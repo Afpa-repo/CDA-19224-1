@@ -15,6 +15,7 @@
     "cssnano": "^4.1.10",
     "file-loader": "^6.0.0",
     "glob-all": "^3.2.1",
+    "maildev": "^1.1.0",
     "materialize-css": "^1.0.0-rc.2",
     "postcss-font-magician": "^2.3.1",
     "postcss-loader": "^3.0.0",
@@ -37,6 +38,7 @@
     "css:fix": "stylelint ./assets/**/*.css --fix",
     "dev": "encore dev",
     "dev-server": "encore dev-server",
+    "maildev": "maildev",
     "php:fix": "php vendor/bin/php-cs-fixer fix -vvv --show-progress=estimating",
     "watch": "encore dev --watch"
   }

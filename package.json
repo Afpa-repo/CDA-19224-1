@@ -38,7 +38,7 @@
     "css:fix": "stylelint ./assets/**/*.css --fix",
     "dev": "encore dev",
     "dev-server": "encore dev-server",
-    "maildev": "maildev",
+    "maildev": "maildev --hide-extensions STARTTLS",
     "php:fix": "php vendor/bin/php-cs-fixer fix -vvv --show-progress=estimating",
     "watch": "encore dev --watch"
   }

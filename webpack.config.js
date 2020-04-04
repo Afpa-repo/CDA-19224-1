@@ -14,6 +14,12 @@ if (Encore.isProduction()) {
     Encore
         // Enables hashed filenames (e.g. app.abc123.css)
         .enableVersioning()
+        // Copies the images to the build folder
+        .copyFiles({
+            from: './assets/images',
+            to: 'images/[path][name].[hash:8].[ext]',
+            pattern: /\.(png|jpg|jpeg)$/
+        })
         // Add PurgeCssPlugin to remove unused CSS
         .addPlugin(new PurgeCssPlugin({
             paths: glob.sync([
@@ -26,6 +32,12 @@ else if (Encore.isDev()) {
     Encore
         // Add sources maps for debugging.
         .enableSourceMaps()
+        // Copies the images to the build folder
+        .copyFiles({
+            from: './assets/images',
+            to: 'images/[path][name].[ext]',
+            pattern: /\.(png|jpg|jpeg)$/
+        })
 }
 
 Encore
@@ -61,12 +73,6 @@ Encore
     .configureUrlLoader({
         fonts: {limit: 4096},
         images: {limit: 4096},
-    })
-    // Copies the images to the build folder
-    .copyFiles({
-        from: './assets/images',
-        to: 'images/[path][name].[hash:8].[ext]',
-        pattern: /\.(png|jpg|jpeg)$/
     })
     // Fix [object Module] url error for images
     .configureLoaderRule('images', loaderRule => {

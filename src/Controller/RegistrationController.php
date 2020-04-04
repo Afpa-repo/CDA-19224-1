@@ -66,7 +66,6 @@ class RegistrationController extends AbstractController
             $email = (new TemplatedEmail())
                 ->from(new Address('no_reply@diagon_alley.com', 'Diagon Alley - No Reply'))
                 ->to($user->getEmail())
-                ->embed($package->getUrl('build/images/logo.png'), 'logo', 'image/png')
                 ->priority(Email::PRIORITY_HIGH)
                 ->subject('Confirmation d\'Email')
                 ->htmlTemplate('emails/signup.html.twig')

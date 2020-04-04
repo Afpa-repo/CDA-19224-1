@@ -40,7 +40,7 @@
     "dev": "cross-env NODE_ENV=development encore dev",
     "dev-server": "encore dev-server",
     "maildev": "maildev --hide-extensions STARTTLS",
-    "php:fix": "php vendor/bin/php-cs-fixer fix -vvv --show-progress=estimating",
+    "php:fix": "php vendor/bin/php-cs-fixer fix -vvv",
     "watch": "encore dev --watch"
   }
 }

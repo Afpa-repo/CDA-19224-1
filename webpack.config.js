@@ -1,4 +1,8 @@
+// Imports
 const Encore = require('@symfony/webpack-encore');
+const path = require('path');
+const PurgeCssPlugin = require('purgecss-webpack-plugin');
+const glob = require('glob-all');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 if (!Encore.isRuntimeEnvironmentConfigured()) {
@@ -12,6 +16,8 @@ Encore
     .setPublicPath('/build')
     // Add 1 entry for each "page" of your app.
     .addEntry('index', './assets/js/index.js')
+    // Add 1 entry for emails of your app.
+    .addEntry('foundation', './assets/js/foundation.js')
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
     // Helps Webpack do it's job for multiple entry files.
@@ -36,15 +42,26 @@ Encore
         };
     })
     // Reduce the number of HTTP requests inlining small files as base64 encoded URLs in the generated CSS files.
+    // Uses file-loader as a default fallback if the bytes limit has been exceeded
     .configureUrlLoader({
-        fonts: {limit: 4200},
-        images: {limit: 4200}
+        fonts: {limit: 4096},
+        images: {limit: 4096},
     })
     // Copies the images to the build folder
     .copyFiles({
         from: './assets/images',
         to: 'images/[path][name].[hash:8].[ext]',
         pattern: /\.(png|jpg|jpeg)$/
-    });
+    })
+    // Fix [object Module] url error for images
+    .configureLoaderRule('images', loaderRule => {
+        loaderRule.options.esModule = false;
+    })
+    // Add PurgeCssPlugin to remove unused CSS
+    .addPlugin(new PurgeCssPlugin({
+        paths: glob.sync([
+            path.join(__dirname, 'templates/**/*.html.twig')
+        ])
+    }));
 
 module.exports = Encore.getWebpackConfig();

@@ -4,7 +4,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>{% block title %}{% endblock %}</title>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet">
         {% block stylesheets %}
             {{ encore_entry_link_tags('index') }}
         {% endblock %}
@@ -44,10 +43,14 @@
                                     <i class="medium material-icons">person</i>
                                 </div>
                                 <div class="col s12 center-align">
-                                    <ins>Mon compte</ins>
+                                    <ins>Mon Compte</ins>
                                 </div>
                             </div>
                         </a>
+                        <div class="center-align">
+                        {#  Differents diplays if the user is connect #}
+                        <a href="{{ path('app_login') }}">{% if app.user %}Se déconnecter{% else %}Se connecter{% endif %}</a>
+                        </div>
                     </div>
 
                     {#  Shopping Basket  #}
@@ -70,7 +73,7 @@
 
 
             {#   History routes pages   #}
-            {% if history_routes %}
+            {% if history_routes is defined %}
             <div aria-label="routingDiv" class="nav-wrapper" role="complementary">
                 <section id="routingDiv"  class="col s12 valign-wrapper">
                     {% for key, route in history_routes %}

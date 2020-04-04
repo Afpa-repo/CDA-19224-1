@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Service\Cart\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 // Controller du panier utilisant le service CartService
@@ -12,6 +14,8 @@ class CartController extends AbstractController
 {
     /**
      * @Route("/panier", name="cart_index")
+     *
+     * @return Response
      */
     public function index(CartService $cartService)
     {
@@ -25,10 +29,24 @@ class CartController extends AbstractController
      * @Route("/panier/add{id}", name="cart_add")
      *
      * @param mixed $id
+     *
+     * @return RedirectResponse
      */
     public function add($id, CartService $cartService)
     {
         $cartService->add($id);
+
+        return $this->redirectToRoute('cart_index');
+    }
+
+    /**
+     * @Route("/panier/subtract{id}", name="cart_subtract")
+     *
+     * @param mixed $id
+     */
+    public function subtract($id, CartService $cartService)
+    {
+        $cartService->subtract($id);
 
         return $this->redirectToRoute('cart_index');
     }

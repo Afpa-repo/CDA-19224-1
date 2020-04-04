@@ -6,7 +6,7 @@ use App\Repository\Ct404ProductRepository;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 // Le service CartService comprenant les méthodes liées au panier
-// TODO: Ajouter une des méthodes pour incrémenter et  décrémenter la quantité d'un produit directement dans le panier
+// TODO: Ajouter un moyen de permettre de directement modifier la quantité dans le panier, (input ou select ?)
 class CartService
 {
     protected $session;
@@ -28,6 +28,22 @@ class CartService
         } else {
             // sinon, on lui attribue la valeur 1
             $panier[$id] = 1;
+        }
+
+        $this->session->set('panier', $panier);
+    }
+
+    // Réduire quantité panier
+    public function subtract(int $id)
+    {
+        $panier = $this->session->get('panier', []);
+        // si le produit est déjà dans le panier, on décrémente sa quantité
+        if (!empty($panier[$id])) {
+            if ($panier[$id] > 1) {
+                --$panier[$id];
+            } else {
+                unset($panier[$id]);
+            }
         }
 
         $this->session->set('panier', $panier);
@@ -65,7 +81,7 @@ class CartService
     public function getTotal(): float
     {
         $total = 0;
-        
+
         foreach ($this->getFullCart() as $item) {
             $total += $item['product']->getPrice() * $item['quantity'];
         }

@@ -9,6 +9,25 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
     Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
 }
 
+// Config to be used only for production
+if (Encore.isProduction()) {
+    Encore
+        // Enables hashed filenames (e.g. app.abc123.css)
+        .enableVersioning()
+        // Add PurgeCssPlugin to remove unused CSS
+        .addPlugin(new PurgeCssPlugin({
+            paths: glob.sync([
+                path.join(__dirname, 'templates/**/*.html.twig')
+            ])
+        }));
+}
+// Config to be used only for development
+else if (Encore.isDev()) {
+    Encore
+        // Add sources maps for debugging.
+        .enableSourceMaps()
+}
+
 Encore
     // Directory where compiled assets will be stored.
     .setOutputPath('public/build/')
@@ -26,10 +45,6 @@ Encore
     .cleanupOutputBeforeBuild()
     // Displays notifications.
     .enableBuildNotifications()
-    // Add sources maps for debugging.
-    .enableSourceMaps(!Encore.isProduction())
-    // Enables hashed filenames (e.g. app.abc123.css)
-    .enableVersioning(Encore.isProduction())
     // enables @babel/preset-env polyfills
     .configureBabelPresetEnv(config => {
         config.useBuiltIns = 'usage';
@@ -56,12 +71,6 @@ Encore
     // Fix [object Module] url error for images
     .configureLoaderRule('images', loaderRule => {
         loaderRule.options.esModule = false;
-    })
-    // Add PurgeCssPlugin to remove unused CSS
-    .addPlugin(new PurgeCssPlugin({
-        paths: glob.sync([
-            path.join(__dirname, 'templates/**/*.html.twig')
-        ])
-    }));
+    });
 
 module.exports = Encore.getWebpackConfig();

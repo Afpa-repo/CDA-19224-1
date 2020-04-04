@@ -12,6 +12,7 @@
   "devDependencies": {
     "@symfony/webpack-encore": "^0.28.2",
     "core-js": "^3.0.0",
+    "cross-env": "^7.0.2",
     "cssnano": "^4.1.10",
     "file-loader": "^6.0.0",
     "glob-all": "^3.2.1",
@@ -34,9 +35,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "encore production --progress",
+    "build": "cross-env NODE_ENV=production encore production --progress",
     "css:fix": "stylelint ./assets/**/*.css --fix",
-    "dev": "encore dev",
+    "dev": "cross-env NODE_ENV=development encore dev",
     "dev-server": "encore dev-server",
     "maildev": "maildev --hide-extensions STARTTLS",
     "php:fix": "php vendor/bin/php-cs-fixer fix -vvv --show-progress=estimating",

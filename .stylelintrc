@@ -1,18 +1,11 @@
 {
   "extends": [
-    "stylelint-config-standard"
-  ],
-  "plugins": [
-    "stylelint-order"
+    "stylelint-config-standard",
+    "stylelint-config-rational-order",
+    "stylelint-a11y/recommended"
   ],
   "rules": {
-    "font-family-no-missing-generic-family-keyword": [
-      true,
-      {
-        "ignoreFontFamilies": "Henny Penny"
-      }
-    ],
-    "order/properties-alphabetical-order": true,
+    "no-descending-specificity": null,
     "indentation": 4
   }
 }

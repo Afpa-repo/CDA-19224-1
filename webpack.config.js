@@ -1,4 +1,4 @@
-// Imports
+// Imports from node_modules
 const Encore = require('@symfony/webpack-encore');
 const path = require('path');
 const PurgeCssPlugin = require('purgecss-webpack-plugin');

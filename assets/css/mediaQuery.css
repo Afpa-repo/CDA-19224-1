@@ -1,190 +1,186 @@
 /* PORTABLE PC VERSION */
 
-@media screen and (max-width: 1440px){
+@media screen and (max-width: 1440px) {
+    /* INDEX */
 
-  /* INDEX */
-
-  .index{
-    width: 100%;
-  }
-
+    .index {
+        width: 100%;
+    }
 }
 
 /* MOBILE VERSION */
 
-@media screen and (max-width: 992px){
+@media screen and (max-width: 992px) {
+    /* BASE */
 
-  /* BASE */
+    nav {
+        font-size: 100%;
+    }
 
-  nav{
-    font-size: 100%;
-  }
+    /* INDEX */
 
-  /* INDEX */
+    .index {
+        height: 100%;
+    }
 
-  .index{
-    height: 100%;
-  }
+    .index > article {
+        margin-bottom: 2%;
+    }
 
-  .index>article{
-    margin-bottom: 2%;
-  }
+    .indexMessage > h2 {
+        font-size: 200%;
+    }
 
-  .indexMessage>h2{
-    font-size: 200%;
-  }
+    .indexMessage > p {
+        font-size: 100%;
+    }
 
-  .indexMessage>p{
-    font-size: 100%;
-  }
+    .indexHousesGryffondor > h3 {
+        display: none;
+    }
 
-  .indexHousesGryffondor>h3{
-    display: none;
-  }
+    .indexHousesGryffondor > img {
+        width: 100%;
+    }
 
-  .indexHousesGryffondor>img{
-    width: 100%;
-  }
+    .indexHousesSerdaigle > h3 {
+        display: none;
+    }
 
-  .indexHousesSerdaigle>h3{
-    display: none;
-  }
+    .indexHousesSerdaigle > img {
+        width: 100%;
+    }
 
-  .indexHousesSerdaigle>img{
-    width: 100%;
-  }
+    .indexHousesPoufsouffle > h3 {
+        display: none;
+    }
 
-  .indexHousesPoufsouffle>h3{
-    display: none;
-  }
+    .indexHousesPoufsouffle > img {
+        width: 100%;
+    }
 
-  .indexHousesPoufsouffle>img{
-    width: 100%;
-  }
+    .indexHousesSerpentard > h3 {
+        display: none;
+    }
 
-  .indexHousesSerpentard>h3{
-    display: none;
-  }
+    .indexHousesSerpentard > img {
+        width: 100%;
+    }
 
-  .indexHousesSerpentard>img{
-    width: 100%;
-  }
+    .indexHousesPoudlard > h3 {
+        display: none;
+    }
 
-  .indexHousesPoudlard>h3{
-    display: none;
-  }
+    .indexHousesPoudlard > img {
+        width: 100%;
+    }
 
-  .indexHousesPoudlard>img{
-    width: 100%;
-  }
+    .indexChopsticks {
+        flex-direction: column-reverse;
+    }
 
-  .indexChopsticks{
-    flex-direction: column-reverse;
-  }
+    .indexChopsticksImg {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
 
-  .indexChopsticksImg{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+    .indexChopsticksImg > img {
+        width: 50%;
+    }
 
-  .indexChopsticksImg>img{
-    width: 50%;
-  }
+    .indexChopsticksText {
+        width: 100%;
+    }
 
-  .indexChopsticksText{
-    width: 100%;
-  }
+    .indexChopsticksText > img {
+        display: none;
+    }
 
-  .indexChopsticksText>img{
-    display: none;
-  }
+    .indexClothing {
+        flex-direction: column;
+    }
 
-  .indexClothing{
-    flex-direction: column;
-  }
+    .indexClothingImg {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
 
-  .indexClothingImg{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+    .indexClothingImg > img {
+        width: 50%;
+    }
 
-  .indexClothingImg>img{
-    width: 50%;
-  }
+    .indexClothingText {
+        width: 100%;
+    }
 
-  .indexClothingText{
-    width: 100%;
-  }
+    .indexClothingText > img {
+        display: none;
+    }
 
-  .indexClothingText>img{
-    display: none;
-  }
+    .indexJewelry {
+        flex-direction: column-reverse;
+    }
 
-  .indexJewelry{
-    flex-direction: column-reverse;
-  }
+    .indexJewelryImg {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
 
-  .indexJewelryImg{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+    .indexJewelryImg > img {
+        width: 50%;
+    }
 
-  .indexJewelryImg>img{
-    width: 50%;
-  }
+    .indexJewelryText {
+        width: 100%;
+    }
 
-  .indexJewelryText{
-    width: 100%;
-  }
+    .indexJewelryText > img {
+        display: none;
+    }
 
-  .indexJewelryText>img{
-    display: none;
-  }
+    .indexStationeryAccessories {
+        flex-direction: column;
+    }
 
-  .indexStationeryAccessories{
-    flex-direction: column;
-  }
+    .indexStationeryAccessories > div {
+        margin-bottom: 2%;
+    }
 
-  .indexStationeryAccessories>div{
-    margin-bottom: 2%;
-  }
+    .indexStationery {
+        width: 100%;
+    }
 
-  .indexStationery{
-    width: 100%;
-  }
+    .indexStationeryText {
+        width: 75%;
+    }
 
-  .indexStationeryText{
-    width: 75%;
-  }
+    .indexStationeryImg {
+        width: 25%;
+    }
 
-  .indexStationeryImg{
-    width: 25%;
-  }
+    .indexStationeryImg > img {
+        width: 100%;
+    }
 
-  .indexStationeryImg>img{
-    width: 100%;
-  }
+    .indexAccessories {
+        width: 100%;
+    }
 
-  .indexAccessories{
-    width: 100%;
-  }
+    .indexAccessoriesText {
+        width: 75%;
+    }
 
-  .indexAccessoriesText{
-    width: 75%;
-  }
+    .indexAccessoriesImg {
+        width: 25%;
+    }
 
-  .indexAccessoriesImg{
-    width: 25%;
-  }
-
-  .indexAccessoriesImg>img{
-    width: 100%;
-  }
-
+    .indexAccessoriesImg > img {
+        width: 100%;
+    }
 }

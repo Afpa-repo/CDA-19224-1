@@ -23,7 +23,10 @@
     "purgecss-webpack-plugin": "^2.1.0",
     "regenerator-runtime": "^0.13.2",
     "stylelint": "^13.2.1",
+    "stylelint-a11y": "^1.2.3",
+    "stylelint-config-rational-order": "^0.1.2",
     "stylelint-config-standard": "^20.0.0",
+    "stylelint-order": "^4.0.0",
     "url-loader": "^2.0.1",
     "webpack-notifier": "^1.6.0"
   },
@@ -31,9 +34,10 @@
   "private": true,
   "scripts": {
     "build": "encore production --progress",
+    "css:fix": "stylelint ./assets/**/*.css --fix",
     "dev": "encore dev",
     "dev-server": "encore dev-server",
-    "fix": "php vendor/bin/php-cs-fixer fix -vvv --show-progress=estimating",
+    "php:fix": "php vendor/bin/php-cs-fixer fix -vvv --show-progress=estimating",
     "watch": "encore dev --watch"
   }
 }

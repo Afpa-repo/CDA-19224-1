@@ -26,6 +26,12 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register", name="app_register")
      *
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param GuardAuthenticatorHandler $guardHandler
+     * @param LoginFormAuthenticator $authenticator
+     * @param MailerInterface $mailer
+     * @return Response
      * @throws TransportExceptionInterface
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $authenticator, MailerInterface $mailer): Response
@@ -59,6 +65,7 @@ class RegistrationController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
+            $this->addFlash('success', 'Un email de validation vous a été envoyé');
 
             // Use Mailer interface to send a template email
             // Pass the user_id and user_token to the mail
@@ -66,7 +73,6 @@ class RegistrationController extends AbstractController
             $email = (new TemplatedEmail())
                 ->from(new Address('no_reply@diagon_alley.com', 'Diagon Alley - No Reply'))
                 ->to($user->getEmail())
-                ->embed($package->getUrl('build/images/logo.png'), 'logo', 'image/png')
                 ->priority(Email::PRIORITY_HIGH)
                 ->subject('Confirmation d\'Email')
                 ->htmlTemplate('emails/signup.html.twig')
@@ -97,6 +103,9 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/confirmation/{id}/{user_token}", name="confimation.email", methods="GET|POST")
      *
+     * @param User $user
+     * @param Request $request
+     * @return Response
      * @throws Exception
      */
     public function confirm_email(User $user, Request $request): Response
@@ -126,6 +135,7 @@ class RegistrationController extends AbstractController
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($user);
                 $entityManager->flush();
+                $this->addFlash('success', 'Votre compte a bien été validé');
             }
         }
 

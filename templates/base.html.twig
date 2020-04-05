@@ -34,27 +34,19 @@
                         </div>
                     </div>
 
-
                     {#  Client Setting  #}
-                    <div class="col l2 offset-l1 hide-on-med-and-down">
-                        <a href="#" title="Espace client">
-                            <div class="row black-text">
-                                <div class="col s12 center-align">
-                                    <i class="medium material-icons">person</i>
-                                </div>
-                                <div class="col s12 center-align">
-                                    <ins>Mon Compte</ins>
-                                </div>
-                            </div>
-                        </a>
+                    <div class="col s4 offset-s3 l2 offset-l1 offset-m1">
                         <div class="center-align">
-                        {#  Differents diplays if the user is connect #}
-                        <a href="{{ path('app_login') }}">{% if app.user %}Se déconnecter{% else %}Se connecter{% endif %}</a>
+                            {#  Differents diplays if the user is connect #}
+                            <a href="{{ path('app_login') }}" title="login and logout">{% if app.user %}Déconnection{% else %}Connection{% endif %}</a>
+                        </div>
+                        <div class="center-align">
+                            <a href="#" class="btn-small orange darken-4" title="espace client">Compte</a>
                         </div>
                     </div>
 
                     {#  Shopping Basket  #}
-                    <div class="col s3 offset-s6 m2 offset-m1 l1 offset-l0 orange darken-3 center-align z-depth-2">
+                    <div class="col s3 offset-s3 m2 offset-m1 l1 offset-l0 orange darken-3 center-align z-depth-2">
                         <a href="#" title="Panier">
                             <i class="medium material-icons white-text">shopping_basket</i>
                         </a>
@@ -64,11 +56,11 @@
 
             {#  BOTTOM BANNER : NAVBAR  #}
             <nav>
-            <a href="#">Baguettes</a>
-            <a href="#">Vêtements</a>
-            <a href="#">Bijoux</a>
-            <a href="#">Papeterie</a>
-            <a href="#">Accessoires</a>
+                <a href="#">Baguettes</a>
+                <a href="#">Vêtements</a>
+                <a href="#">Bijoux</a>
+                <a href="#">Papeterie</a>
+                <a href="#">Accessoires</a>
             </nav>
 
 
@@ -91,28 +83,6 @@
                 {% block h1 %}Titre de page{% endblock %}
             </h1>
         </div>
-
-        {#  Sidenav : Outside the fixed part #}
-        <ul id="slide-out" class="sidenav">
-            <li>
-                <div class="user-view">
-                    <div class="background">
-                        <img class="responsive-img" src="{{ asset('build/images/side_background.jpg') }}">
-                    </div>
-                    <a href="#user" title="Mon Compte"><img class="circle" src="{{ asset('build/images/user_images/Neville.png') }}" alt="Image Profil"></a>
-                    {#  TODO : informations utilisateurs  #}
-                    <span class="white-text name">Name Firstname</span>
-                    <span class="white-text email">email@gmail.com</span>
-                </div>
-            </li>
-            <li><div class="divider orange"></div></li>
-            <li><a href="#" title="Baguettes">Baguettes</a></li>
-            <li><a href="#" title="Vêtements">Vêtements</a></li>
-            <li><a href="#" title="Bijoux">Bijoux</a></li>
-            <li><a href="#" title="Papeterie">Papeterie</a></li>
-            <li><div class="divider orange"></div></li>
-        </ul>
-
 
         {#    BODY CONTENT   #}
         {% block body %} {% endblock %}
@@ -153,7 +123,7 @@
             </div>
             <div class="footer-copyright grey darken-4">
                 <div id="divCopyright" class="container white-text">
-                    © 2020 Gatean's Team
+                    © 2020 Gaetan's Team
                     <a class="white-text right row" href="https://github.com/Afpa-repo/CDA-19224-1" target="_blank">
                         Github
                     </a>

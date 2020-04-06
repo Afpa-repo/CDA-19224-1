@@ -5,7 +5,13 @@
   /* INDEX */
 
   .index{
-    width: 100%;
+    width: 99%;
+  }
+
+  /* LOGIN */
+
+  .login{
+    width: 75%;
   }
 
 }
@@ -20,9 +26,14 @@
     font-size: 100%;
   }
 
+  #pageTitle{
+    font-size: 400%;
+  }
+
   /* INDEX */
 
   .index{
+    width: 95%;
     height: 100%;
   }
 
@@ -184,6 +195,23 @@
   }
 
   .indexAccessoriesImg>img{
+    width: 100%;
+  }
+
+  /* LOGIN */
+
+  .login{
+    width: 95%;
+    flex-direction: column;
+  }
+
+  .loginRegistration{
+    width: 100%;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 0px;
+  }
+
+  .loginConnection{
     width: 100%;
   }
 

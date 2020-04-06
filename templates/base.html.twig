@@ -1,168 +1,169 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>{% block title %}{% endblock %}</title>
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('index') }}
-        {% endblock %}
-    </head>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="shortcut icon" href="https://cdn.pixabay.com/photo/2019/03/24/12/19/harry-potter-4077473_960_720.png">
+<title>{% block title %}{% endblock %}</title>
+{% block stylesheets %}
+{{ encore_entry_link_tags('index') }}
+{% endblock %}
+</head>
 
-    <body>
-        <div id="divHeader">
-            {#  HEADER  #}
-            <header role="banner">
-                {#  TOP BANNER  #}
-                <section class="white row mb-auto valign-wrapper">
-                    <div class="col l3 m4 s5">
-                        <a href="{{ path('home') }}" title="Accueil">
-                            <img class="responsive-img" src="{{ asset('build/images/logo.png') }}" alt="Logo" title="Notre Logo">
-                        </a>
-                    </div>
-                    {#   For the accessibily, use an aria-label   #}
-                    {#   TODO :  Mettre en place le formlaire de recherche  #}
-                    <div class="col l4 offset-l1 m6 z-depth-2 hide-on-small-only">
-                        <div class="row">
-                            <label class="col s10" for="searchInput" aria-label="searchInput">
-                                <input aria-labelledby="searchInput" type="text" id="searchInput" name="searchInput" placeholder="">
-                            </label>
-                            <div id="speechBtn" class="col s2 mx-auto" aria-label="btnSearchInput">
-                                {#  TODO : Remplacer par un button si formulaire | Problement method GET ?  #}
-                                <a href="#" id="btnSearchInput"><i id="materialMicro" class="material-icons">micro</i></a>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    {#  Client Setting  #}
-                    <div class="col l2 offset-l1 hide-on-med-and-down">
-                        <a href="#" title="Espace client">
-                            <div class="row black-text">
-                                <div class="col s12 center-align">
-                                    <i class="medium material-icons">person</i>
-                                </div>
-                                <div class="col s12 center-align">
-                                    <ins>Mon Compte</ins>
-                                </div>
-                            </div>
-                        </a>
-                        <div class="center-align">
-                        {#  Differents diplays if the user is connect #}
-                        <a href="{{ path('app_login') }}">{% if app.user %}Se déconnecter{% else %}Se connecter{% endif %}</a>
-                        </div>
-                    </div>
-
-                    {#  Shopping Basket  #}
-                    <div class="col s3 offset-s6 m2 offset-m1 l1 offset-l0 orange darken-3 center-align z-depth-2">
-                        <a href="#" title="Panier">
-                            <i class="medium material-icons white-text">shopping_basket</i>
-                        </a>
-                    </div>
-                </section>
-            </header>
-
-            {#  BOTTOM BANNER : NAVBAR  #}
-            <nav>
-            <a href="#">Baguettes</a>
-            <a href="#">Vêtements</a>
-            <a href="#">Bijoux</a>
-            <a href="#">Papeterie</a>
-            <a href="#">Accessoires</a>
-            </nav>
+<body>
+<div id="divHeader">
+{#  HEADER  #}
+<header role="banner">
+{#  TOP BANNER  #}
+<section class="white row mb-auto valign-wrapper">
+<div class="col l3 m4 s5">
+<a href="{{ path('home') }}" title="Accueil">
+<img class="responsive-img" src="{{ asset('build/images/logo.png') }}" alt="Logo" title="Notre Logo">
+</a>
+</div>
+{#   For the accessibily, use an aria-label   #}
+{#   TODO :  Mettre en place le formlaire de recherche  #}
+<div class="col l4 offset-l1 m6 z-depth-2 hide-on-small-only">
+<div class="row">
+<label class="col s10" for="searchInput" aria-label="searchInput">
+<input aria-labelledby="searchInput" type="text" id="searchInput" name="searchInput" placeholder="">
+</label>
+<div id="speechBtn" class="col s2 mx-auto" aria-label="btnSearchInput">
+{#  TODO : Remplacer par un button si formulaire | Problement method GET ?  #}
+<a href="#" id="btnSearchInput"><i id="materialMicro" class="material-icons">micro</i></a>
+</div>
+</div>
+</div>
 
 
-            {#   History routes pages   #}
-            {% if history_routes is defined %}
-            <div aria-label="routingDiv" class="nav-wrapper" role="complementary">
-                <section id="routingDiv"  class="col s12 valign-wrapper">
-                    {% for key, route in history_routes %}
-                        <a href="{{ route }}" class="breadcrumb valign-wrapper" title="{{ key }}">{{ key }}</a>
-                    {% endfor %}
-                </section>
-            </div>
-            {% endif %}
-        </div>
+{#  Client Setting  #}
+<div class="col l2 offset-l1 hide-on-med-and-down">
+<a href="#" title="Espace client">
+<div class="row black-text">
+<div class="col s12 center-align">
+<i class="medium material-icons">person</i>
+</div>
+<div class="col s12 center-align">
+<ins>Mon Compte</ins>
+</div>
+</div>
+</a>
+<div class="center-align">
+{#  Differents diplays if the user is connect #}
+<a href="{{ path('app_login') }}">{% if app.user %}Se déconnecter{% else %}Se connecter{% endif %}</a>
+</div>
+</div>
+
+{#  Shopping Basket  #}
+<div class="col s3 offset-s6 m2 offset-m1 l1 offset-l0 orange darken-3 center-align z-depth-2">
+<a href="#" title="Panier">
+<i class="medium material-icons white-text">shopping_basket</i>
+</a>
+</div>
+</section>
+</header>
+
+{#  BOTTOM BANNER : NAVBAR  #}
+<nav>
+<a href="#">Baguettes</a>
+<a href="#">Vêtements</a>
+<a href="#">Bijoux</a>
+<a href="#">Papeterie</a>
+<a href="#">Accessoires</a>
+</nav>
 
 
-        {#   Heading   #}
-        <div aria-labelledby="pageTitle" role="complementary">
-            <h1 id="pageTitle" class="center-align">
-                {% block h1 %}Titre de page{% endblock %}
-            </h1>
-        </div>
-
-        {#  Sidenav : Outside the fixed part #}
-        <ul id="slide-out" class="sidenav">
-            <li>
-                <div class="user-view">
-                    <div class="background">
-                        <img class="responsive-img" src="{{ asset('build/images/side_background.jpg') }}">
-                    </div>
-                    <a href="#user" title="Mon Compte"><img class="circle" src="{{ asset('build/images/user_images/Neville.png') }}" alt="Image Profil"></a>
-                    {#  TODO : informations utilisateurs  #}
-                    <span class="white-text name">Name Firstname</span>
-                    <span class="white-text email">email@gmail.com</span>
-                </div>
-            </li>
-            <li><div class="divider orange"></div></li>
-            <li><a href="#" title="Baguettes">Baguettes</a></li>
-            <li><a href="#" title="Vêtements">Vêtements</a></li>
-            <li><a href="#" title="Bijoux">Bijoux</a></li>
-            <li><a href="#" title="Papeterie">Papeterie</a></li>
-            <li><div class="divider orange"></div></li>
-        </ul>
+{#   History routes pages   #}
+{% if history_routes is defined %}
+<div aria-label="routingDiv" class="nav-wrapper" role="complementary">
+<section id="routingDiv"  class="col s12 valign-wrapper">
+{% for key, route in history_routes %}
+<a href="{{ route }}" class="breadcrumb valign-wrapper" title="{{ key }}">{{ key }}</a>
+{% endfor %}
+</section>
+</div>
+{% endif %}
+</div>
 
 
-        {#    BODY CONTENT   #}
-        {% block body %} {% endblock %}
+{#   Heading   #}
+<div aria-labelledby="pageTitle" role="complementary">
+<h1 id="pageTitle" class="center-align">
+{% block h1 %}Titre de page{% endblock %}
+</h1>
+</div>
+
+{#  Sidenav : Outside the fixed part #}
+<ul id="slide-out" class="sidenav">
+<li>
+<div class="user-view">
+<div class="background">
+<img class="responsive-img" src="{{ asset('build/images/side_background.jpg') }}">
+</div>
+<a href="#user" title="Mon Compte"><img class="circle" src="{{ asset('build/images/user_images/Neville.png') }}" alt="Image Profil"></a>
+{#  TODO : informations utilisateurs  #}
+<span class="white-text name">Name Firstname</span>
+<span class="white-text email">email@gmail.com</span>
+</div>
+</li>
+<li><div class="divider orange"></div></li>
+<li><a href="#" title="Baguettes">Baguettes</a></li>
+<li><a href="#" title="Vêtements">Vêtements</a></li>
+<li><a href="#" title="Bijoux">Bijoux</a></li>
+<li><a href="#" title="Papeterie">Papeterie</a></li>
+<li><div class="divider orange"></div></li>
+</ul>
 
 
-        {#    FOOTER    #}
-        <footer class="page-footer grey z-depth-2">
-            {#  FOOTER BODY  #}
-            <div class="container">
-                <div class="row">
-                    <div class="col l6 s12 hide-on-med-and-down">
-                        <article class="black-text flow-text">
-                            <b>Merci de votre attention</b>
-                        </article>
-                        <p class="black-text">
-                            Ce projet est réaliser dans le cadre de notre diplôme, en groupe avec Symfony.
-                            Les objets présentés ne sont, bien évidemment, pas réellement en vente.
-                            Aussi nous vous invitons à ne jamais renseigner vos coordonnées bancaires.
-                        </p>
-                    </div>
-                    <section class="col l4 offset-l2 s12">
-                        <article class="black-text flow-text">
-                            <strong>Projet réalisé par</strong>
-                        </article>
-                        <article class="black-text">
-                            <a class="black-text" href="https://github.com/Julien-Broyard" target="_blank" title="Github Julien">Julien</a>,
-                            <a class="black-text" href="https://github.com/CocoCouq" target="_blank" title="Github Corentin">Corentin</a>,
-                            <a class="black-text" href="https://github.com/arnaud567" target="_blank" title="Github Arnaud">Arnaud</a>,
-                            <a class="black-text" href="https://github.com/ffmc02" target="_blank" title="Github Gaëtan">Gaëtan</a> &
-                            <a class="black-text" href="https://github.com/Isco80" target="_blank" title="Github Valentin">Valentin</a>
-                        </article>
-                    </section>
+{#    BODY CONTENT   #}
+{% block body %} {% endblock %}
 
-                    <p class="col s12 center-align black-text">
-                        Nous vous souhaitons une bonne visite au pays des sorciers.
-                    </p>
-                </div>
-            </div>
-            <div class="footer-copyright grey darken-4">
-                <div id="divCopyright" class="container white-text">
-                    © 2020 Gatean's Team
-                    <a class="white-text right row" href="https://github.com/Afpa-repo/CDA-19224-1" target="_blank">
-                        Github
-                    </a>
-                </div>
-            </div>
-        </footer>
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('index') }}
-        {% endblock %}
-    </body>
+{#    FOOTER    #}
+<footer class="page-footer grey z-depth-2">
+{#  FOOTER BODY  #}
+<div class="container">
+<div class="row">
+<div class="col l6 s12 hide-on-med-and-down">
+<article class="black-text flow-text">
+<b>Merci de votre attention</b>
+</article>
+<p class="black-text">
+Ce projet est réaliser dans le cadre de notre diplôme, en groupe avec Symfony.
+Les objets présentés ne sont, bien évidemment, pas réellement en vente.
+Aussi nous vous invitons à ne jamais renseigner vos coordonnées bancaires.
+</p>
+</div>
+<section class="col l4 offset-l2 s12">
+<article class="black-text flow-text">
+<strong>Projet réalisé par</strong>
+</article>
+<article class="black-text">
+<a class="black-text" href="https://github.com/Julien-Broyard" target="_blank" title="Github Julien">Julien</a>,
+<a class="black-text" href="https://github.com/CocoCouq" target="_blank" title="Github Corentin">Corentin</a>,
+<a class="black-text" href="https://github.com/arnaud567" target="_blank" title="Github Arnaud">Arnaud</a>,
+<a class="black-text" href="https://github.com/ffmc02" target="_blank" title="Github Gaëtan">Gaëtan</a> &
+<a class="black-text" href="https://github.com/Isco80" target="_blank" title="Github Valentin">Valentin</a>
+</article>
+</section>
+
+<p class="col s12 center-align black-text">
+Nous vous souhaitons une bonne visite au pays des sorciers.
+</p>
+</div>
+</div>
+<div class="footer-copyright grey darken-4">
+<div id="divCopyright" class="container white-text">
+© 2020 Gatean's Team
+<a class="white-text right row" href="https://github.com/Afpa-repo/CDA-19224-1" target="_blank">
+Github
+</a>
+</div>
+</div>
+</footer>
+
+{% block javascripts %}
+{{ encore_entry_script_tags('index') }}
+{% endblock %}
+</body>
 </html>

@@ -3,71 +3,65 @@
 {% block title 'Se connecter' %}
 
 {% block h1 %}
-    {#  If user is connected  #}
-    {% if app.user %}
-        Se déconnecter
-    {% else %}
-        Se connecter
-    {% endif %}
+{#  If user is connected  #}
+{% if app.user %}
+Se déconnecter
+{% else %}
+  Se connecter
+{% endif %}
 {% endblock %}
 
 {% block body %}
-    <main class="container">
-        <form method="post">
-            <section class="row section">
 
-                {% if error %}
-                    <div class="orange darken-4 white-text center-align">
-                        <i class="large material-icons mb-auto">report</i>
-                        {#  Display the login errors  #}
-                        <div class="flow-text">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                    </div>
-                {% endif %}
+<main>
 
-                {#  If user is log  #}
-                {% if app.user %}
-                    <div class="center-align">
-                        <p>Vous êtes connecté avec {{ app.user.username }}</p>
-                        {#  If user have to confirm email  #}
-                        {% if is_granted('ROLE_NOT_VALID') %}
-                            <p class="red white-text">Veuillez valider votre email pour effectuer des achats</p>
-                        {% endif %}
-                        <a class="btn" href="{{ path('app_logout') }}" title="se deconnecter">Se Deconnecter</a>
-                    </div>
-                {#   If user is not log   #}
-                {% else %}
-                    <div class="input-field col s10 offset-s1 m8 offset-m2 l6 offset-l3">
-                        <label for="inputEmail">Email</label>
-                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="validate" required autofocus>
-                    </div>
-                    <div class="input-field col s10 offset-s1 m8 offset-m2 l6 offset-l3">
-                        <label for="inputPassword">Mot de passe</label>
-                        <input type="password" name="password" id="inputPassword" class="validate" required>
-                    </div>
-                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                    {#
-                        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-                        See https://symfony.com/doc/current/security/remember_me.html
+<form class="login" method="post">
 
-                        <div class="checkbox mb-3">
-                            <label>
-                                <input type="checkbox" name="_remember_me"> Remember me
-                            </label>
-                        </div>
-                    #}
-                    <div class="center-align col s10 offset-s1 m8 offset-m2 l6 offset-l3">
-                        <button class="btn" type="submit">
-                            se connecter
-                        </button>
-                    </div>
-                    <div class="center-align col s10 offset-s1 m8 offset-m2 l6 offset-l3">
+{#  If user is log  #}
+{% if app.user %}
+<div class="center-align">
+<p>Vous êtes connecté avec {{ app.user.username }}</p>
+{#  If user have to confirm email  #}
+{% if is_granted('ROLE_NOT_VALID') %}
+<p class="red white-text">Veuillez valider votre email pour effectuer des achats</p>
+{% endif %}
+<a class="btn" href="{{ path('app_logout') }}" title="se deconnecter">Se Deconnecter</a>
+</div>
 
-                        <a href="{{ path('app_register') }}" title="S'inscrire">S'inscrire</a>
-                    </div>
-                {% endif %}
+{#   If user is not log   #}
+{% else %}
+  <div class="loginRegistration">
+  <span>Je n'ai pas de compte</span>
+  <button type="button" onclick="window.location.href = '{{ path('app_register') }}'">Créer un compte</button>
+  </div>
 
-            </section>
-        </form>
+  <div class="loginConnection">
+  <p>J'ai déjà un compte, je me connecte :</p>
+  {% if error %}
+  {#  Display the login errors  #}
+  <span class="loginError"><i class="material-icons">report</i>{{ error.messageKey|trans(error.messageData, 'security') }}</span>
+{% endif %}
+<input type="email" value="{{ last_username }}" name="email" class="validate" placeholder="Email *" required>
+<input type="password" name="password" class="validate" placeholder="Mot de passe *" required>
+<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+{#
+Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+See https://symfony.com/doc/current/security/remember_me.html
 
-    </main>
+<div class="checkbox mb-3">
+<label>
+<input type="checkbox" name="_remember_me"> Remember me
+</label>
+</div>
+#}
+<a href="#">Mot de passe oublié ?</a>
+<input type="submit" name="" value="Se connecter">
+<span>* Vous devez renseigner les champs suivants pour vous connecter</span>
+</div>
+{% endif %}
+
+</form>
+
+</main>
+
 {% endblock %}

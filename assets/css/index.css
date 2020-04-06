@@ -5,5 +5,9 @@
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons&display=swap");
 
 /* Imports custom css */
+/* HEADER INDEX FOOTER */
 @import "base.css";
+/* LOGIN */
+@import "login.css";
+/* MEDIA QUERY */
 @import "mediaQuery.css";

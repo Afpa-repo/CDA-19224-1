@@ -8,8 +8,9 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-// Controller du panier utilisant le service CartService
-
+/**
+ * Controller du panier utilisant le service CartService.
+ */
 class CartController extends AbstractController
 {
     /**
@@ -43,6 +44,8 @@ class CartController extends AbstractController
      * @Route("/panier/subtract{id}", name="cart_subtract")
      *
      * @param mixed $id
+     *
+     * @return RedirectResponse
      */
     public function subtract($id, CartService $cartService)
     {
@@ -55,6 +58,8 @@ class CartController extends AbstractController
      * @Route("/panier/remove/{id}", name="cart_remove")
      *
      * @param mixed $id
+     *
+     * @return RedirectResponse
      */
     public function remove($id, CartService $cartService)
     {

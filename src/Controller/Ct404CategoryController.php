@@ -3,29 +3,25 @@
 namespace App\Controller;
 
 use App\Entity\Ct404Category;
-use App\Form\Ct404CategoryType;
+use App\Form\Ct404Category2Type;
+use App\Repository\Ct404CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/admin/category")
+ * @Route("/ct404/category")
  */
 class Ct404CategoryController extends AbstractController
 {
     /**
      * @Route("/", name="ct404_category_index", methods={"GET"})
      */
-    public function index(): Response
+    public function index(Ct404CategoryRepository $ct404CategoryRepository): Response
     {
-        $ct404Categories = $this->getDoctrine()
-            ->getRepository(Ct404Category::class)
-            ->findAll()
-        ;
-
         return $this->render('ct404_category/index.html.twig', [
-            'ct404_categories' => $ct404Categories,
+            'ct404_categories' => $ct404CategoryRepository->findAll(),
         ]);
     }
 
@@ -35,7 +31,7 @@ class Ct404CategoryController extends AbstractController
     public function new(Request $request): Response
     {
         $ct404Category = new Ct404Category();
-        $form = $this->createForm(Ct404CategoryType::class, $ct404Category);
+        $form = $this->createForm(Ct404Category2Type::class, $ct404Category);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -67,7 +63,7 @@ class Ct404CategoryController extends AbstractController
      */
     public function edit(Request $request, Ct404Category $ct404Category): Response
     {
-        $form = $this->createForm(Ct404CategoryType::class, $ct404Category);
+        $form = $this->createForm(Ct404Category2Type::class, $ct404Category);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

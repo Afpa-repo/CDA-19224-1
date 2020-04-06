@@ -9,7 +9,7 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>CategoryName</th>
+                <th>Name</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -17,7 +17,7 @@
         {% for ct404_category in ct404_categories %}
             <tr>
                 <td>{{ ct404_category.id }}</td>
-                <td>{{ ct404_category.categoryName }}</td>
+                <td>{{ ct404_category.name }}</td>
                 <td>
                     <a href="{{ path('ct404_category_show', {'id': ct404_category.id}) }}">show</a>
                     <a href="{{ path('ct404_category_edit', {'id': ct404_category.id}) }}">edit</a>

@@ -9,12 +9,11 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>ProductName</th>
+                <th>Name</th>
                 <th>Description</th>
                 <th>Price</th>
-                <th>QuantityStock</th>
-                <th>QuantityOfAlerte</th>
-                <th>CategoryName</th>
+                <th>StockQuantity</th>
+                <th>AlertQuantity</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -22,12 +21,11 @@
         {% for ct404_product in ct404_products %}
             <tr>
                 <td>{{ ct404_product.id }}</td>
-                <td>{{ ct404_product.productName }}</td>
+                <td>{{ ct404_product.name }}</td>
                 <td>{{ ct404_product.description }}</td>
                 <td>{{ ct404_product.price }}</td>
-                <td>{{ ct404_product.quantityStock }}</td>
-                <td>{{ ct404_product.quantityOfAlerte }}</td>
-                <td>{{ ct404_product.categoryName }}</td>
+                <td>{{ ct404_product.stockQuantity }}</td>
+                <td>{{ ct404_product.alertQuantity }}</td>
                 <td>
                     <a href="{{ path('ct404_product_show', {'id': ct404_product.id}) }}">show</a>
                     <a href="{{ path('ct404_product_edit', {'id': ct404_product.id}) }}">edit</a>
@@ -35,7 +33,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="7">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

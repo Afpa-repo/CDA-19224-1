@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ct404SubCategory index{% endblock %}
+
+{% block body %}
+    <h1>Ct404SubCategory index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ct404_sub_category in ct404_sub_categories %}
+            <tr>
+                <td>{{ ct404_sub_category.id }}</td>
+                <td>{{ ct404_sub_category.name }}</td>
+                <td>
+                    <a href="{{ path('ct404_sub_category_show', {'id': ct404_sub_category.id}) }}">show</a>
+                    <a href="{{ path('ct404_sub_category_edit', {'id': ct404_sub_category.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ct404_sub_category_new') }}">Create new</a>
+{% endblock %}

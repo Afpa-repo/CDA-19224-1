@@ -3,29 +3,25 @@
 namespace App\Controller;
 
 use App\Entity\Ct404Commercial;
-use App\Form\Ct404CommercialType;
+use App\Form\Ct404Commercial2Type;
+use App\Repository\Ct404CommercialRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/admin/commercial")
+ * @Route("/ct404/commercial")
  */
 class Ct404CommercialController extends AbstractController
 {
     /**
      * @Route("/", name="ct404_commercial_index", methods={"GET"})
      */
-    public function index(): Response
+    public function index(Ct404CommercialRepository $ct404CommercialRepository): Response
     {
-        $ct404commercials = $this->getDoctrine()
-            ->getRepository(Ct404Commercial::class)
-            ->findAll()
-        ;
-
         return $this->render('ct404_commercial/index.html.twig', [
-            'ct404commercials' => $ct404commercials,
+            'ct404_commercials' => $ct404CommercialRepository->findAll(),
         ]);
     }
 
@@ -34,20 +30,20 @@ class Ct404CommercialController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        $ct404commercial = new Ct404Commercial();
-        $form = $this->createForm(Ct404CommercialType::class, $ct404commercial);
+        $ct404Commercial = new Ct404Commercial();
+        $form = $this->createForm(Ct404Commercial2Type::class, $ct404Commercial);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($ct404commercial);
+            $entityManager->persist($ct404Commercial);
             $entityManager->flush();
 
             return $this->redirectToRoute('ct404_commercial_index');
         }
 
         return $this->render('ct404_commercial/new.html.twig', [
-            'ct404commercial' => $ct404commercial,
+            'ct404_commercial' => $ct404Commercial,
             'form' => $form->createView(),
         ]);
     }
@@ -55,19 +51,19 @@ class Ct404CommercialController extends AbstractController
     /**
      * @Route("/{id}", name="ct404_commercial_show", methods={"GET"})
      */
-    public function show(Ct404Commercial $ct404commercial): Response
+    public function show(Ct404Commercial $ct404Commercial): Response
     {
         return $this->render('ct404_commercial/show.html.twig', [
-            'ct404commercial' => $ct404commercial,
+            'ct404_commercial' => $ct404Commercial,
         ]);
     }
 
     /**
      * @Route("/{id}/edit", name="ct404_commercial_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Ct404Commercial $ct404commercial): Response
+    public function edit(Request $request, Ct404Commercial $ct404Commercial): Response
     {
-        $form = $this->createForm(Ct404CommercialType::class, $ct404commercial);
+        $form = $this->createForm(Ct404Commercial2Type::class, $ct404Commercial);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -77,7 +73,7 @@ class Ct404CommercialController extends AbstractController
         }
 
         return $this->render('ct404_commercial/edit.html.twig', [
-            'ct404commercial' => $ct404commercial,
+            'ct404_commercial' => $ct404Commercial,
             'form' => $form->createView(),
         ]);
     }
@@ -85,11 +81,11 @@ class Ct404CommercialController extends AbstractController
     /**
      * @Route("/{id}", name="ct404_commercial_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Ct404Commercial $ct404commercial): Response
+    public function delete(Request $request, Ct404Commercial $ct404Commercial): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$ct404commercial->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$ct404Commercial->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($ct404commercial);
+            $entityManager->remove($ct404Commercial);
             $entityManager->flush();
         }
 

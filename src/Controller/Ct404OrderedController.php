@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Ct404Ordered;
 use App\Form\Ct404Ordered1Type;
+use App\Form\Ct404OrderedType;
 use App\Repository\Ct404OrderedRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +32,7 @@ class Ct404OrderedController extends AbstractController
     public function new(Request $request): Response
     {
         $ct404Ordered = new Ct404Ordered();
-        $form = $this->createForm(Ct404Ordered1Type::class, $ct404Ordered);
+        $form = $this->createForm(Ct404OrderedType::class, $ct404Ordered);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +64,7 @@ class Ct404OrderedController extends AbstractController
      */
     public function edit(Request $request, Ct404Ordered $ct404Ordered): Response
     {
-        $form = $this->createForm(Ct404Ordered1Type::class, $ct404Ordered);
+        $form = $this->createForm(Ct404OrderedType::class, $ct404Ordered);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

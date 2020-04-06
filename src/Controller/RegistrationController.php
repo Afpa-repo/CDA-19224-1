@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
+use App\Entity\Ct404User;
 use App\Form\RegistrationFormType;
 use App\Security\LoginFormAuthenticator;
 use DateTime;
@@ -30,12 +30,6 @@ class RegistrationController extends AbstractController
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $authenticator, MailerInterface $mailer): Response
     {
-        $package = new Package(
-            new JsonManifestVersionStrategy(
-                $this->getParameter('kernel.project_dir').'/public/build/manifest.json'
-            )
-        );
-
         // Add history routes to the response return
         $Routes = [
             'Accueil' => '/',
@@ -43,7 +37,7 @@ class RegistrationController extends AbstractController
             'Inscription' => '/register',
         ];
 
-        $user = new User();
+        $user = new Ct404User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
@@ -98,7 +92,7 @@ class RegistrationController extends AbstractController
      *
      * @throws Exception
      */
-    public function confirm_email(User $user, Request $request): Response
+    public function confirm_email(Ct404User $user, Request $request): Response
     {
         // Recover the time stamp
         $time = new DateTime();
@@ -106,7 +100,7 @@ class RegistrationController extends AbstractController
         // Recover the token content in the mail
         $mailToken = $request->attributes->get('user_token');
 
-        // User token from database
+        // Ct404User token from database
         $userToken = $user->getUserToken();
 
         // Checking the token contained in the email with the one in the database

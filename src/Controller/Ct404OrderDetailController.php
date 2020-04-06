@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Ct404OrderDetail;
 use App\Form\Ct404OrderDetail2Type;
+use App\Form\Ct404OrderDetailType;
 use App\Repository\Ct404OrderDetailRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +32,7 @@ class Ct404OrderDetailController extends AbstractController
     public function new(Request $request): Response
     {
         $ct404OrderDetail = new Ct404OrderDetail();
-        $form = $this->createForm(Ct404OrderDetail2Type::class, $ct404OrderDetail);
+        $form = $this->createForm(Ct404OrderDetailType::class, $ct404OrderDetail);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +64,7 @@ class Ct404OrderDetailController extends AbstractController
      */
     public function edit(Request $request, Ct404OrderDetail $ct404OrderDetail): Response
     {
-        $form = $this->createForm(Ct404OrderDetail2Type::class, $ct404OrderDetail);
+        $form = $this->createForm(Ct404OrderDetailType::class, $ct404OrderDetail);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Ct404Commercial;
-use App\Form\Ct404Commercial2Type;
+use App\Form\Ct404CommercialType;
 use App\Repository\Ct404CommercialRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +31,7 @@ class Ct404CommercialController extends AbstractController
     public function new(Request $request): Response
     {
         $ct404Commercial = new Ct404Commercial();
-        $form = $this->createForm(Ct404Commercial2Type::class, $ct404Commercial);
+        $form = $this->createForm(Ct404CommercialType::class, $ct404Commercial);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +63,7 @@ class Ct404CommercialController extends AbstractController
      */
     public function edit(Request $request, Ct404Commercial $ct404Commercial): Response
     {
-        $form = $this->createForm(Ct404Commercial2Type::class, $ct404Commercial);
+        $form = $this->createForm(Ct404CommercialType::class, $ct404Commercial);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

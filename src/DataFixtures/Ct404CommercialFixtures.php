@@ -13,7 +13,7 @@ class Ct404CommercialFixtures extends BaseFixture
         $this->createMany(Ct404Commercial::class, mt_rand(3, 6), function (Ct404Commercial $commercial) {
             // Fills the newly created Commercial
             $commercial
-                ->setCommercialForIndividual($this->faker->boolean)
+                ->setCommercialForParticular($this->faker->boolean)
                 ->setCommercialForProfessional($this->faker->boolean)
                 ->setFirstname($this->faker->unique()->firstName)
                 ->setLastname($this->faker->unique()->lastName)

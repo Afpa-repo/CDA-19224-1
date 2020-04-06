@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Ct404Product;
 use App\Form\Ct404Product1Type;
+use App\Form\Ct404ProductType;
 use App\Repository\Ct404ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +32,7 @@ class Ct404ProductController extends AbstractController
     public function new(Request $request): Response
     {
         $ct404Product = new Ct404Product();
-        $form = $this->createForm(Ct404Product1Type::class, $ct404Product);
+        $form = $this->createForm(Ct404ProductType::class, $ct404Product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +64,7 @@ class Ct404ProductController extends AbstractController
      */
     public function edit(Request $request, Ct404Product $ct404Product): Response
     {
-        $form = $this->createForm(Ct404Product1Type::class, $ct404Product);
+        $form = $this->createForm(Ct404ProductType::class, $ct404Product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

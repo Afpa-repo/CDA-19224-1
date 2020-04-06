@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Ct404Particular;
 use App\Form\Ct404Particular1Type;
+use App\Form\Ct404ParticularType;
 use App\Repository\Ct404ParticularRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +32,7 @@ class Ct404ParticularController extends AbstractController
     public function new(Request $request): Response
     {
         $ct404Particular = new Ct404Particular();
-        $form = $this->createForm(Ct404Particular1Type::class, $ct404Particular);
+        $form = $this->createForm(Ct404ParticularType::class, $ct404Particular);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +64,7 @@ class Ct404ParticularController extends AbstractController
      */
     public function edit(Request $request, Ct404Particular $ct404Particular): Response
     {
-        $form = $this->createForm(Ct404Particular1Type::class, $ct404Particular);
+        $form = $this->createForm(Ct404ParticularType::class, $ct404Particular);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

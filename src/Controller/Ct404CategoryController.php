@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Ct404Category;
-use App\Form\Ct404Category2Type;
+use App\Form\Ct404CategoryType;
 use App\Repository\Ct404CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +31,7 @@ class Ct404CategoryController extends AbstractController
     public function new(Request $request): Response
     {
         $ct404Category = new Ct404Category();
-        $form = $this->createForm(Ct404Category2Type::class, $ct404Category);
+        $form = $this->createForm(Ct404CategoryType::class, $ct404Category);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +63,7 @@ class Ct404CategoryController extends AbstractController
      */
     public function edit(Request $request, Ct404Category $ct404Category): Response
     {
-        $form = $this->createForm(Ct404Category2Type::class, $ct404Category);
+        $form = $this->createForm(Ct404CategoryType::class, $ct404Category);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -139,7 +139,7 @@ class Ct404Ordered
     {
         if (!$this->orderDetail->contains($orderDetail)) {
             $this->orderDetail[] = $orderDetail;
-            $orderDetail->setCOrder($this);
+            $orderDetail->setOrdered($this);
         }
 
         return $this;
@@ -150,8 +150,8 @@ class Ct404Ordered
         if ($this->orderDetail->contains($orderDetail)) {
             $this->orderDetail->removeElement($orderDetail);
 
-            if ($orderDetail->getCOrder() === $this) {
-                $orderDetail->setCOrder(null);
+            if ($orderDetail->getOrdered() === $this) {
+                $orderDetail->setOrdered(null);
             }
         }
 

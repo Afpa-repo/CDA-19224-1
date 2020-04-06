@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Ct404Professional;
 use App\Form\Ct404Professional1Type;
+use App\Form\Ct404ProfessionalType;
 use App\Repository\Ct404ProfessionalRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +32,7 @@ class Ct404ProfessionalController extends AbstractController
     public function new(Request $request): Response
     {
         $ct404Professional = new Ct404Professional();
-        $form = $this->createForm(Ct404Professional1Type::class, $ct404Professional);
+        $form = $this->createForm(Ct404ProfessionalType::class, $ct404Professional);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +64,7 @@ class Ct404ProfessionalController extends AbstractController
      */
     public function edit(Request $request, Ct404Professional $ct404Professional): Response
     {
-        $form = $this->createForm(Ct404Professional1Type::class, $ct404Professional);
+        $form = $this->createForm(Ct404ProfessionalType::class, $ct404Professional);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

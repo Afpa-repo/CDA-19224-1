@@ -1,0 +1,11 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-rational-order",
+    "stylelint-a11y/recommended"
+  ],
+  "rules": {
+    "no-descending-specificity": null,
+    "indentation": 4
+  }
+}

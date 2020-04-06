@@ -14,6 +14,9 @@
     width: 75%;
   }
 
+    .index {
+        width: 100%;
+    }
 }
 
 /* MOBILE VERSION */
@@ -108,95 +111,19 @@
     width: 100%;
   }
 
-  .indexChopsticksText>img{
-    display: none;
-  }
+    nav {
+        font-size: 100%;
+    }
 
-  .indexClothing{
-    flex-direction: column;
-  }
+    /* INDEX */
 
-  .indexClothingImg{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+    .index {
+        height: 100%;
+    }
 
-  .indexClothingImg>img{
-    width: 50%;
-  }
-
-  .indexClothingText{
-    width: 100%;
-  }
-
-  .indexClothingText>img{
-    display: none;
-  }
-
-  .indexJewelry{
-    flex-direction: column-reverse;
-  }
-
-  .indexJewelryImg{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .indexJewelryImg>img{
-    width: 50%;
-  }
-
-  .indexJewelryText{
-    width: 100%;
-  }
-
-  .indexJewelryText>img{
-    display: none;
-  }
-
-  .indexStationeryAccessories{
-    flex-direction: column;
-  }
-
-  .indexStationeryAccessories>div{
-    margin-bottom: 2%;
-  }
-
-  .indexStationery{
-    width: 100%;
-  }
-
-  .indexStationeryText{
-    width: 75%;
-  }
-
-  .indexStationeryImg{
-    width: 25%;
-  }
-
-  .indexStationeryImg>img{
-    width: 100%;
-  }
-
-  .indexAccessories{
-    width: 100%;
-  }
-
-  .indexAccessoriesText{
-    width: 75%;
-  }
-
-  .indexAccessoriesImg{
-    width: 25%;
-  }
-
-  .indexAccessoriesImg>img{
-    width: 100%;
-  }
+    .index > article {
+        margin-bottom: 2%;
+    }
 
   /* LOGIN */
 

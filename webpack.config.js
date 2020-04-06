@@ -1,4 +1,4 @@
-// Imports
+// Imports from node_modules
 const Encore = require('@symfony/webpack-encore');
 const path = require('path');
 const PurgeCssPlugin = require('purgecss-webpack-plugin');
@@ -7,6 +7,37 @@ const glob = require('glob-all');
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 if (!Encore.isRuntimeEnvironmentConfigured()) {
     Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
+}
+
+// Config to be used only for production
+if (Encore.isProduction()) {
+    Encore
+        // Enables hashed filenames (e.g. app.abc123.css)
+        .enableVersioning()
+        // Copies the images to the build folder
+        .copyFiles({
+            from: './assets/images',
+            to: 'images/[path][name].[hash:8].[ext]',
+            pattern: /\.(png|jpg|jpeg)$/
+        })
+        // Add PurgeCssPlugin to remove unused CSS
+        .addPlugin(new PurgeCssPlugin({
+            paths: glob.sync([
+                path.join(__dirname, 'templates/**/*.html.twig')
+            ])
+        }));
+}
+// Config to be used only for development
+else if (Encore.isDev()) {
+    Encore
+        // Add sources maps for debugging.
+        .enableSourceMaps()
+        // Copies the images to the build folder
+        .copyFiles({
+            from: './assets/images',
+            to: 'images/[path][name].[ext]',
+            pattern: /\.(png|jpg|jpeg)$/
+        })
 }
 
 Encore
@@ -26,10 +57,6 @@ Encore
     .cleanupOutputBeforeBuild()
     // Displays notifications.
     .enableBuildNotifications()
-    // Add sources maps for debugging.
-    .enableSourceMaps(!Encore.isProduction())
-    // Enables hashed filenames (e.g. app.abc123.css)
-    .enableVersioning(Encore.isProduction())
     // enables @babel/preset-env polyfills
     .configureBabelPresetEnv(config => {
         config.useBuiltIns = 'usage';
@@ -47,21 +74,9 @@ Encore
         fonts: {limit: 4096},
         images: {limit: 4096},
     })
-    // Copies the images to the build folder
-    .copyFiles({
-        from: './assets/images',
-        to: 'images/[path][name].[hash:8].[ext]',
-        pattern: /\.(png|jpg|jpeg)$/
-    })
     // Fix [object Module] url error for images
     .configureLoaderRule('images', loaderRule => {
         loaderRule.options.esModule = false;
-    })
-    // Add PurgeCssPlugin to remove unused CSS
-    .addPlugin(new PurgeCssPlugin({
-        paths: glob.sync([
-            path.join(__dirname, 'templates/**/*.html.twig')
-        ])
-    }));
+    });
 
 module.exports = Encore.getWebpackConfig();

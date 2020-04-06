@@ -49,13 +49,13 @@
                         </a>
                         <div class="center-align">
                         {#  Differents diplays if the user is connect #}
-                        <a href="{{ path('app_login') }}">{% if app.user %}Se déconnecter{% else %}Se connecter{% endif %}</a>
+                        <a href="{{ path('app_login') }}">{% if app.user is defined %}Se déconnecter{% else %}Se connecter{% endif %}</a>
                         </div>
                     </div>
 
                     {#  Shopping Basket  #}
                     <div class="col s3 offset-s6 m2 offset-m1 l1 offset-l0 orange darken-3 center-align z-depth-2">
-                        <a href="#" title="Panier">
+                        <a href="/panier" title="Panier">
                             <i class="medium material-icons white-text">shopping_basket</i>
                         </a>
                     </div>

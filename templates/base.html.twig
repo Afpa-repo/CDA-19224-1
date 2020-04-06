@@ -49,7 +49,7 @@
                         </a>
                         <div class="center-align">
                         {#  Differents diplays if the user is connect #}
-                        <a href="{{ path('app_login') }}">{% if app.user is defined %}Se déconnecter{% else %}Se connecter{% endif %}</a>
+                        <a href="{{ path('app_login') }}">{% if app.user %}Se déconnecter{% else %}Se connecter{% endif %}</a>
                         </div>
                     </div>
 

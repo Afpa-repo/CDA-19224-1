@@ -55,6 +55,26 @@ Pour pouvoir utiliser la fonction fix de [Stylelint](https://stylelint.io/) exec
 .yarn/releases/yarn-1.22.4.js css:fix
 ```
 
+## Chaudron - CLI
+Pour pouvoir utiliser Chaudron il va falloir rendre le script executable
+
+```shell script
+# Une seule fois suffit 
+# Pas besoin de le refaire à chaque fois !
+chmod +x ./chaudron
+```
+
+Vous pouvez ensuite utiliser Chaudron !
+
+```shell script
+# Pour reset la BDD
+# Utile quand on a des problèmes de migrations ou autres
+./chaudron reset
+
+# Pour avoir la liste des commandes
+./chaudron list
+```
+
 ## TODO
 - Automatiser le php:fix et le css:fix avant de commit (Husky, pre-commit hooks, lint-staged)
 - 

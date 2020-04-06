@@ -7,7 +7,11 @@
 /* Imports custom css */
 /* HEADER INDEX FOOTER */
 @import "base.css";
+
 /* LOGIN */
 @import "login.css";
+/* REGISTER */
+@import "register.css";
+
 /* MEDIA QUERY */
 @import "mediaQuery.css";

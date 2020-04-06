@@ -47,8 +47,14 @@
             {#  Display the login errors  #}
             <span class="loginError"><i class="material-icons">report</i>{{ error.messageKey|trans(error.messageData, 'security') }}</span>
           {% endif %}
-          <input type="email" value="{{ last_username }}" name="email" class="validate" placeholder="Email *" required>
-          <input type="password" name="password" class="validate" placeholder="Mot de passe *" required>
+          <div class="row">
+            <label class="col s12" for="userEmail" aria-label="userEmail">
+              <input id="userEmail" aria-labelledby="userEmail" type="email" value="{{ last_username }}" name="email" class="validate" placeholder="Email *" required>
+            </label>
+            <label class="col s12" for="userPwd" aria-label="userPwd">
+              <input id="userPwd" aria-labelledby="userPwd" type="password" name="password" class="validate" placeholder="Mot de passe *" required>
+            </label>
+          </div>
           <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
           {#
           Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.

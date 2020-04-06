@@ -28,6 +28,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
      *
+     * @param UserInterface $user
+     * @param string $newEncodedPassword
      * @throws ORMException
      * @throws OptimisticLockException
      */
@@ -45,10 +47,10 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     /**
      * @param $email
      *
-     * @return User|null
+     * @return Ct404User|null
      * @throws NonUniqueResultException
      */
-    public function findOneByEmail($email): ?User
+    public function findOneByEmail($email): ?Ct404User
     {
         // return User class find by user email
         return $this->createQueryBuilder('u')

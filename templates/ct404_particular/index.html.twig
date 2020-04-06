@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ct404particular index{% endblock %}
+{% block title %}Ct404Particular index{% endblock %}
 
 {% block body %}
-    <h1>Ct404particular index</h1>
+    <h1>Ct404Particular index</h1>
 
     <table class="table">
         <thead>
@@ -14,40 +14,34 @@
                 <th>Address</th>
                 <th>ZipCode</th>
                 <th>City</th>
-                <th>Mail</th>
                 <th>PhoneNumber</th>
-                <th>Password</th>
                 <th>Pseudo</th>
-                <th>Clef</th>
-                <th>Actif</th>
-                <th>DateRegisteur</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for ct404particular in ct404particulars %}
+        {% for ct404_particular in ct404_particulars %}
             <tr>
-                <td>{{ ct404particular.id }}</td>
-                <td>{{ ct404particular.firstname }}</td>
-                <td>{{ ct404particular.lastname }}</td>
-                <td>{{ ct404particular.address }}</td>
-                <td>{{ ct404particular.zipCode }}</td>
-                <td>{{ ct404particular.city }}</td>
-                <td>{{ ct404particular.mail }}</td>
-                <td>{{ ct404particular.phoneNumber }}</td>
-                <td>{{ ct404particular.password }}</td>
-                <td>{{ ct404particular.pseudo }}</td>
-                <td>{{ ct404particular.clef }}</td>
-                <td>{{ ct404particular.actif ? 'Yes' : 'No' }}</td>
-                <td>{{ ct404particular.dateRegisteur ? ct404particular.dateRegisteur|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ct404_particular.id }}</td>
+                <td>{{ ct404_particular.firstname }}</td>
+                <td>{{ ct404_particular.lastname }}</td>
+                <td>{{ ct404_particular.address }}</td>
+                <td>{{ ct404_particular.zipCode }}</td>
+                <td>{{ ct404_particular.city }}</td>
+                <td>{{ ct404_particular.phoneNumber }}</td>
+                <td>{{ ct404_particular.pseudo }}</td>
+                <td>{{ ct404_particular.createdAt ? ct404_particular.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ct404_particular.updatedAt ? ct404_particular.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('ct404_particular_show', {'id': ct404particular.id}) }}">show</a>
-                    <a href="{{ path('ct404_particular_edit', {'id': ct404particular.id}) }}">edit</a>
+                    <a href="{{ path('ct404_particular_show', {'id': ct404_particular.id}) }}">show</a>
+                    <a href="{{ path('ct404_particular_edit', {'id': ct404_particular.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="14">no records found</td>
+                <td colspan="11">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

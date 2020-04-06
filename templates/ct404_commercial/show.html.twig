@@ -1,38 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ct404commercial{% endblock %}
+{% block title %}Ct404Commercial{% endblock %}
 
 {% block body %}
-    <h1>Ct404commercial</h1>
+    <h1>Ct404Commercial</h1>
 
     <table class="table">
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ ct404commercial.id }}</td>
+                <td>{{ ct404_commercial.id }}</td>
             </tr>
             <tr>
                 <th>Firstname</th>
-                <td>{{ ct404commercial.firstname }}</td>
+                <td>{{ ct404_commercial.firstname }}</td>
             </tr>
             <tr>
                 <th>Lastname</th>
-                <td>{{ ct404commercial.lastname }}</td>
+                <td>{{ ct404_commercial.lastname }}</td>
             </tr>
             <tr>
                 <th>CommercialForIndividual</th>
-                <td>{{ ct404commercial.commercialForIndividual ? 'Yes' : 'No' }}</td>
+                <td>{{ ct404_commercial.commercialForIndividual ? 'Yes' : 'No' }}</td>
             </tr>
             <tr>
                 <th>CommercialForProfessional</th>
-                <td>{{ ct404commercial.commercialForProfessional ? 'Yes' : 'No' }}</td>
+                <td>{{ ct404_commercial.commercialForProfessional ? 'Yes' : 'No' }}</td>
             </tr>
         </tbody>
     </table>
 
     <a href="{{ path('ct404_commercial_index') }}">back to list</a>
 
-    <a href="{{ path('ct404_commercial_edit', {'id': ct404commercial.id}) }}">edit</a>
+    <a href="{{ path('ct404_commercial_edit', {'id': ct404_commercial.id}) }}">edit</a>
 
     {{ include('ct404_commercial/_delete_form.html.twig') }}
 {% endblock %}

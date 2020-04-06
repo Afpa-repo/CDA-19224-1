@@ -71,7 +71,7 @@ class Ct404Commercial
      * )
      * @ORM\Column(type="boolean", nullable=false)
      */
-    private $commercialForIndividual;
+    private $commercialForParticular;
 
     /**
      * @var bool
@@ -99,7 +99,7 @@ class Ct404Commercial
 
     /**
      * @var Ct404Professional
-     * @ORM\OneToMany(targetEntity="App\Entity\Ct404Professional", mappedBy="commercial", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Ct404Professional", mappedBy="commercial")
      * @ORM\JoinColumn(nullable=true)
      */
     private $professionals;
@@ -135,14 +135,14 @@ class Ct404Commercial
         return $this;
     }
 
-    public function getCommercialForIndividual(): ?bool
+    public function getCommercialForParticular(): ?bool
     {
-        return $this->commercialForIndividual;
+        return $this->commercialForParticular;
     }
 
-    public function setCommercialForIndividual(bool $commercialForIndividual): self
+    public function setCommercialForParticular(bool $commercialForParticular): self
     {
-        $this->commercialForIndividual = $commercialForIndividual;
+        $this->commercialForParticular = $commercialForParticular;
 
         return $this;
     }

@@ -3,29 +3,26 @@
 namespace App\Controller;
 
 use App\Entity\Ct404Professional;
+use App\Form\Ct404Professional1Type;
 use App\Form\Ct404ProfessionalType;
+use App\Repository\Ct404ProfessionalRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/admin/professional")
+ * @Route("/ct404/professional")
  */
 class Ct404ProfessionalController extends AbstractController
 {
     /**
      * @Route("/", name="ct404_professional_index", methods={"GET"})
      */
-    public function index(): Response
+    public function index(Ct404ProfessionalRepository $ct404ProfessionalRepository): Response
     {
-        $ct404Professionals = $this->getDoctrine()
-            ->getRepository(Ct404Professional::class)
-            ->findAll()
-        ;
-
         return $this->render('ct404_professional/index.html.twig', [
-            'ct404_professionals' => $ct404Professionals,
+            'ct404_professionals' => $ct404ProfessionalRepository->findAll(),
         ]);
     }
 

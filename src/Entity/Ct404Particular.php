@@ -138,25 +138,6 @@ class Ct404Particular
 
     /**
      * @var string
-     * @Assert\Email(
-     *     message="{{ value }} n'est pas un email valide",
-     *     mode="strict"
-     * )
-     * @Assert\NotBlank(
-     *     message="L'email est requis"
-     * )
-     * @ORM\Column(type="string", length=100, nullable=false)
-     */
-    private $email;
-
-    /**
-     * @var string
-     * @ORM\Column(type="string", length=255, nullable=false)
-     */
-    private $password;
-
-    /**
-     * @var string
      * @Assert\NotBlank(
      *     message="Le pseudo est requis"
      * )
@@ -175,25 +156,6 @@ class Ct404Particular
      * @ORM\Column(type="string", length=50, nullable=false)
      */
     private $pseudo;
-
-    /**
-     * @var string
-     * @Assert\NotBlank(
-     *     message="La clé est requise"
-     * )
-     * @ORM\Column(type="string", length=100, nullable=false)
-     */
-    private $userKey;
-
-    /**
-     * @var bool
-     * @Assert\NotBlank(
-     *     allowNull=false,
-     *     message="Vous devez donner une réponse"
-     * )
-     * @ORM\Column(type="boolean", nullable=false)
-     */
-    private $active;
 
     /**
      * @var DateTime
@@ -300,30 +262,6 @@ class Ct404Particular
         return $this;
     }
 
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
     public function getPseudo(): ?string
     {
         return $this->pseudo;
@@ -332,30 +270,6 @@ class Ct404Particular
     public function setPseudo(string $pseudo): self
     {
         $this->pseudo = $pseudo;
-
-        return $this;
-    }
-
-    public function getUserKey(): ?string
-    {
-        return $this->userKey;
-    }
-
-    public function setUserKey(string $userKey): self
-    {
-        $this->userKey = $userKey;
-
-        return $this;
-    }
-
-    public function getActive(): ?bool
-    {
-        return $this->active;
-    }
-
-    public function setActive(bool $active): self
-    {
-        $this->active = $active;
 
         return $this;
     }

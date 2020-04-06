@@ -3,29 +3,25 @@
 namespace App\Controller;
 
 use App\Entity\Ct404Supplier;
-use App\Form\Ct404SupplierType;
+use App\Form\Ct404Supplier1Type;
+use App\Repository\Ct404SupplierRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/admin/supplier")
+ * @Route("/ct404/supplier")
  */
 class Ct404SupplierController extends AbstractController
 {
     /**
      * @Route("/", name="ct404_supplier_index", methods={"GET"})
      */
-    public function index(): Response
+    public function index(Ct404SupplierRepository $ct404SupplierRepository): Response
     {
-        $ct404suppliers = $this->getDoctrine()
-            ->getRepository(Ct404Supplier::class)
-            ->findAll()
-        ;
-
         return $this->render('ct404_supplier/index.html.twig', [
-            'ct404suppliers' => $ct404suppliers,
+            'ct404_suppliers' => $ct404SupplierRepository->findAll(),
         ]);
     }
 
@@ -34,20 +30,20 @@ class Ct404SupplierController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        $ct404supplier = new Ct404Supplier();
-        $form = $this->createForm(Ct404SupplierType::class, $ct404supplier);
+        $ct404Supplier = new Ct404Supplier();
+        $form = $this->createForm(Ct404Supplier1Type::class, $ct404Supplier);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($ct404supplier);
+            $entityManager->persist($ct404Supplier);
             $entityManager->flush();
 
-            return $this->redirectToRoute('ct404supplier_index');
+            return $this->redirectToRoute('ct404_supplier_index');
         }
 
         return $this->render('ct404_supplier/new.html.twig', [
-            'ct404supplier' => $ct404supplier,
+            'ct404_supplier' => $ct404Supplier,
             'form' => $form->createView(),
         ]);
     }
@@ -55,19 +51,19 @@ class Ct404SupplierController extends AbstractController
     /**
      * @Route("/{id}", name="ct404_supplier_show", methods={"GET"})
      */
-    public function show(Ct404Supplier $ct404supplier): Response
+    public function show(Ct404Supplier $ct404Supplier): Response
     {
         return $this->render('ct404_supplier/show.html.twig', [
-            'ct404supplier' => $ct404supplier,
+            'ct404_supplier' => $ct404Supplier,
         ]);
     }
 
     /**
      * @Route("/{id}/edit", name="ct404_supplier_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Ct404Supplier $ct404supplier): Response
+    public function edit(Request $request, Ct404Supplier $ct404Supplier): Response
     {
-        $form = $this->createForm(Ct404SupplierType::class, $ct404supplier);
+        $form = $this->createForm(Ct404Supplier1Type::class, $ct404Supplier);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -77,7 +73,7 @@ class Ct404SupplierController extends AbstractController
         }
 
         return $this->render('ct404_supplier/edit.html.twig', [
-            'ct404supplier' => $ct404supplier,
+            'ct404_supplier' => $ct404Supplier,
             'form' => $form->createView(),
         ]);
     }
@@ -85,11 +81,11 @@ class Ct404SupplierController extends AbstractController
     /**
      * @Route("/{id}", name="ct404_supplier_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Ct404Supplier $ct404supplier): Response
+    public function delete(Request $request, Ct404Supplier $ct404Supplier): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$ct404supplier->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$ct404Supplier->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($ct404supplier);
+            $entityManager->remove($ct404Supplier);
             $entityManager->flush();
         }
 

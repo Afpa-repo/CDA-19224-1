@@ -39,7 +39,7 @@ class Ct404OrderDetail
      * @ORM\ManyToOne(targetEntity="App\Entity\Ct404Ordered", inversedBy="orderDetails")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $cOrder;
+    private $ordered;
 
     /**
      * @var Ct404Product
@@ -62,14 +62,14 @@ class Ct404OrderDetail
         return $this;
     }
 
-    public function getCOrder(): ?Ct404Ordered
+    public function getOrdered(): ?Ct404Ordered
     {
-        return $this->cOrder;
+        return $this->ordered;
     }
 
-    public function setCOrder(?Ct404Ordered $cOrder): self
+    public function setOrdered(?Ct404Ordered $ordered): self
     {
-        $this->cOrder = $cOrder;
+        $this->ordered = $ordered;
 
         return $this;
     }

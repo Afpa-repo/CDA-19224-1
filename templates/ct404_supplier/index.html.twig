@@ -1,36 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ct404supplier index{% endblock %}
+{% block title %}Ct404Supplier index{% endblock %}
 
 {% block body %}
-    <h1>Ct404supplier index</h1>
+    <h1>Ct404Supplier index</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>SupplierName</th>
-                <th>SupplierAddress</th>
-                <th>SupplierCity</th>
-                <th>SupplierZipeCode</th>
-                <th>SupplierPhone</th>
-                <th>SupplierMail</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>ZipCode</th>
+                <th>PhoneNumber</th>
+                <th>Email</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for ct404supplier in ct404suppliers %}
+        {% for ct404_supplier in ct404_suppliers %}
             <tr>
-                <td>{{ ct404supplier.id }}</td>
-                <td>{{ ct404supplier.supplierName }}</td>
-                <td>{{ ct404supplier.supplierAddress }}</td>
-                <td>{{ ct404supplier.supplierCity }}</td>
-                <td>{{ ct404supplier.supplierZipeCode }}</td>
-                <td>{{ ct404supplier.supplierPhone }}</td>
-                <td>{{ ct404supplier.supplierMail }}</td>
+                <td>{{ ct404_supplier.id }}</td>
+                <td>{{ ct404_supplier.name }}</td>
+                <td>{{ ct404_supplier.address }}</td>
+                <td>{{ ct404_supplier.city }}</td>
+                <td>{{ ct404_supplier.zipCode }}</td>
+                <td>{{ ct404_supplier.phoneNumber }}</td>
+                <td>{{ ct404_supplier.email }}</td>
                 <td>
-                    <a href="{{ path('ct404_supplier_show', {'id': ct404supplier.id}) }}">show</a>
-                    <a href="{{ path('ct404_supplier_edit', {'id': ct404supplier.id}) }}">edit</a>
+                    <a href="{{ path('ct404_supplier_show', {'id': ct404_supplier.id}) }}">show</a>
+                    <a href="{{ path('ct404_supplier_edit', {'id': ct404_supplier.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

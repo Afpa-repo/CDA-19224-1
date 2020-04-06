@@ -3,29 +3,26 @@
 namespace App\Controller;
 
 use App\Entity\Ct404OrderDetail;
+use App\Form\Ct404OrderDetail2Type;
 use App\Form\Ct404OrderDetailType;
+use App\Repository\Ct404OrderDetailRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/admin/orderdetail")
+ * @Route("/ct404/order/detail")
  */
 class Ct404OrderDetailController extends AbstractController
 {
     /**
      * @Route("/", name="ct404_order_detail_index", methods={"GET"})
      */
-    public function index(): Response
+    public function index(Ct404OrderDetailRepository $ct404OrderDetailRepository): Response
     {
-        $ct404OrderDetails = $this->getDoctrine()
-            ->getRepository(Ct404OrderDetail::class)
-            ->findAll()
-        ;
-
         return $this->render('ct404_order_detail/index.html.twig', [
-            'ct404_order_details' => $ct404OrderDetails,
+            'ct404_order_details' => $ct404OrderDetailRepository->findAll(),
         ]);
     }
 

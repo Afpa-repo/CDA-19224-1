@@ -97,7 +97,7 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/confirmation/{id}/{user_token}", name="confimation.email", methods="GET|POST")
      *
-     * @param User $user
+     * @param Ct404User $user
      * @param Request $request
      * @return Response
      * @throws Exception

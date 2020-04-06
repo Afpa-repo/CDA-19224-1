@@ -14,15 +14,16 @@ use Symfony\Component\Validator\Constraints as Assert;
 class User implements UserInterface
 {
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $user_token;
-    /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $userToken;
 
     /**
      * @Assert\Email(
@@ -131,14 +132,14 @@ class User implements UserInterface
 
     public function getUserToken(): ?string
     {
-        return $this->user_token;
+        return $this->userToken;
     }
 
-    public function setUserToken(string $user_token): self
+    public function setUserToken(string $userToken): self
     {
         // In the form, put the Unix time to the hidden input
         // Here, put random key around this time stamp
-        $this->user_token = bin2hex(random_bytes(8)).$user_token.bin2hex(random_bytes(8));
+        $this->userToken = bin2hex(random_bytes(8)).$userToken.bin2hex(random_bytes(8));
 
         return $this;
     }

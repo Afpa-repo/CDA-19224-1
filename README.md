@@ -1,28 +1,60 @@
-# Pour lancer le projet
+# Chemin de Traverse
 
-## Pensez à installer les dépendances de composer
+## Clone du projet
+Pour clonez le projet executez la commande suivante
+
+```shell script
+git clone https://github.com/Afpa-repo/CDA-19224-1.git
+```
+
+Ou si vous voulez la version ssh
+
+```shell script
+git clone git@github.com:Afpa-repo/CDA-19224-1.git
+```
+
+## Mise en place du projet
+Maintenant vous devez installer les dépendances.
+On va commencer avec composer
 
 ```shell script
 composer install
 ```
 
-## Renommez le fichier .env.test en .env
-
-Renommez le fichier .env.test en .env et remplissez les valeurs vides
-
-## Build les assets avec Webpack Encore
-
-Vous devez installer [Node.js](https://nodejs.org/en/) pour cette étape
-
-Pour build les assets lancez ces commandes
+Ensuite on va installer les dépendances de Yarn.
+Pour cette étape vous allez avoir besoin de [Node.js](https://nodejs.org/en/)
 
 ```shell script
 .yarn/releases/yarn-1.22.4.js install
+```
+
+Maintenant qu'on a toutes les dépendances il va falloir build les assets du projet avec Webpack Encore!
+
+Si vous êtes en environnement de développement
+
+```shell script
+.yarn/releases/yarn-1.22.4.js dev
+```
+
+Si vous êtes en environnement de production
+
+```shell script
 .yarn/releases/yarn-1.22.4.js build
 ```
 
-## Utiliser PHPCSFixer
+## Quelques commandes utiles
+Pour pouvoir utiliser PHPCSFixer sur les fichiers du projet executez la commande suivante
 
 ```shell script
-.yarn/releases/yarn-1-22.4.js fix
+.yarn/releases/yarn-1.22.4.js php:fix
 ```
+
+Pour pouvoir utiliser la fonction fix de [Stylelint](https://stylelint.io/) executez la commande suivante
+
+```shell script
+.yarn/releases/yarn-1.22.4.js css:fix
+```
+
+## TODO
+- Automatiser le php:fix et le css:fix avant de commit (Husky, pre-commit hooks, lint-staged)
+- 

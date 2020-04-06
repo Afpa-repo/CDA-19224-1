@@ -1,9 +1,11 @@
-{# {% extends 'base.html.twig' %} #}
+{% extends 'base.html.twig' %}
+{% block title 'Panier' %}
+
+{% block h1 'Votre Panier' %}
 {% block body %}
 	{# vue panier (ultra simpliste pour l'instant ) #}
-	<h1>Votre panier</h1>
-	{% if items|length > 0 %}
-		<div class="grey lighten-5">
+	{# <h1>Votre panier</h1> #}
+		<main class="container grey lighten-5"> {% if items|length > 0 %}
 			<table class="table">
 				<thead>
 					<th>
@@ -17,7 +19,8 @@
 					{% for item in items %}
 						<tr>
 							<td>{{ item.product.name }}</td>
-							<td>{{ item.product.price }} &euro;</td>
+							<td>{{ item.product.price }}
+								&euro;</td>
 							<td>
 								<a href="{{ path('cart_subtract', {'id': item.product.id}) }}" class="btn btn-danger btn-sm">
 									-
@@ -27,7 +30,8 @@
 									+
 								</a>
 							</td>
-							<td>{{ item.product.price * item.quantity }} &euro;</td>
+							<td>{{ item.product.price * item.quantity }}
+								&euro;</td>
 							<td>
 								<a href="{{ path('cart_remove', {'id': item.product.id}) }}" class="btn btn-danger btn-sm">
 									Supp
@@ -41,12 +45,13 @@
 						<td colspan="3">Total :</td>
 						<td>{{ total }}
 							&euro;</td>
-						<td></td>
+						{# <td></td> #}
 					</tr>
 				</tfoot>
 			</table>
-		</div>
-	{% else %}
-		<p>Panier Vide</p>
-	{% endif %}
+		{% else %}
+			<p>Panier Vide</p>
+		{% endif %}
+	</main>
+
 {% endblock %}

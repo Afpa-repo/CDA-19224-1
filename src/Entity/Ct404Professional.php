@@ -33,7 +33,7 @@ class Ct404Professional
      *     message="Le n° de SIRET est requis"
      * )
      * @Assert\Length(
-     *     max="50",
+     *     max="17",
      *     maxMessage="Le n° de SIRET doit faire au maximum {{ limit }} caractères",
      *     normalizer="trim"
      * )
@@ -42,7 +42,7 @@ class Ct404Professional
      *     message="{{ value }} n'est pas un n° de SIRET valide",
      *     normalizer="trim"
      * )
-     * @ORM\Column(type="string", length=50, nullable=false)
+     * @ORM\Column(type="string", length=17, nullable=false)
      */
     private $siret;
 

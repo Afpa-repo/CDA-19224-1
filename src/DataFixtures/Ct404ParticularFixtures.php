@@ -41,14 +41,10 @@ class Ct404ParticularFixtures extends BaseFixture implements DependentFixtureInt
                 // Don't do this at home kids !!!!!!
                 // This is just temporary since I don't have the classes that implements the UserInterface yet
                 // So I can't use the UserPasswordEncoder yet
-                ->setPassword(md5('filrouge'))
                 ->setCity($this->faker->city)
-                ->setActive($this->faker->boolean)
-                ->setEmail($this->faker->email)
                 ->setPhoneNumber($this->faker->phoneNumber)
                 ->setPseudo($this->faker->userName)
                 ->setZipCode((int) $this->faker->postcode)
-                ->setUserKey(bin2hex(random_bytes(16)))
             ;
         });
 

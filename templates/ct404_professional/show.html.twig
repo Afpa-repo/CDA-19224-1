@@ -12,32 +12,28 @@
                 <td>{{ ct404_professional.id }}</td>
             </tr>
             <tr>
-                <th>SiretNumber</th>
-                <td>{{ ct404_professional.siretNumber }}</td>
+                <th>Siret</th>
+                <td>{{ ct404_professional.siret }}</td>
             </tr>
             <tr>
-                <th>CompagnyName</th>
-                <td>{{ ct404_professional.compagnyName }}</td>
+                <th>Company</th>
+                <td>{{ ct404_professional.company }}</td>
             </tr>
             <tr>
-                <th>ContactName</th>
-                <td>{{ ct404_professional.contactName }}</td>
+                <th>Contact</th>
+                <td>{{ ct404_professional.contact }}</td>
             </tr>
             <tr>
-                <th>Mail</th>
-                <td>{{ ct404_professional.mail }}</td>
+                <th>CompanyEmail</th>
+                <td>{{ ct404_professional.companyEmail }}</td>
             </tr>
             <tr>
-                <th>DateRegister</th>
-                <td>{{ ct404_professional.dateRegister ? ct404_professional.dateRegister|date('Y-m-d H:i:s') : '' }}</td>
+                <th>CreatedAt</th>
+                <td>{{ ct404_professional.createdAt ? ct404_professional.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>Clef</th>
-                <td>{{ ct404_professional.clef }}</td>
-            </tr>
-            <tr>
-                <th>Actif</th>
-                <td>{{ ct404_professional.actif ? 'Yes' : 'No' }}</td>
+                <th>UpdatedAt</th>
+                <td>{{ ct404_professional.updatedAt ? ct404_professional.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
         </tbody>
     </table>

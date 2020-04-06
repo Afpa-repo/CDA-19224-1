@@ -27,7 +27,7 @@ class Ct404OrderDetailFixtures extends BaseFixture implements DependentFixtureIn
         $this->createMany(Ct404OrderDetail::class, 10, function (Ct404OrderDetail $orderDetails) {
             // Fills the newly created order detail
             $orderDetails
-                ->setCOrder($this->getRandomReference(Ct404Ordered::class))
+                ->setOrdered($this->getRandomReference(Ct404Ordered::class))
                 ->setProduct($this->getRandomReference(Ct404Product::class))
                 ->setQuantity($this->faker->numberBetween(1, 999999))
            ;

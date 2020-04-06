@@ -4,28 +4,24 @@ namespace App\Controller;
 
 use App\Entity\Ct404Category;
 use App\Form\Ct404CategoryType;
+use App\Repository\Ct404CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/admin/category")
+ * @Route("/ct404/category")
  */
 class Ct404CategoryController extends AbstractController
 {
     /**
      * @Route("/", name="ct404_category_index", methods={"GET"})
      */
-    public function index(): Response
+    public function index(Ct404CategoryRepository $ct404CategoryRepository): Response
     {
-        $ct404Categories = $this->getDoctrine()
-            ->getRepository(Ct404Category::class)
-            ->findAll()
-        ;
-
         return $this->render('ct404_category/index.html.twig', [
-            'ct404_categories' => $ct404Categories,
+            'ct404_categories' => $ct404CategoryRepository->findAll(),
         ]);
     }
 

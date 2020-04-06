@@ -1,46 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ct404supplier{% endblock %}
+{% block title %}Ct404Supplier{% endblock %}
 
 {% block body %}
-    <h1>Ct404supplier</h1>
+    <h1>Ct404Supplier</h1>
 
     <table class="table">
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ ct404supplier.id }}</td>
+                <td>{{ ct404_supplier.id }}</td>
             </tr>
             <tr>
-                <th>SupplierName</th>
-                <td>{{ ct404supplier.supplierName }}</td>
+                <th>Name</th>
+                <td>{{ ct404_supplier.name }}</td>
             </tr>
             <tr>
-                <th>SupplierAddress</th>
-                <td>{{ ct404supplier.supplierAddress }}</td>
+                <th>Address</th>
+                <td>{{ ct404_supplier.address }}</td>
             </tr>
             <tr>
-                <th>SupplierCity</th>
-                <td>{{ ct404supplier.supplierCity }}</td>
+                <th>City</th>
+                <td>{{ ct404_supplier.city }}</td>
             </tr>
             <tr>
-                <th>SupplierZipeCode</th>
-                <td>{{ ct404supplier.supplierZipeCode }}</td>
+                <th>ZipCode</th>
+                <td>{{ ct404_supplier.zipCode }}</td>
             </tr>
             <tr>
-                <th>SupplierPhone</th>
-                <td>{{ ct404supplier.supplierPhone }}</td>
+                <th>PhoneNumber</th>
+                <td>{{ ct404_supplier.phoneNumber }}</td>
             </tr>
             <tr>
-                <th>SupplierMail</th>
-                <td>{{ ct404supplier.supplierMail }}</td>
+                <th>Email</th>
+                <td>{{ ct404_supplier.email }}</td>
             </tr>
         </tbody>
     </table>
 
     <a href="{{ path('ct404_supplier_index') }}">back to list</a>
 
-    <a href="{{ path('ct404_supplier_edit', {'id': ct404supplier.id}) }}">edit</a>
+    <a href="{{ path('ct404_supplier_edit', {'id': ct404_supplier.id}) }}">edit</a>
 
     {{ include('ct404_supplier/_delete_form.html.twig') }}
 {% endblock %}

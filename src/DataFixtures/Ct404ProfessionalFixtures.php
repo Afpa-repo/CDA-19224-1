@@ -25,17 +25,14 @@ class Ct404ProfessionalFixtures extends BaseFixture implements DependentFixtureI
         $this->createMany(Ct404Professional::class, mt_rand(3, 5), function (Ct404Professional $professional) {
             // Fills the newly created Professional
             $professional
-                ->setUserKey(bin2hex(random_bytes(16)))
-                ->setEmail($this->faker->companyEmail)
-                ->setActive($this->faker->boolean)
                 // Don't do this at home kids !!!!!!
                 // This is just temporary since I don't have the classes that implements the UserInterface yet
                 // So I can't use the UserPasswordEncoder yet
-                ->setPassword(md5('filrouge'))
                 ->setCommercial($this->getRandomReference(Ct404Commercial::class))
                 ->setCompany($this->faker->company)
                 ->setSiret($this->faker->siret)
                 ->setContact($this->faker->name)
+                ->setCompanyEmail($this->faker->companyEmail)
             ;
         });
 

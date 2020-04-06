@@ -25,7 +25,10 @@
 {#   TODO :  Mettre en place le formlaire de recherche  #}
 <div class="col l4 offset-l1 m6 z-depth-2 hide-on-small-only">
 <div class="row">
-<label class="col s10" for="searchInput" aria-label="searchInput">
+    <div class="col s2 mx-auto" aria-label="btnSearchInput">
+        <i class="material-icons">search</i>
+    </div>
+<label class="col s8" for="searchInput" aria-label="searchInput">
 <input aria-labelledby="searchInput" type="text" id="searchInput" name="searchInput" placeholder="">
 </label>
 <div id="speechBtn" class="col s2 mx-auto" aria-label="btnSearchInput">
@@ -37,22 +40,15 @@
 
 
 {#  Client Setting  #}
-<div class="col l2 offset-l1 hide-on-med-and-down">
-<a href="#" title="Espace client">
-<div class="row black-text">
-<div class="col s12 center-align">
-<i class="medium material-icons">person</i>
-</div>
-<div class="col s12 center-align">
-<ins>Mon Compte</ins>
-</div>
-</div>
-</a>
-<div class="center-align">
-{#  Differents diplays if the user is connect #}
-<a href="{{ path('app_login') }}">{% if app.user %}Se déconnecter{% else %}Se connecter{% endif %}</a>
-</div>
-</div>
+    <div class="col l2 offset-l1 hide-on-med-and-down">
+        {% if app.user %}
+        <a class="btn orange" href="{{ path('app_login') }}" title="Espace client">Compte</a>
+        {% else %}
+        <div class="center-align">
+            <a href="{{ path('app_login') }}">Se connecter</a>
+        </div>
+        {% endif %}
+    </div>
 
 {#  Shopping Basket  #}
 <div class="col s3 offset-s6 m2 offset-m1 l1 offset-l0 orange darken-3 center-align z-depth-2">

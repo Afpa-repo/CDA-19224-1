@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Ct404User;
-use App\Entity\User;
 use App\Form\UpdatePasswordFormType;
 use App\Repository\UserRepository;
 use DateTime;

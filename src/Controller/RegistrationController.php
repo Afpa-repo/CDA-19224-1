@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
+use App\Entity\Ct404User;
 use App\Form\RegistrationFormType;
 use App\Security\LoginFormAuthenticator;
 use DateTime;
@@ -26,16 +26,16 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register", name="app_register")
      *
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param GuardAuthenticatorHandler $guardHandler
+     * @param LoginFormAuthenticator $authenticator
+     * @param MailerInterface $mailer
+     * @return Response
      * @throws TransportExceptionInterface
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $authenticator, MailerInterface $mailer): Response
     {
-        $package = new Package(
-            new JsonManifestVersionStrategy(
-                $this->getParameter('kernel.project_dir').'/public/build/manifest.json'
-            )
-        );
-
         // Add history routes to the response return
         $Routes = [
             'Accueil' => '/',
@@ -43,7 +43,7 @@ class RegistrationController extends AbstractController
             'Inscription' => '/register',
         ];
 
-        $user = new User();
+        $user = new Ct404User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
@@ -59,6 +59,7 @@ class RegistrationController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
+            $this->addFlash('success', 'Un email de validation vous a été envoyé');
 
             // Use Mailer interface to send a template email
             // Pass the user_id and user_token to the mail
@@ -96,9 +97,12 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/confirmation/{id}/{user_token}", name="confimation.email", methods="GET|POST")
      *
+     * @param Ct404User $user
+     * @param Request $request
+     * @return Response
      * @throws Exception
      */
-    public function confirm_email(User $user, Request $request): Response
+    public function confirm_email(Ct404User $user, Request $request): Response
     {
         // Recover the time stamp
         $time = new DateTime();
@@ -106,7 +110,7 @@ class RegistrationController extends AbstractController
         // Recover the token content in the mail
         $mailToken = $request->attributes->get('user_token');
 
-        // User token from database
+        // Ct404User token from database
         $userToken = $user->getUserToken();
 
         // Checking the token contained in the email with the one in the database
@@ -125,6 +129,7 @@ class RegistrationController extends AbstractController
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($user);
                 $entityManager->flush();
+                $this->addFlash('success', 'Votre compte a bien été validé');
             }
         }
 

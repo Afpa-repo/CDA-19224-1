@@ -1,0 +1,19 @@
+/* REGISTER FORM */
+
+label{
+    color: #0a0a0a !important;
+    font-family: 'Henny Penny', fantasy;
+    font-size: 20px !important;
+    text-shadow: 1px 1px lightgrey;
+}
+
+input{
+    font-family: 'Dancing Script', fantasy;
+    font-size: 22px !important;
+}
+
+#divForm{
+    background-image: url("https://cdn.pixabay.com/photo/2015/09/23/10/33/old-953394_1280.jpg");
+    background-size: cover;
+    border-radius: 10px;
+}

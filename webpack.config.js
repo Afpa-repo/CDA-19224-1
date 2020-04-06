@@ -23,8 +23,11 @@ if (Encore.isProduction()) {
         // Add PurgeCssPlugin to remove unused CSS
         .addPlugin(new PurgeCssPlugin({
             paths: glob.sync([
-                path.join(__dirname, 'templates/**/*.html.twig')
-            ])
+                path.join(__dirname, 'templates/**/*.html.twig'),
+                path.join(__dirname, 'assets/js/**/*.js'),
+                path.join(__dirname, 'assets/css/**/*.css')
+            ]),
+            only: ['build', 'vendor']
         }));
 }
 // Config to be used only for development

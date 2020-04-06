@@ -33,7 +33,7 @@ class Ct404Professional
      *     message="Le n° de SIRET est requis"
      * )
      * @Assert\Length(
-     *     max="50",
+     *     max="17",
      *     maxMessage="Le n° de SIRET doit faire au maximum {{ limit }} caractères",
      *     normalizer="trim"
      * )
@@ -42,7 +42,7 @@ class Ct404Professional
      *     message="{{ value }} n'est pas un n° de SIRET valide",
      *     normalizer="trim"
      * )
-     * @ORM\Column(type="string", length=50, nullable=false)
+     * @ORM\Column(type="string", length=17, nullable=false)
      */
     private $siret;
 
@@ -95,7 +95,7 @@ class Ct404Professional
      * )
      * @ORM\Column(type="string", length=100, nullable=false)
      */
-    private $email;
+    private $companyEmail;
 
     /**
      * @var DateTime
@@ -122,31 +122,6 @@ class Ct404Professional
      * @ORM\Column(type="datetime", nullable=false)
      */
     private $updatedAt;
-
-    /**
-     * @var string
-     * @Assert\NotBlank(
-     *     message="La clé est requise"
-     * )
-     * @ORM\Column(type="string", length=100, nullable=false)
-     */
-    private $userKey;
-
-    /**
-     * @var bool
-     * @Assert\NotBlank(
-     *     allowNull=false,
-     *     message="Vous devez donner une réponse"
-     * )
-     * @ORM\Column(type="boolean", nullable=false)
-     */
-    private $active;
-
-    /**
-     * @var string
-     * @ORM\Column(type="string", length=255, nullable=false)
-     */
-    private $password;
 
     /**
      * @var Ct404Commercial
@@ -191,18 +166,6 @@ class Ct404Professional
         return $this;
     }
 
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
@@ -227,42 +190,6 @@ class Ct404Professional
         return $this;
     }
 
-    public function getUserKey(): ?string
-    {
-        return $this->userKey;
-    }
-
-    public function setUserKey(string $userKey): self
-    {
-        $this->userKey = $userKey;
-
-        return $this;
-    }
-
-    public function getActive(): ?bool
-    {
-        return $this->active;
-    }
-
-    public function setActive(bool $active): self
-    {
-        $this->active = $active;
-
-        return $this;
-    }
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -278,5 +205,15 @@ class Ct404Professional
         $this->commercial = $commercial;
 
         return $this;
+    }
+
+    public function getCompanyEmail(): string
+    {
+        return $this->companyEmail;
+    }
+
+    public function setCompanyEmail(string $companyEmail): void
+    {
+        $this->companyEmail = $companyEmail;
     }
 }

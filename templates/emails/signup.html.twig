@@ -7,134 +7,55 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width">
         <title>Confirmation Email</title>
-        <link rel="stylesheet" href="{{ absolute_url(asset('build/foundation.d696517c.css')) }}">
+        {% for path in encore_entry_css_files('foundation') %}
+            <link rel="stylesheet" href="{{ absolute_url(path) }}">
+        {% endfor %}
     </head>
 
-            <body>
-            <!-- <style> -->
-            <table class="body">
-            <td class="float-center" align="center" valign="top">
-                <center data-parsed="">
-                    <table class="spacer float-center">
-                        <tbody>
-                        <tr>
-                            <td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <table align="center" class="container float-center">
-                        <tbody>
-                        <tr>
-                            <td>
-                                <table class="row header">
-                                    <tbody>
-                                    <tr>
-                                        <th class="small-12 large-12 columns first last">
-                                            <table>
-                                                <tr>
-                                                    <th>
-                                                        <table class="spacer">
-                                                            <tbody>
-                                                            <tr>
-                                                                <td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td>
-                                                            </tr>
-                                                            </tbody>
-                                                        </table>
-                                                        {#  TODO : AJOUTER LE NOM  #}
-                                                        <h3 class="text-center">Bienvenue 'NOM'</h3>
-                                                        <h4 class="text-center">Validation d'email ({{ email.to[0].address }})</h4>
-                                                        <p class="text-center">
-                                                            <small>Cet email n'est valable qu'une heure après son envoi</small>
-                                                        </p>
-                                                    </th>
-                                                    <th class="expander"></th>
-                                                </tr>
-                                            </table>
-                                        </th>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <table class="row">
-                                    <tbody>
-                                    <tr>
-                                        <th class="small-12 large-12 columns first last">
-                                            <table>
-                                                <tr>
-                                                    <th>
-                                                        <table class="spacer">
-                                                            <tbody>
-                                                            <tr>
-                                                                <td height="32px" style="font-size:32px;line-height:32px;">&#xA0;</td>
-                                                            </tr>
-                                                            </tbody>
-                                                        </table>
-                                                        <center data-parsed=""> <img src="{{ email.image('@public' ~ asset('build/images/logo.png')) }}" align="center" class="float-center"> </center>
-                                                        <table class="spacer">
-                                                            <tbody>
-                                                            <tr>
-                                                                <td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td>
-                                                            </tr>
-                                                            </tbody>
-                                                        </table>
-                                                        <h1 class="text-center">Si vous êtes à l'origine de la demande</h1>
-                                                        <h2 class="text-center">vous devez valider votre compte</h2>
-                                                        <table class="spacer">
-                                                            <tbody>
-                                                            <tr>
-                                                                <td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td>
-                                                            </tr>
-                                                            </tbody>
-                                                        </table>
-                                                        <p class="text-center">Pour cela, cliquez sur le lien :</p>
-                                                        <table class="button large expand">
-                                                            <tr>
-                                                                <td>
-                                                                    <table>
-                                                                        <tr>
-                                                                            <td>
-                                                                                <center data-parsed="">
-                                                                                    {#  Recover the url base and pass the user id and user token  #}
-                                                                                    <a href="{{ absolute_url('/') }}confirmation/{{ id }}/{{ token }}" align="center" class="float-center">Valider</a>
-                                                                                </center>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </table>
-                                                                </td>
-                                                                <td class="expander"></td>
-                                                            </tr>
-                                                        </table>
-                                                        <hr>
-                                                        <p class="text-center">
-                                                            <small>
-                                                                {#  TODO : mettre en place le lien pour se désinscrire  #}
-                                                                Vous acceptez de recevoir des emails, vous pouvez vous désinscrire
-                                                                <a href="#"> ici</a>.
-                                                            </small>
-                                                        </p>
-                                                    </th>
-                                                    <th class="expander"></th>
-                                                </tr>
-                                            </table>
-                                        </th>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <table class="spacer">
-                                    <tbody>
-                                    <tr>
-                                        <td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </center>
-            </td>
-        </tr>
-    </table>
+    <spacer size="16"></spacer>
 
-    </body>
+    <container>
+
+        <row class="header">
+            <columns>
+
+                <spacer size="16"></spacer>
+                <h3 class="text-center">Bienvenue 'NOM'</h3>
+                <h4 class="text-center">Validation d'email ({{ email.to[0].address }})</h4>
+                <p class="text-center"><small>Cet email n'est valable qu'une heure après son envoi</small></p>
+
+            </columns>
+        </row>
+        <row>
+            <columns>
+
+                <spacer size="32"></spacer>
+
+                <center>
+                    <img src="{{ absolute_url('/') }}{{ asset('build/images/logo.png') }}" align="center" class="float-center">
+                </center>
+
+                <spacer size="16"></spacer>
+
+                <h1 class="text-center">Si vous êtes à l'origine de la demande</h1>
+                <h2 class="text-center">vous devez valider votre compte</h2>
+
+                <spacer size="16"></spacer>
+
+                <button class="large expand" href="{{ absolute_url('/') }}confirmation/{{ id }}/{{ token }}">Valider</button>
+
+                <hr/>
+
+                <p class="text-center">
+                    <small>Vous acceptez de recevoir des emails, vous pouvez vous désinscrire<a href="#"> ici</a>.</small>
+                </p>
+            </columns>
+        </row>
+
+            <spacer size="16"></spacer>
+        </container>
+        {% for path in encore_entry_js_files('foundation') %}
+            <script src="{{ absolute_url(asset(path)) }}" ></script>
+        {% endfor %}
 
 {% endapply %}

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Ct404User;
 use App\Entity\User;
 use App\Form\UpdatePasswordFormType;
 use App\Repository\UserRepository;
@@ -106,13 +107,13 @@ class SecurityController extends AbstractController
     /**
      * @Route("/new_password/{id}/{user_token}", name="app_forgot_pwd.update", methods="GET|POST")
      *
-     * @param User $user
+     * @param Ct404User $user
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @return Response
      * @throws Exception
      */
-    public function update_password(User $user, Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    public function update_password(Ct404User $user, Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
         // Add history routes to the response return
         $Routes = [

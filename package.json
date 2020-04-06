@@ -12,9 +12,11 @@
   "devDependencies": {
     "@symfony/webpack-encore": "^0.28.2",
     "core-js": "^3.0.0",
+    "cross-env": "^7.0.2",
     "cssnano": "^4.1.10",
     "file-loader": "^6.0.0",
     "glob-all": "^3.2.1",
+    "maildev": "^1.1.0",
     "materialize-css": "^1.0.0-rc.2",
     "postcss-font-magician": "^2.3.1",
     "postcss-loader": "^3.0.0",
@@ -23,17 +25,22 @@
     "purgecss-webpack-plugin": "^2.1.0",
     "regenerator-runtime": "^0.13.2",
     "stylelint": "^13.2.1",
+    "stylelint-a11y": "^1.2.3",
+    "stylelint-config-rational-order": "^0.1.2",
     "stylelint-config-standard": "^20.0.0",
+    "stylelint-order": "^4.0.0",
     "url-loader": "^2.0.1",
     "webpack-notifier": "^1.6.0"
   },
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "encore production --progress",
-    "dev": "encore dev",
+    "build": "cross-env NODE_ENV=production encore production --progress",
+    "css:fix": "stylelint ./assets/**/*.css --fix",
+    "dev": "cross-env NODE_ENV=development encore dev",
     "dev-server": "encore dev-server",
-    "fix": "php vendor/bin/php-cs-fixer fix -vvv --show-progress=estimating",
+    "maildev": "maildev --hide-extensions STARTTLS",
+    "php:fix": "php vendor/bin/php-cs-fixer fix -vvv",
     "watch": "encore dev --watch"
   }
 }

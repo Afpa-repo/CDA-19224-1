@@ -13,9 +13,8 @@
 .loginRegistration{
   width: 40%;
   height: 100%;
-  background: url("https://cdn.pixabay.com/photo/2019/03/22/18/12/harry-potter-4073863_960_720.png");
   background-size: cover;
-  background-position: center;
+  background: url("https://cdn.pixabay.com/photo/2019/03/22/18/12/harry-potter-4073863_960_720.png") center;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   display: flex;

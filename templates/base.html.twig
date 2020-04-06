@@ -24,9 +24,14 @@
                     {#   TODO :  Mettre en place le formlaire de recherche  #}
                     <div class="col l4 offset-l1 m6 z-depth-2 hide-on-small-only">
                         <div class="row">
-                            <label class="col s10" for="searchInput" aria-label="searchInput">
-                                <input aria-labelledby="searchInput" type="text" id="searchInput" name="searchInput" placeholder="">
+                            <div class="col s2 mx-auto center-align">
+                                <i class="material-icons">search</i>
+                            </div>
+                            <div class="col s8">
+                            <label for="searchInput" aria-label="searchInput">
+                                <input aria-labelledby="searchInput" type="text" id="searchInput" name="searchInput" placeholder="Recherches">
                             </label>
+                            </div>
                             <div id="speechBtn" class="col s2 mx-auto" aria-label="btnSearchInput">
                                 {#  TODO : Remplacer par un button si formulaire | Problement method GET ?  #}
                                 <a href="#" id="btnSearchInput"><i id="materialMicro" class="material-icons">micro</i></a>
@@ -36,13 +41,16 @@
 
                     {#  Client Setting  #}
                     <div class="col s4 offset-s3 l2 offset-l1 offset-m1">
-                        <div class="center-align">
-                            {#  Differents diplays if the user is connect #}
-                            <a href="{{ path('app_login') }}" title="login and logout">{% if app.user %}Déconnection{% else %}Connection{% endif %}</a>
-                        </div>
-                        <div class="center-align">
-                            <a href="#" class="btn-small orange darken-4" title="espace client">Compte</a>
-                        </div>
+                        {% if app.user %}
+                            <div class="center-align">
+                                <a href="#" class="btn-small orange darken-4" title="espace client">Compte</a>
+                            </div>
+                        {% else %}
+                            <div class="center-align">
+                                {#  Differents diplays if the user is connect #}
+                                <a href="{{ path('app_login') }}" title="login and logout">Connection</a>
+                            </div>
+                        {% endif %}
                     </div>
 
                     {#  Shopping Basket  #}

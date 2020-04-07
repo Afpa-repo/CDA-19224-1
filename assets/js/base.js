@@ -1,11 +1,5 @@
 /***** MATERIALIZE *****/
 
-// SideNav
-document.addEventListener('DOMContentLoaded', function () {
-    const elems = document.querySelectorAll('.sidenav');
-    M.Sidenav.init(elems);
-});
-
 // Dropdown menu
 document.addEventListener('DOMContentLoaded', function() {
     const elems = document.querySelectorAll('.dropdown-trigger');

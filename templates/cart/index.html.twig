@@ -8,11 +8,13 @@
 {% block h1 'Votre Panier' %}
 {% block body %}
 	{# vue panier (ultra simpliste pour l'instant ) #}
-	{# <h1>Votre panier</h1> #}
-		<main class="container grey lighten-5"> {% if items|length > 0 %}
-			{% for item in items %}
 
-				<div class="col s12 m7">
+	<main class="container grey lighten-5">
+		{% if items|length > 0 %}
+			{% set compteur = 0 %}
+			{% for item in items %}
+				{% set compteur = compteur + 1 %}
+				<div class="produit col s12 m7">
 					<h2 class="header">{{ item.product.name }}</h2>
 					<div class="card horizontal">
 						<div class="card-image">
@@ -23,17 +25,11 @@
 								<p>I am a very simple card. I am good at containing small bits of information.</p>
 								<p>Quantité :</p>
 								<div class="dropdownn">
-									<button id="dropbtn1" class="dropbtn">{{ item.quantity }}</button>
-									<div id="myDropdownn" class="dropdownn-content">
-										<a href="{{ path('cart_modify', {'id': item.product.id, 'valeurUser': 1}) }}">1</a>
-										<a href="{{ path('cart_modify', {'id': item.product.id, 'valeurUser': 2}) }}">2</a>
-										<a href="{{ path('cart_modify', {'id': item.product.id, 'valeurUser': 3}) }}">3</a>
-										<a href="{{ path('cart_modify', {'id': item.product.id, 'valeurUser': 4}) }}">4</a>
-										<a href="{{ path('cart_modify', {'id': item.product.id, 'valeurUser': 5}) }}">5</a>
-										<a href="{{ path('cart_modify', {'id': item.product.id, 'valeurUser': 6}) }}">6</a>
-										<a href="{{ path('cart_modify', {'id': item.product.id, 'valeurUser': 7}) }}">7</a>
-										<a href="{{ path('cart_modify', {'id': item.product.id, 'valeurUser': 8}) }}">8</a>
-										<a href="{{ path('cart_modify', {'id': item.product.id, 'valeurUser': 9}) }}">9</a>
+									<button id="dropbtn{{loop.index}}" class="dropbtn">{{ item.quantity }}</button>
+									<div id="myDropdownn{{loop.index}}" class="dropdownn-content">
+										{% for i in 1..9 %}
+											<a href="{{ path('cart_modify', {'id': item.product.id, 'valeurUser': i}) }}">{{ i }}</a>
+										{% endfor %}
 									</div>
 								</div>
 								<p>Prix unitaire :
@@ -58,6 +54,7 @@
 					{{ total }}
 					&euro;</p>
 			</div>
+			<span id="compteur">{{ compteur }}</span>
 		{% else %}
 			<div class="center">
 				<p>Panier Vide</p>

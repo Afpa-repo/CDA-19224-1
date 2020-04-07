@@ -1,3 +1,7 @@
+ .produit{
+     padding: 5px;
+ }
+ 
  /* Dropdown Button */
  .dropbtn {
     background-color: #3498DB;
@@ -6,6 +10,11 @@
     font-size: 16px;
     border: none;
     cursor: pointer;
+  }
+
+ /* Span "compteur" */
+  #compteur {
+      visibility: hidden;
   }
   
   /* Dropdown button on hover & focus */

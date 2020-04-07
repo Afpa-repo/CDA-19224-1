@@ -11,6 +11,7 @@
 </head>
 
 <body>
+
 <div id="divHeader">
     {#  HEADER  #}
     <header role="banner">
@@ -63,11 +64,24 @@
 
     {#  BOTTOM BANNER : NAVBAR  #}
     <nav class="grey darken-4">
-        <a href="#">Baguettes</a>
-        <a href="#">Vêtements</a>
-        <a href="#">Bijoux</a>
-        <a href="#">Papeterie</a>
-        <a href="#">Accessoires</a>
+        {#  Create a Service to manage categories and make it global (twig.yaml)  #}
+        {% for category in categories.CategoriesNavBar %}
+            <!-- Dropdown Trigger -->
+            <a class='dropdown-trigger' href='#' data-target='dropdown{{ category.id }}'>{{ category.name }}</a>
+
+            <!-- Dropdown Structure -->
+            <ul id='dropdown{{ category.id }}' class='dropdown-content'>
+            {% for sub_category in categories.SubCategoriesNavBar(category.id) %}
+                <li><a href="#id_sous_categorie:{{ sub_category.id }}">{{ sub_category.name }}</a></li>
+            {% endfor %}
+                <li class="divider"></li>
+                <li><a href="#id_categorie:{{ category.id }}">Tout</a></li>
+            </ul>
+
+        {% endfor %}
+
+
+
     </nav>
 
 
@@ -93,7 +107,7 @@
 
 
 {#    BODY CONTENT   #}
-{% block body %} {% endblock %}
+{% block body %}{% endblock %}
 
 
 {#    FOOTER    #}

@@ -7,28 +7,50 @@
 {% block body %}
 
     <main class="container">
-        <div id="divForm" class="z-depth-2">
+        <div id="divFormRegister" class="z-depth-2 white">
+            <div class="row">
+                <img class="responsive-img col s12" src="{{ asset('build/images/register/banner_register_form.png') }}" alt="">
+            </div>
             {{ form_start(registrationForm) }}
+                <section class="FormRegister row section">
+                    <div class="col s12 m10 offset-m1 l8 offset-l2">
+                        {{ form_row(registrationForm.email) }}
+                    </div>
+                    <div class="col s12 m10 offset-m1 l8 offset-l2">
+                        {{ form_row(registrationForm.plainPassword) }}
+                    </div>
 
-            <section class="row section">
-                <div class="col s10 offset-s1 m8 offset-m2 l6 offset-l3">
-                    {{ form_row(registrationForm.email) }}
-                </div>
-                <div class="col s10 offset-s1 m8 offset-m2 l6 offset-l3">
-                    {{ form_row(registrationForm.plainPassword) }}
-                </div>
+                    {#  Pass the Unix time in the token for verify during email confirmation  #}
+                    <div>
+                        {{ form_row(registrationForm.user_token, {'value': date().format('U')}) }}
+                    </div>
+                    <div class="col s12 center-align">
+                        <a href="#registration_form_plainPassword_first" class="btn orange darken-4" id="btnSortHat">
+                            Devenir un sorcier
+                        </a>
+                    </div>
+                    <div id="submitBtnRegistration" class="col s12 center-align hide">
+                        <section class="row">
+                            <article class="col s10 offset-s1 m6 offset-m0 l5">
+                                <img id="sortHatHouses" class="responsive-img" src="" alt="Choixpeau">
+                            </article>
+                            <article class="col s10 offset-s1 m5 offset-m0 l6">
+                                <div id="divLetter" class="row z-depth-2">
+                                    <img id="housesImg" class="responsive-img col s6 offset-s3 m4 offset-m4" src="" alt="Your hour">
+                                    <p class="col s10 offset-s1 left-align" id="descriptionHouses">
 
-                <div class="col s10 offset-s2 m8 offset-m3 l6 offset-l4">
-                    {{ form_row(registrationForm.agreeTerms) }}
-                </div>
-                {#  Pass the Unix time in the token for verify during email confirmation  #}
-                <div>
-                    {{ form_row(registrationForm.user_token, {'value': date().format('U')}) }}
-                </div>
-                <div class="col s10 offset-s1 m8 offset-m2 l6 offset-l3 center-align">
-                    <button class="btn" type="submit">S'enregistrer</button>
-                </div>
-            </section>
+                                    </p>
+                                </div>
+                            </article>
+                        </section>
+
+                        <p id="agreeTerme">Acceptes-tu de recevoir des courriers de Poudlard et d'entrer dans la Maison <ins id="houseAccept"></ins> ?</p>
+                        <div>
+                            {{ form_row(registrationForm.agreeTerms) }}
+                        </div>
+                        <button class="btn orange darken-4" type="submit">S'enregistrer</button>
+                    </div>
+                </section>
             {{ form_end(registrationForm) }}
         </div>
     </main>

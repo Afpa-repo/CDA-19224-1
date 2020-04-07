@@ -17,25 +17,32 @@
     <section class="red flow-text row center-align">
       <strong class="col s12 center-align white-text">{{ message }}</strong>
     </section>
-  {% endfor %}
+  {% endfor %}§
 
   <main>
+{#-------------------------------------------------ACCOUNT----------------------------------------------#}
 
-    <form class="login" method="post">
-
-      {#  If user is log  #}
-      {% if app.user %}
-        <div class="center-align">
-          <p>Vous êtes connecté avec {{ app.user.username }}</p>
-          {#  If user have to confirm email  #}
-          {% if is_granted('ROLE_NOT_VALID') %}
-            <p class="red white-text">Veuillez valider votre email pour effectuer des achats</p>
-          {% endif %}
+    {#  If user is log  #}
+    {% if app.user %}
+    <div class="center-align container">
+      <section class="white">
+      <p>Vous êtes connecté avec {{ app.user.username }}</p>
+      {#  If user have to confirm email  #}
+      {% if is_granted('ROLE_NOT_VALID') %}
+        <p class="red white-text">Veuillez valider votre email pour effectuer des achats</p>
+      {% endif %}
+        <div class="section">
           <a class="btn" href="{{ path('app_logout') }}" title="se deconnecter">Se Deconnecter</a>
         </div>
+      </section>
+    </div>
 
-        {#   If user is not log   #}
-      {% else %}
+{# -------------------------------------------------LOGIN FORM---------------------------------------------- #}
+
+    {#   If user is not log   #}
+    {% else %}
+    <form class="login" method="post">
+
         <div class="loginRegistration">
           <span>Je n'ai pas de compte</span>
           <button type="button" onclick="window.location.href = '{{ path('app_register') }}'">Créer un compte</button>
@@ -70,9 +77,9 @@
           <input type="submit" name="" value="Se connecter">
           <span>* Vous devez renseigner les champs suivants pour vous connecter</span>
         </div>
-      {% endif %}
 
     </form>
+    {% endif %}
 
   </main>
 

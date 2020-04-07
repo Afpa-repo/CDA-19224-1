@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Ct404User;
 use App\Form\UpdatePasswordFormType;
-use App\Repository\UserRepository;
+use App\Repository\Ct404UserRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
@@ -26,8 +26,6 @@ class SecurityController extends AbstractController
 {
     /**
      * @Route("/login", name="app_login")
-     * @param AuthenticationUtils $authenticationUtils
-     * @return Response
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
@@ -59,14 +57,10 @@ class SecurityController extends AbstractController
     /**
      * @Route("/forgot_password", name="app_forgot_pwd")
      *
-     * @param UserRepository $repository
-     * @param MailerInterface $mailer
-     * @param EntityManagerInterface $manager
-     * @return Response
      * @throws NonUniqueResultException
      * @throws TransportExceptionInterface
      */
-    public function forgot_password(UserRepository $repository, MailerInterface $mailer, EntityManagerInterface $manager): Response
+    public function forgot_password(Ct404UserRepository $repository, MailerInterface $mailer, EntityManagerInterface $manager): Response
     {
         $Routes = [
             'Accueil' => '/',
@@ -106,10 +100,6 @@ class SecurityController extends AbstractController
     /**
      * @Route("/new_password/{id}/{user_token}", name="app_forgot_pwd.update", methods="GET|POST")
      *
-     * @param Ct404User $user
-     * @param Request $request
-     * @param UserPasswordEncoderInterface $passwordEncoder
-     * @return Response
      * @throws Exception
      */
     public function update_password(Ct404User $user, Request $request, UserPasswordEncoderInterface $passwordEncoder): Response

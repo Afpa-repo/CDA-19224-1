@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Ct404OrderDetail;
-use App\Form\Ct404OrderDetail2Type;
 use App\Form\Ct404OrderDetailType;
 use App\Repository\Ct404OrderDetailRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

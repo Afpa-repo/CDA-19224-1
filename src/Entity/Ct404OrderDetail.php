@@ -48,8 +48,6 @@ class Ct404OrderDetail
      */
     private $product;
 
-    // TODO Trouver un meilleur nom parce que order un mot déjà pris par PHP ou Symfony
-
     public function getQuantity(): ?string
     {
         return $this->quantity;

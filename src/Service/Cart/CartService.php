@@ -83,12 +83,10 @@ class CartService
         // si le produit est déjà dans le panier, on met la quantité rentré par l'utilisateur
         if (!empty($panier[$id]) && $valeurUser > 0) {
             $panier[$id] = $valeurUser;
-            // l'utilisateur met 0 alors on le retire du panier
-        } elseif ($valeurUser == 0) {
+        // l'utilisateur met 0 alors on le retire du panier
+        } elseif (0 == $valeurUser) {
             unset($panier[$id]);
         }
-
-
 
         $this->session->set('panier', $panier);
     }

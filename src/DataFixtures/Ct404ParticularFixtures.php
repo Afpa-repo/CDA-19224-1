@@ -4,20 +4,12 @@ namespace App\DataFixtures;
 
 use App\Entity\Ct404Commercial;
 use App\Entity\Ct404Particular;
+use App\Entity\Ct404User;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class Ct404ParticularFixtures extends BaseFixture implements DependentFixtureInterface
 {
-    /* @var UserPasswordEncoderInterface */
-    private $passwordEncoder;
-
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
-    {
-        $this->passwordEncoder = $passwordEncoder;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -25,27 +17,29 @@ class Ct404ParticularFixtures extends BaseFixture implements DependentFixtureInt
     {
         return [
             Ct404CommercialFixtures::class,
+            Ct404UserFixtures::class,
         ];
     }
 
     protected function loadData(ObjectManager $manager)
     {
-        // Creates between 3 and 5 particulars
-        $this->createMany(Ct404Particular::class, mt_rand(3, 5), function (Ct404Particular $particular) {
+        // Creates 5 particulars
+        $this->createMany(Ct404Particular::class, 5, function (Ct404Particular $particular) {
             // Fills the newly created Particular
             $particular
-                ->setAddress($this->faker->address)
+                ->setAddress($this->faker->unique()->address)
                 ->setCommercial($this->getRandomReference(Ct404Commercial::class))
-                ->setLastname($this->faker->lastName)
-                ->setFirstname($this->faker->firstName)
-                // Don't do this at home kids !!!!!!
-                // This is just temporary since I don't have the classes that implements the UserInterface yet
-                // So I can't use the UserPasswordEncoder yet
-                ->setCity($this->faker->city)
-                ->setPhoneNumber($this->faker->phoneNumber)
-                ->setPseudo($this->faker->userName)
-                ->setZipCode((int) $this->faker->postcode)
+                ->setLastname($this->faker->unique()->lastName)
+                ->setFirstname($this->faker->unique()->firstName)
+                ->setCity($this->faker->unique()->city)
+                ->setPhoneNumber($this->faker->unique()->phoneNumber)
+                ->setPseudo($this->faker->unique()->userName)
+                ->setZipCode((int) $this->faker->unique()->postcode)
             ;
+
+            for ($i = 0; $i < 5; ++$i) {
+                $particular->setUser($this->getReference(Ct404User::class.'_'.$i));
+            }
         });
 
         // Fills the database with the persisted particular

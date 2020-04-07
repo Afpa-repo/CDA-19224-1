@@ -22,7 +22,7 @@ Tout d'abord executons le script.
 
 ```shell script
 chmod +x ./chaudron # Rends le script executable
-./chaudron help
+bin/chaudron help
 ```
 
 La commande help va vous donner la liste des commandes disponibles.
@@ -30,7 +30,7 @@ La commande help va vous donner la liste des commandes disponibles.
 Nous allons utiliser la commande setup pour mettre le projet en place
 
 ```shell script
-./chaudron setup
+bin/chaudron setup
 ```
 
 Chaudron va vous guider pour vous permettre de mettre en place le projet !

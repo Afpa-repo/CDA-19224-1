@@ -14,6 +14,28 @@ git clone git@github.com:Afpa-repo/CDA-19224-1.git
 ```
 
 ## Mise en place du projet
+Vous avez deux options. 
+Mettre le projet en place manuellement ou utiliser Chaudron l'outil spécialement crée pour ce projet !
+
+### Mise en place avec Chaudron
+Tout d'abord executons le script.
+
+```shell script
+chmod +x ./chaudron # Rends le script executable
+./chaudron help
+```
+
+La commande help va vous donner la liste des commandes disponibles.
+
+Nous allons utiliser la commande setup pour mettre le projet en place
+
+```shell script
+./chaudron setup
+```
+
+Chaudron va vous guider pour vous permettre de mettre en place le projet !
+
+### Mise en place manuelle
 Maintenant vous devez installer les dépendances.
 On va commencer avec composer
 
@@ -53,26 +75,6 @@ Pour pouvoir utiliser la fonction fix de [Stylelint](https://stylelint.io/) exec
 
 ```shell script
 .yarn/releases/yarn-1.22.4.js css:fix
-```
-
-## Chaudron - CLI
-Pour pouvoir utiliser Chaudron il va falloir rendre le script executable
-
-```shell script
-# Une seule fois suffit 
-# Pas besoin de le refaire à chaque fois !
-chmod +x ./chaudron
-```
-
-Vous pouvez ensuite utiliser Chaudron !
-
-```shell script
-# Pour reset la BDD
-# Utile quand on a des problèmes de migrations ou autres
-./chaudron reset
-
-# Pour avoir la liste des commandes
-./chaudron list
 ```
 
 ## TODO

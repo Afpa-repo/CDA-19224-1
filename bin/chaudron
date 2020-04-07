@@ -4,14 +4,14 @@
 
 COMMANDE=$1
 COMMANDES=(fixtures help reset setup sql)
-BLUEBG="\e[44m"
-CYANBG="\e[46m"
-REDBG="\e[41m"
-RESET="\e[0m"
-GREENBG="\e[42m"
-WHITE="\e[97m"
+BLUEBG="\x1b[44m"
+CYANBG="\x1b[46m"
+REDBG="\x1b[41m"
+RESET="\x1b[0m"
+GREENBG="\x1b[42m"
+WHITE="\x1b[97m"
 YARN=yarn
-YELLOWBG="\e[43m"
+YELLOWBG="\x1b[43m"
 
 # -------------------------- VERIFICATIONS --------------------------
 

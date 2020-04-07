@@ -21,7 +21,10 @@ if [ $# -le 0 ]; then
     exit 1
 fi
 
-#TODO ADD WHEN COMMAND DOESENT EXISTS
+if [[ ! " ${COMMANDES[@]} " =~ " ${COMMANDE} " ]]; then
+    echo -e "${REDBG}${WHITE}Erreur: La commande ${COMMANDE} n'existe pas."
+    exit 1
+fi
 
 # If the user does not have PHP installed
 if [ command -v php >/dev/null 2>&1 ]; then

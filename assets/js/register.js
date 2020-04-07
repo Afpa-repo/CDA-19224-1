@@ -27,8 +27,7 @@ if (document.getElementById('divFormRegister')) {
     let tabSortHat = ['Gryffondor', 'Serdaigle', 'Poufsouffle', 'Serpentard'];
     let tabIndex = Math.floor(Math.random() * 4);
     let house = tabSortHat[tabIndex];
-    let description = tabDesc[tabIndex];
-    document.getElementById('descriptionHouses').innerText = description;
+    document.getElementById('descriptionHouses').innerText = tabDesc[tabIndex];
     document.getElementById('sortHatHouses').setAttribute('src', `build/images/register/Sort_Hat/sort_hat_${house}.png`)
     document.getElementById('housesImg').setAttribute('src', `build/images/houses/${house}.png`)
     document.getElementById('houseAccept').innerText = house;

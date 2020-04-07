@@ -6,6 +6,12 @@ document.addEventListener('DOMContentLoaded', function () {
     M.Sidenav.init(elems);
 });
 
+// Dropdown menu
+document.addEventListener('DOMContentLoaded', function() {
+    const elems = document.querySelectorAll('.dropdown-trigger');
+    let instances = M.Dropdown.init(elems);
+});
+
 /***** INDEX *****/
 
 // SPEECH RECOGNITION

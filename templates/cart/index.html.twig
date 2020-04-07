@@ -1,57 +1,137 @@
 {% extends 'base.html.twig' %}
 {% block title 'Panier' %}
+{% block stylesheets %}
+	{{ encore_entry_link_tags('index') }}
+	{{ encore_entry_link_tags('cart') }}
+{% endblock %}
 
 {% block h1 'Votre Panier' %}
 {% block body %}
 	{# vue panier (ultra simpliste pour l'instant ) #}
 	{# <h1>Votre panier</h1> #}
 		<main class="container grey lighten-5"> {% if items|length > 0 %}
-			<table class="table">
-				<thead>
-					<th>
-						<tr>Produit</tr>
-						<tr>Prix</tr>
-						<tr>Quantité</tr>
-						<tr>Total</tr>
-					</th>
-				</thead>
-				<tbody>
-					{% for item in items %}
-						<tr>
-							<td>{{ item.product.name }}</td>
-							<td>{{ item.product.price }}
-								&euro;</td>
-							<td>
-								<a href="{{ path('cart_subtract', {'id': item.product.id}) }}" class="btn btn-danger btn-sm">
-									-
+			{# <table>
+													<thead>
+														<tr>
+															<th>Produit</th>
+															<th>Prix</th>
+															<th>
+																<i class="material-icons">remove</i>
+															</th>
+															<th>Quantité</th>
+															<th>
+																<i class="material-icons">add</i>
+															</th>
+															<th>Total</th>
+														</tr>
+													</thead>
+													<tbody> #}
+			{% for item in items %}
+
+				<div class="col s12 m7">
+					<h2 class="header">{{ item.product.name }}</h2>
+					<div class="card horizontal">
+						<div class="card-image">
+							<img src="http://placehold.it/200x200">
+						</div>
+						<div class="card-stacked">
+							<div class="card-content">
+								<p>I am a very simple card. I am good at containing small bits of information.</p>
+								<p>Quantité :</p>
+								<div class="dropdownn">
+									<button id="dropbtn1" class="dropbtn">{{ item.quantity }}</button>
+									<div id="myDropdownn" class="dropdownn-content">
+										<a href="{{ path('cart_modify', {'id': item.product.id, 'valeurUser': 1}) }}">1</a>
+										<a href="{{ path('cart_modify', {'id': item.product.id, 'valeurUser': 2}) }}">2</a>
+										<a href="{{ path('cart_modify', {'id': item.product.id, 'valeurUser': 3}) }}">3</a>
+										<a href="{{ path('cart_modify', {'id': item.product.id, 'valeurUser': 4}) }}">4</a>
+										<a href="{{ path('cart_modify', {'id': item.product.id, 'valeurUser': 5}) }}">5</a>
+										<a href="{{ path('cart_modify', {'id': item.product.id, 'valeurUser': 6}) }}">6</a>
+										<a href="{{ path('cart_modify', {'id': item.product.id, 'valeurUser': 7}) }}">7</a>
+										<a href="{{ path('cart_modify', {'id': item.product.id, 'valeurUser': 8}) }}">8</a>
+										<a href="{{ path('cart_modify', {'id': item.product.id, 'valeurUser': 9}) }}">9</a>
+									</div>
+								</div>
+								<p>Prix unitaire :
+									{{ item.product.price }}
+									&euro;</p>
+								<p>Prix total :
+									{{ item.product.price * item.quantity }}
+									&euro;</p>
+							</div>
+							<div class="card-action">
+								<a href="{{ path('cart_remove', {'id': item.product.id}) }}" class="">
+									Supprimer
+									<i class="material-icons">delete</i>
 								</a>
-								{{ item.quantity }}
-								<a href="{{ path('cart_add', {'id': item.product.id}) }}" class="btn btn-danger btn-sm">
-									+
-								</a>
-							</td>
-							<td>{{ item.product.price * item.quantity }}
-								&euro;</td>
-							<td>
-								<a href="{{ path('cart_remove', {'id': item.product.id}) }}" class="btn btn-danger btn-sm">
-									Supp
-								</a>
-							</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-				<tfoot>
-					<tr>
-						<td colspan="3">Total :</td>
-						<td>{{ total }}
-							&euro;</td>
-						{# <td></td> #}
-					</tr>
-				</tfoot>
-			</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				{# <tr>
+																			<td>{{ item.product.name }}</td>
+																			<td>{{ item.product.price }}
+																				&euro;</td>
+																			<td>
+																				<a href="{{ path('cart_subtract', {'id': item.product.id}) }}" class="">
+																					<i class="material-icons">remove</i>
+																				</a>
+																			</td>
+																			<td>
+																				<a class='dropdown-trigger' href='#' data-target='dropdown1'>{{ item.quantity }}</a>
+																				<ul id='dropdown1' class='dropdown-content'>
+																					<li>
+																						<a href="#!">{{ item.quantity + 1 }}</a>
+																					</li>
+																					<li>
+																						<a href="#!">{{ item.quantity + 2 }}</a>
+																					</li>
+																					<li>
+																						<a href="#!">{{ item.quantity + 3 }}</a>
+																					</li>
+																					<li>
+																						<a href="#!">{{ item.quantity + 4 }}</a>
+																					</li>
+																					<li>
+																						<a href="#!">{{ item.quantity + 5 }}</a>
+																					</li>
+																				</ul>
+												
+																			</td>
+																			<td>
+																				<a href="{{ path('cart_add', {'id': item.product.id}) }}" class="">
+																					<i class="material-icons">add</i>
+																				</a>
+																			</td>
+																			<td>{{ item.product.price * item.quantity }}
+																				&euro;</td>
+																			<td>
+																				<a href="{{ path('cart_remove', {'id': item.product.id}) }}" class="">
+																					<i class="material-icons">delete</i>
+																				</a>
+																			</td>
+																		</tr> #}
+			{% endfor %}
+			{# </tbody>
+													<tfoot>
+														<tr>
+															<td colspan="3">Montant total :</td>
+															<td>{{ total }}
+																&euro;</td>
+															
+														</tr>
+													</tfoot>
+												</table> #}
 		{% else %}
-			<p>Panier Vide</p>
+			<div class="center">
+				<p>Panier Vide</p>
+				<i class="material-icons">sentiment_dissatisfied</i>
+			</div>
 		{% endif %}
 	</main>
 
+{% endblock %}
+{% block javascripts %}
+	{{ encore_entry_script_tags('index') }}
+	{{ encore_entry_script_tags('cart') }}
 {% endblock %}

@@ -77,6 +77,22 @@ class CartService
         return $panierWithData;
     }
 
+    public function quantityUser(int $id, int $valeurUser)
+    {
+        $panier = $this->session->get('panier', []);
+        // si le produit est déjà dans le panier, on met la quantité rentré par l'utilisateur
+        if (!empty($panier[$id]) && $valeurUser > 0) {
+            $panier[$id] = $valeurUser;
+            // l'utilisateur met 0 alors on le retire du panier
+        } elseif ($valeurUser == 0) {
+            unset($panier[$id]);
+        }
+
+
+
+        $this->session->set('panier', $panier);
+    }
+
     // Prix total de tous les produits du panier
     public function getTotal(): float
     {

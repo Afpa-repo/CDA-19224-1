@@ -41,6 +41,20 @@ class CartController extends AbstractController
     }
 
     /**
+     * @Route("/panier/modify{id}:{valeurUser}", name="cart_modify")
+     *
+     * @param mixed $id
+     *
+     * @return RedirectResponse
+     */
+    public function modify($id, $valeurUser, CartService $cartService)
+    {
+        $cartService->quantityUser($id, $valeurUser);
+
+        return $this->redirectToRoute('cart_index');
+    }
+
+    /**
      * @Route("/panier/subtract{id}", name="cart_subtract")
      *
      * @param mixed $id

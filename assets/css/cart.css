@@ -1,6 +1,10 @@
  .produit{
      padding: 5px;
  }
+
+ .orangeTransparent{
+   background: rgba(235, 122, 52, 0.9) !important;
+ }
  
  /* Dropdown Button */
  .dropbtn {

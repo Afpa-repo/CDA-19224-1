@@ -9,21 +9,23 @@
 {% block body %}
 	{# vue panier (ultra simpliste pour l'instant ) #}
 
-	<main class="container grey lighten-5">
+	<main class="orangeTransparent container">
 		{% if items|length > 0 %}
 			{% set compteur = 0 %}
 			{% for item in items %}
 				{% set compteur = compteur + 1 %}
 				<div class="produit col s12 m7">
-					<h2 class="header">{{ item.product.name }}</h2>
+					<h3 class="header">Produit n°{{ compteur }}</h3>
 					<div class="card horizontal">
 						<div class="card-image">
 							<img src="http://placehold.it/200x200">
 						</div>
 						<div class="card-stacked">
 							<div class="card-content">
-								<p>I am a very simple card. I am good at containing small bits of information.</p>
-								<p>Quantité :</p>
+								<h4 class="header">{{ item.product.name }}</h4>
+								<p>{{ item.product.description }}</p>
+								<h6>Quantité :</h6>
+								<a href="{{ path('cart_subtract', {'id': item.product.id}) }}" class="btn-small red"><i class="material-icons">remove</i></a>
 								<div class="dropdownn">
 									<button id="dropbtn{{loop.index}}" class="dropbtn">{{ item.quantity }}</button>
 									<div id="myDropdownn{{loop.index}}" class="dropdownn-content">
@@ -31,6 +33,7 @@
 											<a href="{{ path('cart_modify', {'id': item.product.id, 'valeurUser': i}) }}">{{ i }}</a>
 										{% endfor %}
 									</div>
+									<a href="{{ path('cart_add', {'id': item.product.id}) }}" class="btn-small red"><i class="material-icons">add</i></a>
 								</div>
 								<p>Prix unitaire :
 									{{ item.product.price }}

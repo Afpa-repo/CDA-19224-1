@@ -52,7 +52,7 @@ Encore
     .addEntry('index', './assets/js/index.js')
     //Add 1 entry to the basket of your application.
     //Ajout 1 entrée pour le panier de votre application.
-    .addEntry('cart', '.assets/js/cart.js')
+    .addEntry('cart', './assets/js/cart.js')
         // Add 1 entry for emails of your app.
     .addEntry('foundation', './assets/js/foundation.js')
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.

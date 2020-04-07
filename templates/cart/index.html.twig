@@ -10,22 +10,6 @@
 	{# vue panier (ultra simpliste pour l'instant ) #}
 	{# <h1>Votre panier</h1> #}
 		<main class="container grey lighten-5"> {% if items|length > 0 %}
-			{# <table>
-													<thead>
-														<tr>
-															<th>Produit</th>
-															<th>Prix</th>
-															<th>
-																<i class="material-icons">remove</i>
-															</th>
-															<th>Quantité</th>
-															<th>
-																<i class="material-icons">add</i>
-															</th>
-															<th>Total</th>
-														</tr>
-													</thead>
-													<tbody> #}
 			{% for item in items %}
 
 				<div class="col s12 m7">
@@ -68,60 +52,12 @@
 						</div>
 					</div>
 				</div>
-				{# <tr>
-																			<td>{{ item.product.name }}</td>
-																			<td>{{ item.product.price }}
-																				&euro;</td>
-																			<td>
-																				<a href="{{ path('cart_subtract', {'id': item.product.id}) }}" class="">
-																					<i class="material-icons">remove</i>
-																				</a>
-																			</td>
-																			<td>
-																				<a class='dropdown-trigger' href='#' data-target='dropdown1'>{{ item.quantity }}</a>
-																				<ul id='dropdown1' class='dropdown-content'>
-																					<li>
-																						<a href="#!">{{ item.quantity + 1 }}</a>
-																					</li>
-																					<li>
-																						<a href="#!">{{ item.quantity + 2 }}</a>
-																					</li>
-																					<li>
-																						<a href="#!">{{ item.quantity + 3 }}</a>
-																					</li>
-																					<li>
-																						<a href="#!">{{ item.quantity + 4 }}</a>
-																					</li>
-																					<li>
-																						<a href="#!">{{ item.quantity + 5 }}</a>
-																					</li>
-																				</ul>
-												
-																			</td>
-																			<td>
-																				<a href="{{ path('cart_add', {'id': item.product.id}) }}" class="">
-																					<i class="material-icons">add</i>
-																				</a>
-																			</td>
-																			<td>{{ item.product.price * item.quantity }}
-																				&euro;</td>
-																			<td>
-																				<a href="{{ path('cart_remove', {'id': item.product.id}) }}" class="">
-																					<i class="material-icons">delete</i>
-																				</a>
-																			</td>
-																		</tr> #}
 			{% endfor %}
-			{# </tbody>
-													<tfoot>
-														<tr>
-															<td colspan="3">Montant total :</td>
-															<td>{{ total }}
-																&euro;</td>
-															
-														</tr>
-													</tfoot>
-												</table> #}
+			<div class="total">
+				<p>Montant total :
+					{{ total }}
+					&euro;</p>
+			</div>
 		{% else %}
 			<div class="center">
 				<p>Panier Vide</p>
@@ -129,7 +65,6 @@
 			</div>
 		{% endif %}
 	</main>
-
 {% endblock %}
 {% block javascripts %}
 	{{ encore_entry_script_tags('index') }}

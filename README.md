@@ -21,7 +21,7 @@ Mettre le projet en place manuellement ou utiliser Chaudron l'outil spécialemen
 Tout d'abord executons le script.
 
 ```shell script
-chmod +x ./chaudron # Rends le script executable
+chmod +x bin/chaudron # Rends le script executable
 bin/chaudron help
 ```
 

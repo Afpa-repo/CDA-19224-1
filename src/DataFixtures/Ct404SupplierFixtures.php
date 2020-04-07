@@ -18,7 +18,7 @@ class Ct404SupplierFixtures extends BaseFixture
                 ->setEmail($this->faker->unique()->companyEmail)
                 ->setName($this->faker->unique()->company)
                 ->setPhoneNumber($this->faker->unique()->serviceNumber)
-                ->setZipCode((int) $this->faker->postcode)
+                ->setZipCode((int) $this->faker->unique()->postcode)
             ;
         });
 

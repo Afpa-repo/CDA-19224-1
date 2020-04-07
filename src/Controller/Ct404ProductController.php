@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Ct404Product;
-use App\Form\Ct404Product1Type;
 use App\Form\Ct404ProductType;
 use App\Repository\Ct404ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

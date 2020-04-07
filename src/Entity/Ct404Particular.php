@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use DateTime;
 use DateTimeInterface;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -190,6 +191,12 @@ class Ct404Particular
      */
     private $commercial;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Ct404User", inversedBy="particulars")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function getFirstname(): ?string
     {
         return $this->firstname;
@@ -311,6 +318,18 @@ class Ct404Particular
     public function setCommercial(?Ct404Commercial $commercial): self
     {
         $this->commercial = $commercial;
+
+        return $this;
+    }
+
+    public function getUser(): ?Ct404User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Ct404User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

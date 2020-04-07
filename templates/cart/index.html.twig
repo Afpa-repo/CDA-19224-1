@@ -1,11 +1,16 @@
 {% extends 'base.html.twig' %}
 {% block title 'Panier' %}
-
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
 {% block h1 'Votre Panier' %}
 {% block body %}
 	{# vue panier (ultra simpliste pour l'instant ) #}
 	{# <h1>Votre panier</h1> #}
 		<main class="container grey lighten-5"> {% if items|length > 0 %}
+
+				<p class="panier">Votre panier contient</p>
+
 			<table class="table">
 				<thead>
 					<th>
@@ -53,5 +58,8 @@
 			<p>Panier Vide</p>
 		{% endif %}
 	</main>
-
+{% block javascript %}
+	{{ encore_entry_script_tags('index') }}
+	{{ encore_entry_script_tags('cart') }}
+{% endblock %}
 {% endblock %}

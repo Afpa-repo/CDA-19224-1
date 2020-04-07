@@ -1,52 +1,72 @@
-{# {% extends 'base.html.twig' %} #}
+{% extends 'base.html.twig' %}
+{% block title 'Panier' %}
+{% block stylesheets %}
+	{{ encore_entry_link_tags('index') }}
+	{{ encore_entry_link_tags('cart') }}
+{% endblock %}
+
+{% block h1 'Votre Panier' %}
 {% block body %}
 	{# vue panier (ultra simpliste pour l'instant ) #}
-	<h1>Votre panier</h1>
-	{% if items|length > 0 %}
-		<div class="grey lighten-5">
-			<table class="table">
-				<thead>
-					<th>
-						<tr>Produit</tr>
-						<tr>Prix</tr>
-						<tr>Quantité</tr>
-						<tr>Total</tr>
-					</th>
-				</thead>
-				<tbody>
-					{% for item in items %}
-						<tr>
-							<td>{{ item.product.name }}</td>
-							<td>{{ item.product.price }} &euro;</td>
-							<td>
-								<a href="{{ path('cart_subtract', {'id': item.product.id}) }}" class="btn btn-danger btn-sm">
-									-
+
+	<main class="orangeTransparent container">
+		{% if items|length > 0 %}
+			{% set compteur = 0 %}
+			{% for item in items %}
+				{% set compteur = compteur + 1 %}
+				<div class="produit col s12 m7">
+					<h3 class="header">Produit n°{{ compteur }}</h3>
+					<div class="card horizontal">
+						<div class="card-image">
+							<img src="http://placehold.it/200x200">
+						</div>
+						<div class="card-stacked">
+							<div class="card-content">
+								<h4 class="header">{{ item.product.name }}</h4>
+								<p>{{ item.product.description }}</p>
+								<h6>Quantité :</h6>
+								<a href="{{ path('cart_subtract', {'id': item.product.id}) }}" class="btn-small red"><i class="material-icons">remove</i></a>
+								<div class="dropdownn">
+									<button id="dropbtn{{loop.index}}" class="dropbtn">{{ item.quantity }}</button>
+									<div id="myDropdownn{{loop.index}}" class="dropdownn-content">
+										{% for i in 1..9 %}
+											<a href="{{ path('cart_modify', {'id': item.product.id, 'valeurUser': i}) }}">{{ i }}</a>
+										{% endfor %}
+									</div>
+									<a href="{{ path('cart_add', {'id': item.product.id}) }}" class="btn-small red"><i class="material-icons">add</i></a>
+								</div>
+								<p>Prix unitaire :
+									{{ item.product.price }}
+									&euro;</p>
+								<p>Prix total :
+									{{ item.product.price * item.quantity }}
+									&euro;</p>
+							</div>
+							<div class="card-action">
+								<a href="{{ path('cart_remove', {'id': item.product.id}) }}" class="">
+									Supprimer
+									<i class="material-icons">delete</i>
 								</a>
-								{{ item.quantity }}
-								<a href="{{ path('cart_add', {'id': item.product.id}) }}" class="btn btn-danger btn-sm">
-									+
-								</a>
-							</td>
-							<td>{{ item.product.price * item.quantity }} &euro;</td>
-							<td>
-								<a href="{{ path('cart_remove', {'id': item.product.id}) }}" class="btn btn-danger btn-sm">
-									Supp
-								</a>
-							</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-				<tfoot>
-					<tr>
-						<td colspan="3">Total :</td>
-						<td>{{ total }}
-							&euro;</td>
-						<td></td>
-					</tr>
-				</tfoot>
-			</table>
-		</div>
-	{% else %}
-		<p>Panier Vide</p>
-	{% endif %}
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+			<div class="total">
+				<p>Montant total :
+					{{ total }}
+					&euro;</p>
+			</div>
+			<span id="compteur">{{ compteur }}</span>
+		{% else %}
+			<div class="center">
+				<p>Panier Vide</p>
+				<i class="material-icons">sentiment_dissatisfied</i>
+			</div>
+		{% endif %}
+	</main>
+{% endblock %}
+{% block javascripts %}
+	{{ encore_entry_script_tags('index') }}
+	{{ encore_entry_script_tags('cart') }}
 {% endblock %}

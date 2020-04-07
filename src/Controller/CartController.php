@@ -44,6 +44,7 @@ class CartController extends AbstractController
      * @Route("/panier/modify{id}:{valeurUser}", name="cart_modify")
      *
      * @param mixed $id
+     * @param mixed $valeurUser
      *
      * @return RedirectResponse
      */

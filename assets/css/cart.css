@@ -1,57 +1,59 @@
- .produit{
-     padding: 5px;
- }
+.produit {
+    padding: 5px;
+}
 
- .orangeTransparent{
-   background: rgba(235, 122, 52, 0.9) !important;
- }
- 
- /* Dropdown Button */
- .dropbtn {
-    background-color: #3498DB;
-    color: white;
+.orangeTransparent {
+    background: rgba(235, 122, 52, 0.9) !important;
+}
+
+/* Dropdown Button */
+.dropbtn {
     padding: 16px;
+    color: white;
     font-size: 16px;
+    background-color: #3498db;
     border: none;
     cursor: pointer;
-  }
+}
 
- /* Span "compteur" */
-  #compteur {
-      visibility: hidden;
-  }
-  
-  /* Dropdown button on hover & focus */
-  .dropbtn:hover, .dropbtn:focus {
-    background-color: #2980B9;
-  }
-  
-  /* The container <div> - needed to position the dropdown content */
-  .dropdownn {
+/* Span "compteur" */
+#compteur {
+    visibility: hidden;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover,
+.dropbtn:focus {
+    background-color: #2980b9;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdownn {
     position: relative;
     display: inline-block;
-  }
-  
-  /* Dropdown Content (Hidden by Default) */
-  .dropdownn-content {
-    display: none;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdownn-content {
     position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-  }
-  
-  /* Links inside the dropdown */
-  .dropdownn-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
+    display: none;
+    min-width: 160px;
+    background-color: #f1f1f1;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Links inside the dropdown */
+.dropdownn-content a {
     display: block;
-  }
-  
-  /* Change color of dropdown links on hover */
-  .dropdownn-content a:hover {background-color: #ddd}
-  
-  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-  .show {display:block;} 
+    padding: 12px 16px;
+    color: black;
+    text-decoration: none;
+}
+
+/* Change color of dropdown links on hover */
+.dropdownn-content a:hover,
+.dropdownn-content a:focus { background-color: #ddd; }
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show { display: block; }

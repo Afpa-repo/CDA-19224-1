@@ -83,9 +83,6 @@ class Ct404SubCategory
         return $this;
     }
 
-    /**
-     * @return Collection|Ct404Product[]
-     */
     public function getProductsList(): Collection
     {
         return $this->products_list;
@@ -105,7 +102,7 @@ class Ct404SubCategory
     {
         if ($this->products_list->contains($productsList)) {
             $this->products_list->removeElement($productsList);
-            // set the owning side to null (unless already changed)
+
             if ($productsList->getSubCategory() === $this) {
                 $productsList->setSubCategory(null);
             }

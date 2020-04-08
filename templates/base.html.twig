@@ -71,6 +71,10 @@
 
             <!-- Dropdown Structure -->
             <ul id='dropdown{{ category.id }}' class='dropdown-content'>
+            {% if categories.SubCategoriesNavBar(category.id) %}
+                <li><a href="{{ path('ct404_sub_category', {'category': category.id}) }}" title="Voir les categories de {{ category.name }}">Voir</a></li>
+            {% endif %}
+            <li class="divider"></li>
             {% for sub_category in categories.SubCategoriesNavBar(category.id) %}
                 <li><a href="#id_sous_categorie:{{ sub_category.id }}" title="{{ sub_category.name }}">{{ sub_category.name }}</a></li>
             {% endfor %}
@@ -78,7 +82,7 @@
                 <li><a href="#id_categorie:{{ category.id }}" title="Tous les produits de {{ category.name }}">Tout</a></li>
             </ul>
         {% endfor %}
-        <a class="orange-text text-darken-3" href="{{ path('product_index') }}" title="Tous les produits">TOUS</a>
+        <a class="orange-text text-darken-3" href="{{ path('ct404_product_index') }}" title="Tous les produits">TOUS</a>
     </nav>
 
 

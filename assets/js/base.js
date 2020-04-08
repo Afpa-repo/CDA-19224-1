@@ -3,7 +3,10 @@
 // Dropdown menu
 document.addEventListener('DOMContentLoaded', function() {
     const elems = document.querySelectorAll('.dropdown-trigger');
-    let instances = M.Dropdown.init(elems);
+    let instances = M.Dropdown.init(elems, {
+        coverTrigger: false,
+        constrainWidth: false,
+    });
 });
 
 /***** INDEX *****/

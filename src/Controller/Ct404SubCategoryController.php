@@ -41,8 +41,6 @@ class Ct404SubCategoryController extends AbstractController
             'id' => $category_id,
         ]);
 
-        dump($category_id);
-
         return $this->render('ct404_sub_category/child_by_parent.html.twig', [
             'ct404_sub_categories' => $sub_categories,
             'current_category' => $current_category,

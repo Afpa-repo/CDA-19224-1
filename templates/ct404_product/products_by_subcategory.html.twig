@@ -18,12 +18,19 @@
                     <div class="card">
                         <div class="card-image">
                             <img src="http://placehold.it/200x200">
-                            <a href="{{ path('ct404_product_show', {'id': ct404_product.id}) }}" class="btn-floating halfway-fab waves-effect waves-light orange darken-4"><i class="material-icons">arrow_forward</i></a>
+                            <a href="{{ path('ct404_product_show', {'id': ct404_product.id}) }}" class="btn-floating halfway-fab waves-effect waves-light orange darken-4">
+                                <i class="material-icons">arrow_forward</i>
+                            </a>
                         </div>
                         <div class="card-content">
                             <h2 class="nameProduct center-align">{{ ct404_product.name }}</h2>
                             <section>
                                 <h3 class="priceH3 flow-text center-align">{{ ct404_product.price }} €</h3>
+                                <article class="center-align">
+                                    <a class="btn-large btn-floating blue" href="{{ path('cart_add', {'id': ct404_product.id}) }}" title="Ajouter au panier">
+                                        <i class="material-icons">add_shopping_cart</i>
+                                    </a>
+                                </article>
                                 <article class="descriptionProduct section">
                                     {{ ct404_product.description }}
                                 </article>

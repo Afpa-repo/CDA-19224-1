@@ -9,8 +9,8 @@ class Ct404CommercialFixtures extends BaseFixture
 {
     protected function loadData(ObjectManager $manager)
     {
-        // Creates between 3 and 6 commercials
-        $this->createMany(Ct404Commercial::class, mt_rand(3, 6), function (Ct404Commercial $commercial) {
+        // Creates between 4 and 8 commercials
+        $this->createMany(Ct404Commercial::class, mt_rand(4, 8), function (Ct404Commercial $commercial) {
             // Fills the newly created Commercial
             $commercial
                 ->setCommercialForParticular($this->faker->boolean)

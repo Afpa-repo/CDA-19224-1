@@ -9,8 +9,6 @@ use DateTime;
 use Exception;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Asset\Package;
-use Symfony\Component\Asset\VersionStrategy\JsonManifestVersionStrategy;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
@@ -26,12 +24,6 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register", name="app_register")
      *
-     * @param Request $request
-     * @param UserPasswordEncoderInterface $passwordEncoder
-     * @param GuardAuthenticatorHandler $guardHandler
-     * @param LoginFormAuthenticator $authenticator
-     * @param MailerInterface $mailer
-     * @return Response
      * @throws TransportExceptionInterface
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $authenticator, MailerInterface $mailer): Response
@@ -97,9 +89,6 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/confirmation/{id}/{user_token}", name="confimation.email", methods="GET|POST")
      *
-     * @param Ct404User $user
-     * @param Request $request
-     * @return Response
      * @throws Exception
      */
     public function confirm_email(Ct404User $user, Request $request): Response

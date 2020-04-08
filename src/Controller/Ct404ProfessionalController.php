@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Ct404Professional;
-use App\Form\Ct404Professional1Type;
 use App\Form\Ct404ProfessionalType;
 use App\Repository\Ct404ProfessionalRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

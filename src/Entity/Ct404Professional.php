@@ -67,25 +67,6 @@ class Ct404Professional
 
     /**
      * @var string
-     * @Assert\NotBlank(
-     *     message="Le nom du contact est requis"
-     * )
-     * @Assert\Length(
-     *     max="50",
-     *     maxMessage="Le nom du contact doit faire au maximum {{ limit }} caractères",
-     *     normalizer="trim"
-     * )
-     * @Assert\Regex(
-     *     pattern="/^[\w\&\'\-éèêëûüùîïíôöœàáâæç]+$/i",
-     *     message="{{ value }} n'est pas un nom de contact valide",
-     *     normalizer="trim"
-     * )
-     * @ORM\Column(type="string", length=50, nullable=false)
-     */
-    private $contact;
-
-    /**
-     * @var string
      * @Assert\Email(
      *     message="{{ value }} n'est pas un email valide",
      *     mode="strict"
@@ -124,11 +105,125 @@ class Ct404Professional
     private $updatedAt;
 
     /**
+     * @var string
+     * @Assert\NotBlank(
+     *     message="L'adresse est requise"
+     * )
+     * @Assert\Length(
+     *     max="100",
+     *     maxMessage="L'adresse doit faire au maximum {{ limit }} caractères",
+     *     normalizer="trim"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[\w\d\.\,\(\)\-éèêëûüùîïíôöœàáâæç]+$/i",
+     *     message="{{ value }} n'est pas une adresse valide",
+     *     normalizer="trim"
+     * )
+     * @ORM\Column(type="string", length=100, nullable=false)
+     */
+    private $address;
+
+    /**
+     * @var string
+     * @Assert\NotBlank(
+     *     message="La ville est requise"
+     * )
+     * @Assert\Length(
+     *     max="50",
+     *     maxMessage="La ville doit faire au maximum {{ limit }} caractères",
+     *     normalizer="trim"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[\w\-éèêëûüùîïíôöœàáâæç]+$/i",
+     *     message="{{ value }} n'est pas une ville valide",
+     *     normalizer="trim"
+     * )
+     * @ORM\Column(type="string", length=50, nullable=false)
+     */
+    private $city;
+
+    /**
+     * @var string
+     * @Assert\NotBlank(
+     *     message="Le prénom est requis"
+     * )
+     * @Assert\Length(
+     *     max="50",
+     *     min="3",
+     *     maxMessage="Le prénom doit faire au maximum {{ limit }} caractères",
+     *     minMessage="Le prénom doit faire au minimum {{ limit }} caractères",
+     *     normalizer="trim"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[\w\&\'\-éèêëûüùîïíôöœàáâæç]+$/i",
+     *     message="{{ value }} n'est pas un prénom valide",
+     *     normalizer="trim"
+     * )
+     * @ORM\Column(type="string", length=50, nullable=false)
+     */
+    private $firstname;
+
+    /**
+     * @var string
+     * @Assert\NotBlank(
+     *     message="Le nom est requis"
+     * )
+     * @Assert\Length(
+     *     max="50",
+     *     min="3",
+     *     maxMessage="Le nom doit faire au maximum {{ limit }} caractères",
+     *     minMessage="Le nom doit faire au minimum {{ limit }} caractères",
+     *     normalizer="trim"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[\w\&\'\-éèêëûüùîïíôöœàáâæç]+$/i",
+     *     message="{{ value }} n'est pas un nom valide",
+     *     normalizer="trim"
+     * )
+     * @ORM\Column(type="string", length=50, nullable=false)
+     */
+    private $lastname;
+
+    /**
+     * @var string
+     * @Assert\NotBlank(
+     *     message="Le numéro de téléphone est requis"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^(0{1}\d{9})$/",
+     *     message="{{ value }} n'est pas un numéro de téléphone valide",
+     *     normalizer="trim"
+     * )
+     * @ORM\Column(type="string", length=20, nullable=false)
+     */
+    private $phoneNumber;
+
+    /**
+     * @var int
+     * @Assert\NotBlank(
+     *     message="Le code postal est requis"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^\d{5}$/",
+     *     message="{{ value }} n'est pas un code postal valide",
+     *     normalizer="trim"
+     * )
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $zipCode;
+
+    /**
      * @var Ct404Commercial
      * @ORM\ManyToOne(targetEntity="App\Entity\Ct404Commercial", inversedBy="professionals")
      * @ORM\JoinColumn(nullable=false)
      */
     private $commercial;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Ct404User", inversedBy="professionals")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
 
     public function getSiret(): ?string
     {
@@ -150,18 +245,6 @@ class Ct404Professional
     public function setCompany(string $company): self
     {
         $this->company = $company;
-
-        return $this;
-    }
-
-    public function getContact(): ?string
-    {
-        return $this->contact;
-    }
-
-    public function setContact(string $contact): self
-    {
-        $this->contact = $contact;
 
         return $this;
     }
@@ -215,5 +298,89 @@ class Ct404Professional
     public function setCompanyEmail(string $companyEmail): void
     {
         $this->companyEmail = $companyEmail;
+    }
+
+    public function getUser(): ?Ct404User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Ct404User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(string $firstname): self
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(string $lastname): self
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    public function getPhoneNumber(): ?string
+    {
+        return $this->phoneNumber;
+    }
+
+    public function setPhoneNumber(string $phoneNumber): self
+    {
+        $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+
+    public function getZipCode(): ?int
+    {
+        return $this->zipCode;
+    }
+
+    public function setZipCode(int $zipCode): self
+    {
+        $this->zipCode = $zipCode;
+
+        return $this;
     }
 }

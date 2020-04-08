@@ -14,6 +14,28 @@ git clone git@github.com:Afpa-repo/CDA-19224-1.git
 ```
 
 ## Mise en place du projet
+Vous avez deux options. 
+Mettre le projet en place manuellement ou utiliser Chaudron l'outil spécialement crée pour ce projet !
+
+### Mise en place avec Chaudron
+Tout d'abord executons le script.
+
+```shell script
+chmod +x bin/chaudron # Rends le script executable
+bin/chaudron help
+```
+
+La commande help va vous donner la liste des commandes disponibles.
+
+Nous allons utiliser la commande setup pour mettre le projet en place
+
+```shell script
+bin/chaudron setup
+```
+
+Chaudron va vous guider pour vous permettre de mettre en place le projet !
+
+### Mise en place manuelle
 Maintenant vous devez installer les dépendances.
 On va commencer avec composer
 

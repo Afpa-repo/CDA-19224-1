@@ -1,123 +1,40 @@
 /* PORTABLE PC VERSION */
 
-@media screen and (max-width: 1440px){
-
-  /* INDEX */
-
-  .index{
-    width: 99%;
-  }
-
-  /* LOGIN */
-
-  .login{
-    width: 75%;
-  }
+@media screen and (max-width: 1440px) {
+    /* INDEX */
 
     .index {
         width: 100%;
     }
+
+    /* LOGIN */
+
+    .login {
+        width: 75%;
+    }
+
+    /* .index {
+        width: 99%;
+    } */
 }
 
 /* MOBILE VERSION */
 
-@media screen and (max-width: 992px){
-
-  /* BASE */
-
-  nav{
-    font-size: 100%;
-  }
-
-  #pageTitle{
-    font-size: 400%;
-  }
-
-  /* INDEX */
-
-  .index{
-    width: 95%;
-    height: 100%;
-  }
-
-  .index>article{
-    margin-bottom: 2%;
-  }
-
-  .indexMessage>h2{
-    font-size: 200%;
-  }
-
-  .indexMessage>p{
-    font-size: 100%;
-  }
-
-  .indexHousesGryffondor>h3{
-    display: none;
-  }
-
-  .indexHousesGryffondor>img{
-    width: 100%;
-  }
-
-  .indexHousesSerdaigle>h3{
-    display: none;
-  }
-
-  .indexHousesSerdaigle>img{
-    width: 100%;
-  }
-
-  .indexHousesPoufsouffle>h3{
-    display: none;
-  }
-
-  .indexHousesPoufsouffle>img{
-    width: 100%;
-  }
-
-  .indexHousesSerpentard>h3{
-    display: none;
-  }
-
-  .indexHousesSerpentard>img{
-    width: 100%;
-  }
-
-  .indexHousesPoudlard>h3{
-    display: none;
-  }
-
-  .indexHousesPoudlard>img{
-    width: 100%;
-  }
-
-  .indexChopsticks{
-    flex-direction: column-reverse;
-  }
-
-  .indexChopsticksImg{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .indexChopsticksImg>img{
-    width: 50%;
-  }
-
-  .indexChopsticksText{
-    width: 100%;
-  }
+@media screen and (max-width: 992px) {
+    /* BASE */
 
     nav {
         font-size: 100%;
     }
 
+    #pageTitle {
+        font-size: 400%;
+    }
+
     /* INDEX */
 
     .index {
+        width: 95%;
         height: 100%;
     }
 
@@ -125,21 +42,87 @@
         margin-bottom: 2%;
     }
 
-  /* LOGIN */
+    .indexMessage > h2 {
+        font-size: 200%;
+    }
 
-  .login{
-    width: 95%;
-    flex-direction: column;
-  }
+    .indexMessage > p {
+        font-size: 100%;
+    }
 
-  .loginRegistration{
-    width: 100%;
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 0px;
-  }
+    .indexHousesGryffondor > h3 {
+        display: none;
+    }
 
-  .loginConnection{
-    width: 100%;
-  }
+    .indexHousesGryffondor > img {
+        width: 100%;
+    }
 
+    .indexHousesSerdaigle > h3 {
+        display: none;
+    }
+
+    .indexHousesSerdaigle > img {
+        width: 100%;
+    }
+
+    .indexHousesPoufsouffle > h3 {
+        display: none;
+    }
+
+    .indexHousesPoufsouffle > img {
+        width: 100%;
+    }
+
+    .indexHousesSerpentard > h3 {
+        display: none;
+    }
+
+    .indexHousesSerpentard > img {
+        width: 100%;
+    }
+
+    .indexHousesPoudlard > h3 {
+        display: none;
+    }
+
+    .indexHousesPoudlard > img {
+        width: 100%;
+    }
+
+    .indexChopsticks {
+        flex-direction: column-reverse;
+    }
+
+    .indexChopsticksImg {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .indexChopsticksImg > img {
+        width: 50%;
+    }
+
+    .indexChopsticksText {
+        width: 100%;
+    }
+
+    /* LOGIN */
+
+    .login {
+        flex-direction: column;
+        width: 95%;
+    }
+
+    .loginRegistration {
+        width: 100%;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 0;
+    }
+
+    .loginConnection {
+        width: 100%;
+    }
 }

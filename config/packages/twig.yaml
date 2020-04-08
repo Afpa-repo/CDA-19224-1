@@ -3,3 +3,5 @@ twig:
     form_theme: ['forms/materialize_form_template.html.twig']
     paths:
         public/: public
+    globals:
+        categories: '@App\Service\Categories\CategoriesManagement'

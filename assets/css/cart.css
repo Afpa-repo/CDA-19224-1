@@ -1,13 +1,18 @@
-.produit {
-    padding: 5px;
-}
 
-.orangeTransparent {
-    background: rgba(235, 122, 52, 0.9) !important;
-}
+ .produit{
+     padding: 5px;
+ }
 
-/* Dropdown Button */
-.dropbtn {
+ .orangeTransparent{
+   background: rgba(235, 122, 52, 0.9) !important;
+     border-radius: 10px;
+ }
+ 
+ /* Dropdown Button */
+ .dropbtn {
+    background-color: lightgray;
+    color: black;
+
     padding: 16px;
     color: white;
     font-size: 16px;
@@ -49,11 +54,71 @@
     padding: 12px 16px;
     color: black;
     text-decoration: none;
+
+    display: block;
+      width: auto;
+      height:20px;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdownn-content a:hover {background-color: #ddd}
+  
+  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+  .show {display:block;}
+
+  .cart{
+      color: black;
+      font-size: xx-large;
+  }
+  /*lien retour au produit*/
+.backToShopping{
+    color: #3adb76;
+    font-size: xx-large;
 }
+    /*supprimer les produit*/
+.deleteAProduct
+{
+    background-color:rgba(235, 122, 52, 0.9);
+    color: #ffd700 !important;
+}
+/*bouton ajoute la quantité d'un produit*/
+.addBtn
+{
+    width: auto;
+    height:50px;
+    background-color:#005947;
+    color: white ;
+}
+/*retire la quantité d'un produit */
+.subBtn
+{
+    width: auto;
+    height:50px;
+    text-align: -webkit-center;
+    background-color:#a61a40 ;
+    color: white;
+}
+/*lien et div continuer mes achats */
+ .ContinueShopping
+ {
 
-/* Change color of dropdown links on hover */
-.dropdownn-content a:hover,
-.dropdownn-content a:focus { background-color: #ddd; }
+     color: #daaa04;
+     background-color: rgba(235, 122, 52, 0.9);
+ }
+ .divContinueShopping
+ {
+     text-align: center;
+ }
+ /*montant total*/
+ .total
+ {
+  text-align: center;
+     color: gold !important;
+     font-size: large;
+ }
+ .quantityByUser
+ {
+     width: auto;
+     height:50px !important;
+ }
 
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show { display: block; }

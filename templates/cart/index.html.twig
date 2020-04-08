@@ -10,6 +10,9 @@
 	{# vue panier (ultra simpliste pour l'instant ) #}
 
 	<main class="orangeTransparent container">
+		<div class="divContinueShopping">
+		<p ><a class="ContinueShopping" href="/produits">Continuer mes achats</a> </p>
+		</div>
 		{% if items|length > 0 %}
 			{% set compteur = 0 %}
 			{% for item in items %}
@@ -25,16 +28,16 @@
 								<h4 class="header">{{ item.product.name }}</h4>
 								<p>{{ item.product.description }}</p>
 								<h6>Quantité :</h6>
-								<a href="{{ path('cart_subtract', {'id': item.product.id}) }}" class="btn-small red"><i class="material-icons">remove</i></a>
+								<a href="{{ path('cart_subtract', {'id': item.product.id}) }}" class="subBtn btn-small "><i class="material-icons">remove</i></a>
 								<div class="dropdownn">
 									<button id="dropbtn{{loop.index}}" class="dropbtn">{{ item.quantity }}</button>
 									<div id="myDropdownn{{loop.index}}" class="dropdownn-content">
 										{% for i in 1..9 %}
-											<a href="{{ path('cart_modify', {'id': item.product.id, 'valeurUser': i}) }}">{{ i }}</a>
+											<a class="quantityByUser" href="{{ path('cart_modify', {'id': item.product.id, 'valeurUser': i}) }}">{{ i }}</a>
 										{% endfor %}
 									</div>
-									<a href="{{ path('cart_add', {'id': item.product.id}) }}" class="btn-small red"><i class="material-icons">add</i></a>
-								</div>
+									<a href="{{ path('cart_add', {'id': item.product.id}) }}" class="addBtn btn-small "><i class="material-icons">add</i></a>
+							</div>
 								<p>Prix unitaire :
 									{{ item.product.price }}
 									&euro;</p>
@@ -43,7 +46,7 @@
 									&euro;</p>
 							</div>
 							<div class="card-action">
-								<a href="{{ path('cart_remove', {'id': item.product.id}) }}" class="">
+								<a href="{{ path('cart_remove', {'id': item.product.id}) }}" class="deleteAProduct">
 									Supprimer
 									<i class="material-icons">delete</i>
 								</a>
@@ -60,7 +63,8 @@
 			<span id="compteur">{{ compteur }}</span>
 		{% else %}
 			<div class="center">
-				<p>Panier Vide</p>
+				<p class="cart">Votre panier est Vide</p>
+				<p><a class="backToShopping" href="/produits">retour aux achats</a> </p>
 				<i class="material-icons">sentiment_dissatisfied</i>
 			</div>
 		{% endif %}

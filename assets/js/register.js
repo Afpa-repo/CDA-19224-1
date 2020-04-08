@@ -1,3 +1,40 @@
+// Imports
+const Gryffondor = require("../images/houses/Gryffondor.png");
+const GryffondorHat = require("../images/register/Sort_Hat/sort_hat_Gryffondor.png")
+const Serdaigle = require("../images/houses/Serdaigle.png");
+const SerdaigleHat = require("../images/register/Sort_Hat/sort_hat_Serdaigle.png")
+const Poufsouffle = require("../images/houses/Poufsouffle.png");
+const PoufsouffleHat = require("../images/register/Sort_Hat/sort_hat_Poufsouffle.png")
+const Serpentard = require("../images/houses/Serpentard.png");
+const SerpentardHat = require("../images/register/Sort_Hat/sort_hat_Serpentard.png")
+
+/** Functions **/
+const getHouseImg = house => {
+    switch (house) {
+        case 'Gryffondor':
+            return Gryffondor
+        case 'Serdaigle':
+            return Serdaigle
+        case 'Poufsouffle':
+            return Poufsouffle
+        case 'Serpentard':
+            return Serpentard
+    }
+}
+
+const getHouseHatImg = house => {
+    switch (house) {
+        case 'Gryffondor':
+            return GryffondorHat
+        case 'Serdaigle':
+            return SerdaigleHat
+        case 'Poufsouffle':
+            return PoufsouffleHat
+        case 'Serpentard':
+            return SerpentardHat
+    }
+}
+
 /*** REGISTRATION FORM ***/
 // CHOIXPEAU
 // Verify that I'm on the registration page
@@ -26,15 +63,15 @@ if (document.getElementById('divFormRegister')) {
     ];
 
     const tabSortHat = ['Gryffondor', 'Serdaigle', 'Poufsouffle', 'Serpentard'];
-    const tabIndex = Math.floor(Math.random() * 4);
+    const tabIndex = Math.floor(Math.random() * tabSortHat.length) + 1;
     const house = tabSortHat[tabIndex];
-
+    
     document.getElementById('descriptionHouses').innerText = tabDesc[tabIndex];
-    document.getElementById('sortHatHouses').setAttribute('src', `build/images/register/Sort_Hat/sort_hat_${house}.png`)
-    document.getElementById('housesImg').setAttribute('src', `build/images/houses/${house}.png`)
+    document.getElementById('sortHatHouses').setAttribute('src', getHouseHatImg(house))
+    document.getElementById('housesImg').setAttribute('src', getHouseImg(house))
     document.getElementById('houseAccept').innerText = house;
 
-    element = document.getElementById('btnSortHat');
+    const element = document.getElementById('btnSortHat');
     element.addEventListener('click', function (event) {
         const btnSubmit = document.getElementById('submitBtnRegistration');
         btnSubmit.classList.remove('hide');

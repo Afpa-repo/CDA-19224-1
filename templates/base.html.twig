@@ -11,6 +11,7 @@
 </head>
 
 <body>
+
 <div id="divHeader">
     {#  HEADER  #}
     <header role="banner">
@@ -62,12 +63,25 @@
     </header>
 
     {#  BOTTOM BANNER : NAVBAR  #}
-    <nav>
-        <a href="#">Baguettes</a>
-        <a href="#">Vêtements</a>
-        <a href="#">Bijoux</a>
-        <a href="#">Papeterie</a>
-        <a href="#">Accessoires</a>
+    <nav class="grey darken-4">
+        {#  Create a Service to manage categories and make it global (twig.yaml)  #}
+        {% for category in categories.CategoriesNavBar %}
+            <!-- Dropdown Trigger -->
+            <a class='dropdown-trigger' href='#' data-target='dropdown{{ category.id }}'>{{ category.name }}</a>
+
+            <!-- Dropdown Structure -->
+            <ul id='dropdown{{ category.id }}' class='dropdown-content'>
+            {% for sub_category in categories.SubCategoriesNavBar(category.id) %}
+                <li><a href="#id_sous_categorie:{{ sub_category.id }}">{{ sub_category.name }}</a></li>
+            {% endfor %}
+                <li class="divider"></li>
+                <li><a href="#id_categorie:{{ category.id }}">Tout</a></li>
+            </ul>
+
+        {% endfor %}
+
+
+
     </nav>
 
 
@@ -93,38 +107,38 @@
 
 
 {#    BODY CONTENT   #}
-{% block body %} {% endblock %}
+{% block body %}{% endblock %}
 
 
 {#    FOOTER    #}
-<footer class="page-footer grey z-depth-2">
+<footer class="page-footer grey darken-4 z-depth-2">
     {#  FOOTER BODY  #}
     <div class="container">
         <div class="row">
             <div class="col l6 s12 hide-on-med-and-down">
-                <article class="black-text flow-text">
+                <article class="flow-text">
                     <b>Merci de votre attention</b>
                 </article>
-                <p class="black-text">
+                <p>
                     Ce projet est réaliser dans le cadre de notre diplôme, en groupe avec Symfony.
                     Les objets présentés ne sont, bien évidemment, pas réellement en vente.
                     Aussi nous vous invitons à ne jamais renseigner vos coordonnées bancaires.
                 </p>
             </div>
-            <section class="col l4 offset-l2 s12">
-                <article class="black-text flow-text">
+            <section class="col l4 offset-l2 s12 hide-on-small-only">
+                <article class="flow-text">
                     <strong>Projet réalisé par</strong>
                 </article>
-                <article class="black-text">
-                    <a class="black-text" href="https://github.com/Julien-Broyard" target="_blank" title="Github Julien">Julien</a>,
-                    <a class="black-text" href="https://github.com/CocoCouq" target="_blank" title="Github Corentin">Corentin</a>,
-                    <a class="black-text" href="https://github.com/arnaud567" target="_blank" title="Github Arnaud">Arnaud</a>,
-                    <a class="black-text" href="https://github.com/ffmc02" target="_blank" title="Github Gaëtan">Gaëtan</a> &
-                    <a class="black-text" href="https://github.com/Isco80" target="_blank" title="Github Valentin">Valentin</a>
+                <article>
+                    <a class="white-text" href="https://github.com/Julien-Broyard" target="_blank" title="Github Julien">Julien</a>,
+                    <a class="white-text" href="https://github.com/CocoCouq" target="_blank" title="Github Corentin">Corentin</a>,
+                    <a class="white-text" href="https://github.com/arnaud567" target="_blank" title="Github Arnaud">Arnaud</a>,
+                    <a class="white-text" href="https://github.com/ffmc02" target="_blank" title="Github Gaëtan">Gaëtan</a> &
+                    <a class="white-text" href="https://github.com/Isco80" target="_blank" title="Github Valentin">Valentin</a>
                 </article>
             </section>
 
-            <p class="col s12 center-align black-text">
+            <p class="col s12 center-align">
                 Nous vous souhaitons une bonne visite au pays des sorciers.
             </p>
         </div>

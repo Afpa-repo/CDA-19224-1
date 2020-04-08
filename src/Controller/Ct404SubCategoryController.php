@@ -40,6 +40,7 @@ class Ct404SubCategoryController extends AbstractController
         $current_category = $ct404CategoryRepository->findOneBy([
             'id' => $category_id,
         ]);
+
         dump($category_id);
 
         return $this->render('ct404_sub_category/child_by_parent.html.twig', [

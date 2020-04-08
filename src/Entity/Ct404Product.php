@@ -110,11 +110,11 @@ class Ct404Product
     private $orderDetail;
 
     /**
+     * @var Ct404SubCategory
      * @ORM\ManyToOne(targetEntity="App\Entity\Ct404SubCategory", inversedBy="products_list")
      * @ORM\JoinColumn(nullable=false)
      */
     private $sub_category;
-
 
     public function __construct()
     {
@@ -237,5 +237,4 @@ class Ct404Product
 
         return $this;
     }
-
 }

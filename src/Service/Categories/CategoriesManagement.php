@@ -18,8 +18,6 @@ class CategoriesManagement
 
     /**
      * CategoriesManagement constructor.
-     * @param Ct404CategoryRepository $categoryRepository
-     * @param Ct404SubCategoryRepository $subCategoryRepository
      */
     public function __construct(Ct404CategoryRepository $categoryRepository, Ct404SubCategoryRepository $subCategoryRepository)
     {
@@ -38,5 +36,4 @@ class CategoriesManagement
             'category' => $category_id,
         ]);
     }
-
 }

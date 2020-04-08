@@ -1,96 +1,130 @@
 /* LOGIN */
 
-.login{
-  width: 50%;
-  height: 500px;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: white;
-  border-radius: 10px;
-  display: flex;
+.login {
+    display: flex;
+    width: 50%;
+    height: 500px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: white;
+    border-radius: 10px;
 }
 
-.loginRegistration{
-  width: 40%;
-  height: 100%;
-  background-size: cover;
-  background: url("https://cdn.pixabay.com/photo/2019/03/22/18/12/harry-potter-4073863_960_720.png") center;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: white;
+.loginRegistration {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    height: 100%;
+    color: white;
+    text-align: center;
+    background: url("https://cdn.pixabay.com/photo/2019/03/22/18/12/harry-potter-4073863_960_720.png") center;
+    background-size: cover;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
-.loginRegistration>button{
-  background-color: #35A699;
-  color: white;
-  border-radius: 10px;
-  font-size: 125%;
-  padding: 2%;
-  filter: grayscale(75%);
-  transition: 0.5s;
+@media screen and (prefers-reduced-motion: reduce) {
+    .loginRegistration > button {
+        padding: 2%;
+        color: white;
+        font-size: 125%;
+        background-color: #35a699;
+        border-radius: 10px;
+        filter: grayscale(75%);
+        transition: none;
+    }
 }
 
-.loginRegistration>button:hover{
-  filter: grayscale(0%);
+.loginRegistration > button {
+    padding: 2%;
+    color: white;
+    font-size: 125%;
+    background-color: #35a699;
+    border-radius: 10px;
+    filter: grayscale(75%);
+    transition: 0.5s;
 }
 
-.loginConnection{
-  width: 60%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  text-align: center;
+.loginRegistration > button:hover,
+.loginRegistration > button:focus {
+    filter: grayscale(0%);
 }
 
-.loginConnection>p{
-  font-size: 150%;
+.loginConnection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 60%;
+    height: 100%;
+    text-align: center;
 }
 
-.loginError{
-  color: red !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.loginConnection > p {
+    font-size: 150%;
 }
 
-.loginConnection>input{
-  width: 75% !important;
-  transition: 0.5s !important;
+.loginError {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: red !important;
 }
 
-.loginConnection>input:hover{
-  width: 80% !important;
+@media screen and (prefers-reduced-motion: reduce) {
+    .loginConnection > input {
+        width: 75% !important;
+        transition: none !important;
+    }
 }
 
-.loginConnection>input:focus{
-  width: 80% !important;
+.loginConnection > input {
+    width: 75% !important;
+    transition: 0.5s !important;
 }
 
-.loginConnection>a:hover{
-  text-decoration: underline;
+.loginConnection > input:hover {
+    width: 80% !important;
 }
 
-.loginConnection>input[type="submit"]{
-  background-color: #35A699;
-  color: white;
-  border-radius: 10px;
-  font-size: 125%;
-  padding: 2%;
-  filter: grayscale(75%);
-  transition: 0.5s;
+.loginConnection > input:focus {
+    width: 80% !important;
 }
 
-.loginConnection>input[type="submit"]:hover{
-  filter: grayscale(0%);
+.loginConnection > a:hover,
+.loginConnection > a:focus {
+    text-decoration: underline;
 }
 
-.loginConnection>span{
-  color: #CDCDCD;
+@media screen and (prefers-reduced-motion: reduce) {
+    .loginConnection > input[type="submit"] {
+        padding: 2%;
+        color: white;
+        font-size: 125%;
+        background-color: #35a699;
+        border-radius: 10px;
+        filter: grayscale(75%);
+        transition: none;
+    }
+}
+
+.loginConnection > input[type="submit"] {
+    padding: 2%;
+    color: white;
+    font-size: 125%;
+    background-color: #35a699;
+    border-radius: 10px;
+    filter: grayscale(75%);
+    transition: 0.5s;
+}
+
+.loginConnection > input[type="submit"]:hover,
+.loginConnection > input[type="submit"]:focus {
+    filter: grayscale(0%);
+}
+
+.loginConnection > span {
+    color: #cdcdcd;
 }

@@ -3,7 +3,7 @@
 # -------------------------- VARIABLES --------------------------
 
 COMMANDE=$1
-COMMANDES=(fixtures help reset setup sql)
+COMMANDES=(fix fixtures help reset setup sql)
 BLUEBG="\x1b[44m"
 CYANBG="\x1b[46m"
 REDBG="\x1b[41m"
@@ -12,6 +12,7 @@ GREENBG="\x1b[42m"
 WHITE="\x1b[97m"
 YARN=yarn
 YELLOWBG="\x1b[43m"
+VERSION="1.1.0"
 
 # -------------------------- VERIFICATIONS --------------------------
 
@@ -44,17 +45,25 @@ fi
 
 # -------------------------- FUNCTIONS --------------------------
 
+function fix {
+  $YARN php:fix
+  $YARN css:fix
+}
+
 function fixtures {
     php bin/console doctrine:fixtures:load
 }
 
 function help {
-    echo -e "${BLUEBG}${WHITE}Chaudron - Version 1.0.0\n${RESET}"
+    echo -e "${BLUEBG}${WHITE}Chaudron - Version ${VERSION}\n${RESET}"
     echo -e "${WHITE}Voici la liste des commandes disponibles: \n"
     echo -e "${WHITE}Que puis-je faire pour vous ${USER} ?\n"
 
     for C in ${COMMANDES[@]}; do
         case "$C" in
+            "fix" )
+               echo -e "${WHITE}fix${RESET} - Permet de fix le PHP et le CSS"
+            ;;
             "fixtures" )
                 echo -e "${BLUEBG}${WHITE}fixtures${RESET} - Permet de générer les fixtures."
             ;;
@@ -118,6 +127,8 @@ function setup {
         sed -i "s|^DATABASE_URL=.*|DATABASE_URL=mysql://${DATABASE_USER}:${DATABASE_PASSWORD}@localhost:${DATABASE_PORT}/ct404_diagonalley?serverVersion=5.7|" .env
 
         echo -e "${GREENBG}${WHITE}DATABASE_URL a été modifié avec succès.${RESET}"
+
+        error_handler reset
     else 
         echo -e "${REDBG}${WHITE}DATABASE_URL n'a pas été modifié.${RESET}"
     fi
@@ -144,7 +155,8 @@ function error_handler {
 # -------------------------- LOGIC --------------------------
 
 case "$COMMANDE" in
-    "fixtures") error_handler fixtures;;
+    "fix" ) error_handler fix;;
+    "fixtures" ) error_handler fixtures;;
     "help" ) help;;
     "reset" ) error_handler reset;;
     "setup" ) error_handler setup;;

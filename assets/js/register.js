@@ -23,10 +23,12 @@ if (document.getElementById('divFormRegister')) {
         'C\'est la maison de la ruse et de l\'ambition.\n' +
         'La maison Serpentard est soumise à de nombreux clichés dus à celui dont on ne prononce pas le nom.\n' +
         'Néanmoins elle est considérée comme l\'une des meilleures maisons de Poudlard'
-    ]
-    let tabSortHat = ['Gryffondor', 'Serdaigle', 'Poufsouffle', 'Serpentard'];
-    let tabIndex = Math.floor(Math.random() * 4);
-    let house = tabSortHat[tabIndex];
+    ];
+
+    const tabSortHat = ['Gryffondor', 'Serdaigle', 'Poufsouffle', 'Serpentard'];
+    const tabIndex = Math.floor(Math.random() * 4);
+    const house = tabSortHat[tabIndex];
+
     document.getElementById('descriptionHouses').innerText = tabDesc[tabIndex];
     document.getElementById('sortHatHouses').setAttribute('src', `build/images/register/Sort_Hat/sort_hat_${house}.png`)
     document.getElementById('housesImg').setAttribute('src', `build/images/houses/${house}.png`)
@@ -34,10 +36,8 @@ if (document.getElementById('divFormRegister')) {
 
     element = document.getElementById('btnSortHat');
     element.addEventListener('click', function (event) {
-
-        let btnSubmit = document.getElementById('submitBtnRegistration');
+        const btnSubmit = document.getElementById('submitBtnRegistration');
         btnSubmit.classList.remove('hide');
         element.classList.add('hide');
-
     })
 }

@@ -128,11 +128,12 @@ function setup() {
     echo -e "${CYANBG}${WHITE}Avez-vous assez de sous pour un mac ?[y/n]${RESET}"
     read mac
 
-    if [[ $MAC = "y" || $MAC = "yes" ]]; then
-      sed -i "s/^DATABASE_URL=.*/DATABASE_URL=mysql:\/\/${DATABASE_USER}:${DATABASE_PASSWORD}@127.0.0.1:${DATABASE_PORT}\/ct404_diagonalley?serverVersion=5.7/" .env
-    else
-      sed -i "s/^DATABASE_URL=.*/DATABASE_URL=mysql:\/\/${DATABASE_USER}:${DATABASE_PASSWORD}@localhost:${DATABASE_PORT}\/ct404_diagonalley?serverVersion=5.7/" .env
+    if [[ $MAC = "y" || $MAC = "yes" ]]; then 
+      sed -i .env "s|^DATABASE_URL=.*|DATABASE_URL=mysql://${DATABASE_USER}:${DATABASE_PASSWORD}@127.0.0.1:${DATABASE_PORT}/ct404_diagonalley?serverVersion=5.7|" .env
+    else 
+      sed -i "s|^DATABASE_URL=.*|DATABASE_URL=mysql://${DATABASE_USER}:${DATABASE_PASSWORD}@${HOST}:${DATABASE_PORT}/ct404_diagonalley?serverVersion=5.7|" .env 
     fi
+    
 
     echo -e "${GREENBG}${WHITE}DATABASE_URL a été modifié avec succès.${RESET}"
 

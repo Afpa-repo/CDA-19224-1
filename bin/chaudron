@@ -4,6 +4,7 @@
 
 COMMANDE=$1
 COMMANDES=(fix fixtures help reset setup sql start)
+CONSOLE="php bin/console"
 BLUEBG="\x1b[44m"
 CYANBG="\x1b[46m"
 REDBG="\x1b[41m"
@@ -11,7 +12,7 @@ MAGENTABG="\x1b[45m"
 RESET="\x1b[0m"
 GREENBG="\x1b[42m"
 WHITE="\x1b[97m"
-YARN=yarn
+YARN='.yarn/releases/yarn-1.22.4.js'
 YELLOWBG="\x1b[43m"
 VERSION="1.1.0"
 
@@ -40,10 +41,6 @@ if [ command -v node ] >/dev/null 2>&1; then
   exit 1
 fi
 
-if [ command -v yarn ] >/dev/null 2>&1; then
-  $YARN = .yarn/releases/yarn-1.22.4.js
-fi
-
 # -------------------------- FUNCTIONS --------------------------
 
 function fix() {
@@ -52,7 +49,7 @@ function fix() {
 }
 
 function fixtures() {
-  php bin/console doctrine:fixtures:load
+  $CONSOLE doctrine:fixtures:load
 }
 
 function help() {
@@ -88,19 +85,19 @@ function help() {
 }
 
 function reset() {
-  php bin/console doctrine:database:drop --force
-  php bin/console doctrine:database:create
+  $CONSOLE doctrine:database:drop --force
+  $CONSOLE doctrine:database:create
   rm -rf ./src/Migrations/*.php
   echo -e "\n${BLUEBG}${WHITE}Les migrations on été supprimées.${RESET}"
-  php bin/console make:migration
-  php bin/console doctrine:migrations:migrate
+  $CONSOLE make:migration
+  $CONSOLE doctrine:migrations:migrate
 }
 
 function setup() {
   echo -e "${CYANBG}${WHITE}Voulez vous installer les dépendences de composer ? [y/n]${RESET}"
   read INS_COMPOSER
 
-  if [ $INS_COMPOSER = "y" ] || [ $INS_COMPOSER = "yes" ]; then
+  if [[ $INS_COMPOSER = "y" || $INS_COMPOSER = "yes" ]]; then
     composer install
   else
     echo -e "${REDBG}${WHITE}Les dépendences de composer ne seront pas installées.${RESET}"
@@ -109,7 +106,7 @@ function setup() {
   echo -e "${CYANBG}${WHITE}Voulez vous installer les dépendences de Node.js ? [y/n]${RESET}"
   read INS_YARN
 
-  if [ $INS_YARN = "y" ] || [ $INS_YARN = "yes" ]; then
+  if [[ $INS_YARN = "y" || $INS_YARN = "yes" ]]; then
     $YARN install
   else
     echo -e "${REDBG}${WHITE}Les dépendences de Node.js ne seront pas installées.${RESET}"
@@ -118,7 +115,7 @@ function setup() {
   echo -e "${CYANBG}${WHITE}Voulez vous modifier DATABASE_URL dans le fichier .env ? [y/n]${RESET}"
   read MOD_ENV
 
-  if [ $MOD_ENV = "y" ] || [ $MOD_ENV = "yes" ]; then
+  if [[ $MOD_ENV = "y" || $MOD_ENV = "yes" ]]; then
     echo -e "${CYANBG}${WHITE}Username de la BDD:${RESET}"
     read DATABASE_USER
 
@@ -128,11 +125,23 @@ function setup() {
     echo -e "${CYANBG}${WHITE}Port de la BDD:${RESET}"
     read DATABASE_PORT
 
-    sed -i "s|^DATABASE_URL=.*|DATABASE_URL=mysql://${DATABASE_USER}:${DATABASE_PASSWORD}@localhost:${DATABASE_PORT}/ct404_diagonalley?serverVersion=5.7|" .env
+    echo -e "${CYANBG}${WHITE}Avez-vous assez de sous pour un mac ?[y/n]${RESET}"
+    read mac
+
+    if [[ $MAC = "y" || $MAC = "yes" ]]; then
+      sed -i "s/^DATABASE_URL=.*/DATABASE_URL=mysql:\/\/${DATABASE_USER}:${DATABASE_PASSWORD}@127.0.0.1:${DATABASE_PORT}\/ct404_diagonalley?serverVersion=5.7/" .env
+    else
+      sed -i "s/^DATABASE_URL=.*/DATABASE_URL=mysql:\/\/${DATABASE_USER}:${DATABASE_PASSWORD}@localhost:${DATABASE_PORT}\/ct404_diagonalley?serverVersion=5.7/" .env
+    fi
 
     echo -e "${GREENBG}${WHITE}DATABASE_URL a été modifié avec succès.${RESET}"
 
-    error_handler reset
+    echo -e "${CYANBG}${WHITE}Voulez vous lancer les migrations ? [y/n]${RESET}"
+    read MIGRATIONS 
+
+    if [[ $MIGRATIONS = 'y' || $MIGRATIONS = 'yes' ]]; then
+      error_handler reset
+    fi
   else
     echo -e "${REDBG}${WHITE}DATABASE_URL n'a pas été modifié.${RESET}"
   fi
@@ -141,14 +150,14 @@ function setup() {
 function sql() {
   echo -e "${CYANBG}${WHITE}Entrez la query SQL que vous voulez executer.${RESET}"
   read QUERY
-  php bin/console doctrine:query:sql "$QUERY"
+  $CONSOLE doctrine:query:sql "$QUERY"
 }
 
 function start() {
   echo -e "${CYANBG}${WHITE}Voulez vous build les assets avec Webpack Encore ? [y/n]${RESET}"
   read BUILD
 
-  if [ $BUILD = "y" ] || [ $BUILD = "yes" ]; then
+  if [[ $BUILD = "y" || $BUILD = "yes" ]]; then
     echo -e "${CYANBG}${WHITE}Dans quel environnement voule vous lancez le projet ? [dev/prod]${RESET}"
     read ENV
 
@@ -157,16 +166,16 @@ function start() {
     else
       $YARN build
     fi
-  else
-    symfony server:start -d
-    $YARN maildev
   fi
+
+  symfony server:start -d
+  $YARN maildev
 }
 
 function stop() {
   CHECK=$(curl -s -w "%{http_code}\n" -L "http://localhost:8000/" -o /dev/null)
 
-  if [[ $CHECK == 200 || $CHECK == 403 ]]; then
+  if [[ $CHECK = 200 || $CHECK = 403 ]]; then
       symfony server:stop
   fi
 }

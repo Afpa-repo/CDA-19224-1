@@ -2,21 +2,30 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Ct404Category;
 use App\Entity\Ct404Product;
+use App\Entity\Ct404SubCategory;
 use App\Entity\Ct404Supplier;
+use App\Repository\Ct404CategoryRepository;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
 class Ct404ProductFixtures extends BaseFixture implements DependentFixtureInterface
 {
+    /* @var Ct404CategoryRepository */
+    private $categoryRepository;
+
+    public function __construct(Ct404CategoryRepository $categoryRepository)
+    {
+        $this->categoryRepository = $categoryRepository;
+    }
+
     /**
      * {@inheritdoc}
      */
     public function getDependencies()
     {
         return [
-            Ct404CategoryFixtures::class,
+            Ct404SubCategoryFixtures::class,
             Ct404SupplierFixtures::class,
         ];
     }
@@ -32,7 +41,7 @@ class Ct404ProductFixtures extends BaseFixture implements DependentFixtureInterf
                 ->setPrice($this->faker->randomFloat(2, 1, 10000000))
                 ->setStockQuantity($this->faker->numberBetween(1, 999999))
                 ->setAlertQuantity($this->faker->numberBetween(1, 1000))
-                ->setCategory($this->getRandomReference(Ct404Category::class))
+                ->setSubCategory($this->getRandomReference(Ct404SubCategory::class))
                 ->setSupplier($this->getRandomReference(Ct404Supplier::class))
             ;
         });

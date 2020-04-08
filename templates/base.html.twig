@@ -48,7 +48,7 @@
                     <a class="btn orange" href="{{ path('app_login') }}" title="Espace client">Compte</a>
                 {% else %}
                     <div class="center-align">
-                        <a href="{{ path('app_login') }}">Se connecter</a>
+                        <a href="{{ path('app_login') }}" title="Se connecter">Se connecter</a>
                     </div>
                 {% endif %}
             </div>
@@ -75,7 +75,7 @@
                 <li><a href="#id_sous_categorie:{{ sub_category.id }}" title="{{ sub_category.name }}">{{ sub_category.name }}</a></li>
             {% endfor %}
                 <li class="divider"></li>
-                <li><a href="#id_categorie:{{ category.id }}">Tout</a></li>
+                <li><a href="#id_categorie:{{ category.id }}" title="Tous les produits de {{ category.name }}">Tout</a></li>
             </ul>
         {% endfor %}
         <a class="orange-text text-darken-3" href="{{ path('product_index') }}" title="Tous les produits">TOUS</a>
@@ -143,7 +143,7 @@
     <div class="footer-copyright grey darken-4">
         <div id="divCopyright" class="container white-text">
             © 2020 Les sangs de Bourbes
-            <a class="white-text right row" href="https://github.com/Afpa-repo/CDA-19224-1" target="_blank">
+            <a class="white-text right row" href="https://github.com/Afpa-repo/CDA-19224-1" target="_blank" title="LE CODE EST ICI">
                 Github
             </a>
         </div>

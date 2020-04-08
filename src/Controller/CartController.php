@@ -20,9 +20,16 @@ class CartController extends AbstractController
      */
     public function index(CartService $cartService)
     {
+        $Routes = [
+            'Accueil' => '/',
+            'Mon compte' => '/login',
+            'Panier' => '/panier',
+        ];
+
         return $this->render('cart/index.html.twig', [
             'items' => $cartService->getFullCart(),
             'total' => $cartService->getTotal(),
+            'history_routes' => $Routes,
         ]);
     }
 

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -42,9 +43,15 @@ class Ct404SubCategory
      */
     private $category;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Ct404Product", mappedBy="sub_category")
+     */
+    private $products_list;
+
     public function __construct()
     {
         $this->category = new ArrayCollection();
+        $this->products_list = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -72,6 +79,37 @@ class Ct404SubCategory
     public function setCategory(?Ct404Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Ct404Product[]
+     */
+    public function getProductsList(): Collection
+    {
+        return $this->products_list;
+    }
+
+    public function addProductsList(Ct404Product $productsList): self
+    {
+        if (!$this->products_list->contains($productsList)) {
+            $this->products_list[] = $productsList;
+            $productsList->setSubCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProductsList(Ct404Product $productsList): self
+    {
+        if ($this->products_list->contains($productsList)) {
+            $this->products_list->removeElement($productsList);
+            // set the owning side to null (unless already changed)
+            if ($productsList->getSubCategory() === $this) {
+                $productsList->setSubCategory(null);
+            }
+        }
 
         return $this;
     }

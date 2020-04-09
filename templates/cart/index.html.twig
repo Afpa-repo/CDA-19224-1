@@ -18,16 +18,16 @@
 			{% for item in items %}
 				{% set compteur = compteur + 1 %}
 				<div class="produit col s12 m7">
-					<h3 class="header">Produit n°{{ compteur }}</h3>
+					<h2 id="product{{ item.product.id }}" class="header h3">Produit n°{{ compteur }}</h2>
 					<div class="card horizontal">
 						<div class="card-image">
 							<img src="http://placehold.it/200x200">
 						</div>
 						<div class="card-stacked">
 							<div class="card-content">
-								<h4 class="header">{{ item.product.name }}</h4>
+								<h3 class="header h4">{{ item.product.name }}</h3>
 								<p>{{ item.product.description }}</p>
-								<h6>Quantité :</h6>
+								<h4 class="h6">Quantité :</h4>
 								<a href="{{ path('cart_subtract', {'id': item.product.id}) }}" class="subBtn btn-small "><i class="material-icons">remove</i></a>
 								<div class="dropdownn">
 									<button id="dropbtn{{loop.index}}" class="dropbtn">{{ item.quantity }}</button>

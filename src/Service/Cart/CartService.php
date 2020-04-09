@@ -79,6 +79,7 @@ class CartService
 
     public function quantityUser(int $id, int $valeurUser)
     {
+        htmlspecialchars($valeurUser);
         $panier = $this->session->get('panier', []);
         // si le produit est déjà dans le panier, on met la quantité rentré par l'utilisateur
         if (!empty($panier[$id]) && $valeurUser > 0) {

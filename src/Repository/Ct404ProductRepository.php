@@ -19,6 +19,18 @@ class Ct404ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Ct404Product::class);
     }
 
+    public function findByCategory($category)
+    {
+        return $this->createQueryBuilder('p')
+            ->join('p.sub_category', 's')
+            ->join('s.category', 'c')
+            ->andWhere('c.id = :val')
+            ->setParameter('val', $category)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Ct404Product[] Returns an array of Ct404Product objects
     //  */

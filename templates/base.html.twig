@@ -79,7 +79,7 @@
                 <li><a href="{{ path('ct404_product_sub_category', {'id': sub_category.id}) }}" title="{{ sub_category.name }}">{{ sub_category.name }}</a></li>
             {% endfor %}
                 <li class="divider"></li>
-                <li><a href="#id_categorie:{{ category.id }}" title="Tous les produits de {{ category.name }}">Tout</a></li>
+                <li><a href="{{ path('ct404_product_category', {'id': category.id}) }}" title="Tous les produits de {{ category.name }}">Tout</a></li>
             </ul>
         {% endfor %}
         <a class="orange-text text-darken-3" href="{{ path('ct404_product_index') }}" title="Tous les produits">TOUS</a>

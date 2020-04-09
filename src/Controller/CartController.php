@@ -44,7 +44,7 @@ class CartController extends AbstractController
     {
         $cartService->add($id);
 
-        return $this->redirectToRoute('cart_index');
+        return $this->redirectToRoute('cart_index', ['_fragment' => 'product'.$id]);
     }
 
     /**
@@ -59,7 +59,7 @@ class CartController extends AbstractController
     {
         $cartService->quantityUser($id, $valeurUser);
 
-        return $this->redirectToRoute('cart_index');
+        return $this->redirectToRoute('cart_index', ['_fragment' => 'product'.$id]);
     }
 
     /**
@@ -73,7 +73,7 @@ class CartController extends AbstractController
     {
         $cartService->subtract($id);
 
-        return $this->redirectToRoute('cart_index');
+        return $this->redirectToRoute('cart_index', ['_fragment' => 'product'.$id]);
     }
 
     /**

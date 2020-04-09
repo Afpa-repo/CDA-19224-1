@@ -6,3 +6,5 @@ import '../css/index.css';
 
 // Imports custom JS files
 import "./base";
+// PRODUCT
+import "./product";

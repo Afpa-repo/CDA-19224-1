@@ -60,6 +60,7 @@ nav > a:focus {
 #pageTitle {
   /* Because we have a fixed-(double) navbar */
   margin-top: 200px;
+  margin-bottom: 100px;
   font-family: 'Henny Penny', sans-serif;
   font-size: 1000%;
   color: #ffd700;

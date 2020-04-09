@@ -9,5 +9,7 @@
 @import "base.css";
 /* LOGIN */
 @import "login.css";
+/* PRODUCT */
+@import "product.css";
 /* MEDIA QUERY */
 @import "mediaQuery.css";

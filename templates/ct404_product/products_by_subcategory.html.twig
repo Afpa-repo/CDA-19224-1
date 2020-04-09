@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('categories') }}
+{% endblock %}
+
+{% block title %}Ct404Product index{% endblock %}
+
+{% block h1 %}{{ current_sub_category.name }}{% endblock %}
+
+{% block body %}
+    <main>
+{% if ct404_products %}
+        <div class="row">
+            {% for ct404_product in ct404_products %}
+                <div class="col s12 m6 l4">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="http://placehold.it/200x200">
+                            <a href="{{ path('ct404_product_show', {'id': ct404_product.id}) }}" class="btn-floating halfway-fab waves-effect waves-light orange darken-4">
+                                <i class="material-icons">arrow_forward</i>
+                            </a>
+                        </div>
+                        <div class="card-content">
+                            <h2 class="nameProduct center-align">{{ ct404_product.name }}</h2>
+                            <section>
+                                <h3 class="priceH3 flow-text center-align">{{ ct404_product.price }} €</h3>
+                                <article class="center-align">
+                                    <a class="btn-large btn-floating blue" href="{{ path('cart_add', {'id': ct404_product.id}) }}" title="Ajouter au panier">
+                                        <i class="material-icons">add_shopping_cart</i>
+                                    </a>
+                                </article>
+                                <article class="descriptionProduct section">
+                                    {{ ct404_product.description }}
+                                </article>
+                                <div class="divider"></div>
+                                <small>Stock : {{ ct404_product.stockQuantity }}</small>
+                            </section>
+                            <p class="right-align">
+                                <a href="{{ path('ct404_product_edit', {'id': ct404_product.id}) }}">edit</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+            {% else %}
+                <div class="container">
+                    <section class="white">
+                        <h2 class="center-align">Désolé</h2>
+                        <article class="center-align">
+                            <p>Nous n'avons plus de produits concernant les <b>{{ current_sub_category.name }}</b>.</p>
+                            <p>Revenez nous voir, d'ici peu nous aurons fait le plein.</p>
+                            <p>D'autres richesses vous attendent sur notre plateforme.</p>
+                        </article>
+                    </section>
+                </div>
+            {% endif %}
+
+{#    <a href="{{ path('ct404_product_new') }}">Create new</a>#}
+    </main>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('categories') }}
+{% endblock %}

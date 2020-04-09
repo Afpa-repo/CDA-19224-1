@@ -53,6 +53,8 @@ Encore
     .addEntry('cart', './assets/js/cart.js')
     // Add 1 entry for emails of your app.
     .addEntry('foundation', './assets/js/foundation.js')
+    // Add 1 entry for categories views.
+    .addEntry('categories', './assets/js/categories.js')
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
     // Helps Webpack do it's job for multiple entry files.

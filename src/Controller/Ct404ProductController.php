@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Ct404Category;
 use App\Entity\Ct404Product;
 use App\Entity\Ct404SubCategory;
 use App\Form\Ct404ProductType;
+use App\Repository\Ct404CategoryRepository;
 use App\Repository\Ct404ProductRepository;
 use App\Repository\Ct404SubCategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -40,6 +42,25 @@ class Ct404ProductController extends AbstractController
 
         $current_sub_category = $ct404SubCategoryRepository->findOneBy([
             'id' => $sub_category_id,
+        ]);
+
+        return $this->render('ct404_product/products_by_subcategory.html.twig', [
+            'ct404_products' => $products,
+            'current_sub_category' => $current_sub_category,
+        ]);
+    }
+
+    /**
+     * @Route("/all/{id}", name="ct404_product_category", methods={"GET"})
+     */
+    public function byCategory(Ct404Category $category_entity, Ct404ProductRepository $ct404ProductRepository, Ct404CategoryRepository $ct404CategoryRepository): Response
+    {
+        $category_id = $category_entity->getId();
+
+        $products = $ct404ProductRepository->findByCategory($category_id);
+
+        $current_sub_category = $ct404CategoryRepository->findOneBy([
+            'id' => $category_id,
         ]);
 
         return $this->render('ct404_product/products_by_subcategory.html.twig', [

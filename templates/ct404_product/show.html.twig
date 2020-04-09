@@ -2,10 +2,12 @@
 
 {% block title %}Ct404Product{% endblock %}
 
-{% block body %}
-    <h1>Ct404Product</h1>
+{% block h1 %}{{ ct404_product.name }}{% endblock %}
 
-    <table class="table">
+{% block body %}
+<main>
+    <div class="container white">
+    <table class="responsive-table striped">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -33,10 +35,11 @@
             </tr>
         </tbody>
     </table>
-
     <a href="{{ path('ct404_product_index') }}">back to list</a>
 
     <a href="{{ path('ct404_product_edit', {'id': ct404_product.id}) }}">edit</a>
 
     {{ include('ct404_product/_delete_form.html.twig') }}
+    </div>
+</main>
 {% endblock %}

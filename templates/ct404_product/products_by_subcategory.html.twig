@@ -1,10 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    {{ encore_entry_link_tags('categories') }}
-{% endblock %}
-
 {% block title %}Ct404Product index{% endblock %}
 
 {% block h1 %}{{ current_sub_category.name }}{% endblock %}
@@ -60,9 +55,4 @@
 
 {#    <a href="{{ path('ct404_product_new') }}">Create new</a>#}
     </main>
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    {{ encore_entry_script_tags('categories') }}
 {% endblock %}

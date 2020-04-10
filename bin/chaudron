@@ -21,68 +21,79 @@ OS="uname"
 
 # If no arguments is given
 if [ $# -le 0 ]; then
-  echo -e "${REDBG}${WHITE}Erreur: Vous devez donner une commande à executer."
-  exit 1
+    echo -e "${REDBG}${WHITE}Erreur: Vous devez donner une commande à executer."
+    exit 1
 fi
 
 if [[ ! " ${COMMANDES[@]} " =~ " ${COMMANDE} " ]]; then
-  echo -e "${REDBG}${WHITE}Erreur: La commande ${COMMANDE} n'existe pas."
-  exit 1
+    echo -e "${REDBG}${WHITE}Erreur: La commande ${COMMANDE} n'existe pas."
+    exit 1
 fi
 
 # If the user does not have PHP installed
 if [ command -v php ] >/dev/null 2>&1; then
-  echo -e "${REDBG}${WHITE}Erreur: Vous devez avoir PHP pour lancer ce script."
-  exit 1
+    echo -e "${REDBG}${WHITE}Erreur: Vous devez avoir PHP pour lancer ce script."
+    exit 1
 fi
 
 # If the user does not have Node.js installed
 if [ command -v node ] >/dev/null 2>&1; then
-  echo -e "${REDBG}${WHITE}Erreur: Vous devez avoir node pour lancer ce script."
-  exit 1
+    echo -e "${REDBG}${WHITE}Erreur: Vous devez avoir node pour lancer ce script."
+    exit 1
 fi
 
 # -------------------------- FUNCTIONS --------------------------
 
+function copy() {
+    cp .env.test .env
+
+    if [ $? -eq 0 ]; then
+        echo -e "${CYANBG}${WHITE}Le fichier .env a été crée.${RESET}"
+    else
+        echo -e "${REDBG}${WHITE}Le fichier .env n'a pas pu être créer.${RESET}"
+        exit 1        
+    fi
+}
+
 function fix() {
-  $YARN php:fix
-  $YARN css:fix
+    $YARN php:fix
+    $YARN css:fix
 }
 
 function fixtures() {
-  $CONSOLE doctrine:fixtures:load -n
+    $CONSOLE doctrine:fixtures:load -n
 }
 
 function help() {
-  echo -e "${BLUEBG}${WHITE}Chaudron - Version ${VERSION}\n${RESET}"
-  echo -e "${WHITE}Voici la liste des commandes disponibles: \n"
-  echo -e "${WHITE}Que puis-je faire pour vous ${USER} ?\n"
+    echo -e "${BLUEBG}${WHITE}Chaudron - Version ${VERSION}\n${RESET}"
+    echo -e "${WHITE}Voici la liste des commandes disponibles: \n"
+    echo -e "${WHITE}Que puis-je faire pour vous ${USER} ?\n"
 
-  for C in ${COMMANDES[@]}; do
-    case "$C" in
-    "fix")
-      echo -e "${WHITE}fix${RESET} - Permet de fix le PHP et le CSS."
-      ;;
-    "fixtures")
-      echo -e "${BLUEBG}${WHITE}fixtures${RESET} - Permet de générer les fixtures."
-      ;;
-    "help")
-      echo -e "${GREENBG}${WHITE}help${RESET} - Affiche la liste des commandes."
-      ;;
-    "reset")
-      echo -e "${REDBG}${WHITE}reset${RESET} - Permet de remettre la base de données à zéro."
-      ;;
-    "setup")
-      echo -e "${CYANBG}${WHITE}setup${RESET} - Permet de mettre en place le projet quand il vient d'être cloné."
-      ;;
-    "sql")
-      echo -e "${YELLOWBG}${WHITE}sql${RESET} - Permet de lancer des query SQL sur la base de données."
-      ;;
-    "start")
-      echo -e "${MAGENTABG}${WHITE}start${RESET} - Lance le projet."
-      ;;
-    esac
-  done
+    for C in ${COMMANDES[@]}; do
+        case "$C" in
+            "fix")
+                echo -e "${WHITE}fix${RESET} - Permet de fix le PHP et le CSS."
+                ;;
+            "fixtures")
+                echo -e "${BLUEBG}${WHITE}fixtures${RESET} - Permet de générer les fixtures."
+                ;;
+            "help")
+                echo -e "${GREENBG}${WHITE}help${RESET} - Affiche la liste des commandes."
+                ;;
+            "reset")
+                echo -e "${REDBG}${WHITE}reset${RESET} - Permet de remettre la base de données à zéro."
+                ;;
+            "setup")
+                echo -e "${CYANBG}${WHITE}setup${RESET} - Permet de mettre en place le projet quand il vient d'être cloné."
+                ;;
+            "sql")
+                echo -e "${YELLOWBG}${WHITE}sql${RESET} - Permet de lancer des query SQL sur la base de données."
+                ;;
+            "start")
+                echo -e "${MAGENTABG}${WHITE}start${RESET} - Lance le projet."
+                ;;
+        esac
+    done
 }
 
 function replace_in_file() {
@@ -94,108 +105,113 @@ function replace_in_file() {
 }
 
 function reset() {
-  $CONSOLE doctrine:database:drop --force
-  $CONSOLE doctrine:database:create
-  rm -rf ./src/Migrations/*.php
-  echo -e "\n${BLUEBG}${WHITE}Les migrations on été supprimées.${RESET}"
-  $CONSOLE make:migration
-  $CONSOLE doctrine:migrations:migrate -n
+    $CONSOLE doctrine:database:drop --force
+    $CONSOLE doctrine:database:create
+    rm -rf ./src/Migrations/*.php
+    echo -e "\n${BLUEBG}${WHITE}Les migrations on été supprimées.${RESET}"
+    $CONSOLE make:migration
+    $CONSOLE doctrine:migrations:migrate -n
 }
 
 function setup() {
-  echo -e "${CYANBG}${WHITE}Voulez vous installer les dépendences de composer ? [y/n]${RESET}"
-  read INS_COMPOSER
+    echo -e "${CYANBG}${WHITE}Voulez vous installer les dépendences de composer ? [y/n]${RESET}"
+    read INS_COMPOSER
 
-  if [[ $INS_COMPOSER = "y" || $INS_COMPOSER = "yes" ]]; then
-    composer install
-  else
-    echo -e "${REDBG}${WHITE}Les dépendences de composer ne seront pas installées.${RESET}"
-  fi
-
-  echo -e "${CYANBG}${WHITE}Voulez vous installer les dépendences de Node.js ? [y/n]${RESET}"
-  read INS_YARN
-
-  if [[ $INS_YARN = "y" || $INS_YARN = "yes" ]]; then
-    $YARN install
-  else
-    echo -e "${REDBG}${WHITE}Les dépendences de Node.js ne seront pas installées.${RESET}"
-  fi
-
-  echo -e "${CYANBG}${WHITE}Voulez vous modifier DATABASE_URL dans le fichier .env ? [y/n]${RESET}"
-  read MOD_ENV
-
-  if [[ $MOD_ENV = "y" || $MOD_ENV = "yes" ]]; then
-    echo -e "${CYANBG}${WHITE}Username de la BDD:${RESET}"
-    read DATABASE_USER
-
-    echo -e "${CYANBG}${WHITE}Password de la BDD:${RESET}"
-    read DATABASE_PASSWORD
-
-    echo -e "${CYANBG}${WHITE}Port de la BDD:${RESET}"
-    read DATABASE_PORT
-
-    if [ "$OS" = 'Darwin' ]; then 
-      replace_in_file "s|^DATABASE_URL=.*|DATABASE_URL=mysql://${DATABASE_USER}:${DATABASE_PASSWORD}@127.0.0.1:${DATABASE_PORT}/ct404_diagonalley?serverVersion=5.7|" ".env"
-    else 
-      replace_in_file "s|^DATABASE_URL=.*|DATABASE_URL=mysql://${DATABASE_USER}:${DATABASE_PASSWORD}@localhost:${DATABASE_PORT}/ct404_diagonalley?serverVersion=5.7|" ".env"
+    if [[ $INS_COMPOSER = "y" || $INS_COMPOSER = "yes" ]]; then
+        composer install
+    else
+        echo -e "${REDBG}${WHITE}Les dépendences de composer ne seront pas installées.${RESET}"
     fi
 
-    echo -e "${GREENBG}${WHITE}DATABASE_URL a été modifié avec succès.${RESET}"
+    echo -e "${CYANBG}${WHITE}Voulez vous installer les dépendences de Node.js ? [y/n]${RESET}"
+    read INS_YARN
 
-    echo -e "${CYANBG}${WHITE}Voulez vous lancer les migrations ? [y/n]${RESET}"
-    read MIGRATIONS 
-
-    if [[ $MIGRATIONS = 'y' || $MIGRATIONS = 'yes' ]]; then
-      error_handler reset
+    if [[ $INS_YARN = "y" || $INS_YARN = "yes" ]]; then
+        $YARN install
+    else
+        echo -e "${REDBG}${WHITE}Les dépendences de Node.js ne seront pas installées.${RESET}"
     fi
-  else
-    echo -e "${REDBG}${WHITE}DATABASE_URL n'a pas été modifié.${RESET}"
-  fi
+
+    echo -e "${CYANBG}${WHITE}Voulez vous modifier DATABASE_URL dans le fichier .env ? [y/n]${RESET}"
+    read MOD_ENV
+
+    if [[ $MOD_ENV = "y" || $MOD_ENV = "yes" ]]; then
+        copy
+
+        SECRET=$(date | md5sum | base64)
+        replace_in_file "s|APP_SECRET=.*|APP_SECRET=${SECRET}|" ".env"
+
+        echo -e "${CYANBG}${WHITE}Username de la BDD:${RESET}"
+        read DATABASE_USER
+
+        echo -e "${CYANBG}${WHITE}Password de la BDD:${RESET}"
+        read DATABASE_PASSWORD
+
+        echo -e "${CYANBG}${WHITE}Port de la BDD:${RESET}"
+        read DATABASE_PORT
+
+        if [ "$OS" = 'Darwin' ]; then 
+            replace_in_file "s|^DATABASE_URL=.*|DATABASE_URL=mysql://${DATABASE_USER}:${DATABASE_PASSWORD}@127.0.0.1:${DATABASE_PORT}/ct404_diagonalley?serverVersion=5.7|" ".env"
+        else 
+            replace_in_file "s|^DATABASE_URL=.*|DATABASE_URL=mysql://${DATABASE_USER}:${DATABASE_PASSWORD}@localhost:${DATABASE_PORT}/ct404_diagonalley?serverVersion=5.7|" ".env"
+        fi
+
+        echo -e "${GREENBG}${WHITE}DATABASE_URL a été modifié avec succès.${RESET}"
+
+        echo -e "${CYANBG}${WHITE}Voulez vous lancer les migrations ? [y/n]${RESET}"
+        read MIGRATIONS 
+
+        if [[ $MIGRATIONS = 'y' || $MIGRATIONS = 'yes' ]]; then
+            error_handler reset
+        fi
+    else
+        echo -e "${REDBG}${WHITE}DATABASE_URL n'a pas été modifié.${RESET}"
+    fi
 }
 
 function sql() {
-  echo -e "${CYANBG}${WHITE}Entrez la query SQL que vous voulez executer.${RESET}"
-  read QUERY
-  $CONSOLE doctrine:query:sql "$QUERY"
+    echo -e "${CYANBG}${WHITE}Entrez la query SQL que vous voulez executer.${RESET}"
+    read QUERY
+    $CONSOLE doctrine:query:sql "$QUERY"
 }
 
 function start() {
-  echo -e "${CYANBG}${WHITE}Voulez vous build les assets avec Webpack Encore ? [y/n]${RESET}"
-  read BUILD
+    echo -e "${CYANBG}${WHITE}Voulez vous build les assets avec Webpack Encore ? [y/n]${RESET}"
+    read BUILD
 
-  if [[ $BUILD = "y" || $BUILD = "yes" ]]; then
-    echo -e "${CYANBG}${WHITE}Dans quel environnement voule vous lancez le projet ? [dev/prod]${RESET}"
-    read ENV
+    if [[ $BUILD = "y" || $BUILD = "yes" ]]; then
+        echo -e "${CYANBG}${WHITE}Dans quel environnement voule vous lancez le projet ? [dev/prod]${RESET}"
+        read ENV
 
-    if [ $ENV = "dev" ]; then
-      $YARN dev
-    else
-      $YARN build
+        if [ $ENV = "dev" ]; then
+            $YARN dev
+        else
+            $YARN build
+        fi
     fi
-  fi
 
-  symfony server:start -d
-  $YARN maildev
+    symfony server:start -d
+    $YARN maildev
 }
 
 function stop() {
-  CHECK=$(curl -s -w "%{http_code}\n" -L "http://localhost:8000/" -o /dev/null)
+    CHECK=$(curl -s -w "%{http_code}\n" -L "http://localhost:8000/" -o /dev/null)
 
-  if [[ $CHECK = 200 || $CHECK = 403 ]]; then
-      symfony server:stop
-  fi
+    if [[ $CHECK = 200 || $CHECK = 403 ]]; then
+        symfony server:stop
+    fi
 }
 
 function error_handler() {
-  $1
+    $1
 
-  if [[ $? == 0 ]]; then
-    echo -e "${GREENBG}${WHITE}Succès: Tout s'est bien passé"
-    exit 0
-  else
-    echo -e "${REDBG}${WHITE}Erreur: Il y a un problème avec la commande ${1}"
-    exit 1
-  fi
+    if [[ $? == 0 ]]; then
+        echo -e "${GREENBG}${WHITE}Succès: Tout s'est bien passé"
+        exit 0
+    else
+        echo -e "${REDBG}${WHITE}Erreur: Il y a un problème avec la commande ${1}"
+        exit 1
+    fi
 }
 
 # -------------------------- TRAPS --------------------------
@@ -205,11 +221,11 @@ trap "stop" 1 2
 # -------------------------- LOGIC --------------------------
 
 case "$COMMANDE" in
-"fix") error_handler fix ;;
-"fixtures") error_handler fixtures ;;
-"help") help ;;
-"reset") error_handler reset ;;
-"setup") error_handler setup ;;
-"sql") error_handler sql ;;
-"start") error_handler start ;;
+    "fix") error_handler fix ;;
+    "fixtures") error_handler fixtures ;;
+    "help") help ;;
+    "reset") error_handler reset ;;
+    "setup") error_handler setup ;;
+    "sql") error_handler sql ;;
+    "start") error_handler start ;;
 esac

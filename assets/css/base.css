@@ -77,21 +77,15 @@ nav > a:focus {
 }
 
 #pageTitle {
-    /* Because we have a fixed-(double) navbar */
-    margin-top: 200px;
-    color: #ffd700;
-    font-size: 1000%;
-    font-family: 'Henny Penny', sans-serif;
-    text-shadow:
-        0 0 1px grey,
-        1px 1px 2px #cba100,
-        2px 2px 3px #8e7100,
-        3px 3px 3px #675200,
-        4px 4px 4px #4b3900,
-        5px 5px 2px #3d2d00,
-        6px 6px 4px #290e00,
-        7px 7px 1px #210d00,
-        8px 8px rgba(255, 215, 0, 0.24);
+  /* Because we have a fixed-(double) navbar */
+  margin-top: 200px;
+  margin-bottom: 100px;
+  font-family: 'Henny Penny', sans-serif;
+  font-size: 1000%;
+  color: #ffd700;
+  text-shadow: 0px 0px 1px grey, 1px 1px 2px #cba100, 2px 2px 3px #8e7100,
+  3px 3px 3px #675200, 4px 4px 4px #4b3900, 5px 5px 2px #3d2d00,
+  6px 6px 4px #290e00, 7px 7px 1px #210d00, 8px 8px rgba(255, 215, 0, 0.24);
 }
 
 /* CLASSES */

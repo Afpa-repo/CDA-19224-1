@@ -58,9 +58,7 @@ if ('webkitSpeechRecognition' in window) {
                 // Add the new transcription with intermediates values
                 searchInput.value = (document.getElementById('searchInput').value + transcript);
             }
-
         }
-
     }
 } else {
     // If SpeechRecognition doesn't work in the browser, so hide him

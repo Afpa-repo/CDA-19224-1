@@ -17,68 +17,76 @@
     <section class="red flow-text row center-align">
       <strong class="col s12 center-align white-text">{{ message }}</strong>
     </section>
-  {% endfor %}§
+  {% endfor %}
 
-  <main>
-{#-------------------------------------------------ACCOUNT----------------------------------------------#}
+  <main class="container">
+    {#-------------------------------------------------ACCOUNT----------------------------------------------#}
 
     {#  If user is log  #}
     {% if app.user %}
-    <div class="center-align container">
-      <section class="white">
-      <p>Vous êtes connecté avec {{ app.user.username }}</p>
-      {#  If user have to confirm email  #}
-      {% if is_granted('ROLE_NOT_VALID') %}
-        <p class="red white-text">Veuillez valider votre email pour effectuer des achats</p>
-      {% endif %}
-        <div class="section">
-          <a class="btn" href="{{ path('app_logout') }}" title="se deconnecter">Se Deconnecter</a>
-        </div>
-      </section>
-    </div>
-
-{# -------------------------------------------------LOGIN FORM---------------------------------------------- #}
-
-    {#   If user is not log   #}
-    {% else %}
-    <form class="login" method="post">
-
-        <div class="loginRegistration">
-          <span>Je n'ai pas de compte</span>
-          <button type="button" onclick="window.location.href = '{{ path('app_register') }}'">Créer un compte</button>
-        </div>
-
-        <div class="loginConnection">
-          <p>J'ai déjà un compte, je me connecte :</p>
-          {% if error %}
-            {#  Display the login errors  #}
-            <span class="loginError"><i class="material-icons">report</i>{{ error.messageKey|trans(error.messageData, 'security') }}</span>
+      <div class="center-align">
+        <section class="white">
+          <p>Vous êtes connecté avec {{ app.user.username }}</p>
+          {#  If user have to confirm email  #}
+          {% if is_granted('ROLE_NOT_VALID') %}
+            <p class="red white-text">Veuillez valider votre email pour effectuer des achats</p>
           {% endif %}
-          <div class="row">
-            <label class="col s12" for="userEmail" aria-label="userEmail">
-              <input id="userEmail" aria-labelledby="userEmail" type="email" value="{{ last_username }}" name="email" class="validate" placeholder="Email *" required>
-            </label>
-            <label class="col s12" for="userPwd" aria-label="userPwd">
-              <input id="userPwd" aria-labelledby="userPwd" type="password" name="password" class="validate" placeholder="Mot de passe *" required>
-            </label>
+          <div class="section">
+            <a class="btn" href="{{ path('app_logout') }}" title="se deconnecter">Se Deconnecter</a>
           </div>
-          <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-          {#
-          Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-          See https://symfony.com/doc/current/security/remember_me.html
+        </section>
+      </div>
 
-          <div class="checkbox mb-3">
-          <label>
-          <input type="checkbox" name="_remember_me"> Remember me
-          </label>
-          </div>
-          #}
-          <a href="{{ path('app_forgot_pwd') }}" title="Recupération de mot de passe">Mot de passe oublié</a>
-          <input type="submit" name="" value="Se connecter">
-          <span>* Vous devez renseigner les champs suivants pour vous connecter</span>
-        </div>
+      {# -------------------------------------------------LOGIN FORM---------------------------------------------- #}
 
-    </form>
+      {#   If user is not log   #}
+    {% else %}
+      <div id="divLogin" class="white">
+
+        <form id="formlogin" method="post">
+
+          <section id="login" class="row center-align">
+            <article id="loginRegistration" class="col s12 m5 valign-wrapper">
+              <div id="divButtonsRegister" class="center-align">
+                <span class="white-text col s12 flow-text">Je n'ai pas de compte</span>
+                <a class="white-text" href="{{ path('app_register') }}" title="créer un compte">Créer un compte</a>
+              </div>
+            </article>
+
+            <div id="loginConnection" class="center-align col s12 m7 valign-wrapper">
+              <p>J'ai déjà un compte, je me connecte :</p>
+
+              {% if error %}
+                {#  Display the login errors  #}
+                <span class="red-text valign-wrapper"><i class="material-icons">report</i>{{ error.messageKey|trans(error.messageData, 'security') }}</span>
+              {% endif %}
+
+              <div class="row">
+                <label class="col s12" for="userEmail" aria-label="userEmail">
+                  <input id="userEmail" aria-labelledby="userEmail" type="email" value="{{ last_username }}" name="email" class="validate" placeholder="Email *" required>
+                </label>
+                <label class="col s12" for="userPwd" aria-label="userPwd">
+                  <input id="userPwd" aria-labelledby="userPwd" type="password" name="password" class="validate" placeholder="Mot de passe *" required>
+                </label>
+              </div>
+              <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+              {#
+              Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+              See https://symfony.com/doc/current/security/remember_me.html
+
+              <div class="checkbox mb-3">
+              <label>
+              <input type="checkbox" name="_remember_me"> Remember me
+              </label>
+              </div>
+              #}
+              <a href="{{ path('app_forgot_pwd') }}" title="Recupération de mot de passe">Mot de passe oublié</a>
+              <input class="white-text" type="submit" name="submit" value="Se connecter">
+              <span class="grey-text">* Vous devez renseigner les champs suivants pour vous connecter</span>
+            </div>
+          </section>
+        </form>
+      </div>
     {% endif %}
 
   </main>

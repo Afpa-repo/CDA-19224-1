@@ -1,6 +1,3 @@
-// Imports css for the cart entry
-import '../css/cart.css';
-
 // Récupère le nombre de produit (span avec id compteur)
 const compteur = parseInt(document.getElementById("compteur").textContent);
 

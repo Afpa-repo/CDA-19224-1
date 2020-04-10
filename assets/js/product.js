@@ -1,6 +1,3 @@
-/* IMPORT CSS */
-import '../css/product.css';
-
 var productCategory = document.getElementById("productCategory").value;
 var productTitle = document.getElementById("productTitle");
 

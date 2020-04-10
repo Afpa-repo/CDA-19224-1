@@ -1,12 +1,12 @@
 // Imports
-const Gryffondor = require("../images/houses/Gryffondor.png");
-const GryffondorHat = require("../images/register/Sort_Hat/sort_hat_Gryffondor.png")
-const Serdaigle = require("../images/houses/Serdaigle.png");
-const SerdaigleHat = require("../images/register/Sort_Hat/sort_hat_Serdaigle.png")
-const Poufsouffle = require("../images/houses/Poufsouffle.png");
-const PoufsouffleHat = require("../images/register/Sort_Hat/sort_hat_Poufsouffle.png")
-const Serpentard = require("../images/houses/Serpentard.png");
-const SerpentardHat = require("../images/register/Sort_Hat/sort_hat_Serpentard.png")
+import Gryffondor from "../images/houses/Gryffondor.png";
+import GryffondorHat from "../images/register/Sort_Hat/sort_hat_Gryffondor.png"
+import Serdaigle from "../images/houses/Serdaigle.png";
+import SerdaigleHat from "../images/register/Sort_Hat/sort_hat_Serdaigle.png"
+import Poufsouffle from "../images/houses/Poufsouffle.png";
+import PoufsouffleHat from "../images/register/Sort_Hat/sort_hat_Poufsouffle.png"
+import Serpentard from "../images/houses/Serpentard.png";
+import SerpentardHat from "../images/register/Sort_Hat/sort_hat_Serpentard.png"
 
 /** Functions **/
 const getHouseImg = house => {

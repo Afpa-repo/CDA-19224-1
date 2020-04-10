@@ -1,14 +1,15 @@
-.btn-floating{
+.btn-floating {
     z-index: inherit !important;
 }
-.priceH3{
+
+.priceH3 {
     font-family: "Bangers", Impact, sans-serif;
 }
 
-.nameProduct{
+.nameProduct {
     font-size: 28px;
 }
 
-.descriptionProduct{
+.descriptionProduct {
     text-align: justify;
 }

@@ -14,7 +14,7 @@ GREENBG="\x1b[42m"
 WHITE="\x1b[97m"
 YARN='.yarn/releases/yarn-1.22.4.js'
 YELLOWBG="\x1b[43m"
-VERSION="1.2.1"
+VERSION="1.2.2"
 OS="uname"
 
 # -------------------------- VERIFICATIONS --------------------------
@@ -50,7 +50,7 @@ function fix() {
 }
 
 function fixtures() {
-  $CONSOLE doctrine:fixtures:load
+  $CONSOLE doctrine:fixtures:load -n
 }
 
 function help() {
@@ -99,7 +99,7 @@ function reset() {
   rm -rf ./src/Migrations/*.php
   echo -e "\n${BLUEBG}${WHITE}Les migrations on été supprimées.${RESET}"
   $CONSOLE make:migration
-  $CONSOLE doctrine:migrations:migrate
+  $CONSOLE doctrine:migrations:migrate -n
 }
 
 function setup() {

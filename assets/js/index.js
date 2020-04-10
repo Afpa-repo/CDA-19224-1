@@ -10,5 +10,7 @@ import '../css/index.css';
 
 // Imports custom JS files
 import "./base";
+// PRODUCT
+import "./product";
 // Imports custom JS files for registration
 import "./register";

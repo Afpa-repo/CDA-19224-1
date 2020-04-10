@@ -95,9 +95,17 @@
                 {% endfor %}
             </section>
         </div>
-    {% endif %}
-</div>
+        {% endif %}
+    </div>
 
+{#  BOTTOM BANNER : NAVBAR  #}
+<nav>
+<a href="{{ path('productChopsticks') }}">Baguettes</a>
+<a href="{{ path('productClothing') }}">Vêtements</a>
+<a href="{{ path('productJewelry') }}">Bijoux</a>
+<a href="{{ path('productStationery') }}">Papeterie</a>
+<a href="{{ path('productAccessories') }}">Accessoires</a>
+</nav>
 
 {#   Heading   #}
 <div aria-labelledby="pageTitle" role="complementary">

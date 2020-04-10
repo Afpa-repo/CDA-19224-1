@@ -5,6 +5,11 @@
 {% block h1 'Bienvenue' %}
 
 {% block body %}
+    {% for message in app.flashes('success') %}
+        <section class="red flow-text row center-align">
+            <strong class="col s12 center-align white-text">{{ message }}</strong>
+        </section>
+    {% endfor %}
 
 <main class="index">
 
@@ -105,4 +110,5 @@ Aussi nous vous invitons à ne jamais renseigner vos coordonnées bancaires.</p>
 
     </div>
 </main>
+
 {% endblock %}

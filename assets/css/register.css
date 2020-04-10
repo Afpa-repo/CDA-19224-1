@@ -1,0 +1,21 @@
+/* REGISTER FORM */
+
+#divFormRegister {
+    border-radius: 10px;
+}
+
+#divLetter {
+    font-size: 18px;
+    font-family: 'Dancing Script', fantasy;
+    background-image: url("../images/register/hogwart_paper.jpg");
+    background-size: cover;
+    border-radius: 5px;
+}
+
+#agreeTerme {
+    font-family: serif;
+}
+
+#houseAccept {
+    text-decoration: inherit;
+}

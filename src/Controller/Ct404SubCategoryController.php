@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Ct404SubCategory;
 use App\Form\Ct404SubCategoryType;
+use App\Repository\Ct404CategoryRepository;
 use App\Repository\Ct404SubCategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,6 +23,27 @@ class Ct404SubCategoryController extends AbstractController
     {
         return $this->render('ct404_sub_category/index.html.twig', [
             'ct404_sub_categories' => $ct404SubCategoryRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/{category}", name="ct404_sub_category", methods={"GET"})
+     */
+    public function byCategory(Ct404SubCategory $sub_categories_entity, Ct404SubCategoryRepository $ct404SubCategoryRepository, Ct404CategoryRepository $ct404CategoryRepository): Response
+    {
+        $category_id = $sub_categories_entity->getCategory();
+
+        $sub_categories = $ct404SubCategoryRepository->findBy([
+            'category' => $category_id,
+        ]);
+
+        $current_category = $ct404CategoryRepository->findOneBy([
+            'id' => $category_id,
+        ]);
+
+        return $this->render('ct404_sub_category/child_by_parent.html.twig', [
+            'ct404_sub_categories' => $sub_categories,
+            'current_category' => $current_category,
         ]);
     }
 

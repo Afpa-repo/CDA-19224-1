@@ -18,7 +18,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @method Ct404User[]    findAll()
  * @method Ct404User[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
+class Ct404UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -45,10 +45,9 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     /**
      * @param $email
      *
-     * @return User|null
      * @throws NonUniqueResultException
      */
-    public function findOneByEmail($email): ?User
+    public function findOneByEmail($email): ?Ct404User
     {
         // return User class find by user email
         return $this->createQueryBuilder('u')

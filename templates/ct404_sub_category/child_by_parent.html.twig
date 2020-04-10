@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('categories') }}
+{% endblock %}
+
+{% block title %}{{ current_category.name }}{% endblock %}
+
+{% block h1 %}{{ current_category.name }}{% endblock %}
+
+{% block body %}
+<main>
+
+
+    <div class="row">
+        {% for ct404_sub_category in ct404_sub_categories %}
+        <div class="col s12 m6 l4">
+            <div class="card">
+                <div class="card-image">
+                    <img src="http://placehold.it/200x200">
+                    <span class="card-title">{{ ct404_sub_category.name }}</span>
+                    <a href="{{ path('ct404_product_sub_category', {'id': ct404_sub_category.id}) }}" class="btn-floating halfway-fab waves-effect waves-light orange darken-4"><i class="material-icons">arrow_forward</i></a>
+                </div>
+                <div class="card-content">
+                    <h2 class="center-align flow-text">{{ ct404_sub_category.name }}</h2>
+                    <p class="right-align">
+                        <a href="{{ path('ct404_sub_category_edit', {'id': ct404_sub_category.id}) }}">edit</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</main>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('categories') }}
+{% endblock %}

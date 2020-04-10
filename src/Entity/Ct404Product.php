@@ -96,13 +96,6 @@ class Ct404Product
     private $alertQuantity;
 
     /**
-     * @var Ct404Category
-     * @ORM\ManyToOne(targetEntity="App\Entity\Ct404Category", inversedBy="products")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $category;
-
-    /**
      * @var Ct404Supplier
      * @ORM\ManyToOne(targetEntity="App\Entity\Ct404Supplier", inversedBy="products")
      * @ORM\JoinColumn(nullable=false)
@@ -115,6 +108,13 @@ class Ct404Product
      * @ORM\JoinColumn(nullable=true)
      */
     private $orderDetail;
+
+    /**
+     * @var Ct404SubCategory
+     * @ORM\ManyToOne(targetEntity="App\Entity\Ct404SubCategory", inversedBy="products_list")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $sub_category;
 
     public function __construct()
     {
@@ -181,18 +181,6 @@ class Ct404Product
         return $this;
     }
 
-    public function getCategory(): ?Ct404Category
-    {
-        return $this->category;
-    }
-
-    public function setCategory(?Ct404Category $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -234,6 +222,18 @@ class Ct404Product
                 $orderDetail->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSubCategory(): ?Ct404SubCategory
+    {
+        return $this->sub_category;
+    }
+
+    public function setSubCategory(?Ct404SubCategory $sub_category): self
+    {
+        $this->sub_category = $sub_category;
 
         return $this;
     }

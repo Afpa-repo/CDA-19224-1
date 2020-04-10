@@ -23,8 +23,11 @@ if (Encore.isProduction()) {
         // Add PurgeCssPlugin to remove unused CSS
         .addPlugin(new PurgeCssPlugin({
             paths: glob.sync([
-                path.join(__dirname, 'templates/**/*.html.twig')
-            ])
+                path.join(__dirname, 'templates/**/*.html.twig'),
+                path.join(__dirname, 'assets/js/**/*.js'),
+                path.join(__dirname, 'assets/css/**/*.css')
+            ]),
+            only: ['build', 'vendor']
         }));
 }
 // Config to be used only for development
@@ -47,8 +50,11 @@ Encore
     .setPublicPath('/build')
     // Add 1 entry for each "page" of your app.
     .addEntry('index', './assets/js/index.js')
+    .addEntry('cart', './assets/js/cart.js')
     // Add 1 entry for emails of your app.
     .addEntry('foundation', './assets/js/foundation.js')
+    // Add 1 entry for categories views.
+    .addEntry('categories', './assets/js/categories.js')
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
     // Helps Webpack do it's job for multiple entry files.

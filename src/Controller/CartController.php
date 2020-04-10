@@ -20,9 +20,16 @@ class CartController extends AbstractController
      */
     public function index(CartService $cartService)
     {
+        $Routes = [
+            'Accueil' => '/',
+            'Mon compte' => '/login',
+            'Panier' => '/panier',
+        ];
+
         return $this->render('cart/index.html.twig', [
             'items' => $cartService->getFullCart(),
             'total' => $cartService->getTotal(),
+            'history_routes' => $Routes,
         ]);
     }
 
@@ -37,7 +44,22 @@ class CartController extends AbstractController
     {
         $cartService->add($id);
 
-        return $this->redirectToRoute('cart_index');
+        return $this->redirectToRoute('cart_index', ['_fragment' => 'product'.$id]);
+    }
+
+    /**
+     * @Route("/panier/modify{id}:{valeurUser}", name="cart_modify")
+     *
+     * @param mixed $id
+     * @param mixed $valeurUser
+     *
+     * @return RedirectResponse
+     */
+    public function modify($id, $valeurUser, CartService $cartService)
+    {
+        $cartService->quantityUser($id, $valeurUser);
+
+        return $this->redirectToRoute('cart_index', ['_fragment' => 'product'.$id]);
     }
 
     /**
@@ -51,7 +73,7 @@ class CartController extends AbstractController
     {
         $cartService->subtract($id);
 
-        return $this->redirectToRoute('cart_index');
+        return $this->redirectToRoute('cart_index', ['_fragment' => 'product'.$id]);
     }
 
     /**

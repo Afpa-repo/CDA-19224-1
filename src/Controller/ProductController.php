@@ -14,8 +14,8 @@ class ProductController extends AbstractController
     public function chopsticks(Ct404ProductRepository $productRepository)
     {
         return $this->render('product/index.html.twig', [
-            'products' => $productRepository->findBycategory("1"),
-            'category' => "Baguettes"
+            'products' => $productRepository->findByCategory(1),
+            'category' => "Baguettes",
         ]);
     }
 
@@ -25,8 +25,8 @@ class ProductController extends AbstractController
     public function clothing(Ct404ProductRepository $productRepository)
     {
         return $this->render('product/index.html.twig', [
-            'products' => $productRepository->findBycategory("2"),
-            'category' => "Vêtements"
+            'products' => $productRepository->findByCategory(2),
+            'category' => "Vêtements",
         ]);
     }
 

@@ -1,11 +1,9 @@
 {% extends 'base.html.twig' %}
+
 {% block title 'Panier' %}
-{% block stylesheets %}
-	{{ encore_entry_link_tags('index') }}
-	{{ encore_entry_link_tags('cart') }}
-{% endblock %}
 
 {% block h1 'Votre Panier' %}
+
 {% block body %}
 	{# vue panier (ultra simpliste pour l'instant ) #}
 
@@ -69,8 +67,4 @@
 			</div>
 		{% endif %}
 	</main>
-{% endblock %}
-{% block javascripts %}
-	{{ encore_entry_script_tags('index') }}
-	{{ encore_entry_script_tags('cart') }}
 {% endblock %}

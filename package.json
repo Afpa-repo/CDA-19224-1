@@ -16,6 +16,8 @@
     "cssnano": "^4.1.10",
     "file-loader": "^6.0.0",
     "glob-all": "^3.2.1",
+    "image-webpack-loader": "^6.0.0",
+    "imagemin-webp": "^5.1.0",
     "maildev": "^1.1.0",
     "materialize-css": "^1.0.0-rc.2",
     "postcss-font-magician": "^2.3.1",

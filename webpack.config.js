@@ -18,7 +18,24 @@ if (Encore.isProduction()) {
         .copyFiles({
             from: './assets/images',
             to: 'images/[path][name].[hash:8].[ext]',
-            pattern: /\.(png|jpg|jpeg)$/
+            pattern: /\.(gif|png|jpe?g|svg)$/i
+        })
+        // Minify image in order to reduce the size
+        .addLoader({
+            test: /\.(gif|png|jpe?g|svg)$/i,
+            loader: 'image-webpack-loader',
+            options: {
+                mozjpeg: {
+                  progressive: true,
+                  quality: 50
+                },
+                pngquant: {
+                  quality: [0.50, 0.50]
+                },
+                webp: {
+                  quality: 75
+                }
+              }
         })
         // Add PurgeCssPlugin to remove unused CSS
         .addPlugin(new PurgeCssPlugin({
@@ -39,7 +56,7 @@ else if (Encore.isDev()) {
         .copyFiles({
             from: './assets/images',
             to: 'images/[path][name].[ext]',
-            pattern: /\.(png|jpg|jpeg)$/
+            pattern: /\.(gif|png|jpe?g|svg)$/i
         })
 }
 

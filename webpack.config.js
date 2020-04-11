@@ -18,7 +18,7 @@ if (Encore.isProduction()) {
         .copyFiles({
             from: './assets/images',
             to: 'images/[path][name].[hash:8].[ext]',
-            pattern: /\.(gif|png|jpe?g|svg)$/i
+            pattern: /\.(gif|png|jpe?g|svg)$/i,
         })
         // Minify image in order to reduce the size
         .addLoader({
@@ -26,26 +26,28 @@ if (Encore.isProduction()) {
             loader: 'image-webpack-loader',
             options: {
                 mozjpeg: {
-                  progressive: true,
-                  quality: 50
+                    progressive: true,
+                    quality: 50,
                 },
                 pngquant: {
-                  quality: [0.50, 0.50]
+                    quality: [0.5, 0.5],
                 },
                 webp: {
-                  quality: 75
-                }
-              }
+                    quality: 75,
+                },
+            },
         })
         // Add PurgeCssPlugin to remove unused CSS
-        .addPlugin(new PurgeCssPlugin({
-            paths: glob.sync([
-                path.join(__dirname, 'templates/**/*.html.twig'),
-                path.join(__dirname, 'assets/js/**/*.js'),
-                path.join(__dirname, 'assets/css/**/*.css')
-            ]),
-            only: ['build', 'vendor']
-        }));
+        .addPlugin(
+            new PurgeCssPlugin({
+                paths: glob.sync([
+                    path.join(__dirname, 'templates/**/*.html.twig'),
+                    path.join(__dirname, 'assets/js/**/*.js'),
+                    path.join(__dirname, 'assets/css/**/*.css'),
+                ]),
+                only: ['build', 'vendor'],
+            }),
+        );
 }
 // Config to be used only for development
 else if (Encore.isDev()) {
@@ -56,8 +58,8 @@ else if (Encore.isDev()) {
         .copyFiles({
             from: './assets/images',
             to: 'images/[path][name].[ext]',
-            pattern: /\.(gif|png|jpe?g|svg)$/i
-        })
+            pattern: /\.(gif|png|jpe?g|svg)$/i,
+        });
 }
 
 Encore
@@ -81,24 +83,24 @@ Encore
     // Displays notifications.
     .enableBuildNotifications()
     // enables @babel/preset-env polyfills
-    .configureBabelPresetEnv(config => {
+    .configureBabelPresetEnv((config) => {
         config.useBuiltIns = 'usage';
         config.corejs = 3;
     })
     // Enables and loads PostCSS
-    .enablePostCssLoader(options => {
+    .enablePostCssLoader((options) => {
         options.config = {
-            path: 'postcss.config.js'
+            path: 'postcss.config.js',
         };
     })
     // Reduce the number of HTTP requests inlining small files as base64 encoded URLs in the generated CSS files.
     // Uses file-loader as a default fallback if the bytes limit has been exceeded
     .configureUrlLoader({
-        fonts: {limit: 4096},
-        images: {limit: 4096},
+        fonts: { limit: 4096 },
+        images: { limit: 4096 },
     })
     // Fix [object Module] url error for images
-    .configureLoaderRule('images', loaderRule => {
+    .configureLoaderRule('images', (loaderRule) => {
         loaderRule.options.esModule = false;
     });
 

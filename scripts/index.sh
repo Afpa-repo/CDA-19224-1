@@ -53,6 +53,7 @@ function fix() {
     $YARN php:lint
     $YARN php:fix
     $YARN css:fix
+    $YARN prettier:fix
 }
 
 function fixtures() {

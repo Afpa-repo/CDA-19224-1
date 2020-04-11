@@ -2,8 +2,8 @@ path: ./
 jobs: 10
 cache: build/phplint.cache
 extensions:
-  - php
+    - php
 exclude:
-  - var
-  - vendor
-  - node_modules
+    - var
+    - vendor
+    - node_modules

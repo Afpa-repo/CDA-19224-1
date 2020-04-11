@@ -1,18 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ct404Product index{% endblock %}
+{% block title %}{{ current_category.name }}{% endblock %}
 
-{% block h1 %}{{ current_sub_category.name }}{% endblock %}
+{% block h1 %}{{ current_category.name }}{% endblock %}
 
 {% block body %}
-    <main>
+    <main class="container">
+        <div class="product">
+            <div class="orangeTransparent valign-wrapper center-align section row" id="productTitle">
+                <div class="col s8">
+                    <h2 id="titleH2">{{ current_category.name }}</h2>
+                </div>
+                <div class="col s4">
+                    <img class="responsive-img" src="http://placehold.it/200x200" alt="Ollivander Wand">
+                </div>
+            </div>
+        </div>
+
 {% if ct404_products %}
-        <div class="row">
+        <div class="row grey lighten-2">
             {% for ct404_product in ct404_products %}
                 <div class="col s12 m6 l4">
                     <div class="card">
                         <div class="card-image">
-                            <img src="http://placehold.it/200x200">
+                            <img class="productImg" src="http://placehold.it/200x200">
                             <a href="{{ path('ct404_product_show', {'id': ct404_product.id}) }}" class="btn-floating halfway-fab waves-effect waves-light orange darken-4">
                                 <i class="material-icons">arrow_forward</i>
                             </a>
@@ -26,7 +37,7 @@
                                         <i class="material-icons">add_shopping_cart</i>
                                     </a>
                                 </article>
-                                <article class="descriptionProduct section">
+                                <article class="descriptionProduct section truncate">
                                     {{ ct404_product.description }}
                                 </article>
                                 <div class="divider"></div>
@@ -40,17 +51,16 @@
                 </div>
             {% endfor %}
         </div>
+
             {% else %}
-                <div class="container">
                     <section class="white">
                         <h2 class="center-align">Désolé</h2>
                         <article class="center-align">
-                            <p>Nous n'avons plus de produits concernant les <b>{{ current_sub_category.name }}</b>.</p>
+                            <p>Nous n'avons plus de produits concernant les <b>{{ current_category.name }}</b>.</p>
                             <p>Revenez nous voir, d'ici peu nous aurons fait le plein.</p>
                             <p>D'autres richesses vous attendent sur notre plateforme.</p>
                         </article>
                     </section>
-                </div>
             {% endif %}
 
 {#    <a href="{{ path('ct404_product_new') }}">Create new</a>#}

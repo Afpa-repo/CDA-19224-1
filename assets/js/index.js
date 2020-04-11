@@ -16,5 +16,3 @@ import "./register";
 import "./cart";
 // Import custom JS files for cart
 import "./cart";
-// Import custom JS files for products display
-import "./product";

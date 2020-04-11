@@ -100,11 +100,6 @@ footer {
 
 /* INDEX */
 
-.indexMessage {
-    background-color: #206e62;
-    border-radius: 10px;
-}
-
 .indexHouses {
     display: flex;
     justify-content: space-around;
@@ -206,15 +201,6 @@ footer {
     padding: 0;
 }
 
-/*
-    VALENTIN :
-    Tu ne dois pas avoir de width 50 % alors que materialize donne un système de grille si c'est pas
-    necessaire.
-    Exemple :
-    - Pour les maisons de Poudlard c'est nécéssaire puisqu'elles sont 5 et 12 n'est pas divisible par 5
-    - Pour la navbar, on ne sait pas combien de categories on a donc on n'utilise pas le systeme de grille
-    - Pour la classe qui suit, tu dois avoir une row avec deux col s6
-*/
 .indexChopsticksText {
     display: flex;
     flex-direction: column;
@@ -225,3 +211,72 @@ footer {
     border-radius: 10px;
 }
 
+/*
+    TODO : lire ça
+    Il faut absolument plus utiliser materialize surtout si ce que tu fais est disponible
+    - pas de color: white alors que tu as white-text
+    - pas de gestion de la responsivité des images puisque tu as la classe responsive-img
+    - pas de text-align: center tu as la classe center-align
+    - pas de width 70 % alors que tu as classe container
+    - la majorité de tes magin auto ne servent à rien avec materialize
+    - etc...
+
+    Il faut plus utiliser le principe d'id et de class parce que là, tu faisais la même chose pour les 5 classes des maisons :
+    - J'ai passé les classe en id et je leur ai mit une classe pour ce qui était commune et juste sur ça, j'ai enlevé 30 lignes de css inutile
+
+    Ca sert absolument à rien de mettre un width: 100%, j'en ai retiré au moins 10
+    Surtout, sur la navbar, tu peux pas mettre width: 100% alors que materialize gere automatiquement toute ta navbar juste avec les balises !
+
+    Un fichier css comme il était avant, c'est pas possible !!!!
+    J'ai retiré 100 lignes de code INUTILE, sans rien changé au visuel en m'arrêtant aux baguettes, c'est pas du boulot ça !
+
+    Les media query c'est pas de la 'bidouille', le but c'est pas de régler les problemes d'un css hasardeux
+    J'ai retiré tout ce fameux code qui me semblait inutile et en commantant les media tout était responsif !
+
+    Il y a des balises en trop dans le html
+
+    ON NE FAIT PAS UN LIEN AVEC BOUTON QUI PREND DU JS INTRUSIF !
+
+    Les pages de produits sont nulles (C'ETAIT SA PAGE DE TEST)
+    DE de 5 COPIER/COLLER de 10 lignes de html, 30 lignes de css inutiles, pas une interaction avec la DB
+
+    En plus tu mets 5 copié collé qui se repère avec une chaine de caractere que tu injectes différemment dans 5 fonctions dans un controller
+    provisoir, tu connais pas la method get ?!
+    Tout ça pour pouvoir afficher 4 images différentes
+
+    + 10 lignes de html dans une boucle for laissé par Arnaud mais que tu n'arrives pas a faire marcher parce que tu ne nommes même pas correctement la fonction et tu n'injectes pas la bon type !
+    On a des tables sous catégories, des tables categories, t'avais juste à faire un dump pour voir que findByCategorie te renvoie tout ce dont tu as besoin !
+    Non toi, tu injectes une chaine de caractere... Encore fallait-il le nommer
+    Même le bouton pour ajouter au panier qu'avait laissé Arnaud t'as pas été fichu de le garder !
+
+
+    Une maquette à débuguer en somme.
+    J'ai passé plus de temps à la corriger que si je l'avais utilisé comme maquette
+
+    Tu utilises la fonction que j'ai créée dans ton controller mais tu ne lui donne même pas le bon nom !!
+
+    Le js, c'est n'importe quoi !! Comment on peut imaginer qu'on va gérer ça comme ça ?!
+
+    Franchement JAMAIS je ne présente ça à mon oral du titre, c'est du foutage de gueule, 1 semaine pour faire ça ?!
+
+    C'est nul, il n'y a aucun investissement !!
+    Il y a 12000 templates de crés, qui récupèrent les infos et tu n'es pas fichu d'en prendre un !
+
+    J;aurais mit moins de temps à le faire qu'à le débuguer
+
+    Julien fait pleins d'outils pour rendre le truc accessible et de ce que je vois, j'ai pas l'impression que tu codes sur le projet
+    Tu fais des templates sur atom et tu nous fous ça dans le projet ou quoi ?!
+
+    je retire des :
+    display: flex;
+    flex-direction: column;
+    min-height: 850px;
+    margin-right: auto;
+    margin-left: auto;
+    TOUT CA SUR UNE SEULE CLASSE SANS QUE CA NE CHANGE RIEN AU VISUEL !
+    Et j'en ai retiré 1000 des comme ça !
+    sans rien changer au visuel, tu importes meme pas materialize ou quoi ?
+
+    Tu as 40 scale 1.1, tu peux pas faire une classe scale10
+
+ */

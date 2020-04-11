@@ -5,7 +5,9 @@
     "stylelint-a11y/recommended",
   ],
   "rules": {
+    "declaration-colon-newline-after": null,
+    "indentation": 4,
     "no-descending-specificity": null,
-    "indentation": 4
+    "value-list-comma-newline-after": null
   }
 }

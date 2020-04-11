@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "@symfony/webpack-encore": "^0.28.2",
-    "core-js": "^3.0.0",
+    "core-js": "^3.6.5",
     "cross-env": "^7.0.2",
     "cssnano": "^4.1.10",
     "file-loader": "^6.0.0",
@@ -43,6 +43,7 @@
     "dev-server": "encore dev-server",
     "maildev": "maildev --hide-extensions STARTTLS",
     "php:fix": "php vendor/bin/php-cs-fixer fix -vvv",
+    "php:lint": "php vendor/bin/phplint",
     "watch": "encore dev --watch"
   }
 }

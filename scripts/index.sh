@@ -50,6 +50,7 @@ function fix() {
     verify_php
     verify_node
 
+    $YARN php:lint
     $YARN php:fix
     $YARN css:fix
 }

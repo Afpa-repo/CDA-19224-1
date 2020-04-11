@@ -147,6 +147,9 @@
     "ocramius/proxy-manager": {
         "version": "2.7.0"
     },
+    "overtrue/phplint": {
+        "version": "1.2.1"
+    },
     "php": {
         "version": "7.4"
     },

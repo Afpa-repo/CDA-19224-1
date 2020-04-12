@@ -1,130 +1,17 @@
-.product{
-  width: 75%;
-  min-height: 850px;
-  margin-left: auto;
-  margin-right: auto;
-  color: white;
-  display: flex;
-  flex-direction: column;
+.product {
+    color: white;
 }
 
-.productMessage{
-  width: 100%;
-  height: 100px;
-  background-color: #206E62;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+#productTitle {
+    font-family: 'Henny Penny', fantasy;
+    border-bottom-right-radius: inherit;
+    border-bottom-left-radius: inherit;
 }
 
-.productMessage>p{
-  font-size: 150%;
+#titleH2 {
+    font-size: 30px;
 }
 
-.productTitle{
-  width: 100%;
-  height: 250px;
-  font-family: 'Henny Penny';
-  display: flex;
-}
-
-.productTitleText{
-  width: 50%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.productTitleText>p{
-  font-size: 150%;
-}
-
-.productTitleImg{
-  width: 50%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.productContent{
-  display: grid;
-  grid-template-columns: 30% 30% 30%;
-  justify-content: space-around;
-  background-color: #f6f5f2;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-}
-
-.productOnly{
-  height: 500px;
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  margin-top: 5%;
-  margin-bottom: 5%;
-  border-radius: 10px;
-}
-
-.productOnlyImg{
-  width: 100%;
-  height: 70%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-.productOnlyImg>img{
-  width: 70%;
-  transition: 0.5s;
-}
-
-.productOnlyImg>img:hover{
-  transform: scale(1.1);
-}
-
-.productOnly>hr{
-  width: 75%;
-}
-
-.productOnlyText{
-  width: 100%;
-  height: 30%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: black;
-}
-
-.productOnlyText>h3{
-  margin: 0;
-  font-size: 200%;
-}
-
-.productOnlyText>p{
-  font-size: 125%;
-  font-family: 'Henny Penny';
-  color: #EF6B01;
-}
-
-.productOnlyText>button{
-  width: 75%;
-  color: white;
-  font-size: 125%;
-  background-color: #EF6B01;
-  border-radius: 10px;
-  filter: grayscale(25%);
-  transition: 0.5s;
-}
-
-.productOnlyText>button:hover{
-  filter: grayscale(0%);
+.btn-floating {
+    z-index: inherit !important;
 }

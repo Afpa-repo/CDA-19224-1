@@ -26,7 +26,7 @@
             {#   TODO :  Mettre en place le formlaire de recherche  #}
             <div class="col l4 offset-l1 m6 z-depth-2 hide-on-small-only">
                 <div class="row">
-                    <div class="col s2 mx-auto center-align">
+                    <div class="col s2 mt-auto center-align">
                         <i class="material-icons">search</i>
                     </div>
                     <div class="col s8">
@@ -34,7 +34,7 @@
                             <input aria-labelledby="searchInput" type="text" id="searchInput" name="searchInput" placeholder="Recherche">
                         </label>
                     </div>
-                    <div id="speechBtn" class="col s2 mx-auto center-align" aria-label="btnSearchInput">
+                    <div id="speechBtn" class="col s2 mt-auto center-align" aria-label="btnSearchInput">
                         {#  TODO : Remplacer par un button si formulaire | Problement method GET ?  #}
                         <a href="#" id="btnSearchInput"><i id="materialMicro" class="material-icons">micro</i></a>
                     </div>
@@ -43,7 +43,7 @@
 
 
             {#  Client Setting  #}
-            <div class="col l2 offset-l1 hide-on-med-and-down">
+            <div class="col s3 offset-s4 offset-m1 l2 center-align">
                 {% if app.user %}
                     <a class="btn orange" href="{{ path('app_login') }}" title="Espace client">Compte</a>
                 {% else %}
@@ -54,7 +54,7 @@
             </div>
 
             {#  Shopping Basket  #}
-            <div class="col s3 offset-s6 m2 offset-m1 l1 offset-l0 orange darken-3 center-align z-depth-2">
+            <div class="col s3  m2 l1 offset-l0 orange darken-3 center-align z-depth-2">
                  <a href="/panier" title="Panier">
                       <i class="medium material-icons white-text">shopping_basket</i>
                  </a>
@@ -63,11 +63,11 @@
     </header>
 
     {#  BOTTOM BANNER : NAVBAR  #}
-    <nav class="grey darken-4">
+    <nav class="grey darken-4 center-align">
         {#  Create a Service to manage categories and make it global (twig.yaml)  #}
         {% for category in categories.CategoriesNavBar %}
             <!-- Dropdown Trigger -->
-            <a class='dropdown-trigger' href='#' data-target='dropdown{{ category.id }}' title="{{ category.name }}">{{ category.name }}</a>
+            <a class='dropdown-trigger yellow-text' href='#' data-target='dropdown{{ category.id }}' title="{{ category.name }}">{{ category.name }}</a>
 
             <!-- Dropdown Structure -->
             <ul id='dropdown{{ category.id }}' class='dropdown-content'>
@@ -95,17 +95,8 @@
                 {% endfor %}
             </section>
         </div>
-        {% endif %}
-    </div>
-
-{#  BOTTOM BANNER : NAVBAR  #}
-<nav>
-<a href="{{ path('productChopsticks') }}">Baguettes</a>
-<a href="{{ path('productClothing') }}">Vêtements</a>
-<a href="{{ path('productJewelry') }}">Bijoux</a>
-<a href="{{ path('productStationery') }}">Papeterie</a>
-<a href="{{ path('productAccessories') }}">Accessoires</a>
-</nav>
+    {% endif %}
+</div>
 
 {#   Heading   #}
 <div aria-labelledby="pageTitle" role="complementary">

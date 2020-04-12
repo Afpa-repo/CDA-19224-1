@@ -19,6 +19,8 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class Ct404ProductController extends AbstractController
 {
+//    list of all products
+
     /**
      * @Route("/", name="ct404_product_index", methods={"GET"})
      */
@@ -28,6 +30,8 @@ class Ct404ProductController extends AbstractController
             'ct404_products' => $ct404ProductRepository->findAll(),
         ]);
     }
+
+//    Products by Sub-categories
 
     /**
      * @Route("/{id}", name="ct404_product_sub_category", methods={"GET"})
@@ -44,11 +48,13 @@ class Ct404ProductController extends AbstractController
             'id' => $sub_category_id,
         ]);
 
-        return $this->render('ct404_product/products_by_subcategory.html.twig', [
+        return $this->render('ct404_product/products_categories_list.html.twig', [
             'ct404_products' => $products,
-            'current_sub_category' => $current_sub_category,
+            'current_category' => $current_sub_category,
         ]);
     }
+
+//    Products by categories
 
     /**
      * @Route("/all/{id}", name="ct404_product_category", methods={"GET"})
@@ -63,9 +69,9 @@ class Ct404ProductController extends AbstractController
             'id' => $category_id,
         ]);
 
-        return $this->render('ct404_product/products_by_subcategory.html.twig', [
+        return $this->render('ct404_product/products_categories_list.html.twig', [
             'ct404_products' => $products,
-            'current_sub_category' => $current_sub_category,
+            'current_category' => $current_sub_category,
         ]);
     }
 

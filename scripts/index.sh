@@ -114,7 +114,7 @@ function setup() {
     question_text "Voulez vous modifier DATABASE_URL dans le fichier .env ?"
     read INS_ENV
 
-    if [[ $INS_NODE =~ ^y ]]; then
+    if [[ $INS_ENV =~ ^y ]]; then
         info_text "Username de la BDD:"
         read DATABASE_USER
 

@@ -2,7 +2,7 @@
 
 // Imports materialize-css js files
 import "materialize-css";
-// Imports custom CSS files
+// Imports custom CSS files (separate)
 import '../css/index.css';
 
 
@@ -12,3 +12,7 @@ import '../css/index.css';
 import "./base";
 // Imports custom JS files for registration
 import "./register";
+// Import custom JS files
+import "./cart";
+// Import custom JS files for cart
+import "./cart";

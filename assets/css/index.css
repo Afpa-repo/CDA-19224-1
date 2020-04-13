@@ -4,6 +4,8 @@
 /* Imports Material Icons */
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons&display=swap");
 
+/* ----------------------------------------------------------------------------------- */
+
 /* Imports custom css */
 
 /* HEADER INDEX FOOTER */
@@ -17,3 +19,12 @@
 
 /* MEDIA QUERY */
 @import "mediaQuery.css";
+
+/* CATEGORIES */
+@import 'categories.css';
+
+/* CART */
+@import 'cart.css';
+
+/* PRODUCTS */
+@import 'product.css';

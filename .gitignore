@@ -82,6 +82,8 @@ fabric.properties
 # .idea/misc.xml
 # *.ipr
 
+.env
+
 # Sonarlint plugin
 .idea/**/sonarlint/
 
@@ -161,5 +163,3 @@ yarn-error.log
 /.php_cs
 /.php_cs.cache
 ###< friendsofphp/php-cs-fixer ###
-
-.env

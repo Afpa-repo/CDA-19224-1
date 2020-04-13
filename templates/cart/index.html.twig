@@ -1,11 +1,9 @@
 {% extends 'base.html.twig' %}
+
 {% block title 'Panier' %}
-{% block stylesheets %}
-	{{ encore_entry_link_tags('index') }}
-	{{ encore_entry_link_tags('cart') }}
-{% endblock %}
 
 {% block h1 'Votre Panier' %}
+
 {% block body %}
 	{# vue panier (ultra simpliste pour l'instant ) #}
 
@@ -28,7 +26,9 @@
 								<h3 class="header h4">{{ item.product.name }}</h3>
 								<p>{{ item.product.description }}</p>
 								<h4 class="h6">Quantité :</h4>
-								<a href="{{ path('cart_subtract', {'id': item.product.id}) }}" class="subBtn btn-large valign-wrapper"><i class="material-icons">remove</i></a>
+
+								{#	TODO : METTRE LES NOUVEAUX LIENS  #}
+								<a href="{{ path('cart_subtract', {'id': item.product.id}) }}" class="subBtn btn-small "><i class="material-icons">remove</i></a>
 								<div class="dropdownn">
 									<button id="dropbtn{{loop.index}}" class="dropbtn btn-large">{{ item.quantity }}</button>
 									<div id="myDropdownn{{loop.index}}" class="dropdownn-content">
@@ -69,8 +69,4 @@
 			</div>
 		{% endif %}
 	</main>
-{% endblock %}
-{% block javascripts %}
-	{{ encore_entry_script_tags('index') }}
-	{{ encore_entry_script_tags('cart') }}
 {% endblock %}

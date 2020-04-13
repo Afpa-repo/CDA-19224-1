@@ -5,107 +5,68 @@
 {% block h1 'Bienvenue' %}
 
 {% block body %}
+
+<main class="index white-text">
+
     {% for message in app.flashes('success') %}
         <section class="red flow-text row center-align">
             <strong class="col s12 center-align white-text">{{ message }}</strong>
         </section>
     {% endfor %}
 
-    <main class="index">
 
-        <article class="indexMessage">
+        <div class="orangeTransparent section center-align">
             <h2>Merci de votre attention</h2>
-            <p>Ce projet est réaliser dans le cadre de notre diplôme, en groupe avec Symfony. Les objets présentés ne sont, bien évidemment, pas réellement en vente.
-                Aussi nous vous invitons à ne jamais renseigner vos coordonnées bancaires.</p>
-        </article>
+            <p class="flow-text">
+                Ce projet est réaliser dans le cadre de notre diplôme, en groupe avec Symfony. Les objets présentés ne sont, bien évidemment, pas réellement en vente.
+                Aussi nous vous invitons à ne jamais renseigner vos coordonnées bancaires.
+            </p>
+        </div>
 
-        <article class="indexHouses">
-            <div class="indexHousesGryffondor">
-                <img src="https://static.warnerbros.fr/static/version1585654557/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/blason-maison-gryffondor.webp" alt="Gryffondor">
-                <h3>Gryffondor</h3>
+        <div class="indexHouses section">
+            <div id="indexHousesGryffondor" class="indexHousesInner">
+                <img class="responsive-img"  src="{{ asset('build/images/houses/Gryffondor.png') }}" alt="Gryffondor">
+                <h3 class="flow-text">Gryffondor</h3>
             </div>
 
-            <div class="indexHousesSerdaigle">
-                <img src="https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/blason-maison-serdaigle.webp" alt="Serdaigle">
-                <h3>Serdaigle</h3>
+            <div id="indexHousesSerdaigle" class="indexHousesInner">
+                <img class="responsive-img" src="{{ asset('build/images/houses/Serdaigle.png') }}" alt="Serdaigle">
+                <h3 class="flow-text">Serdaigle</h3>
             </div>
 
-            <div class="indexHousesPoufsouffle">
-                <img src="https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/blason-maison-poufsouffle.webp" alt="Poufsouffle">
-                <h3>Poufsouffle</h3>
+            <div id="indexHousesPoufsouffle" class="indexHousesInner">
+                <img class="responsive-img" src="{{ asset('build/images/houses/Poufsouffle.png') }}" alt="Poufsouffle">
+                <h3 class="flow-text">Poufsouffle</h3>
             </div>
 
-            <div class="indexHousesSerpentard">
-                <img src="https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/blason-maison-serpentard.webp" alt="Serpentard">
-                <h3>Serpentard</h3>
+            <div id="indexHousesSerpentard" class="indexHousesInner">
+                <img class="responsive-img" src="{{ asset('build/images/houses/Serpentard.png') }}" alt="Serpentard">
+                <h3 class="flow-text">Serpentard</h3>
             </div>
 
-            <div class="indexHousesPoudlard">
-                <img src="https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/blason-maison-poudlard.webp" alt="Poudlard">
-                <h3>Poudlard</h3>
+            <div id="indexHousesPoudlard" class="indexHousesInner">
+                <img class="responsive-img" src="{{ asset('build/images/houses/Poudlard.png') }}" alt="Poudlard">
+                <h3 class="flow-text">Poudlard</h3>
             </div>
-        </article>
+        </div>
 
-        <article class="indexChopsticks">
-            <div class="indexChopsticksText">
-                <img class="responsive-img" src="https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/baguettes-ollivander-i.svg" alt="Chopsticks Logo">
+        {#
+            TODO : METTRE EN PLACE UN SYSTEME DYNAMIQUE : C'EST UN PAS UN BLOG
+            La navbar est dynamique les categories de l'index doivent l'être aussi
+        #}
+        <div class="indexChopsticks center-align">
+            <div class="indexChopsticksText center-align">
+                <img src="https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/baguettes-ollivander-i.svg" alt="Chopsticks Logo">
                 <h3>Les baguettes Ollivander</h3>
-                <p>C'est la baguette qui choisit le sorcier...</p>
-                <button type="button">DÉCOUVRIR NOS BAGUETTES</button>
+                <p class="flow-text">C'est la baguette qui choisit le sorcier...</p>
+                <div>
+                    <a href="">DÉCOUVRIR NOS BAGUETTES</a>
+                </div>
             </div>
             <div class="indexChopsticksImg">
                 <img class="responsive-img" src="https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/baguettes-ollivander.webp" alt="Ollivander Wand">
             </div>
-        </article>
+        </div>
 
-        <article class="indexClothing">
-            <div class="indexClothingImg">
-                <img class="responsive-img" src="https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/vetements.webp" alt="Guipure Clothing">
-            </div>
-            <div class="indexClothingText">
-                <img class="responsive-img" src="https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/vetements-i.svg" alt="Clothing Logo">
-                <h3>Les vêtements</h3>
-                <p>Chez Madame Guipure, prêt-à-porter pour mages et sorciers</p>
-                <button type="button">DÉCOUVRIR LES VÊTEMENTS</button>
-            </div>
-        </article>
-
-        <article class="indexJewelry">
-            <div class="indexJewelryText">
-                <img class="responsive-img" src="https://static.warnerbros.fr/static/version1585734374/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/bijoux-i.svg" alt="Chopsticks Logo">
-                <h3>Les bijoux</h3>
-                <p>Nos colliers ne sont pas ensorcelés</p>
-                <button type="button">PARCOURIR LES BIJOUX</button>
-            </div>
-            <div class="indexJewelryImg">
-                <img class="responsive-img" src="https://static.warnerbros.fr/static/version1585734374/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/bijoux.webp" alt="Jewel">
-            </div>
-        </article>
-
-        <article class="indexStationeryAccessories">
-            <div class="indexStationery">
-                <div class="indexStationeryText">
-                    <h3>La papeterie</h3>
-                    <p>Devenez auteur à succès comme Rita Skeeter</p>
-                    <button type="button">PARCOURIR LA PAPETERIE</button>
-                </div>
-                <div class="indexStationeryImg">
-                    <img class="responsive-img" src="https://static.warnerbros.fr/static/version1585734374/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/papeterie.webp" alt="Stationery">
-                </div>
-            </div>
-
-            <div class="indexAccessories">
-                <div class="indexAccessoriesText">
-                    <h3>Les accessoires</h3>
-                    <p>Pour les moldus mordus d'Harry Potter</p>
-                    <button type="button">PARCOURIR LES ACCESSOIRES</button>
-                </div>
-                <div class="indexAccessoriesImg">
-                    <img class="responsive-img" src="https://static.warnerbros.fr/static/version1585734374/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/accessoires.webp" alt="Accessory">
-                </div>
-            </div>
-        </article>
-
-    </main>
-
+</main>
 {% endblock %}

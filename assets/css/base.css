@@ -1,8 +1,7 @@
-/* HTML TAGS */
+/* CSS FOR THE BASE TWIG AND THE INDEX */
 
+/* HTML TAGS */
 html {
-    margin: 0;
-    padding: 0;
     background: url(../images/background_street.jpg) no-repeat center fixed;
     background-size: cover;
 }
@@ -19,11 +18,9 @@ main {
 
 nav {
     display: flex;
-    align-items: center;
     justify-content: space-around;
-    width: 100%;
     height: 50px;
-    font-size: 200%;
+    font-size: 200% !important;
     font-family: 'Henny Penny', sans-serif;
 }
 
@@ -39,30 +36,11 @@ nav > a {
 
 nav > a:hover,
 nav > a:focus {
-    color: #ffd700;
     transform: scale(1.1);
 }
 
-@media screen and (prefers-reduced-motion: reduce) {
-    #pageTitle {
-        /* Because we have a fixed-(double) navbar */
-        margin-top: 200px;
-        color: #ffd700;
-        font-size: 12vw;
-        font-family: 'Henny Penny', sans-serif;
-        text-shadow:
-            0 0 1px grey,
-            1px 1px 2px #cba100,
-            2px 2px 3px #8e7100,
-            3px 3px 3px #675200,
-            4px 4px 4px #4b3900,
-            5px 5px 2px #3d2d00,
-            6px 6px 4px #290e00,
-            7px 7px 1px #210d00,
-            8px 8px rgba(255, 215, 0, 0.24);
-        animation: none;
-        animation-timing-function: cubic-bezier(0.03, 0.85, 0.85, 0.68);
-    }
+footer {
+    margin-top: 1%;
 }
 
 /* Change checkbox color */
@@ -76,11 +54,15 @@ nav > a:focus {
     border-left: inherit !important;
 }
 
+/* --------------------------------------------------------------------------------- */
+
+/* BASE */
 #pageTitle {
     /* Because we have a fixed-(double) navbar */
     margin-top: 200px;
+    margin-bottom: 100px;
     color: #ffd700;
-    font-size: 1000%;
+    font-size: 12vw !important;
     font-family: 'Henny Penny', sans-serif;
     text-shadow:
         0 0 1px grey,
@@ -94,19 +76,16 @@ nav > a:focus {
         8px 8px rgba(255, 215, 0, 0.24);
 }
 
-/* CLASSES */
-
 .mb-auto {
     margin-bottom: auto !important;
 }
 
-.mx-auto {
+.mt-auto {
     margin-top: 22px !important;
 }
 
 #divCopyright {
     max-height: 15px;
-    color: #718c00;
 }
 
 #divHeader {
@@ -117,227 +96,103 @@ nav > a:focus {
     opacity: 1;
 }
 
-/** ANIMATIONS **/
-
-/* Animate the heading level one */
-@keyframes MagicText {
-    from {
-        opacity: 1;
-    }
-
-    1% {
-        opacity: 0;
-    }
-
-    10% {
-        opacity: 0.1;
-    }
-
-    20% {
-        opacity: 0.2;
-    }
-
-    25% {
-        opacity: 0.1;
-    }
-
-    35% {
-        opacity: 0.3;
-    }
-
-    40% {
-        opacity: 0.4;
-    }
-
-    50% {
-        opacity: 0.5;
-    }
-
-    60% {
-        opacity: 0.6;
-    }
-
-    65% {
-        opacity: 0.4;
-    }
-
-    70% {
-        opacity: 0.6;
-    }
-
-    75% {
-        opacity: 0.7;
-    }
-
-    85% {
-        opacity: 0.8;
-    }
-
-    90% {
-        opacity: 0.9;
-    }
-
-    95% {
-        opacity: 0.8;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-footer {
-    margin-top: 1%;
-}
+/* ------------------------------------------------------------------------------- */
 
 /* INDEX */
-
-.index {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 75%;
-    height: 2500px;
-    margin-right: auto;
-    margin-left: auto;
-    color: white;
-}
-
-.indexMessage {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 9%;
-    text-align: center;
-    background-color: #206e62;
-    border-radius: 10px;
-}
-
-.indexMessage > p {
-    font-size: 150%;
-}
 
 .indexHouses {
     display: flex;
     justify-content: space-around;
-    width: 100%;
     height: 14%;
     font-family: 'Henny Penny', sans-serif;
 }
 
-.indexHousesGryffondor {
+@media screen and (prefers-reduced-motion: reduce) {
+    .indexHousesInner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 19%;
+        border-radius: 10px;
+        transition: none;
+    }
+}
+
+.indexHousesInner {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 19%;
-    height: 100%;
+    border-radius: 10px;
+    transition: 0.5s;
+}
 
-    /* TODO: Download les images */
+#indexHousesGryffondor {
     background-image: url("https://static.warnerbros.fr/static/version1585654557/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/gryffondor-2.webp");
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.5s;
 }
 
-.indexHousesGryffondor:hover,
-.indexHousesGryffondor:focus {
+#indexHousesGryffondor:hover,
+#indexHousesGryffondor:focus {
     transform: scale(1.1);
 }
 
-.indexHousesSerdaigle {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 19%;
-    height: 100%;
-
-    /* TODO: Download les images */
+#indexHousesSerdaigle {
     background-image: url("https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/serdaigle-2.webp");
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.5s;
 }
 
-.indexHousesSerdaigle:hover,
-.indexHousesSerdaigle:focus {
+#indexHousesSerdaigle:hover,
+#indexHousesSerdaigle:focus {
     transform: scale(1.1);
 }
 
-.indexHousesPoufsouffle {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 19%;
-    height: 100%;
-
-    /* TODO: Download les images */
+#indexHousesPoufsouffle {
     background-image: url("https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/poufsouffle-2.webp");
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.5s;
 }
 
-.indexHousesPoufsouffle:hover,
-.indexHousesPoufsouffle:focus {
+#indexHousesPoufsouffle:hover,
+#indexHousesPoufsouffle:focus {
     transform: scale(1.1);
 }
 
-.indexHousesSerpentard {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 19%;
-    height: 100%;
-
-    /* TODO: Download les images */
+#indexHousesSerpentard {
     background-image: url("https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/serpentard-2.webp");
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.5s;
 }
 
-.indexHousesSerpentard:hover,
-.indexHousesSerpentard:focus {
+#indexHousesSerpentard:hover,
+#indexHousesSerpentard:focus {
     transform: scale(1.1);
 }
 
-.indexHousesPoudlard {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 19%;
-    height: 100%;
-
-    /* TODO: Download les images */
+#indexHousesPoudlard {
     background-image: url("https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/poudlard-2.webp");
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.5s;
 }
 
-.indexHousesPoudlard:hover,
-.indexHousesPoudlard:focus {
+#indexHousesPoudlard:hover,
+#indexHousesPoudlard:focus {
     transform: scale(1.1);
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+    .indexChopsticks {
+        display: flex;
+        height: 19%;
+        padding: 2%;
+        font-family: 'Henny Penny', sans-serif;
+        background-image: url("https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/baguettes-ollivander-2.webp");
+        border-radius: 10px;
+        transition: none;
+    }
 }
 
 .indexChopsticks {
     display: flex;
-    width: 100%;
     height: 19%;
     padding: 2%;
     font-family: 'Henny Penny', sans-serif;
-    text-align: center;
-
-    /* TODO: Download les images */
     background-image: url("https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/baguettes-ollivander-2.webp");
     border-radius: 10px;
-    cursor: pointer;
     transition: 0.5s;
 }
 
@@ -349,460 +204,9 @@ footer {
 .indexChopsticksText {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     width: 50%;
-    height: 100%;
-}
-
-.indexChopsticksText > p {
-    font-size: 125%;
-}
-
-.indexClothing {
-    display: flex;
-    width: 100%;
-    height: 19%;
-    padding: 2%;
-    font-family: 'Henny Penny', sans-serif;
-    text-align: center;
-
-    /* TODO: Download les images */
-    background-image: url("https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/vetements-2.webp");
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.5s;
-}
-
-.indexJewelry {
-    display: flex;
-    width: 100%;
-    height: 19%;
-    padding: 2%;
-    font-family: 'Henny Penny', sans-serif;
-    text-align: center;
-
-    /* TODO: Download les images */
-    background-image: url("https://static.warnerbros.fr/static/version1585734374/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/bijoux-2.webp");
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.5s;
-}
-
-/* INDEX */
-@media screen and (prefers-reduced-motion: reduce) {
-    .indexHousesGryffondor {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 19%;
-        height: 100%;
-
-        /* TODO: Download les images */
-        background-image: url("https://static.warnerbros.fr/static/version1585654557/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/gryffondor-2.webp");
-        border-radius: 10px;
-        cursor: pointer;
-        transition: none;
-    }
-}
-
-@media screen and (prefers-reduced-motion: reduce) {
-    .indexHousesSerdaigle {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 19%;
-        height: 100%;
-        background-image: url("https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/serdaigle-2.webp");
-        border-radius: 10px;
-        cursor: pointer;
-        transition: none;
-    }
-}
-
-@media screen and (prefers-reduced-motion: reduce) {
-    .indexHousesPoufsouffle {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 19%;
-        height: 100%;
-        background-image: url("https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/poufsouffle-2.webp");
-        border-radius: 10px;
-        cursor: pointer;
-        transition: none;
-    }
-}
-
-@media screen and (prefers-reduced-motion: reduce) {
-    .indexHousesSerpentard {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 19%;
-        height: 100%;
-        background-image: url("https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/serpentard-2.webp");
-        border-radius: 10px;
-        cursor: pointer;
-        transition: none;
-    }
-}
-
-@media screen and (prefers-reduced-motion: reduce) {
-    .indexHousesPoudlard {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 19%;
-        height: 100%;
-        background-image: url("https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/poudlard-2.webp");
-        border-radius: 10px;
-        cursor: pointer;
-        transition: none;
-    }
-}
-
-@media screen and (prefers-reduced-motion: reduce) {
-    .indexChopsticks {
-        display: flex;
-        width: 100%;
-        height: 19%;
-        padding: 2%;
-        font-family: 'Henny Penny', sans-serif;
-        background-image: url("https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/baguettes-ollivander-2.webp");
-        border-radius: 10px;
-        cursor: pointer;
-        transition: none;
-    }
-}
-
-@media screen and (prefers-reduced-motion: reduce) {
-    .indexChopsticksText > button {
-        padding: 2%;
-        color: white;
-        font-size: 125%;
-        background-color: #234d9a;
-        border-radius: 10px;
-        filter: grayscale(75%);
-        transition: none;
-    }
-}
-
-.indexChopsticksText > button {
-    padding: 2%;
-    color: white;
-    font-size: 125%;
-    background-color: #234d9a;
-    border-radius: 10px;
-    filter: grayscale(75%);
-    transition: 0.5s;
-}
-
-.indexChopsticksText > button:hover,
-.indexChopsticksText > button:focus {
-    filter: grayscale(0%);
-}
-
-.indexChopsticksImg {
-    display: flex;
-    justify-content: flex-end;
-    width: 50%;
-    height: 100%;
 }
 
 .indexChopsticksImg > img {
-    border-radius: 10px;
-}
-
-@media screen and (prefers-reduced-motion: reduce) {
-    .indexClothing {
-        display: flex;
-        width: 100%;
-        height: 19%;
-        padding: 2%;
-        font-family: 'Henny Penny', sans-serif;
-        background-image: url("https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/vetements-2.webp");
-        border-radius: 10px;
-        cursor: pointer;
-        transition: none;
-    }
-}
-
-.indexClothing:hover,
-.indexClothing:focus {
-    padding: 0;
-}
-
-.indexClothingImg {
-    display: flex;
-    justify-content: flex-start;
-    width: 50%;
-    height: 100%;
-}
-
-.indexClothingImg > img {
-    border-radius: 10px;
-}
-
-.indexStationeryAccessories {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    height: 14%;
-    font-family: 'Henny Penny', sans-serif;
-    text-align: center;
-}
-
-@media screen and (prefers-reduced-motion: reduce) {
-    .indexClothingText > button {
-        padding: 2%;
-        color: white;
-        font-size: 125%;
-        background-color: #627194;
-        border-radius: 10px;
-        filter: grayscale(75%);
-        transition: none;
-    }
-}
-
-.indexClothingText > button {
-    padding: 2%;
-    color: white;
-    font-size: 125%;
-    background-color: #627194;
-    border-radius: 10px;
-    filter: grayscale(75%);
-    transition: 0.5s;
-}
-
-.indexClothingText > button:hover,
-.indexClothingText > button:focus {
-    filter: grayscale(0%);
-}
-
-@media screen and (prefers-reduced-motion: reduce) {
-    .indexJewelry {
-        display: flex;
-        width: 100%;
-        height: 19%;
-        padding: 2%;
-        font-family: 'Henny Penny', sans-serif;
-        background-image: url("https://static.warnerbros.fr/static/version1585734374/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/bijoux-2.webp");
-        border-radius: 10px;
-        cursor: pointer;
-        transition: none;
-    }
-}
-
-.indexJewelry:hover,
-.indexJewelry:focus {
-    padding: 0;
-}
-
-.indexJewelryText {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 50%;
-    height: 100%;
-}
-
-.indexJewelryText > p {
-    font-size: 125%;
-}
-
-@media screen and (prefers-reduced-motion: reduce) {
-    .indexJewelryText > button {
-        padding: 2%;
-        color: white;
-        font-size: 125%;
-        background-color: #f55873;
-        border-radius: 10px;
-        filter: grayscale(75%);
-        transition: none;
-    }
-}
-
-.indexJewelryText > button {
-    padding: 2%;
-    color: white;
-    font-size: 125%;
-    background-color: #f55873;
-    border-radius: 10px;
-    filter: grayscale(75%);
-    transition: 0.5s;
-}
-
-.indexJewelryText > button:hover,
-.indexJewelryText > button:focus {
-    filter: grayscale(0%);
-}
-
-.indexJewelryImg {
-    display: flex;
-    justify-content: flex-end;
-    width: 50%;
-    height: 100%;
-}
-
-.indexJewelryImg > img {
-    border-radius: 10px;
-}
-
-@media screen and (prefers-reduced-motion: reduce) {
-    .indexStationery {
-        display: flex;
-        width: 49%;
-        height: 100%;
-        padding: 2%;
-        background-image: url("https://static.warnerbros.fr/static/version1585734374/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/papeterie-2.webp");
-        border-radius: 10px;
-        cursor: pointer;
-        transition: none;
-    }
-}
-
-.indexStationery {
-    display: flex;
-    width: 49%;
-    height: 100%;
-    padding: 2%;
-    background-image: url("https://static.warnerbros.fr/static/version1585734374/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/papeterie-2.webp");
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.5s;
-}
-
-.indexStationery:hover,
-.indexStationery:focus {
-    padding: 0;
-}
-
-.indexStationeryText {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 50%;
-    height: 100%;
-}
-
-@media screen and (prefers-reduced-motion: reduce) {
-    .indexStationeryText > button {
-        padding: 2%;
-        color: white;
-        font-size: 125%;
-        background-color: #f7a569;
-        border-radius: 10px;
-        filter: grayscale(75%);
-        transition: none;
-    }
-}
-
-.indexStationeryText > button {
-    padding: 2%;
-    color: white;
-    font-size: 125%;
-    background-color: #f7a569;
-    border-radius: 10px;
-    filter: grayscale(75%);
-    transition: 0.5s;
-}
-
-.indexStationeryText > button:hover,
-.indexStationeryText > button:focus {
-    filter: grayscale(0%);
-}
-
-.indexStationeryImg {
-    display: flex;
-    justify-content: flex-end;
-    width: 50%;
-    height: 100%;
-}
-
-.indexStationeryImg > img {
-    border-radius: 10px;
-}
-
-@media screen and (prefers-reduced-motion: reduce) {
-    .indexAccessories {
-        display: flex;
-        width: 49%;
-        height: 100%;
-        padding: 2%;
-        background-image: url("https://static.warnerbros.fr/static/version1585734374/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/accessoires-2.webp");
-        border-radius: 10px;
-        cursor: pointer;
-        transition: none;
-    }
-}
-
-.indexAccessories {
-    display: flex;
-    width: 49%;
-    height: 100%;
-    padding: 2%;
-    background-image: url("https://static.warnerbros.fr/static/version1585734374/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/accessoires-2.webp");
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.5s;
-}
-
-.indexAccessories:hover,
-.indexAccessories:focus {
-    padding: 0;
-}
-
-.indexAccessoriesText {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 50%;
-    height: 100%;
-}
-
-@media screen and (prefers-reduced-motion: reduce) {
-    .indexAccessoriesText > button {
-        padding: 2%;
-        color: white;
-        font-size: 125%;
-        background-color: #f6c51f;
-        border-radius: 10px;
-        filter: grayscale(75%);
-        transition: none;
-    }
-}
-
-.indexAccessoriesText > button {
-    padding: 2%;
-    color: white;
-    font-size: 125%;
-    background-color: #f6c51f;
-    border-radius: 10px;
-    filter: grayscale(75%);
-    transition: 0.5s;
-}
-
-.indexAccessoriesText > button:hover,
-.indexAccessoriesText > button:focus {
-    filter: grayscale(0%);
-}
-
-.indexAccessoriesImg {
-    display: flex;
-    justify-content: flex-end;
-    width: 50%;
-    height: 100%;
-}
-
-.indexAccessoriesImg > img {
     border-radius: 10px;
 }

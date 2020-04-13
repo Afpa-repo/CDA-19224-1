@@ -10,11 +10,12 @@
 
 /* Dropdown Button */
 .dropbtn {
-   /* padding: 16px;*/
+
+    /*padding: 16px;*/
     color: white;
     font-size: 16px;
-       background-color: #3498db;
-   /* border: none;*/
+    background-color: #3498db;
+    border: none;
     cursor: pointer;
 }
 
@@ -47,7 +48,6 @@
 
 /* Links inside the dropdown */
 .dropdownn-content a {
-    display: block;
     display: block;
     width: auto;
     height: 20px;

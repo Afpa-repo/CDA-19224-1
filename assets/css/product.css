@@ -1,0 +1,17 @@
+.product {
+    color: white;
+}
+
+#productTitle {
+    font-family: 'Henny Penny', fantasy;
+    border-bottom-right-radius: inherit;
+    border-bottom-left-radius: inherit;
+}
+
+#titleH2 {
+    font-size: 30px;
+}
+
+.btn-floating {
+    z-index: inherit !important;
+}

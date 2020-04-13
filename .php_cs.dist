@@ -14,7 +14,11 @@ return PhpCsFixer\Config::create()
         '@PhpCsFixer' => true,
         '@Symfony' => true,
         'array_syntax' => ['syntax' => 'short'],
-        'ternary_to_null_coalescing' => true
+        'no_useless_else' => true,
+        'no_useless_return' => true,
+        'ordered_imports' => true,
+        'ternary_to_null_coalescing' => true,
+        'yoda_style' => false
     ])
     ->setFinder($finder)
     ;

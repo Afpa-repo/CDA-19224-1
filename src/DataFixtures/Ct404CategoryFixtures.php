@@ -12,6 +12,8 @@ class Ct404CategoryFixtures extends BaseFixture
         // Creates 5 categories
         $this->createMany(Ct404Category::class, 5, function (Ct404Category $category) {
             $category->setName($this->faker->unique()->word);
+            $category->setDescription($this->faker->unique()->word);
+            $category->setLink($this->faker->unique()->word);
         });
 
         // Fills the database with the persisted category and subCategory

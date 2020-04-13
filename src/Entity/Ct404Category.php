@@ -51,6 +51,16 @@ class Ct404Category
      */
     private $subCategories;
 
+    /**
+     * @ORM\Column(type="text", nullable=false)
+     */
+    private $description;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $link;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -126,6 +136,30 @@ class Ct404Category
                 $subCategory->setCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getLink(): ?string
+    {
+        return $this->link;
+    }
+
+    public function setLink(?string $link): self
+    {
+        $this->link = $link;
 
         return $this;
     }

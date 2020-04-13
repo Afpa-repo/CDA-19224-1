@@ -65,7 +65,7 @@
     {#  BOTTOM BANNER : NAVBAR  #}
     <nav class="grey darken-4 center-align">
         {#  Create a Service to manage categories and make it global (twig.yaml)  #}
-        {% for category in categories.CategoriesNavBar %}
+        {# {% for category in categories.CategoriesNavBar %}
             <!-- Dropdown Trigger -->
             <a class='dropdown-trigger yellow-text' href='#' data-target='dropdown{{ category.id }}' title="{{ category.name }}">{{ category.name }}</a>
 
@@ -81,7 +81,7 @@
                 <li class="divider"></li>
                 <li><a href="{{ path('ct404_product_category', {'id': category.id}) }}" title="Tous les produits de {{ category.name }}">Tout</a></li>
             </ul>
-        {% endfor %}
+        {% endfor %} #}
         <a class="orange-text text-darken-3" href="{{ path('ct404_product_index') }}" title="Tous les produits">TOUS</a>
     </nav>
 

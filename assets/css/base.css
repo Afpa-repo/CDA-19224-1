@@ -126,55 +126,34 @@ footer {
     justify-content: center;
     width: 19%;
     border-radius: 10px;
-    transition: 0.5s;
+}
+
+.indexHousesInner:hover,
+.indexHousesInner:focus{
+  transform: scale(1.1);
 }
 
 #indexHousesGryffondor {
     background-image: url("https://static.warnerbros.fr/static/version1585654557/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/gryffondor-2.webp");
 }
 
-#indexHousesGryffondor:hover,
-#indexHousesGryffondor:focus {
-    transform: scale(1.1);
-}
-
 #indexHousesSerdaigle {
     background-image: url("https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/serdaigle-2.webp");
-}
-
-#indexHousesSerdaigle:hover,
-#indexHousesSerdaigle:focus {
-    transform: scale(1.1);
 }
 
 #indexHousesPoufsouffle {
     background-image: url("https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/poufsouffle-2.webp");
 }
 
-#indexHousesPoufsouffle:hover,
-#indexHousesPoufsouffle:focus {
-    transform: scale(1.1);
-}
-
 #indexHousesSerpentard {
     background-image: url("https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/serpentard-2.webp");
-}
-
-#indexHousesSerpentard:hover,
-#indexHousesSerpentard:focus {
-    transform: scale(1.1);
 }
 
 #indexHousesPoudlard {
     background-image: url("https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/poudlard-2.webp");
 }
 
-#indexHousesPoudlard:hover,
-#indexHousesPoudlard:focus {
-    transform: scale(1.1);
-}
-
-@media screen and (prefers-reduced-motion: reduce) {
+/* @media screen and (prefers-reduced-motion: reduce) {
     .indexChopsticks {
         display: flex;
         height: 19%;
@@ -209,4 +188,14 @@ footer {
 
 .indexChopsticksImg > img {
     border-radius: 10px;
+} */
+
+.indexCategory{
+  background-image: url("https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/baguettes-ollivander-2.webp");
+  border-radius: 10px;
+}
+
+.indexCategoryText>a{
+  padding: 2%;
+  border-radius: 10px;
 }

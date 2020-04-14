@@ -37,7 +37,7 @@ class Ct404ProductRepository extends ServiceEntityRepository
             ->andWhere('p.'.$row.' LIKE :search')
             ->setParameter('search', '%'.$search.'%')
             ->getQuery()
-            ->getResult()    
+            ->getResult()
             ;
     }
 

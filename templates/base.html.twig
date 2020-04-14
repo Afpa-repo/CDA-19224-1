@@ -23,7 +23,7 @@
                 </a>
             </div>
             {#   For the accessibily, use an aria-label   #}
-            <div class="col l4 offset-l1 m7 z-depth-2 hide-on-small-only">
+            <div class="col l4 offset-l1 m7 hide-on-small-only">
                 <div class="row">
                     <form action="{{ path('ct404_product_search') }}" method="post">
                         <button type="submit" class="col s2 mt-auto btn white orange-text darken-text">
@@ -45,13 +45,7 @@
 
             {#  Client Setting  #}
             <div class="col s3 offset-s4 m2 offset-m1 l2 center-align">
-                {% if app.user %}
-                    <a class="btn orange" href="{{ path('app_login') }}" title="Espace client">Compte</a>
-                {% else %}
-                    <div class="center-align">
-                        <a href="{{ path('app_login') }}" title="Se connecter">Se connecter</a>
-                    </div>
-                {% endif %}
+                <a class="btn orange" href="{{ path('app_login') }}" title="Espace client">Compte</a>
             </div>
 
             {#  Shopping Basket  #}

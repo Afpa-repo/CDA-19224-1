@@ -80,16 +80,46 @@ class Ct404ProductController extends AbstractController
     /**
      * @Route("/search", name="ct404_product_search")
      */
-    public function bySearch(Ct404ProductRepository $ct404ProductRepository): Response
+    public function bySearch(Ct404ProductRepository $ct404ProductRepository, Ct404SubCategoryRepository $ct404SubCategoryRepository, Ct404CategoryRepository $ct404CategoryRepository): Response
     {
         $search = filter_input(INPUT_POST, 'searchInput', FILTER_SANITIZE_SPECIAL_CHARS);
         $products_description = $ct404ProductRepository->searchInRow($search, 'description');
         $products_title = $ct404ProductRepository->searchInRow($search, 'name');
 
+        $tab_subCategories = [];
+        $sub_categories_description = [];
+
+        $tab_categories = [];
+        $categories_description = [];
+
+        $i = 0;
+        foreach ($products_description as $product) {
+            $tab_subCategories[$i] = $product->getSubCategory()->getId();
+            $tab_categories[$i++] = $product->getSubCategory()->getCategory()->getId();
+        }
+        $tab_subCategories = array_unique($tab_subCategories);
+        $tab_categories = array_unique($tab_categories);
+
+        $i = 0;
+        foreach ($tab_categories as $id) {
+            $sub_categories_description[$i++] = $ct404SubCategoryRepository->findOneBy([
+                'id' => $id,
+            ]);
+        }
+
+        $i = 0;
+        foreach ($tab_categories as $id) {
+            $categories_description[$i++] = $ct404CategoryRepository->findOneBy([
+                'id' => $id,
+            ]);
+        }
+
         return $this->render('ct404_product/products_research.html.twig', [
             'search' => $search,
             'products_title' => $products_title,
             'products_description' => $products_description,
+            'sub_categories_search' => $sub_categories_description,
+            'categories_search' => $categories_description,
         ]);
     }
 

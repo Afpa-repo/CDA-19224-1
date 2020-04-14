@@ -9,7 +9,7 @@
     <article>
         <form action="{{ path('ct404_product_search') }}" method="post">
             <div class="row">
-                <div class="col s7 offset-s2 m5 offset-m3">
+                <div class="col s8 offset-s2 m6 offset-m3">
                     <label for="searchInput" aria-label="searchInput">
                         <input 
                             type="text" 
@@ -20,11 +20,6 @@
                              value="{{search}}"
                          >
                     </label>
-                </div>
-                <div id="speechBtn" class="col s2 l1 mt-auto" aria-label="btnSearchInput">
-                    <a href="#speechBtn" id="btnSearchInput">
-                        <i id="materialMicro" class="material-icons">micro</i>
-                    </a>
                 </div>
             </div>
         </form>
@@ -42,13 +37,41 @@
     <section>
         <h3 class="searchTitles center-align">Categories</h3>
         <article class="row section">
-            <div class="col s4 l3">
-                <a class="col s10 offset-s1 center-align" href="#" title="">
-                    <img class="responsive-img" src="http://placehold.it/200x200" alt="categories">
-                </a>
-                <p class="center-align col s12">Titre</p>
-            </div>
+            {% for category_search in categories_search %}
+                <div class="col s4 l3">
+                    <p class="center-align col s12">{{category_search.name}}</p>
+                    <a 
+                        class="col s10 offset-s1 center-align" 
+                        href="{{ path('ct404_product_category', {'id': category_search.id}) }}" 
+                        title="{{category_search.name}}"
+                    >
+                        <img class="responsive-img" src="http://placehold.it/200x200" alt="categories">
+                    </a>
+                </div>
+                {% else %}
+                <div class="center-align red-text">
+                    Pas de categorie trouvee
+                </div>
+            {% endfor %}
         </article>
+        <article class="divider"></article>
+        <div class="row">
+            <strong class="col offset-s1">Sous catégories</strong>
+        </div>
+        <article class="row">
+            {% for sub_category_search in sub_categories_search %}
+                <div class="col s3 l2">
+                    <a class="col s10 offset-s1 btn" href="{{ path('ct404_product_sub_category', {'id': sub_category_search.id}) }}" title="{{sub_category_search.name}}">
+                        {{sub_category_search.name}}
+                    </a>
+                </div>
+                {% else %}
+                <div class="center-align red-text">
+                    Pas de sous categorie trouvee
+                </div>
+            {% endfor %}
+        </article>
+        <article class="divider"></article>
 
 
         <h4 class="searchTitles center-align">Dans le titre</h4> 
@@ -80,8 +103,14 @@
                     </article>
                 </section>
             </div>
+                {% else %}
+                <div class="center-align red-text">
+                    Pas de libellé contenant votre recherche
+                </div>
             {% endfor %}
         </article>
+
+        <article class="divider"></article>
 
         <h4 class="searchTitles center-align">Dans la description</h4> 
         <article class="row section">
@@ -107,7 +136,11 @@
                             </a>
                         </article>
                     </section>
-                </div>    
+                </div>   
+                {% else %}
+                <div class="center-align red-text">
+                    Pas de description contenant votre recherche
+                </div> 
             {% endfor %}
         </article>
 

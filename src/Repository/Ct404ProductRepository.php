@@ -31,6 +31,16 @@ class Ct404ProductRepository extends ServiceEntityRepository
             ;
     }
 
+    public function searchInRow($search, $row)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.'.$row.' LIKE :search')
+            ->setParameter('search', '%'.$search.'%')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Ct404Product[] Returns an array of Ct404Product objects
     //  */

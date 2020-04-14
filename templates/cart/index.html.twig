@@ -9,7 +9,7 @@
 
 	<main class="orangeTransparent container">
 		<div class="divContinueShopping">
-		<p ><a class="ContinueShopping" href="/produits">Continuer mes achats</a> </p>
+		<p ><a class="ContinueShopping" href="{{ path('ct404_product_index') }}">Continuer mes achats</a> </p>
 		</div>
 		{% if items|length > 0 %}
 			{% set compteur = 0 %}
@@ -64,7 +64,7 @@
 		{% else %}
 			<div class="center">
 				<p class="cart">Votre panier est Vide</p>
-				<p><a class="backToShopping" href="/produits">retour aux achats</a> </p>
+				<p><a class="backToShopping" href="{{ path('ct404_product_index') }}">retour aux achats</a> </p>
 				<i class="material-icons">sentiment_dissatisfied</i>
 			</div>
 		{% endif %}

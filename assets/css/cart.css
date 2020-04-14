@@ -10,8 +10,7 @@
 
 /* Dropdown Button */
 .dropbtn {
-
-    /*padding: 16px;*/
+    /* padding: 16px; */
     color: white;
     font-size: 16px;
     background-color: #3498db;
@@ -82,18 +81,18 @@
 
 /* bouton ajoute la quantité d'un produit */
 .addBtn {
- /*   padding-top: 17px !important;
+    /*   padding-top: 17px !important;
     width: auto;
-    min-height: 50px !important;*/
+    min-height: 50px !important; */
     color: white;
     background-color: #005947;
 }
 
 /* retire la quantité d'un produit */
 .subBtn {
-  /*  padding-top: 17px !important;
+    /*  padding-top: 17px !important;
   width: auto;
-   min-height: 50px !important;*/
+   min-height: 50px !important; */
     color: white;
     text-align: -webkit-center;
     background-color: #a61a40;

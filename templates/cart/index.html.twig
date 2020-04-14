@@ -9,7 +9,7 @@
 
 	<main class="orangeTransparent container">
 		<div class="divContinueShopping">
-		<p ><a class="ContinueShopping" href="/produits">Continuer mes achats</a> </p>
+		<p ><a class="ContinueShopping" href="{{ path('ct404_product_index') }}">Continuer mes achats</a> </p>
 		</div>
 		{% if items|length > 0 %}
 			{% set compteur = 0 %}
@@ -26,16 +26,17 @@
 								<h3 class="header h4">{{ item.product.name }}</h3>
 								<p>{{ item.product.description }}</p>
 								<h4 class="h6">Quantité :</h4>
+
 								{#	TODO : METTRE LES NOUVEAUX LIENS  #}
 								<a href="{{ path('cart_subtract', {'id': item.product.id}) }}" class="subBtn btn-small "><i class="material-icons">remove</i></a>
 								<div class="dropdownn">
-									<button id="dropbtn{{loop.index}}" class="dropbtn">{{ item.quantity }}</button>
+									<button id="dropbtn{{loop.index}}" class="dropbtn btn-large">{{ item.quantity }}</button>
 									<div id="myDropdownn{{loop.index}}" class="dropdownn-content">
 										{% for i in 1..9 %}
 											<a class="quantityByUser" href="{{ path('cart_modify', {'id': item.product.id, 'valeurUser': i}) }}">{{ i }}</a>
 										{% endfor %}
 									</div>
-									<a href="{{ path('cart_add', {'id': item.product.id}) }}" class="addBtn btn-small "><i class="material-icons">add</i></a>
+									<a href="{{ path('cart_add', {'id': item.product.id}) }}" class="addBtn btn-large "><i class="material-icons">add</i></a>
 							</div>
 								<p>Prix unitaire :
 									{{ item.product.price }}
@@ -63,7 +64,7 @@
 		{% else %}
 			<div class="center">
 				<p class="cart">Votre panier est Vide</p>
-				<p><a class="backToShopping" href="/produits">retour aux achats</a> </p>
+				<p><a class="backToShopping" href="{{ path('ct404_product_index') }}">retour aux achats</a> </p>
 				<i class="material-icons">sentiment_dissatisfied</i>
 			</div>
 		{% endif %}

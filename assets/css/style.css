@@ -1,18 +1,13 @@
-/* TO CENTER ITS CONTENT */
-.styleDisplayCenterBloc{
+/* TO CENTER YOUR CONTENT */
+.styleDisplayCenterBloc, .styleDisplayCenterText{
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 /* TO CENTER YOUR TEXT */
 .styleDisplayCenterText{
-  height: 100%;
   flex-direction: column;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 /* TO HAVE ROUNDED EDGES */
@@ -20,22 +15,23 @@
   border-radius: 10px;
 }
 
+.styleHr, .styleHrBloc, .styleHrText{
+  background-color: black;
+}
+
 /* TO HAVE THICK HR IN BLACK */
 .styleHr{
   height: 2px;
-  background-color: black;
 }
 
 /* TO HAVE THICK HR IN BLACK FOR styleDisplayCenterBloc */
 .styleHrBloc{
   width: 2px;
   height: 90%;
-  background-color: black;
 }
 
 /* TO HAVE THICK HR IN BLACK FOR styleDisplayCenterText */
 .styleHrText{
   width: 90%;
   height: 2px;
-  background-color: black;
 }

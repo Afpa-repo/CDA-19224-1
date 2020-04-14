@@ -153,43 +153,6 @@ footer {
     background-image: url("https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/poudlard-2.webp");
 }
 
-/* @media screen and (prefers-reduced-motion: reduce) {
-    .indexChopsticks {
-        display: flex;
-        height: 19%;
-        padding: 2%;
-        font-family: 'Henny Penny', sans-serif;
-        background-image: url("https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/baguettes-ollivander-2.webp");
-        border-radius: 10px;
-        transition: none;
-    }
-}
-
-.indexChopsticks {
-    display: flex;
-    height: 19%;
-    padding: 2%;
-    font-family: 'Henny Penny', sans-serif;
-    background-image: url("https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/baguettes-ollivander-2.webp");
-    border-radius: 10px;
-    transition: 0.5s;
-}
-
-.indexChopsticks:hover,
-.indexChopsticks:focus {
-    padding: 0;
-}
-
-.indexChopsticksText {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-}
-
-.indexChopsticksImg > img {
-    border-radius: 10px;
-} */
-
 .indexCategory{
   background-image: url("https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/baguettes-ollivander-2.webp");
   border-radius: 10px;

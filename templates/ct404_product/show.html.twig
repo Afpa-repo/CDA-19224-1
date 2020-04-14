@@ -1,45 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ct404Product{% endblock %}
+{% block title %}{{ ct404_product.name }}{% endblock %}
 
 {% block h1 %}{{ ct404_product.name }}{% endblock %}
 
 {% block body %}
-<main>
-    <div class="container white">
-    <table class="responsive-table striped">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ ct404_product.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ ct404_product.name }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ ct404_product.description }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ ct404_product.price }}</td>
-            </tr>
-            <tr>
-                <th>StockQuantity</th>
-                <td>{{ ct404_product.stockQuantity }}</td>
-            </tr>
-            <tr>
-                <th>AlertQuantity</th>
-                <td>{{ ct404_product.alertQuantity }}</td>
-            </tr>
-        </tbody>
-    </table>
-    <a href="{{ path('ct404_product_index') }}">back to list</a>
 
-    <a href="{{ path('ct404_product_edit', {'id': ct404_product.id}) }}">edit</a>
+<main class="container row">
+  <article class="productShow section flow-text col m10 offset-m1 styleBorderRadius">
+    <div class="productShowContent col m12">
 
-    {{ include('ct404_product/_delete_form.html.twig') }}
+      <div class="col m7">
+        <img class="responsive-img" src="https://fontan.io/0x1000/media/www.warnerbros.fr/1/b/1b9f61b344ab6db458cd5446298f823f.webp" alt="{{ ct404_product.name }}">
+      </div>
+
+      <div class="col m5 center-align styleDisplayCenterText">
+        <h2>{{ ct404_product.name }}</h2>
+        <hr class="styleHrText">
+        <p>{{ ct404_product.description }}</p>
+        <hr class="styleHrText">
+      </div>
+
     </div>
+
+    <div class="productShowAdd col m12 styleDisplayCenterBloc">
+
+      <div class="col m4 styleDisplayCenterText">
+        <small>Stock : {{ ct404_product.stockQuantity }}</small>
+      </div>
+      <hr class="styleHrBloc">
+      <div class="col m4 styleDisplayCenterText">
+        <span>Prix : {{ ct404_product.stockQuantity }}€</span>
+      </div>
+      <hr class="styleHrBloc">
+      <div class="col m4 styleDisplayCenterText">
+        <a class="btn-large btn-floating blue" href="{{ path('cart_add', {'id': ct404_product.id}) }}" title="Ajouter au panier">
+          <i class="material-icons">add_shopping_cart</i>
+        </a>
+      </div>
+
+    </div>
+  </article>
 </main>
+
 {% endblock %}

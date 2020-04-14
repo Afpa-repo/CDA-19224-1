@@ -1,0 +1,17 @@
+@media screen and (max-width: 600px) {
+
+  /* ------------------------------------------------------------------------------- */
+
+  /* SHOW */
+
+  .styleDisplayCenterBloc{
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .styleHrBloc{
+    width: 90%;
+    height: 2px;
+    background-color: black;
+  }
+}

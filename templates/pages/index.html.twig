@@ -50,24 +50,6 @@
     </div>
   </div>
 
-  {#
-    TODO : METTRE EN PLACE UN SYSTEME DYNAMIQUE : C'EST UN PAS UN BLOG
-    La navbar est dynamique les categories de l'index doivent l'être aussi
-    #}
-    {# <div class="indexChopsticks center-align">
-      <div class="indexChopsticksText center-align">
-        <img src="https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/baguettes-ollivander-i.svg" alt="Chopsticks Logo">
-        <h3>Les baguettes Ollivander</h3>
-        <p class="flow-text">C'est la baguette qui choisit le sorcier...</p>
-        <div>
-          <a href="">DÉCOUVRIR NOS BAGUETTES</a>
-        </div>
-      </div>
-      <div class="indexChopsticksImg">
-        <img class="responsive-img" src="https://static.warnerbros.fr/static/version1585662335/frontend/Warner/wizardingworld/fr_FR/images/fanstore/wizardingworld/home/baguettes-ollivander.webp" alt="Ollivander Wand">
-      </div>
-    </div> #}
-
     {% for category in categories %}
 
     <div class="indexCategory section row hoverable">
@@ -80,7 +62,7 @@
 
         <p>{{category.description}}</p>
 
-        <a class="orangeTransparent white-text hoverable" href="{{category.link}}">DÉCOUVRIR NOS {{category.name}}</a>
+        <a class="orangeTransparent white-text hoverable" href="{{ path('ct404_sub_category', {'category': category.id}) }}">DÉCOUVRIR NOS {{category.name}}</a>
 
       </div>
 

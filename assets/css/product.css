@@ -1,17 +1,39 @@
 .product {
-    color: white;
+  color: white;
 }
 
 #productTitle {
-    font-family: 'Henny Penny', fantasy;
-    border-bottom-right-radius: inherit;
-    border-bottom-left-radius: inherit;
+  font-family: 'Henny Penny', fantasy;
+  border-bottom-right-radius: inherit;
+  border-bottom-left-radius: inherit;
 }
 
 #titleH2 {
-    font-size: 30px;
+  font-size: 30px;
 }
 
 .btn-floating {
-    z-index: inherit !important;
+  z-index: inherit !important;
+}
+
+/* ------------------------------------------------------------------------------- */
+
+/* SHOW */
+
+.productShow{
+  height: 750px;
+  background-color: white;
+}
+
+.productShowContent{
+  height: 74%;
+}
+
+.productShowAdd{
+  height: 23%;
+  font-size: 150%;
+}
+
+.productShowAdd>div>span{
+  color: #EF6B01;
 }

@@ -8,17 +8,19 @@
 
 /* Imports custom css */
 
+/* CSS CLASSES TO USE FOR THE PROJECT */
+@import "style.css";
+@import "styleMediaQuery.css";
+
 /* HEADER INDEX FOOTER */
 @import "base.css";
 
 /* LOGIN */
 @import "login.css";
+@import "loginMediaQuery.css";
 
 /* REGISTER */
 @import "register.css";
-
-/* MEDIA QUERY */
-@import "mediaQuery.css";
 
 /* CATEGORIES */
 @import 'categories.css';
@@ -28,3 +30,4 @@
 
 /* PRODUCTS */
 @import 'product.css';
+@import "productMediaQuery.css";

@@ -17,33 +17,34 @@
     <header role="banner">
         {#  TOP BANNER  #}
         <section class="white row mb-auto valign-wrapper">
-            <div class="col l3 m4 s5">
+            <div class="col l3 s5 center-align">
                 <a href="{{ path('home') }}" title="Accueil">
                     <img class="responsive-img" src="{{ asset('build/images/logo.png') }}" alt="Logo" title="Notre Logo">
                 </a>
             </div>
             {#   For the accessibily, use an aria-label   #}
-            {#   TODO :  Mettre en place le formlaire de recherche  #}
-            <div class="col l4 offset-l1 m6 z-depth-2 hide-on-small-only">
+            <div class="col l4 offset-l1 m7 z-depth-2 hide-on-small-only">
                 <div class="row">
-                    <div class="col s2 mt-auto center-align">
-                        <i class="material-icons">search</i>
-                    </div>
-                    <div class="col s8">
-                        <label for="searchInput" aria-label="searchInput">
-                            <input aria-labelledby="searchInput" type="text" id="searchInput" name="searchInput" placeholder="Recherche">
-                        </label>
-                    </div>
-                    <div id="speechBtn" class="col s2 mt-auto center-align" aria-label="btnSearchInput">
-                        {#  TODO : Remplacer par un button si formulaire | Problement method GET ?  #}
-                        <a href="#" id="btnSearchInput"><i id="materialMicro" class="material-icons">micro</i></a>
-                    </div>
+                    <form action="{{ path('ct404_product_search') }}" method="post">
+                        <button type="submit" class="col s2 mt-auto btn white orange-text darken-text">
+                            <i class="material-icons">search</i>
+                        </button>
+                        <div class="col s8">
+                            <label for="searchInput" aria-label="searchInput">
+                                <input aria-labelledby="searchInput" type="text" id="searchInput" name="searchInput" placeholder="Recherche">
+                            </label>
+                        </div>
+                        <div id="speechBtn" class="col s2 mt-auto" aria-label="btnSearchInput">
+                            <a href="#speechBtn" id="btnSearchInput">
+                                <i id="materialMicro" class="material-icons">micro</i>
+                            </a>
+                        </div>
+                    </form>
                 </div>
             </div>
 
-
             {#  Client Setting  #}
-            <div class="col s3 offset-s4 offset-m1 l2 center-align">
+            <div class="col s3 offset-s4 m2 offset-m1 l2 center-align">
                 {% if app.user %}
                     <a class="btn orange" href="{{ path('app_login') }}" title="Espace client">Compte</a>
                 {% else %}

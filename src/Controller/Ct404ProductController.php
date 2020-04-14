@@ -75,6 +75,24 @@ class Ct404ProductController extends AbstractController
         ]);
     }
 
+//    Products by Search
+
+    /**
+     * @Route("/search", name="ct404_product_search")
+     */
+    public function bySearch(Ct404ProductRepository $ct404ProductRepository): Response
+    {
+        $search = filter_input(INPUT_POST, 'searchInput', FILTER_SANITIZE_SPECIAL_CHARS);
+        $products_description = $ct404ProductRepository->searchInRow($search, 'description');
+        $products_title = $ct404ProductRepository->searchInRow($search, 'name');
+
+        return $this->render('ct404_product/products_research.html.twig', [
+            'search' => $search,
+            'products_title' => $products_title,
+            'products_description' => $products_description,
+        ]);
+    }
+
     /**
      * @Route("/new", name="ct404_product_new", methods={"GET","POST"})
      */

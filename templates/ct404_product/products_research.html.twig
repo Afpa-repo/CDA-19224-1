@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Recherche' %}
+
+{% block h1 'Recherche' %}
+
+{% block body %}
+<section id="productTitle" class="orangeTransparent">
+    <article>
+        <form action="{{ path('ct404_product_search') }}" method="post">
+            <div class="row">
+                <div class="col s7 offset-s2 m5 offset-m3">
+                    <label for="searchInput" aria-label="searchInput">
+                        <input 
+                            type="text" 
+                             aria-labelledby="searchInput" 
+                             id="searchInput" 
+                             name="searchInput" 
+                             placeholder="Nouvelle Recherche" 
+                             value="{{search}}"
+                         >
+                    </label>
+                </div>
+                <div id="speechBtn" class="col s2 l1 mt-auto" aria-label="btnSearchInput">
+                    <a href="#speechBtn" id="btnSearchInput">
+                        <i id="materialMicro" class="material-icons">micro</i>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </article>
+    <article class="section">
+        <div class="center-align">
+            <button type="submit" class="mt-auto btn white orange-text darken-text">
+                Nouvelle recherche
+            </button>
+        </div>
+    </article>
+</section>
+
+<main class="white" role="main">
+    <section>
+        <h3 class="searchTitles center-align">Categories</h3>
+        <article class="row section">
+            <div class="col s4 l3">
+                <a class="col s10 offset-s1 center-align" href="#" title="">
+                    <img class="responsive-img" src="http://placehold.it/200x200" alt="categories">
+                </a>
+                <p class="center-align col s12">Titre</p>
+            </div>
+        </article>
+
+
+        <h4 class="searchTitles center-align">Dans le titre</h4> 
+        <article class="row section">
+            {% for t_product in products_title %}
+            <div class="col s6 l4">
+                <section class="row">
+                    <article class="col s10 offset-s1 grey lighten-4 center-align">
+                        <h5 class="center-align">{{t_product.name}}</h5>
+                        <img class="responsive-img section" src="http://placehold.it/200x200" alt="produits">
+                        <h6 class="flow-text center-align">{{t_product.price}}€</h6>
+                        <article class="center-align">
+                            <a 
+                                href="{{ path('cart_add', {'id': t_product.id}) }}" 
+                                class="btn-small btn-floating" 
+                                title="Ajouter au panier"
+                            >
+                                <i class="material-icons">add_shopping_cart</i>
+                            </a>
+                            <a 
+                                href="{{ path('ct404_product_show', {'id': t_product.id}) }}" 
+                                class="btn-small btn-floating blue" 
+                                title="Détails"
+                            >
+                                <i class="material-icons">info</i>
+                            </a>
+                        </article>
+                        <p class="truncate">{{t_product.description}}</p>
+                    </article>
+                </section>
+            </div>
+            {% endfor %}
+        </article>
+
+        <h4 class="searchTitles center-align">Dans la description</h4> 
+        <article class="row section">
+            {% for d_product in products_description %}
+                <div class="col s6 m4 l3">
+                    <section class="row">
+                        <article class="col s10 offset-s1 grey lighten-4 center-align">
+                            <div class="row">
+                                <h5 class="center-align col s10">{{d_product.name}}</h5>
+                                <article class="center-align col s2">
+                                    <a 
+                                        href="{{ path('cart_add', {'id': d_product.id}) }}" 
+                                        class="btn btn-floating" 
+                                        title="Ajouter au panier"
+                                    >
+                                        <i class="material-icons">add_shopping_cart</i>
+                                    </a>
+                                </article>
+                            </div>
+                            <h6 class="center-align">{{d_product.price}}€</h6>
+                            <a href="{{ path('ct404_product_show', {'id': d_product.id}) }}" title="Details">
+                                <img class="responsive-img section" src="http://placehold.it/200x200" alt="produits">
+                            </a>
+                        </article>
+                    </section>
+                </div>    
+            {% endfor %}
+        </article>
+
+    </section>  
+</main> 
+{% endblock %}

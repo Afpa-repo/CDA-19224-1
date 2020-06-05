@@ -1,91 +1,47 @@
-# Chemin de Traverse
+# Chemin de Traverse 
+![Generic badge](https://img.shields.io/badge/Symfony-JavaFX-black.svg)
 
-## Clone du projet
+### Projet de groupe 
+Réalisé par :
+- [Julien](https://github.com/Julien-Broyard)
+- [Corentin](https://github.com/CocoCouq)
+- [Arnaud](https://github.com/arnaud567)
+- [Gaëtan](https://github.com/ffmc02)
+- [Valentin](https://github.com/Isco80)
 
-Pour clonez le projet executez la commande suivante
+***
 
-```shell script
-git clone https://github.com/Afpa-repo/CDA-19224-1.git
-```
+C'est un projet commun de fin d'étude. Il reprend une grande partie de nos connaissances dans un travail global utilisant **Symfony** et **JavaFX**.
 
-Ou si vous voulez la version ssh
+_Chaque partie du projet est accompagnée de son **README** pour vous aider à en lancer les différents composants._
 
-```shell script
-git clone git@github.com:Afpa-repo/CDA-19224-1.git
-```
+***
+***
 
-## Mise en place du projet
+## API
 
-Vous avez deux options.
-Mettre le projet en place manuellement ou utiliser Chaudron l'outil spécialement crée pour ce projet !
+[Voir le README](https://github.com/Afpa-repo/CDA-19224-1/tree/master/API)
+###### Symfony 5
+Site web de vente d'objets "magiques" sur le thème d'Harry Potter.
 
-### Mise en place avec Chaudron
 
-Tout d'abord executons le script.
+***
+***
 
-```shell script
-chmod +x bin/chaudron # Rends le script executable
-bin/chaudron help
-```
+## GUI
 
-La commande help va vous donner la liste des commandes disponibles.
+[Voir le README](https://github.com/Afpa-repo/CDA-19224-1/tree/master/GUI)
+###### JavaFX
+Logiciel Desktop de gestion de l'entreprise.
 
-Nous allons utiliser la commande setup pour mettre le projet en place
-
-```shell script
-bin/chaudron setup
-```
-
-Chaudron va vous guider pour vous permettre de mettre en place le projet !
-
-### Mise en place manuelle
-
-Tout d'abord veuillez créer un fichier .env (Copier le .env.test c'est plus rapide)
-Puis remplissez les champs vides ! 
-
-Maintenant vous devez installer les dépendances.
-On va commencer avec composer
-
-```shell script
-composer install
-```
-
-Ensuite on va installer les dépendances de Yarn.
-Pour cette étape vous allez avoir besoin de [Node.js](https://nodejs.org/en/)
-
-```shell script
-.yarn/releases/yarn-1.22.4.js install
-```
-
-Maintenant qu'on a toutes les dépendances il va falloir build les assets du projet avec Webpack Encore!
-
-Si vous êtes en environnement de développement
-
-```shell script
-.yarn/releases/yarn-1.22.4.js dev
-```
-
-Si vous êtes en environnement de production
-
-```shell script
-.yarn/releases/yarn-1.22.4.js build
-```
-
-## Quelques commandes utiles
-
-Pour pouvoir utiliser PHPCSFixer sur les fichiers du projet executez la commande suivante
-
-```shell script
-.yarn/releases/yarn-1.22.4.js php:fix
-```
-
-Pour pouvoir utiliser la fonction fix de [Stylelint](https://stylelint.io/) executez la commande suivante
-
-```shell script
-.yarn/releases/yarn-1.22.4.js css:fix
-```
+***
+***
 
 ## TODO
-
--   Automatiser le php:fix et le css:fix avant de commit (Husky, pre-commit hooks, lint-staged)
+#### Symfony
 -   Ajouter eslint pour linter le javascript
+-   Finir l'esthétique des pages
+-   Supprimer les éléments inutiles
+#### JavaFX
+-   Commencer 
+-   Apporter une solution de création de db indépendante de Symfony

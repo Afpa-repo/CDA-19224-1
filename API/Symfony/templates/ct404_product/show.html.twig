@@ -1,22 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ct404Product{% endblock %}
+{% block title %}{{ ct404_product.name }}{% endblock %}
 
-{% block h1 %}{{ ct404_product.name }}{% endblock %}
+{% block h1 %}Détails{% endblock %}
 
 {% block body %}
-<main>
-    <div class="container white">
+<main class="container">
+    <div class="product">
+        <div class="orangeTransparent valign-wrapper center-align section row" id="productTitle">
+            <div class="col s8">
+                <h2 id="titleH2">{{ ct404_product.name }}</h2>
+            </div>
+            <div class="col s4">
+                <img class="responsive-img" src="http://placehold.it/200x200" alt="{{ ct404_product.name }}">
+            </div>
+        </div>
+    </div>
+    <div>
+
+    </div>
+    <div class="white">
     <table class="responsive-table striped">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ ct404_product.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ ct404_product.name }}</td>
-            </tr>
             <tr>
                 <th>Description</th>
                 <td>{{ ct404_product.description }}</td>
